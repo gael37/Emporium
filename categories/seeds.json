@@ -1,0 +1,149 @@
+[
+  {
+    "model": "categories.category",
+    "pk": 1,
+    "fields": {
+      "name": "Baby"
+    }
+  },
+  {
+    "model": "categories.category",
+    "pk": 2,
+    "fields": {
+      "name": "Beauty"
+    }
+  },
+  {
+    "model": "categories.category",
+    "pk": 3,
+    "fields": {
+      "name": "Books"
+    }
+  },
+  {
+    "model": "categories.category",
+    "pk": 4,
+    "fields": {
+      "name": "Fashion"
+    }
+  },
+  {
+    "model": "categories.category",
+    "pk": 5,
+    "fields": {
+      "name": "Car & Motorbike"
+    }
+  },
+  {
+    "model": "categories.category",
+    "pk": 6,
+    "fields": {
+      "name": "CDs & Vimyl"
+    }
+  },
+  {
+    "model": "categories.category",
+    "pk": 7,
+    "fields": {
+      "name": "Computers & Accessories"
+    }
+  },
+  {
+    "model": "categories.category",
+    "pk": 8,
+    "fields": {
+      "name": "DVD & Blu-ray"
+    }
+  },
+  {
+    "model": "categories.category",
+    "pk": 9,
+    "fields": {
+      "name": "Electronics & Photo"
+    }
+  },
+  {
+    "model": "categories.category",
+    "pk": 10,
+    "fields": {
+      "name": "Garden & Outdoors"
+    }
+  },
+  {
+    "model": "categories.category",
+    "pk": 11,
+    "fields": {
+      "name": "Health & Personal Care"
+    }
+  },
+  {
+    "model": "categories.category",
+    "pk": 12,
+    "fields": {
+      "name": "Home & Kitchen"
+    }
+  },
+  {
+    "model": "categories.category",
+    "pk": 13,
+    "fields": {
+      "name": "Industrial & Scientific"
+    }
+  },
+  {
+    "model": "categories.category",
+    "pk": 14,
+    "fields": {
+      "name": "Large Appliances"
+    }
+  },
+  {
+    "model": "categories.category",
+    "pk": 15,
+    "fields": {
+      "name": "Luggage & Travel Gear"
+    }
+  },
+  {
+    "model": "categories.category",
+    "pk": 16,
+    "fields": {
+      "name": "Musical Instruments"
+    }
+  },
+  {
+    "model": "categories.category",
+    "pk": 17,
+    "fields": {
+      "name": "Video Games & Consoles"
+    }
+  },
+  {
+    "model": "categories.category",
+    "pk": 18,
+    "fields": {
+      "name": "Pet Supplies"
+    }
+  },
+  {
+    "model": "categories.category",
+    "pk": 19,
+    "fields": {
+      "name": "Sports & Outdoors"
+    }
+  },
+  {
+    "model": "categories.category",
+    "pk": 20,
+    "fields": {
+      "name": "Stationary & Office Supplies"
+    }
+  },
+  {
+    "model": "categories.category",
+    "pk": 21,
+    "fields": {
+      "name": "Toys & Games"
+    }
+  }
+]
