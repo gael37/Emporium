@@ -1765,3 +1765,25 @@ h1 {
 
   width: 50px;
 }
+
+.flex-basket {
+  display: flex;
+  justify-content: center;
+  gap: 200px;
+  align-items: flex-start;
+
+}
+
+.basket-checkout {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  border: 1px solid gray;
+  width: 300px;
+  height: 500px;
+}
+
+.basket-card {
+  height: 250px;
+}

@@ -35,7 +35,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home selected={selected} typed={typed} userData={userData} setUserData={setUserData} />} />
         <Route path="/profile" element={<Profile userData={userData} setUserData={setUserData} />} />
-        <Route path="/basket" element={<Basket userData={userData} setUserData={setUserData} />} />
+        <Route path="/basket" element={<Basket />} />
         <Route path="/orders" element={<Orders userData={userData} setUserData={setUserData} />} />
         <Route path="/edit-profile/:userId" element={<EditProfile userData={userData} setUserData={setUserData} />} />
         <Route path="/delete-account" element={<DeleteProfile userData={userData} setUserData={setUserData} />} />

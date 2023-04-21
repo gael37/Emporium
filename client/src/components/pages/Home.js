@@ -304,7 +304,7 @@ const Home = ({ selected, typed, userData, setUserData }) => {
   return (
     <main className="profile-page-wrapper">
 
-      {filteredProducts.length > 0 &&
+      {filteredProducts && filteredProducts.length > 0 &&
         <div className='profile-row'>
           {filteredProducts.map(product => {
             return (
