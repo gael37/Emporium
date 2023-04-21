@@ -7,6 +7,8 @@ from orders.serializers.populated import PopulatedOrderSerializer
 from comments.serializers.common import CommentSerializer
 from wishes.serializers.common import WishSerializer
 from orders.serializers.common import OrderSerializer
+from basket.serializers.common import BasketSerializer
+from basket.serializers.populated import PopulatedBasketSerializer
 
 
 class PopulatedUserSerializer(UserSerializer):
@@ -15,4 +17,5 @@ class PopulatedUserSerializer(UserSerializer):
     comments = PopulatedCommentSerializer(many=True)
     wishes = PopulatedWishSerializer(many=True)
     orders = PopulatedOrderSerializer(many=True)
+    basket = PopulatedBasketSerializer(many=True)
     # products_liked = PopulatedProductSerializer(many=True)

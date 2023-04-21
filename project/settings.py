@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'comments',
     'wishes',
     'orders',
+    'basket',
     'categories',
     'jwt_auth'
 ]

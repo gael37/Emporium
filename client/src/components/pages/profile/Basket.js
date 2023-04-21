@@ -4,9 +4,7 @@ import { Link } from 'react-router-dom'
 import { getToken, getPayload, isAuthenticated } from '../../../helpers/auth'
 import Container from 'react-bootstrap/Container'
 
-
-
-function Orders(userData, setUserData) {
+const Basket = (userData, setUserData) => {
 
   const [errors, setErrors] = useState(false)
 
@@ -36,9 +34,20 @@ function Orders(userData, setUserData) {
   }, [])
 
   return (
-    < p > geg</p >
+
+    <main className="profile-page-wrapper">
+      <h1>Welcome to the basket</h1>
+      {/* {userData && userData.basket.length > 0 ?
+        userData.basket.map((product, index) => {
+          <div key={index}>Product {index}</div>
+        })
+        :
+        <h2>BASKET EMPTY</h2>
+      } */}
+    </main>
   )
 
 }
 
-export default Orders
+
+export default Basket

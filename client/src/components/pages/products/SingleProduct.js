@@ -13,7 +13,7 @@ import Col from 'react-bootstrap/Col'
 import { calcDistance } from '../../../helpers/functions'
 
 
-const SingleProduct = () => {
+const SingleProduct = (userData, setUserData) => {
 
   // console.log('welcome to product SINGLE component')
   // const a = useParams().postcodeUser

@@ -1,7 +1,7 @@
 from django.db import models
 
 
-class Order(models.Model):
+class Basket(models.Model):
     #  TextField is same as CharField but it displays as a textarea in the admin system
     # auto_now_add on a DateTimeField will automatically add a timestamp to your record when it's created. We don't have to populate this ourselves in the request
     count = models.TextField(max_length=150)
@@ -12,14 +12,14 @@ class Order(models.Model):
     #     related_name='comments',
     #     on_delete=models.CASCADE
     # )
-    order_owner = models.ForeignKey(
+    basket_owner = models.ForeignKey(
         'jwt_auth.User',
-        related_name='orders',
+        related_name='basket',
         on_delete=models.CASCADE
     )
-    product_ordered = models.ForeignKey(
+    product_added_to_basket = models.ForeignKey(
         'products.Product',
-        related_name='ordered',
+        related_name='added_to_basket',
         on_delete=models.CASCADE
     )
     

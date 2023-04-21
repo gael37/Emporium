@@ -7,6 +7,8 @@ from jwt_auth.serializers.common import UserSerializer
 from comments.serializers.common import CommentSerializer
 from wishes.serializers.common import WishSerializer
 from orders.serializers.common import OrderSerializer
+from basket.serializers.common import BasketSerializer
+from basket.serializers.populated import PopulatedBasketSerializer
 
 
 class PopulatedProductSerializer(ProductSerializer):
@@ -16,4 +18,5 @@ class PopulatedProductSerializer(ProductSerializer):
     comments = PopulatedCommentSerializer(many=True)
     wished = PopulatedWishSerializer(many=True)
     ordered = PopulatedOrderSerializer(many=True)
+    added_to_basket = PopulatedBasketSerializer(many=True)
     # likers = UserSerializer()

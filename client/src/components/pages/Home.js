@@ -11,7 +11,7 @@ import { isAuthenticated } from '../../helpers/auth'
 import { getPayload } from '../../helpers/auth'
 import { calcDistance } from '../../helpers/functions'
 
-const Home = ({ selected, typed }) => {
+const Home = ({ selected, typed, userData, setUserData }) => {
 
   const [products, setProducts] = useState([])
   const [filteredProducts, setFilteredProducts] = useState([])
@@ -19,13 +19,12 @@ const Home = ({ selected, typed }) => {
   const [selectedProducts, setSelectedProducts] = useState([])
   const [typedProducts, setTypedProducts] = useState([])
   const [typedAndSelectedProducts, setTypedAndSelectedProducts] = useState([])
-  const [userData, setUserData] = useState(null)
   const [wishesData, setWishesData] = useState([])
-  const [ordersData, setOrdersData] = useState([])
+  const [basketData, setBasketData] = useState([])
   const [productJustLiked, setProductJustLiked] = useState(false)
 
   let wishPK = ''
-  // let orderPK = ''
+  // let basketPK = ''
 
   // get user id
   getToken()
@@ -74,14 +73,14 @@ const Home = ({ selected, typed }) => {
     }
   }
 
-  const getOrders = async () => {
+  const getBasket = async () => {
     try {
-      const { data } = await axios.get('api/orders/', {
+      const { data } = await axios.get('api/basket/', {
         headers: {
           Authorization: `Bearer ${getToken()}`,
         },
       })
-      setOrdersData(data)
+      setBasketData(data)
     } catch (err) {
       console.log(err)
       setErrors(true)
@@ -191,7 +190,7 @@ const Home = ({ selected, typed }) => {
   useEffect(() => {
     console.log('product just liked :', productJustLiked)
     getWishes()
-    getOrders()
+    getBasket()
   }, [productJustLiked])
 
   useEffect(() => {
@@ -200,44 +199,44 @@ const Home = ({ selected, typed }) => {
   }, [wishesData])
 
 
-  // -------ORDERS--------        
+  // -------BASKET--------        
 
-  const handleOrderAdd = async (product) => {
-    let orderIndex
+  const handleBasketAdd = async (product) => {
+    let basketIndex
     let currentCount
-    let alreadyOrdered = false
-    let orderPK
-    for (let i = 0; i < product.ordered.length; i++) {
-      if (product.ordered[i].orderOwner.id === currentUserId) {
-        orderIndex = i
-        currentCount = product.ordered[i].count
-        alreadyOrdered = true
-        orderPK = product.ordered[i].id
-        console.log('already ordered :', alreadyOrdered)
-        console.log('orderPK :', orderPK)
+    let alreadyAddedToBasket = false
+    let basketPK
+    for (let i = 0; i < product.added_to_basket.length; i++) {
+      if (product.added_to_basket[i].basket_owner.id === currentUserId) {
+        basketIndex = i
+        currentCount = product.added_to_basket[i].count
+        alreadyAddedToBasket = true
+        basketPK = product.added_to_basket[i].id
+        console.log('already added_to_basket :', alreadyAddedToBasket)
+        console.log('basketPK :', basketPK)
         console.log('current count :', currentCount)
       }
     }
-    if (alreadyOrdered === false) {
+    if (alreadyAddedToBasket === false) {
       try {
-        const { data } = await axios.post('/api/orders/', { count: '1', orderOwner: currentUserId, productOrdered: product.id }, {
+        const { data } = await axios.post('/api/basket/', { count: '1', basket_owner: currentUserId, product_added_to_basket: product.id }, {
           headers: {
             Authorization: `Bearer ${getToken()}`,
           },
         })
-        console.log('RESPONSE FROM ORDER POST ', data)
+        console.log('RESPONSE FROM BASKET POST ', data)
       } catch (err) {
         console.log(err)
       }
     } else {
       try {
         const newCount = parseInt(currentCount) + 1
-        const { data } = await axios.put(`/api/orders/${orderPK}/`, { count: newCount, orderOwner: currentUserId, productOrdered: product.id }, {
+        const { data } = await axios.put(`/api/basket/${basketPK}/`, { count: newCount, basket_owner: currentUserId, product_added_to_basket: product.id }, {
           headers: {
             Authorization: `Bearer ${getToken()}`,
           },
         })
-        console.log('RESPONSE FROM ORDER PUT ', data)
+        console.log('RESPONSE FROM BASKET PUT ', data)
       } catch (err) {
         console.log(err)
       }
@@ -245,49 +244,49 @@ const Home = ({ selected, typed }) => {
     setProductJustLiked(productJustLiked ? false : true)
   }
 
-  const handleOrderRemove = async (product) => {
-    let orderIndex
+  const handleBasketRemove = async (product) => {
+    let basketIndex
     let currentCount
-    let alreadyOrdered = false
-    let orderPK
-    for (let i = 0; i < product.ordered.length; i++) {
-      if (product.ordered[i].orderOwner.id === currentUserId) {
-        orderIndex = i
-        currentCount = product.ordered[i].count
-        alreadyOrdered = true
-        orderPK = product.ordered[i].id
-        console.log('already ordered :', alreadyOrdered)
-        console.log('orderPK :', orderPK)
+    let alreadyAddedToBasket = false
+    let basketPK
+    for (let i = 0; i < product.added_to_basket.length; i++) {
+      if (product.added_to_basket[i].basket_owner.id === currentUserId) {
+        basketIndex = i
+        currentCount = product.added_to_basket[i].count
+        alreadyAddedToBasket = true
+        basketPK = product.added_to_basket[i].id
+        console.log('already added_to_basket :', alreadyAddedToBasket)
+        console.log('basketPK :', basketPK)
         console.log('current count :', currentCount)
       }
-      // for (let i = 0; i < ordersData.length; i++) {
-      //   if (ordersData[i].productOrdered === product.id && ordersData[i].orderOwner.id === currentUserId) {
-      //     orderPK = ordersData[i].id
-      //     console.log('order PK ', orderPK)
+      // for (let i = 0; i < basketData.length; i++) {
+      //   if (basketData[i].product_added_to_basket === product.id && basketData[i].basket_owner.id === currentUserId) {
+      //     basketPK = basketData[i].id
+      //     console.log('basket PK ', basketPK)
       //   } else {
-      //     console.log('no order found')
+      //     console.log('no basket found')
       //   }
       // }
-      if (alreadyOrdered === true && currentCount === '1') {
+      if (alreadyAddedToBasket === true && currentCount === '1') {
         try {
-          const { data } = await axios.delete(`/api/orders/${orderPK}/`, {
+          const { data } = await axios.delete(`/api/basket/${basketPK}/`, {
             headers: {
               Authorization: `Bearer ${getToken()}`,
             },
           })
-          console.log('RESPONSE FROM DELETE ORDER ', data)
+          console.log('RESPONSE FROM DELETE BASKET ', data)
         } catch (err) {
           console.log(err)
         }
-      } else if (alreadyOrdered === true && currentCount !== '1') {
+      } else if (alreadyAddedToBasket === true && currentCount !== '1') {
         try {
           const newCount = parseInt(currentCount) - 1
-          const { data } = await axios.put(`/api/orders/${orderPK}/`, { count: newCount, orderOwner: currentUserId, productOrdered: product.id }, {
+          const { data } = await axios.put(`/api/basket/${basketPK}/`, { count: newCount, basket_owner: currentUserId, product_added_to_basket: product.id }, {
             headers: {
               Authorization: `Bearer ${getToken()}`,
             },
           })
-          console.log('RESPONSE FROM ORDER PUT ', data)
+          console.log('RESPONSE FROM BASKET PUT ', data)
         } catch (err) {
           console.log(err)
         }
@@ -299,8 +298,8 @@ const Home = ({ selected, typed }) => {
 
   useEffect(() => {
     getProducts()
-    console.log('orders data :', ordersData)
-  }, [ordersData])
+    console.log('basket data :', basketData)
+  }, [basketData])
 
   return (
     <main className="profile-page-wrapper">
@@ -348,14 +347,14 @@ const Home = ({ selected, typed }) => {
                     <button className='like-button' onClick={() => handleHeartClick(product)}>♡</button>
                   }
                   <div>
-                    <button className='like-button' onClick={() => handleOrderRemove(product)}>-</button>
-                    <button className='like-button' onClick={() => handleOrderAdd(product)}>+</button>
-                    {product.ordered.some((order) => {
-                      return order.orderOwner.id === currentUserId
+                    <button className='like-button' onClick={() => handleBasketRemove(product)}>-</button>
+                    <button className='like-button' onClick={() => handleBasketAdd(product)}>+</button>
+                    {product.added_to_basket.some((basket) => {
+                      return basket.basket_owner.id === currentUserId
                     }) ?
-                      <p>{product.ordered[
-                        product.ordered.findIndex((order) => {
-                          return order.orderOwner.id === currentUserId
+                      <p>{product.added_to_basket[
+                        product.added_to_basket.findIndex((basket) => {
+                          return basket.basket_owner.id === currentUserId
                         })
                       ].count}</p>
                       :

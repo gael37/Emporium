@@ -116,6 +116,17 @@ $senary: #487dba;
 
 .nav-link {
   color: $primary;
+  padding: 10px;
+
+  &:hover {
+    border: 2px solid white;
+    color: white;
+    padding: 15px;
+  }
+
+  &:focus {
+    color: white;
+  }
 }
 
 .nav-flex-p {

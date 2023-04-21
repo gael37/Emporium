@@ -24,6 +24,7 @@ urlpatterns = [
     path('api/comments/', include('comments.urls')),
     path('api/wishes/', include('wishes.urls')),
     path('api/orders/', include('orders.urls')),
+    path('api/basket/', include('basket.urls')),
     path('api/categories/', include('categories.urls')),
     path('api/auth/', include('jwt_auth.urls')),
     re_path(r'^.*$', index)

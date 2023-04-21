@@ -6,12 +6,13 @@ import { Link, useNavigate } from 'react-router-dom'
 
 import brandLogo from '../../assets/images/logo5.png'
 import cartLogo from '../../assets/images/cart-logo.png'
+
 import { useState } from 'react'
 
 import { isAuthenticated, handleLogout } from '../../helpers/auth'
 
 
-function Navigation({ selected, typed, setSelected, setTyped, userData }) {
+function Nav2({ selected, typed, setSelected, setTyped, userData }) {
 
   const [selectSize, setSelectSize] = useState('small')
 
@@ -39,53 +40,23 @@ function Navigation({ selected, typed, setSelected, setTyped, userData }) {
           < Navbar className='navigation-flex'>
             <Navbar.Brand as={Link} to='/' className='nav-brand brand-logo' id='logo-left'><img src={brandLogo} /></Navbar.Brand>
             {/* <Link className='nav-link' to='/trends' id='trend'>Trends</ Link> */}
-            <Nav className='nav-items-container' id='dropdown-left'>
-              {userData ?
-                <NavDropdown className='nav-link basic-nav-dropdown' title="👤" id="dropdown-left">
-
-
-                  {isAuthenticated() ?
-                    <>
-                      <NavDropdown.Item as={Link} to='/' >Home</NavDropdown.Item>
-                      <NavDropdown.Item as={Link} to='/profile' >Account</NavDropdown.Item>
-                      <NavDropdown.Item as={Link} to='/orders' >Orders</NavDropdown.Item>
-                      <NavDropdown.Item as={Link} to='/wish-list' >Wish List</NavDropdown.Item>
-                      <NavDropdown.Item as={Link} to='/products/new' >Sell</NavDropdown.Item>
-                      <NavDropdown.Divider />
-                      <NavDropdown.Item onClick={() => handleLogout(navigate)} >Sign Out</NavDropdown.Item>
-                    </>
-                    :
-                    <>
-                      <NavDropdown.Item as={Link} to='/' >Home</NavDropdown.Item>
-                      <NavDropdown.Item as={Link} to='/login' >Login</NavDropdown.Item>
-                      <NavDropdown.Item as={Link} to='/register' >Register</NavDropdown.Item>
-                    </>
-                  }
+            {isAuthenticated() &&
+              <Nav className='nav-items-container' id='dropdown-left'>
+                <NavDropdown className='nav-link basic-nav-dropdown' title={userData ? `Hello, ${userData.username}` : 'Hello!'} id="dropdown-left">
+                  <>
+                    <NavDropdown.Item as={Link} to='/' >Home</NavDropdown.Item>
+                    <NavDropdown.Item as={Link} to='/profile' >Account</NavDropdown.Item>
+                    <NavDropdown.Item as={Link} to='/orders' >Orders</NavDropdown.Item>
+                    <NavDropdown.Item as={Link} to='/wish-list' >Saved For Later</NavDropdown.Item>
+                    <NavDropdown.Item as={Link} to='/products/new' >Sell</NavDropdown.Item>
+                    <NavDropdown.Divider />
+                    <NavDropdown.Item onClick={() => handleLogout(navigate)} >Sign Out</NavDropdown.Item>
+                  </>
                 </NavDropdown>
-                :
-                <NavDropdown className='nav-link basic-nav-dropdown' title="Image" id="dropdown-left">
+              </Nav>
+            }
 
 
-                  {isAuthenticated() ?
-                    <>
-                      <NavDropdown.Item as={Link} to='/' >Home</NavDropdown.Item>
-                      <NavDropdown.Item as={Link} to='/profile' >Account</NavDropdown.Item>
-                      <NavDropdown.Item as={Link} to='/orders' >Orders</NavDropdown.Item>
-                      <NavDropdown.Item as={Link} to='/wish-list' >Wish List</NavDropdown.Item>
-                      <NavDropdown.Item as={Link} to='/products/new' >Sell</NavDropdown.Item>
-                      <NavDropdown.Divider />
-                      <NavDropdown.Item onClick={() => handleLogout(navigate)} >Sign Out</NavDropdown.Item>
-                    </>
-                    :
-                    <>
-                      <NavDropdown.Item as={Link} to='/' >Home</NavDropdown.Item>
-                      <NavDropdown.Item as={Link} to='/login' >Login</NavDropdown.Item>
-                      <NavDropdown.Item as={Link} to='/register' >Register</NavDropdown.Item>
-                    </>
-                  }
-                </NavDropdown>
-              }
-            </Nav>
             <div className='flex-search' id='top-search'>
               <select onChange={handleSelect} name="filter-style" className="select-nav select-small" value={selected}>
                 <option value="All">All</option>
@@ -113,32 +84,31 @@ function Navigation({ selected, typed, setSelected, setTyped, userData }) {
               </select>
               <input className='input-nav' type="text" placeholder='search' value={typed} onChange={handleChange} />
             </div>
-            <Nav className='nav-items-container'>
-              <NavDropdown className='nav-link basic-nav-dropdown' title="👤" id="dropdown-right">
-                {isAuthenticated() ?
+            {isAuthenticated() &&
+              <Nav className='nav-items-container'>
+                <NavDropdown className='basic-nav-dropdown' title={userData ? `Hello, ${userData.username}` : 'Hello!'} id="dropdown-right">
+
                   <>
                     <NavDropdown.Item as={Link} to='/' >Home</NavDropdown.Item>
                     <NavDropdown.Item as={Link} to='/profile' >Account</NavDropdown.Item>
                     <NavDropdown.Item as={Link} to='/orders' >Orders</NavDropdown.Item>
-                    <NavDropdown.Item as={Link} to='/wish-list' >Wish List</NavDropdown.Item>
+                    <NavDropdown.Item as={Link} to='/wish-list' >Saved For Later</NavDropdown.Item>
                     <NavDropdown.Item as={Link} to='/products/new' >Sell</NavDropdown.Item>
                     <NavDropdown.Divider />
                     <NavDropdown.Item onClick={() => handleLogout(navigate)} >Sign Out</NavDropdown.Item>
                   </>
-                  :
-                  <>
-                    <NavDropdown.Item as={Link} to='/' >Home</NavDropdown.Item>
-                    <NavDropdown.Item as={Link} to='/login' >Login</NavDropdown.Item>
-                    <NavDropdown.Item as={Link} to='/register' >Register</NavDropdown.Item>
-                  </>
-                }
-              </NavDropdown>
-            </Nav>
+                </NavDropdown>
+              </Nav>
+            }
             <Navbar.Brand as={Link} className='nav-brand brand-logo' id='logo-right' to='/'><img src={brandLogo} /></Navbar.Brand>
-            <div className="nav-flex-p">
-              <p>0</p>
-              <Link className='nav-link nav-link-relative' to='/'><img src={cartLogo} /></ Link>
-            </div>
+            {isAuthenticated() ?
+              <div className="nav-flex-p">
+                <p>0</p>
+                <Link className='nav-link nav-link-relative' to='/basket'><img src={cartLogo} /></ Link>
+              </div>
+              :
+              <Link className='nav-link' to='/login'>Sign In</ Link>
+            }
           </Navbar >
           <div id='nav-bottom'>
             <div className='flex-search'>
@@ -169,33 +139,29 @@ function Navigation({ selected, typed, setSelected, setTyped, userData }) {
               <input className='input-nav' type="text" placeholder='search' value={typed} onChange={handleChange} />
             </div>
           </div>
-        </div>
+        </div >
         :
         <div className='flex-navs'>
           < Navbar className='navigation-flex'>
             <Navbar.Brand as={Link} className='nav-brand brand-logo' id='logo-left' to='/'><img src={brandLogo} /></Navbar.Brand>
             {/* <Link className='nav-link' to='/trends' id='trend'>Trends</ Link> */}
-            <Nav className='nav-items-container' id='dropdown-left'>
-              <NavDropdown className='nav-link basic-nav-dropdown' title="👤" id="dropdown-left">
-                {isAuthenticated() ?
+
+            {isAuthenticated() &&
+              <Nav className='nav-items-container' id='dropdown-left'>
+                <NavDropdown className='nav-link basic-nav-dropdown' title={userData ? `Hello, ${userData.username}` : 'Hello!'} id="dropdown-left">
                   <>
                     <NavDropdown.Item as={Link} to='/' >Home</NavDropdown.Item>
                     <NavDropdown.Item as={Link} to='/profile' >Account</NavDropdown.Item>
                     <NavDropdown.Item as={Link} to='/orders' >Orders</NavDropdown.Item>
-                    <NavDropdown.Item as={Link} to='/wish-list' >Wish List</NavDropdown.Item>
+                    <NavDropdown.Item as={Link} to='/wish-list' >Saved For Later</NavDropdown.Item>
                     <NavDropdown.Item as={Link} to='/products/new' >Sell</NavDropdown.Item>
                     <NavDropdown.Divider />
                     <NavDropdown.Item onClick={() => handleLogout(navigate)} >Sign Out</NavDropdown.Item>
                   </>
-                  :
-                  <>
-                    <NavDropdown.Item as={Link} to='/' >Home</NavDropdown.Item>
-                    <NavDropdown.Item as={Link} to='/login' >Login</NavDropdown.Item>
-                    <NavDropdown.Item as={Link} to='/register' >Register</NavDropdown.Item>
-                  </>
-                }
-              </NavDropdown>
-            </Nav>
+                </NavDropdown>
+              </Nav>
+            }
+
             <div className='flex-search' id='top-search'>
               <select onChange={handleSelect} name="filter-style" className="select-nav select-big" value={selected}>
                 <option value="All">All</option>
@@ -223,31 +189,27 @@ function Navigation({ selected, typed, setSelected, setTyped, userData }) {
               </select>
               <input className='input-nav' type="text" placeholder='search' value={typed} onChange={handleChange} />
             </div>
-            <Nav className='nav-items-container'>
-              <NavDropdown className='nav-link basic-nav-dropdown' title="👤" id="dropdown-right">
-                {isAuthenticated() ?
+
+            {isAuthenticated() &&
+              <Nav className='nav-items-container'>
+                <NavDropdown className='nav-link basic-nav-dropdown' title={userData ? `Hello, ${userData.username}` : 'Hello!'} id="dropdown-right">
                   <>
                     <NavDropdown.Item as={Link} to='/' >Home</NavDropdown.Item>
                     <NavDropdown.Item as={Link} to='/profile' >Account</NavDropdown.Item>
                     <NavDropdown.Item as={Link} to='/orders' >Orders</NavDropdown.Item>
-                    <NavDropdown.Item as={Link} to='/wish-list' >Wish List</NavDropdown.Item>
+                    <NavDropdown.Item as={Link} to='/wish-list' >Saved For Later</NavDropdown.Item>
                     <NavDropdown.Item as={Link} to='/products/new' >Sell</NavDropdown.Item>
                     <NavDropdown.Divider />
                     <NavDropdown.Item onClick={() => handleLogout(navigate)} >Sign Out</NavDropdown.Item>
                   </>
-                  :
-                  <>
-                    <NavDropdown.Item as={Link} to='/' >Home</NavDropdown.Item>
-                    <NavDropdown.Item as={Link} to='/login' >Login</NavDropdown.Item>
-                    <NavDropdown.Item as={Link} to='/register' >Register</NavDropdown.Item>
-                  </>
-                }
-              </NavDropdown>
-            </Nav>
+                </NavDropdown>
+              </Nav>
+            }
+
             <Navbar.Brand as={Link} className='nav-brand brand-logo' id='logo-right' to='/'><img src={brandLogo} /></Navbar.Brand>
             <div className="nav-flex-p">
               <p>0</p>
-              <Link className='nav-link nav-link-relative' to='/'><img src={cartLogo} /></ Link>
+              <Link className='nav-link nav-link-relative' to='/basket'><img src={cartLogo} /></ Link>
             </div>
           </Navbar >
           <div id='nav-bottom'>
@@ -285,4 +247,4 @@ function Navigation({ selected, typed, setSelected, setTyped, userData }) {
   )
 }
 
-export default Navigation
+export default Nav2
