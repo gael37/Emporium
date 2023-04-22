@@ -1766,6 +1766,13 @@ h1 {
   width: 50px;
 }
 
+
+
+
+
+//       ---------------------------------------BASKET PAGE----------------------------------------
+
+
 .flex-basket {
   display: flex;
   justify-content: center;
@@ -1781,9 +1788,16 @@ h1 {
   align-items: center;
   border: 1px solid gray;
   width: 300px;
-  height: 500px;
+  height: 400px;
 }
 
 .basket-card {
-  height: 250px;
+  height: 300px;
+}
+
+.flex-count {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  align-items: center;
 }
