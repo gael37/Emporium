@@ -3,5 +3,5 @@ from comments.serializers.common import CommentSerializer
 
 
 class PopulatedCommentSerializer(CommentSerializer):
-    commentOwner = UserSerializer()
-    productOwner = UserSerializer()
+    comment_owner = UserSerializer()
+    

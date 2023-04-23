@@ -13,12 +13,12 @@ class Comment(models.Model):
     #     related_name='comments',
     #     on_delete=models.CASCADE
     # )
-    commentOwner = models.ForeignKey(
+    comment_owner = models.ForeignKey(
         'jwt_auth.User',
         related_name='comments',
         on_delete=models.CASCADE
     )
-    productReviewed = models.ForeignKey(
+    product_reviewed = models.ForeignKey(
         'products.Product',
         related_name='comments',
         on_delete=models.CASCADE

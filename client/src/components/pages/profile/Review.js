@@ -80,7 +80,7 @@ const Review = () => {
 
   const sendReview = async () => {
     try {
-      const { data } = await axios.post('/api/comments/', { rating: stars, text: textField }, {
+      const { data } = await axios.post('/api/comments/', { rating: stars, text: textField, comment_owner: currentUserId, product_reviewed: productId }, {
         headers: {
           Authorization: `Bearer ${getToken()}`,
         },
@@ -103,7 +103,7 @@ const Review = () => {
                   {bigImage ?
                     <div className="profile-card-image top-image review-big-image" style={{ backgroundImage: `url(${bigImage})` }}></div>
                     :
-                    <div className="profile-card-image top-image" style={{ backgroundImage: `url(${product.images.split(' ')[0]})` }}></div>
+                    <div className="profile-card-image top-image review-big-image" style={{ backgroundImage: `url(${product.images.split(' ')[0]})` }}></div>
 
                   }
                   <div className='bottom-images-flex'>

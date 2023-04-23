@@ -22,6 +22,7 @@ const Home = ({ selected, typed, userData, setUserData }) => {
   const [wishesData, setWishesData] = useState([])
   const [basketData, setBasketData] = useState([])
   const [productJustLiked, setProductJustLiked] = useState(false)
+  // const [addedToBasket, setAddedToBasket] = useState(false)
 
   let wishPK = ''
   // let basketPK = ''
@@ -151,7 +152,7 @@ const Home = ({ selected, typed, userData, setUserData }) => {
 
   const handleHeartClick = async (product) => {
     try {
-      const { data } = await axios.post('/api/wishes/', { wishOwner: currentUserId, productWished: product.id }, {
+      const { data } = await axios.post('/api/wishes/', { wish_owner: currentUserId, product_wished: product.id }, {
         headers: {
           Authorization: `Bearer ${getToken()}`,
         },
@@ -166,7 +167,7 @@ const Home = ({ selected, typed, userData, setUserData }) => {
 
   const handleDelete = async (product) => {
     for (let i = 0; i < wishesData.length; i++) {
-      if (wishesData[i].productWished === product.id && wishesData[i].wishOwner.id === currentUserId) {
+      if (wishesData[i].product_wished.id === product.id && wishesData[i].wish_owner.id === currentUserId) {
         wishPK = wishesData[i].id
         console.log('wish PK ', wishPK)
       } else {
@@ -218,6 +219,7 @@ const Home = ({ selected, typed, userData, setUserData }) => {
       }
     }
     if (alreadyAddedToBasket === false) {
+      // setAddedToBasket(true)
       try {
         const { data } = await axios.post('/api/basket/', { count: '1', basket_owner: currentUserId, product_added_to_basket: product.id }, {
           headers: {
@@ -268,6 +270,7 @@ const Home = ({ selected, typed, userData, setUserData }) => {
       //   }
       // }
       if (alreadyAddedToBasket === true && currentCount === '1') {
+        // setAddedToBasket(false)
         try {
           const { data } = await axios.delete(`/api/basket/${basketPK}/`, {
             headers: {
@@ -294,6 +297,27 @@ const Home = ({ selected, typed, userData, setUserData }) => {
     }
     setProductJustLiked(productJustLiked ? false : true)
     getProducts()
+  }
+
+  const removeAll = async (product) => {
+    let basketPK
+    for (let i = 0; i < product.added_to_basket.length; i++) {
+      if (product.added_to_basket[i].basket_owner.id === currentUserId) {
+        basketPK = product.added_to_basket[i].id
+        console.log('basketPK :', basketPK)
+      }
+      // setAddedToBasket(false)
+      try {
+        const { data } = await axios.delete(`/api/basket/${basketPK}/`, {
+          headers: {
+            Authorization: `Bearer ${getToken()}`,
+          },
+        })
+        console.log('RESPONSE FROM DELETE BASKET ', data)
+      } catch (err) {
+        console.log(err)
+      }
+    }
   }
 
   useEffect(() => {
@@ -340,27 +364,37 @@ const Home = ({ selected, typed, userData, setUserData }) => {
                   <p className='profile-card-price'>£{product.price}</p>
 
                   {product.wished.some((wish) => {
-                    return wish.wishOwner.id === currentUserId
+                    return wish.wish_owner.id === currentUserId
                   }) ?
                     <button className='like-button' onClick={() => handleDelete(product)}>❤️</button>
                     :
                     <button className='like-button' onClick={() => handleHeartClick(product)}>♡</button>
                   }
-                  <div>
-                    <button className='like-button' onClick={() => handleBasketRemove(product)}>-</button>
-                    <button className='like-button' onClick={() => handleBasketAdd(product)}>+</button>
-                    {product.added_to_basket.some((basket) => {
-                      return basket.basket_owner.id === currentUserId
-                    }) ?
-                      <p>{product.added_to_basket[
-                        product.added_to_basket.findIndex((basket) => {
-                          return basket.basket_owner.id === currentUserId
-                        })
-                      ].count}</p>
-                      :
-                      <p>0</p>
-                    }
-                  </div>
+                  {product.added_to_basket.some((basket) => {
+                    return basket.basket_owner.id === currentUserId
+                  }) ?
+                    <div>
+                      <button className='like-button' onClick={() => handleBasketRemove(product)}>-</button>
+                      <button className='like-button' onClick={() => handleBasketAdd(product)}>+</button>
+                      {product.added_to_basket.some((basket) => {
+                        return basket.basket_owner.id === currentUserId
+                      }) ?
+                        <p>{product.added_to_basket[
+                          product.added_to_basket.findIndex((basket) => {
+                            return basket.basket_owner.id === currentUserId
+                          })
+                        ].count}</p>
+                        :
+                        <p>0</p>
+                      }
+                      <button className='like-button' onClick={() => removeAll(product)}>Remove from basket</button>
+                    </div>
+                    :
+                    <div>
+                      <button className='like-button' onClick={() => handleBasketAdd(product)}>Add to basket</button>
+                    </div>
+                  }
+
                 </div>
               </div>
             )

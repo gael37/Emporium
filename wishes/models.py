@@ -11,12 +11,12 @@ class Wish(models.Model):
     #     related_name='comments',
     #     on_delete=models.CASCADE
     # )
-    wishOwner = models.ForeignKey(
+    wish_owner = models.ForeignKey(
         'jwt_auth.User',
         related_name='wishes',
         on_delete=models.CASCADE
     )
-    productWished = models.ForeignKey(
+    product_wished = models.ForeignKey(
         'products.Product',
         related_name='wished',
         on_delete=models.CASCADE

@@ -1,7 +1,9 @@
 from jwt_auth.serializers.common import UserSerializer
 from wishes.serializers.common import WishSerializer
+from products.serializers.common import ProductSerializer
 
 
 class PopulatedWishSerializer(WishSerializer):
-    wishOwner = UserSerializer()
+    wish_owner = UserSerializer()
     # productOwner = UserSerializer()
+    product_wished = ProductSerializer()

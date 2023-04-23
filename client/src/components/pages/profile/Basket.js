@@ -203,10 +203,10 @@ const Basket = () => {
             <h2>TOTAL</h2>
             <h2>
               TOTAL: £ {userData && userData.basket.length > 0 &&
-                userData.basket.reduce((acc, obj) => {
+                (userData.basket.reduce((acc, obj) => {
                   return acc + parseInt(obj.count) * parseFloat(obj.product_added_to_basket.price)
                 }, 0
-                )
+                )).toFixed(2)
               }
             </h2>
             <button onClick={proceedCheckout}>Proceed to checkout</button>

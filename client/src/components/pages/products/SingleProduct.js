@@ -293,52 +293,37 @@ const SingleProduct = (userData, setUserData) => {
                 </div>
               </div>
 
-
-
-
-
-
-
-              <div className="single-message">
-                {isAuthenticated() ?
-                  <>
-                    {postedAd() ?
-                      <div className='flex-edit-delete'>
-                        <Link className="btn-post-edit" as={Link} to={`/edit-product/${product.id}`}>Edit Ad</Link>
-                        <button onClick={handleDelete} className="btn-post-delete" >DELETE AD</button>
-                      </div>
-                      :
-                      <>
-                        <div className='flex-send-message'>
-                          <p className='profile-card-distance'>{(Math.abs(calcDistance(userCoord.userLatitude, userCoord.userLongitude, productOwnerCoord.productOwnerLatitude, productOwnerCoord.productOwnerLongitude))).toFixed(1)} miles | {productOwnerCoord.productOwnerDistrict}</p>
-
-                          <div className='single-flex-row'>
-                            <p className="mess-p">Send a message to <span>{product.owner.username}:</span></p>
-                          </div>
-                          {/* <input
-                            type="text"
-                            name="text"
-                            onChange={handleChange}
-                            value={messageField.text}
-                            // placeholder="Type your message"
-                            className='single-input'
-                          />
-                          <button className="btn-post" onClick={handleClick}>Send</button> */}
-                        </div>
-                      </>
-
-                    }
-                  </>
-                  :
-                  <>
-                    <div className='flex-message-author'>
-                      <p>If you would like to send a message to the author of this ad, you have to login</p>
-
-                      <Link className="btn-post-edit-login btn-post-edit" as={Link} to="/login">Login</Link>
-                    </div>
-                  </>
-                }
-              </div>
+              {/* {product.wished.some((wish) => {
+                return wish.wish_owner.id === currentUserId
+              }) ?
+                <button className='like-button' onClick={() => handleDelete(product)}>❤️</button>
+                :
+                <button className='like-button' onClick={() => handleHeartClick(product)}>♡</button>
+              }
+              {product.added_to_basket.some((basket) => {
+                return basket.basket_owner.id === currentUserId
+              }) ?
+                <div>
+                  <button className='like-button' onClick={() => handleBasketRemove(product)}>-</button>
+                  <button className='like-button' onClick={() => handleBasketAdd(product)}>+</button>
+                  {product.added_to_basket.some((basket) => {
+                    return basket.basket_owner.id === currentUserId
+                  }) ?
+                    <p>{product.added_to_basket[
+                      product.added_to_basket.findIndex((basket) => {
+                        return basket.basket_owner.id === currentUserId
+                      })
+                    ].count}</p>
+                    :
+                    <p>0</p>
+                  }
+                  <button className='like-button' onClick={() => removeAll(product)}>Remove from basket</button>
+                </div>
+                :
+                <div>
+                  <button className='like-button' onClick={() => handleBasketAdd(product)}>Add to basket</button>
+                </div>
+              } */}
 
 
             </>
