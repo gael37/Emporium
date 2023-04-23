@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { Link, useRouteLoaderData } from 'react-router-dom'
 import { getToken, getPayload, isAuthenticated } from '../../../helpers/auth'
 import Container from 'react-bootstrap/Container'
@@ -15,6 +16,8 @@ const Basket = () => {
   const currentUserPayload = getPayload()
   const currentUserId = currentUserPayload.sub
   console.log('user id', currentUserId)
+
+  const navigate = useNavigate()
 
 
   const getUserData = async () => {
@@ -104,9 +107,31 @@ const Basket = () => {
   }
 
   const removeAllBasket = async () => {
+
+    for (let i = 0; i < userData.basket.length; i++) {
+      if (userData.basket[i].basket_owner.id === currentUserId) {
+        console.log('basket pk :', userData.basket[i].id)
+        try {
+          const { data } = await axios.delete(`/api/basket/${userData.basket[i].id}/`, {
+            headers: {
+              Authorization: `Bearer ${getToken()}`,
+            },
+          })
+          // setCounter(newCount)
+          console.log('RESPONSE FROM ALL BASKET DELETE ', data)
+        } catch (err) {
+          console.log(err)
+        }
+      }
+    }
+    setProductJustLiked(productJustLiked ? false : true)
+  }
+
+  const proceedCheckout = async () => {
+
     for (let i = 0; i < userData.basket.length; i++) {
       try {
-        const { data } = await axios.delete(`/api/basket/${i}/`, {
+        const { data } = await axios.post('/api/orders/', { count: userData.basket[i].count, order_owner: currentUserId, product_ordered: userData.basket[i].product_added_to_basket.id }, {
           headers: {
             Authorization: `Bearer ${getToken()}`,
           },
@@ -118,6 +143,23 @@ const Basket = () => {
       }
     }
 
+    for (let i = 0; i < userData.basket.length; i++) {
+      if (userData.basket[i].basket_owner.id === currentUserId) {
+        console.log('basket pk :', userData.basket[i].id)
+        try {
+          const { data } = await axios.delete(`/api/basket/${userData.basket[i].id}/`, {
+            headers: {
+              Authorization: `Bearer ${getToken()}`,
+            },
+          })
+          // setCounter(newCount)
+          console.log('RESPONSE FROM ALL BASKET DELETE ', data)
+        } catch (err) {
+          console.log(err)
+        }
+        navigate('/checkout')
+      }
+    }
     setProductJustLiked(productJustLiked ? false : true)
   }
 
@@ -167,7 +209,7 @@ const Basket = () => {
                 )
               }
             </h2>
-            <button>Proceed to checkout</button>
+            <button onClick={proceedCheckout}>Proceed to checkout</button>
           </div>
         </div>
 

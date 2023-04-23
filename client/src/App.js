@@ -19,6 +19,8 @@ import NewProduct from './components/pages/products/NewProduct'
 import AreYouSure from './components/pages/profile/AreYouSure'
 import Nav2 from './components/common/Nav2'
 import Basket from './components/pages/profile/Basket'
+import Checkout from './components/pages/profile/Checkout'
+import Review from './components/pages/profile/Review'
 
 
 function App() {
@@ -36,6 +38,7 @@ function App() {
         <Route path="/" element={<Home selected={selected} typed={typed} userData={userData} setUserData={setUserData} />} />
         <Route path="/profile" element={<Profile userData={userData} setUserData={setUserData} />} />
         <Route path="/basket" element={<Basket />} />
+        <Route path="/checkout" element={<Checkout />} />
         <Route path="/orders" element={<Orders userData={userData} setUserData={setUserData} />} />
         <Route path="/edit-profile/:userId" element={<EditProfile userData={userData} setUserData={setUserData} />} />
         <Route path="/delete-account" element={<DeleteProfile userData={userData} setUserData={setUserData} />} />
@@ -43,6 +46,7 @@ function App() {
         <Route path="/wish-list" element={<WishList userData={userData} setUserData={setUserData} />} />
         <Route path="/products/new" element={<NewProduct userData={userData} setUserData={setUserData} />} />
         <Route path="/products/:productId" element={<SingleProduct userData={userData} setUserData={setUserData} />} />
+        <Route path="/reviews/:productId" element={<Review />} />
         <Route path="/edit-product/:productId" element={<EditProduct userData={userData} setUserData={setUserData} />} />
         <Route path="/delete-product" element={<DeleteProduct userData={userData} setUserData={setUserData} />} />
         <Route path="/delete-account" element={<DeleteProfile userData={userData} setUserData={setUserData} />} />
