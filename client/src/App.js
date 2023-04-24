@@ -21,6 +21,8 @@ import Nav2 from './components/common/Nav2'
 import Basket from './components/pages/profile/Basket'
 import Checkout from './components/pages/profile/Checkout'
 import Review from './components/pages/profile/Review'
+import EmptyPage from './components/pages/EmptyPage'
+
 
 
 function App() {
@@ -28,31 +30,33 @@ function App() {
   // state of the selected and the searched (used in the NavigationBar and the Home components)
   const [selected, setSelected] = useState('All')
   const [typed, setTyped] = useState('')
-  const [userData, setUserData] = useState(null)
+  // const [userData, setUserData] = useState(null)
+  const [basketCounter, setBasketCounter] = useState(0)
 
 
   return (
     <BrowserRouter>
-      <Nav2 selected={selected} typed={typed} setSelected={setSelected} setTyped={setTyped} userData={userData} setUserData={setUserData} />
+      <Nav2 selected={selected} typed={typed} setSelected={setSelected} setTyped={setTyped} basketCounter={basketCounter} />
       <Routes>
-        <Route path="/" element={<Home selected={selected} typed={typed} userData={userData} setUserData={setUserData} />} />
-        <Route path="/profile" element={<Profile userData={userData} setUserData={setUserData} />} />
+        <Route path="/" element={<Home selected={selected} typed={typed} basketCounter={basketCounter} setBasketCounter={setBasketCounter} />} />
+        <Route path="/profile" element={<Profile />} />
         <Route path="/basket" element={<Basket />} />
         <Route path="/checkout" element={<Checkout />} />
-        <Route path="/orders" element={<Orders userData={userData} setUserData={setUserData} />} />
-        <Route path="/edit-profile/:userId" element={<EditProfile userData={userData} setUserData={setUserData} />} />
-        <Route path="/delete-account" element={<DeleteProfile userData={userData} setUserData={setUserData} />} />
-        <Route path="/orders" element={<Orders userData={userData} setUserData={setUserData} />} />
-        <Route path="/wish-list" element={<WishList userData={userData} setUserData={setUserData} />} />
-        <Route path="/products/new" element={<NewProduct userData={userData} setUserData={setUserData} />} />
-        <Route path="/products/:productId" element={<SingleProduct userData={userData} setUserData={setUserData} />} />
+        <Route path="/orders" element={<Orders />} />
+        <Route path="/edit-profile/:userId" element={<EditProfile />} />
+        <Route path="/delete-account" element={<DeleteProfile />} />
+        <Route path="/orders" element={<Orders />} />
+        <Route path="/wish-list" element={<WishList />} />
+        <Route path="/products/new" element={<NewProduct />} />
+        <Route path="/products/:productId" element={<SingleProduct />} />
         <Route path="/reviews/:productId" element={<Review />} />
-        <Route path="/edit-product/:productId" element={<EditProduct userData={userData} setUserData={setUserData} />} />
-        <Route path="/delete-product" element={<DeleteProduct userData={userData} setUserData={setUserData} />} />
-        <Route path="/delete-account" element={<DeleteProfile userData={userData} setUserData={setUserData} />} />
-        <Route path="/are-you-sure" element={<AreYouSure />} userData={userData} setUserData={setUserData} />
+        <Route path="/edit-product/:productId" element={<EditProduct />} />
+        <Route path="/delete-product" element={<DeleteProduct />} />
+        <Route path="/delete-account" element={<DeleteProfile />} />
+        <Route path="/are-you-sure" element={<AreYouSure />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/empty" element={<EmptyPage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

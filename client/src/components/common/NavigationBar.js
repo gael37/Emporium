@@ -3,15 +3,45 @@ import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
 import NavDropdown from 'react-bootstrap/NavDropdown'
 import { Link, useNavigate } from 'react-router-dom'
+import axios from 'axios'
 
 import brandLogo from '../../assets/images/logo5.png'
 import cartLogo from '../../assets/images/cart-logo.png'
 import { useState } from 'react'
 
-import { isAuthenticated, handleLogout } from '../../helpers/auth'
+import { isAuthenticated, handleLogout, getToken, getPayload } from '../../helpers/auth'
+import { useEffect } from 'react'
 
 
-function Navigation({ selected, typed, setSelected, setTyped, userData }) {
+function Navigation({ selected, typed, setSelected, setTyped, basketCounter }) {
+
+  const [errors, setErrors] = useState(false)
+  const [userData, setUserData] = useState(null)
+
+  getToken()
+  const currentUserPayload = getPayload()
+  const currentUserId = currentUserPayload.sub
+  console.log('user id', currentUserId)
+
+
+  const getUserData = async () => {
+    try {
+      const { data } = await axios.get(`api/auth/${currentUserId}/`, {
+        headers: {
+          Authorization: `Bearer ${getToken()}`,
+        },
+      })
+      setUserData(data)
+    } catch (err) {
+      console.log(err)
+      setErrors(true)
+    }
+  }
+  useEffect(() => {
+    getUserData()
+  }, [])
+
+
 
   const [selectSize, setSelectSize] = useState('small')
 
@@ -114,10 +144,10 @@ function Navigation({ selected, typed, setSelected, setTyped, userData }) {
               <input className='input-nav' type="text" placeholder='search' value={typed} onChange={handleChange} />
             </div>
             <Nav className='nav-items-container'>
-              <NavDropdown className='nav-link basic-nav-dropdown' title="👤" id="dropdown-right">
+              <NavDropdown className='nav-link basic-nav-dropdown' title="yo" id="dropdown-right">
                 {isAuthenticated() ?
                   <>
-                    <NavDropdown.Item as={Link} to='/' >Home</NavDropdown.Item>
+                    <NavDropdown.Item as={Link} to='/' >homies</NavDropdown.Item>
                     <NavDropdown.Item as={Link} to='/profile' >Account</NavDropdown.Item>
                     <NavDropdown.Item as={Link} to='/orders' >Orders</NavDropdown.Item>
                     <NavDropdown.Item as={Link} to='/wish-list' >Wish List</NavDropdown.Item>
@@ -136,7 +166,7 @@ function Navigation({ selected, typed, setSelected, setTyped, userData }) {
             </Nav>
             <Navbar.Brand as={Link} className='nav-brand brand-logo' id='logo-right' to='/'><img src={brandLogo} /></Navbar.Brand>
             <div className="nav-flex-p">
-              <p>0</p>
+              <p>{basketCounter}</p>
               <Link className='nav-link nav-link-relative' to='/'><img src={cartLogo} /></ Link>
             </div>
           </Navbar >
@@ -246,7 +276,7 @@ function Navigation({ selected, typed, setSelected, setTyped, userData }) {
             </Nav>
             <Navbar.Brand as={Link} className='nav-brand brand-logo' id='logo-right' to='/'><img src={brandLogo} /></Navbar.Brand>
             <div className="nav-flex-p">
-              <p>0</p>
+              <p>{basketCounter}</p>
               <Link className='nav-link nav-link-relative' to='/'><img src={cartLogo} /></ Link>
             </div>
           </Navbar >

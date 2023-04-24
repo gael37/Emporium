@@ -12,33 +12,47 @@ import Col from 'react-bootstrap/Col'
 
 import { calcDistance } from '../../../helpers/functions'
 
-
-const SingleProduct = (userData, setUserData) => {
-
-  // console.log('welcome to product SINGLE component')
-  // const a = useParams().postcodeUser
-  // console.log('a', a)
-
-
-
+const SingleProduct = ({ basketCounter, setBasketCounter }) => {
 
   // ! State
   const [product, setProduct] = useState(null)
+  const [userData, setUserData] = useState(null)
   const [errors, setErrors] = useState(false)
   const [bigImage, setBigImage] = useState('')
+  const [wishesData, setWishesData] = useState([])
+  const [basketData, setBasketData] = useState([])
+  const [productJustLiked, setProductJustLiked] = useState(false)
 
-
-  // const [userData, setUserData] = useState(null)
-
+  getToken()
+  const currentUserPayload = getPayload()
+  const currentUserId = currentUserPayload.sub
+  console.log('user id', currentUserId)
 
   // ! Location
   const { productId } = useParams()
   const navigate = useNavigate()
 
-  getToken()
-  const currentUserPayload = getPayload()
-  const currentUserId = currentUserPayload.sub
+  const getUserData = async () => {
+    try {
+      const { data } = await axios.get(`api/auth/${currentUserId}/`, {
+        headers: {
+          Authorization: `Bearer ${getToken()}`,
+        },
+      })
+      const counter = data.basket.reduce((acc, obj) => {
+        return acc + parseInt(obj.count)
+      }, 0)
 
+      console.log('basket counter, ', counter)
+      setBasketCounter(counter)
+      setUserData(data)
+    } catch (err) {
+      console.log(err)
+      setErrors(true)
+    }
+  }
+
+  let wishPK = ''
 
   const [userCoord, setUserCoord] = useState({
     userLatitude: '',
@@ -50,134 +64,48 @@ const SingleProduct = (userData, setUserData) => {
     productOwnerDistrict: '',
   })
 
-  // useEffect(() => {
-  //   const getCoordinates = async () => {
-  //     try {
-  //       const { data } = await axios.get(`https://api.postcodes.io/postcodes/${a}/`)
-  //       console.log('user coord', data)
-  //       setUserCoord({
-  //         userLatitude: data.result.latitude,
-  //         userLongitude: data.result.longitude,
-  //       })
-  //       // userLatitude = data.result.latitude
-  //       // userLongitude = data.result.longitude
-  //       // console.log('lat and long', userLatitude, userLongitude)
-  //     } catch (err) {
-  //       console.log(err)
-  //       setErrors(true)
-  //     }
-  //   }
-  //   getCoordinates()
-  // }, [])
-
-  useEffect(() => {
-    const getCoordinates = async () => {
-      try {
-        const { data } = await axios.get(`https://api.postcodes.io/postcodes/${product.owner.postcode}/`)
-        console.log('user coord', data)
-        setProductOwnerCoord({
-          productOwnerLatitude: data.result.latitude,
-          productOwnerLongitude: data.result.longitude,
-          productOwnerDistrict: data.result.admin_district,
-        })
-        // productOwnerLatitude = data.result.latitude
-        // productOwnerLongitude = data.result.longitude
-        // console.log('lat, long of p owner', data.result.latitude, data.result.longitude)
-      } catch (err) {
-        console.log(err)
-        setErrors(true)
-      }
-    }
-    getCoordinates()
-  }, [product])
-
-  // useEffect(() => {
-  //   setBigImage(product.image.split(' ')[0])
-  // }, [productOwnerCoord])
-
 
 
   // ! Execution
 
-
-  useEffect(() => {
-    const getProduct = async () => {
-      try {
-        const { data } = await axios.get(`/api/products/${productId}/`)
-        console.log('products on page render', data)
-        setProduct(data)
-        setBigImage(product.images.split(' ')[0])
-      } catch (err) {
-        console.log(err)
-        setErrors(true)
-      }
+  const getProduct = async () => {
+    try {
+      const { data } = await axios.get(`/api/products/${productId}/`)
+      setProduct(data)
+      setBigImage(product.images.split(' ')[0])
+    } catch (err) {
+      console.log(err)
+      setErrors(true)
     }
-    getProduct()
-    // setBigImage('')
-  }, [productId])
+  }
 
-  useEffect(() => {
-    console.log('big image', bigImage)
-  }, [bigImage])
+  const getWishes = async () => {
+    try {
+      const { data } = await axios.get('api/wishes/', {
+        headers: {
+          Authorization: `Bearer ${getToken()}`,
+        },
+      })
+      setWishesData(data)
+    } catch (err) {
+      console.log(err)
+      setErrors(true)
+    }
+  }
 
-
-
-  // useEffect(() => {
-  //   console.log('product', product)
-
-  // }, [product])
-
-  // const deleteProduct = async (e) => {
-  //   try {
-  //     await axios.delete(`api/products/${productId}/`, {
-  //       headers: {
-  //         Authorization: `Bearer ${getToken()}`,
-  //       },
-  //     })
-  //     navigate('/products')
-  //   } catch (err) {
-  //     console.log(err)
-  //   }
-  // }
-  // const [messageField, setMessageField] = useState({
-  //   text: '',
-  // })
-
-  // const handleChange = (e) => {
-  //   const updatedReviewField = {
-  //     ...messageField,
-  //     [e.target.name]: e.target.value,
-  //     commentOwner: userId,
-  //     productOwner: product.owner.id,
-  //   }
-  //   setMessageField(updatedReviewField)
-  //   if (errors) setErrors('')
-  // }
-
-  const payload = getPayload()
-  const userId = payload.sub
-  console.log('userId', userId)
-
-
-
-  // const handleClick = async (e) => {
-  //   console.log('product owner', product.owner.id)
-  //   console.log('message field', messageField)
-  //   try {
-  //     const { data } = await axios.post('/api/comments/', { ...messageField }, {
-  //       headers: {
-  //         Authorization: `Bearer ${getToken()}`,
-  //       },
-  //     })
-  //     setMessageField({
-  //       text: 'Message sent!',
-  //     })
-  //     console.log('review SUCCESS ->', data)
-  //   } catch (err) {
-  //     console.log('review FAIL ->', err)
-  //     setErrors(err.response.data)
-  //   }
-  // }
+  const getBasket = async () => {
+    try {
+      const { data } = await axios.get('api/basket/', {
+        headers: {
+          Authorization: `Bearer ${getToken()}`,
+        },
+      })
+      setBasketData(data)
+    } catch (err) {
+      console.log(err)
+      setErrors(true)
+    }
+  }
 
   const handleDelete = async (e) => {
     try {
@@ -186,9 +114,6 @@ const SingleProduct = (userData, setUserData) => {
           Authorization: `Bearer ${getToken()}`,
         },
       })
-      // setMessageField({
-      //   text: 'Ad deleted!',
-      // })
       navigate('/delete-product')
       console.log('delete SUCCESS ->', data)
     } catch (err) {
@@ -206,17 +131,6 @@ const SingleProduct = (userData, setUserData) => {
   }
 
 
-
-  // useEffect(() => {
-  //   const { image } = product
-  //   // setBigImage(product.image.split(' ')[0])
-  //   setBigImage(image.split(' ')[0])
-  // }, [product])
-
-  // useEffect(() => {
-  //   console.log('bigImage', bigImage)
-  // }, [bigImage])
-
   const swapImage = (image) => {
     setBigImage(image)
   }
@@ -226,6 +140,299 @@ const SingleProduct = (userData, setUserData) => {
   const getSmaller = (e) => {
     e.target.className = 'profile-card-image bottom-images'
   }
+
+
+  // useEffect(() => {
+  //   getProduct()
+  //   // getUserData()
+  // }, [productId])
+
+  // useEffect(() => {
+  //   console.log('wishes data :', wishesData)
+  // }, [wishesData])
+
+  // useEffect(() => {
+  //   console.log('product just liked :', productJustLiked)
+  //   getWishes()
+  //   getBasket()
+  // }, [productJustLiked])
+
+  // useEffect(() => {
+  //   getWishes()
+  // }, [product])
+
+  // useEffect(() => {
+  //   const getCoordinates = async () => {
+  //     try {
+  //       const { data } = await axios.get(`https://api.postcodes.io/postcodes/${product.owner.postcode}/`)
+  //       console.log('user coord', data)
+  //       setProductOwnerCoord({
+  //         productOwnerLatitude: data.result.latitude,
+  //         productOwnerLongitude: data.result.longitude,
+  //         productOwnerDistrict: data.result.admin_district,
+  //       })
+  //     } catch (err) {
+  //       console.log(err)
+  //       setErrors(true)
+  //     }
+  //   }
+  //   getCoordinates()
+  // }, [product])
+
+
+  // useEffect(() => {
+  //   console.log('product just liked :', productJustLiked)
+  //   // getWishes()
+  //   // getBasket()
+  // }, [productJustLiked])
+
+  // useEffect(() => {
+  //   getProduct()
+  //   console.log('wishes data :', wishesData)
+  // }, [wishesData])
+
+
+
+
+
+  // -----------------------------------WISHES-------------------------------------
+
+
+
+
+
+
+
+  const handleHeartClick = async () => {
+    setProductJustLiked(productJustLiked ? false : true)
+    try {
+      const { data } = await axios.post('/api/wishes/', { wish_owner: currentUserId, product_wished: product.id }, {
+        headers: {
+          Authorization: `Bearer ${getToken()}`,
+        },
+      })
+      // console.log('RESPONSE FROM WISH POST ', data)
+      // console.log('after post wish :', wishesData)
+    } catch (err) {
+      console.log(err)
+    }
+    setProductJustLiked(productJustLiked ? false : true)
+  }
+
+
+  // const handleHeartDelete = async () => {
+  //   setProductJustLiked(productJustLiked ? false : true)
+  //   for (let i = 0; i < wishesData.length; i++) {
+  //     if (wishesData[i].product_wished.id === productId && wishesData[i].wish_owner.id === currentUserId) {
+  //       wishPK = wishesData[i].id
+  //       console.log('wish PK ', wishPK)
+  //     } else {
+  //       console.log('no wish found')
+  //     }
+  //   }
+  //   try {
+  //     const { data } = await axios.delete(`/api/wishes/${wishPK}/`, {
+  //       headers: {
+  //         Authorization: `Bearer ${getToken()}`,
+  //       },
+  //     })
+  //     console.log('RESPONSE FROM DELETE ', data)
+  //   } catch (err) {
+  //     console.log(err)
+  //   }
+  //   setProductJustLiked(productJustLiked ? false : true)
+  //   getProduct()
+  // }
+
+  const handleHeartDelete = async () => {
+    for (let i = 0; i < product.wished.length; i++) {
+      if (product.wished[i].wish_owner.id === currentUserId) {
+        wishPK = product.wished[i].id
+        console.log('wish PK ', wishPK)
+      } else {
+        console.log('no wish found')
+      }
+    }
+    try {
+      const { data } = await axios.delete(`/api/wishes/${wishPK}/`, {
+        headers: {
+          Authorization: `Bearer ${getToken()}`,
+        },
+      })
+      console.log('RESPONSE FROM DELETE ', data)
+    } catch (err) {
+      console.log(err)
+    }
+    setProductJustLiked(productJustLiked ? false : true)
+    getProduct()
+  }
+
+
+  // -------BASKET--------        
+
+  const handleBasketAdd = async () => {
+    let basketIndex
+    let currentCount
+    let alreadyAddedToBasket = false
+    let basketPK
+    for (let i = 0; i < product.added_to_basket.length; i++) {
+      if (product.added_to_basket[i].basket_owner.id === currentUserId) {
+        basketIndex = i
+        currentCount = product.added_to_basket[i].count
+        alreadyAddedToBasket = true
+        basketPK = product.added_to_basket[i].id
+        console.log('already added_to_basket :', alreadyAddedToBasket)
+        console.log('basketPK :', basketPK)
+        console.log('current count :', currentCount)
+      }
+    }
+    if (alreadyAddedToBasket === false) {
+      // setAddedToBasket(true)
+      try {
+        const { data } = await axios.post('/api/basket/', { count: '1', basket_owner: currentUserId, product_added_to_basket: product.id }, {
+          headers: {
+            Authorization: `Bearer ${getToken()}`,
+          },
+        })
+        console.log('RESPONSE FROM BASKET POST ', data)
+      } catch (err) {
+        console.log(err)
+      }
+    } else {
+      try {
+        const newCount = parseInt(currentCount) + 1
+        const { data } = await axios.put(`/api/basket/${basketPK}/`, { count: newCount, basket_owner: currentUserId, product_added_to_basket: product.id }, {
+          headers: {
+            Authorization: `Bearer ${getToken()}`,
+          },
+        })
+        console.log('RESPONSE FROM BASKET PUT ', data)
+      } catch (err) {
+        console.log(err)
+      }
+    }
+    setProductJustLiked(productJustLiked ? false : true)
+  }
+
+  const handleBasketRemove = async () => {
+    let basketIndex
+    let currentCount
+    let alreadyAddedToBasket = false
+    let basketPK
+    for (let i = 0; i < product.added_to_basket.length; i++) {
+      if (product.added_to_basket[i].basket_owner.id === currentUserId) {
+        basketIndex = i
+        currentCount = product.added_to_basket[i].count
+        alreadyAddedToBasket = true
+        basketPK = product.added_to_basket[i].id
+        console.log('already added_to_basket :', alreadyAddedToBasket)
+        console.log('basketPK :', basketPK)
+        console.log('current count :', currentCount)
+      }
+      // for (let i = 0; i < basketData.length; i++) {
+      //   if (basketData[i].product_added_to_basket === product.id && basketData[i].basket_owner.id === currentUserId) {
+      //     basketPK = basketData[i].id
+      //     console.log('basket PK ', basketPK)
+      //   } else {
+      //     console.log('no basket found')
+      //   }
+      // }
+      if (alreadyAddedToBasket === true && currentCount === '1') {
+        // setAddedToBasket(false)
+        try {
+          const { data } = await axios.delete(`/api/basket/${basketPK}/`, {
+            headers: {
+              Authorization: `Bearer ${getToken()}`,
+            },
+          })
+          console.log('RESPONSE FROM DELETE BASKET ', data)
+        } catch (err) {
+          console.log(err)
+        }
+      } else if (alreadyAddedToBasket === true && currentCount !== '1') {
+        try {
+          const newCount = parseInt(currentCount) - 1
+          const { data } = await axios.put(`/api/basket/${basketPK}/`, { count: newCount, basket_owner: currentUserId, product_added_to_basket: product.id }, {
+            headers: {
+              Authorization: `Bearer ${getToken()}`,
+            },
+          })
+          console.log('RESPONSE FROM BASKET PUT ', data)
+        } catch (err) {
+          console.log(err)
+        }
+      }
+    }
+    setProductJustLiked(productJustLiked ? false : true)
+    getProduct()
+  }
+
+  const removeAll = async () => {
+    let basketPK
+    for (let i = 0; i < product.added_to_basket.length; i++) {
+      if (product.added_to_basket[i].basket_owner.id === currentUserId) {
+        basketPK = product.added_to_basket[i].id
+        console.log('basketPK :', basketPK)
+      }
+      // setAddedToBasket(false)
+      try {
+        const { data } = await axios.delete(`/api/basket/${basketPK}/`, {
+          headers: {
+            Authorization: `Bearer ${getToken()}`,
+          },
+        })
+        console.log('RESPONSE FROM DELETE BASKET ', data)
+      } catch (err) {
+        console.log(err)
+      }
+    }
+    setProductJustLiked(productJustLiked ? false : true)
+
+  }
+
+  useEffect(() => {
+    getProduct()
+    console.log('basket data :', basketData)
+  }, [basketData])
+
+
+
+  useEffect(() => {
+    // console.log('product just liked :', productJustLiked)
+    // // getWishes()
+    // getBasket()
+    getProduct()
+    getUserData()
+  }, [productId])
+
+  useEffect(() => {
+    // console.log('product just liked :', productJustLiked)
+    // getWishes()
+    // getBasket()
+    getProduct()
+    getUserData()
+  }, [productJustLiked])
+
+  useEffect(() => {
+    getProduct()
+    // console.log('wishes data :', wishesData)
+  }, [wishesData])
+
+  // useEffect(() => {
+  //   getUserData()
+  // }, [productId])
+
+  // useEffect(() => {
+  //   console.log('basket counter :', basketCounter)
+  // }, [basketCounter])
+
+  useEffect(() => {
+    console.log('user data :', userData)
+  }, [userData])
+
+  useEffect(() => {
+    console.log('product on page render', product)
+  }, [product])
 
   return (
     <main className='single-page'>
@@ -292,38 +499,36 @@ const SingleProduct = (userData, setUserData) => {
                   }
                 </div>
               </div>
+              <div>
+                {product.wished.some((wish) => {
+                  return wish.wish_owner.id === currentUserId
+                }) ?
+                  <button className='like-button' onClick={() => handleHeartDelete()}>❤️</button>
+                  :
+                  <button className='like-button' onClick={() => handleHeartClick()}>♡</button>
+                }
+              </div>
 
-              {/* {product.wished.some((wish) => {
-                return wish.wish_owner.id === currentUserId
-              }) ?
-                <button className='like-button' onClick={() => handleDelete(product)}>❤️</button>
-                :
-                <button className='like-button' onClick={() => handleHeartClick(product)}>♡</button>
-              }
               {product.added_to_basket.some((basket) => {
                 return basket.basket_owner.id === currentUserId
               }) ?
                 <div>
-                  <button className='like-button' onClick={() => handleBasketRemove(product)}>-</button>
-                  <button className='like-button' onClick={() => handleBasketAdd(product)}>+</button>
-                  {product.added_to_basket.some((basket) => {
-                    return basket.basket_owner.id === currentUserId
-                  }) ?
-                    <p>{product.added_to_basket[
-                      product.added_to_basket.findIndex((basket) => {
-                        return basket.basket_owner.id === currentUserId
-                      })
-                    ].count}</p>
-                    :
-                    <p>0</p>
-                  }
-                  <button className='like-button' onClick={() => removeAll(product)}>Remove from basket</button>
+                  <button className='like-button' onClick={() => handleBasketRemove()}>-</button>
+                  <button className='like-button' onClick={() => handleBasketAdd()}>+</button>
+                  <p>{product.added_to_basket[
+                    product.added_to_basket.findIndex((basket) => {
+                      return basket.basket_owner.id === currentUserId
+                    })
+                  ].count}</p>
+
+
+                  <button className='like-button' onClick={() => removeAll()}>Remove from basket</button>
                 </div>
                 :
                 <div>
-                  <button className='like-button' onClick={() => handleBasketAdd(product)}>Add to basket</button>
+                  <button className='like-button' onClick={() => handleBasketAdd()}>Add to basket</button>
                 </div>
-              } */}
+              }
 
 
             </>

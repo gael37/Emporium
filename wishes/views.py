@@ -4,8 +4,6 @@ from rest_framework import status
 from rest_framework.exceptions import NotFound
 from rest_framework.permissions import IsAuthenticated
 
-from django.views.decorators.csrf import csrf_exempt
-
 
 from .serializers.common import WishSerializer
 from .serializers.populated import PopulatedWishSerializer

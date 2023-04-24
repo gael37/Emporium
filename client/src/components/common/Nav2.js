@@ -7,14 +7,47 @@ import { Link, useNavigate } from 'react-router-dom'
 import brandLogo from '../../assets/images/logo5.png'
 import cartLogo from '../../assets/images/cart-logo.png'
 
-import { useState } from 'react'
+import { useState, useEffect, useCallback } from 'react'
+import axios from 'axios'
 
-import { isAuthenticated, handleLogout } from '../../helpers/auth'
+import { isAuthenticated, handleLogout, getToken, getPayload } from '../../helpers/auth'
 
 
-function Nav2({ selected, typed, setSelected, setTyped, userData }) {
+function Nav2({ selected, typed, setSelected, setTyped, basketCounter }) {
 
   const [selectSize, setSelectSize] = useState('small')
+  const [errors, setErrors] = useState(false)
+  const [userData, setUserData] = useState(null)
+  // const [basketCounter, setBasketCounter] = useState(0)
+
+  getToken()
+  const currentUserPayload = getPayload()
+  const currentUserId = currentUserPayload.sub
+  console.log('user id', currentUserId)
+
+  const getUserData = async () => {
+    try {
+      const { data } = await axios.get(`api/auth/${currentUserId}/`, {
+        headers: {
+          Authorization: `Bearer ${getToken()}`,
+        },
+      })
+      // const counter = data.basket.reduce((acc, obj) => {
+      //   return acc + parseInt(obj.count)
+      // }, 0)
+
+      // console.log('basket counter, ', counter)
+      // setBasketCounter(counter)
+      setUserData(data)
+    } catch (err) {
+      console.log(err)
+      setErrors(true)
+    }
+  }
+
+  useEffect(() => {
+    getUserData()
+  }, [])
 
   const handleSelect = (e) => {
 
@@ -103,7 +136,7 @@ function Nav2({ selected, typed, setSelected, setTyped, userData }) {
             <Navbar.Brand as={Link} className='nav-brand brand-logo' id='logo-right' to='/'><img src={brandLogo} /></Navbar.Brand>
             {isAuthenticated() ?
               <div className="nav-flex-p">
-                <p>0</p>
+                <p>{basketCounter}</p>
                 <Link className='nav-link nav-link-relative' to='/basket'><img src={cartLogo} /></ Link>
               </div>
               :
@@ -208,7 +241,7 @@ function Nav2({ selected, typed, setSelected, setTyped, userData }) {
 
             <Navbar.Brand as={Link} className='nav-brand brand-logo' id='logo-right' to='/'><img src={brandLogo} /></Navbar.Brand>
             <div className="nav-flex-p">
-              <p>0</p>
+              <p>{basketCounter}</p>
               <Link className='nav-link nav-link-relative' to='/basket'><img src={cartLogo} /></ Link>
             </div>
           </Navbar >

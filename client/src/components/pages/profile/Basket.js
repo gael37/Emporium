@@ -5,7 +5,7 @@ import { Link, useRouteLoaderData } from 'react-router-dom'
 import { getToken, getPayload, isAuthenticated } from '../../../helpers/auth'
 import Container from 'react-bootstrap/Container'
 
-const Basket = () => {
+const Basket = ({ basketCounter, setBasketCounter }) => {
 
   const [errors, setErrors] = useState(false)
   const [userData, setUserData] = useState(null)
@@ -16,7 +16,6 @@ const Basket = () => {
   const currentUserPayload = getPayload()
   const currentUserId = currentUserPayload.sub
   console.log('user id', currentUserId)
-
   const navigate = useNavigate()
 
 
@@ -27,6 +26,12 @@ const Basket = () => {
           Authorization: `Bearer ${getToken()}`,
         },
       })
+      const counter = data.basket.reduce((acc, obj) => {
+        return acc + parseInt(obj.count)
+      }, 0)
+
+      console.log('basket counter, ', counter)
+      setBasketCounter(counter)
       setUserData(data)
     } catch (err) {
       console.log(err)
@@ -168,6 +173,20 @@ const Basket = () => {
     console.log('product just liked :', productJustLiked)
     getUserData()
   }, [productJustLiked])
+
+  // useEffect(() => {
+  //   setBasketCounter(userData.basket.reduce((acc, obj) => {
+  //     return acc + parseInt(obj.count)
+  //   }, 0)
+  //   )
+  // }, [userData])
+
+  useEffect(() => {
+    console.log('basket counter :', basketCounter)
+
+  }, [basketCounter])
+
+
 
   return (
 

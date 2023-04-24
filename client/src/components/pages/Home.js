@@ -11,7 +11,7 @@ import { isAuthenticated } from '../../helpers/auth'
 import { getPayload } from '../../helpers/auth'
 import { calcDistance } from '../../helpers/functions'
 
-const Home = ({ selected, typed, userData, setUserData }) => {
+const Home = ({ selected, typed, userData, setUserData, basketCounter, setBasketCounter }) => {
 
   const [products, setProducts] = useState([])
   const [filteredProducts, setFilteredProducts] = useState([])
@@ -53,6 +53,12 @@ const Home = ({ selected, typed, userData, setUserData }) => {
           Authorization: `Bearer ${getToken()}`,
         },
       })
+      const counter = data.basket.reduce((acc, obj) => {
+        return acc + parseInt(obj.count)
+      }, 0)
+
+      console.log('basket counter, ', counter)
+      setBasketCounter(counter)
       setUserData(data)
     } catch (err) {
       console.log(err)
@@ -192,6 +198,7 @@ const Home = ({ selected, typed, userData, setUserData }) => {
     console.log('product just liked :', productJustLiked)
     getWishes()
     getBasket()
+    getUserData()
   }, [productJustLiked])
 
   useEffect(() => {
@@ -327,7 +334,7 @@ const Home = ({ selected, typed, userData, setUserData }) => {
 
   return (
     <main className="profile-page-wrapper">
-
+      <p>{basketCounter}</p>
       {filteredProducts && filteredProducts.length > 0 &&
         <div className='profile-row'>
           {filteredProducts.map(product => {
