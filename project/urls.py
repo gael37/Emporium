@@ -27,5 +27,6 @@ urlpatterns = [
     path('api/basket/', include('basket.urls')),
     path('api/categories/', include('categories.urls')),
     path('api/auth/', include('jwt_auth.urls')),
+    path('api/stripe/', include('payments.urls')),
     re_path(r'^.*$', index)
 ]

@@ -19,4 +19,3 @@ class PopulatedProductSerializer(ProductSerializer):
     wished = PopulatedWishSerializer(many=True)
     ordered = PopulatedOrderSerializer(many=True)
     added_to_basket = PopulatedBasketSerializer(many=True)
-    # likers = UserSerializer()

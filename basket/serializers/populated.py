@@ -6,4 +6,3 @@ from products.serializers.common import ProductSerializer
 class PopulatedBasketSerializer(BasketSerializer):
     basket_owner = UserSerializer()
     product_added_to_basket = ProductSerializer()
-    # productOwner = UserSerializer()

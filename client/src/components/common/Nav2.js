@@ -23,7 +23,7 @@ function Nav2({ selected, typed, setSelected, setTyped, basketCounter }) {
   getToken()
   const currentUserPayload = getPayload()
   const currentUserId = currentUserPayload.sub
-  console.log('user id', currentUserId)
+  // console.log('user id', currentUserId)
 
   const getUserData = async () => {
     try {

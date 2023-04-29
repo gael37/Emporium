@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'comments',
     'wishes',
     'orders',
+    'payments',
     'basket',
     'categories',
     'jwt_auth'
@@ -149,6 +150,9 @@ REST_FRAMEWORK = {
     ]
 }
 
+SITE_URL = 'http://localhost:3000'
+
+STRIPE_SECRET_KEY = 'sk_test_51N0UKTJkvqlqJ3Zhhr0tX4WjG2C8zJcQpTvZ5GS6hXEbk1JHAZO17ZuxC2ruXVASEcMC2VzdQKmHhlcts2cxmeiQ00dANxsk6U'
 
 STATIC_URL = '/static/'  # same with this
 

@@ -1,70 +1,74 @@
 [
-{
-  "model": "products.product",
-  "pk": 12,
-  "fields": {
-    "description": "Anastasia Beverly Hills Norvina Eye Shadow Palette",
-    "price": "29.99",
-    "images": "https://res.cloudinary.com/dsrdfnxit/image/upload/v1681729482/bargain-api/plcatl1zrdwclra5mjwv.webp https://res.cloudinary.com/dsrdfnxit/image/upload/v1681729483/bargain-api/rseeunjlmubrnsnakoze.webp https://res.cloudinary.com/dsrdfnxit/image/upload/v1681729487/bargain-api/tee9cmavq5sajphmubv6.webp https://res.cloudinary.com/dsrdfnxit/image/upload/v1681729495/bargain-api/jqql8yclp0cknzopbf2w.webp",
-    "created_at": "2023-04-17T11:07:02.524Z",
-    "dimensions": "",
-    "weight": "0.5 Pounds",
-    "about": "Anastasia Beverly Hills NORVINA Pro Pigment Palette Vol. 1, for face and body, is a professional-grade artistry palette featuring 25 deluxe High-performance shades with maximum payoff—carefully curated by Norvina herself Expand NORVINA collection with this pro palette and create most artistic makeup looks",
-    "owner": 11,
-    "categories": [
-      2
-    ]
+  {
+    "model": "products.product",
+    "pk": 12,
+    "fields": {
+      "description": "Anastasia Beverly Hills Norvina Eye Shadow Palette",
+      "price": "29.99",
+      "images": "https://res.cloudinary.com/dsrdfnxit/image/upload/v1681729482/bargain-api/plcatl1zrdwclra5mjwv.webp https://res.cloudinary.com/dsrdfnxit/image/upload/v1681729483/bargain-api/rseeunjlmubrnsnakoze.webp https://res.cloudinary.com/dsrdfnxit/image/upload/v1681729487/bargain-api/tee9cmavq5sajphmubv6.webp https://res.cloudinary.com/dsrdfnxit/image/upload/v1681729495/bargain-api/jqql8yclp0cknzopbf2w.webp",
+      "created_at": "2023-04-17T11:07:02.524Z",
+      "dimensions": "",
+      "weight": "0.5 Pounds",
+      "about": "Anastasia Beverly Hills NORVINA Pro Pigment Palette Vol. 1, for face and body, is a professional-grade artistry palette featuring 25 deluxe High-performance shades with maximum payoff—carefully curated by Norvina herself Expand NORVINA collection with this pro palette and create most artistic makeup looks",
+      "owner": 11,
+      "stripe_id": "price_1N1SlxJkvqlqJ3ZhncaZwZUd",
+      "categories": [
+        2
+      ]
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 13,
+    "fields": {
+      "description": "Makeup Brushes, START MAKERS 10Pcs Marble Makeup Brush Set Foundation Powder Blush Blending Eyeshadow Brushes Sets",
+      "price": "6.49",
+      "images": "https://res.cloudinary.com/dsrdfnxit/image/upload/v1681736984/bargain-api/woje500fysb51ta1yqvs.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1681736985/bargain-api/unqybnnbdkmkvfb5mlkk.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1681736986/bargain-api/v5b5ipta1osoxszjx8ey.webp https://res.cloudinary.com/dsrdfnxit/image/upload/v1681736987/bargain-api/crm7ozfey8zhawo5xwt2.webp https://res.cloudinary.com/dsrdfnxit/image/upload/v1681736987/bargain-api/tirnzjynub6ltjca8faj.webp",
+      "created_at": "2023-04-17T13:09:54.198Z",
+      "dimensions": "20 x 10 x 2 centimetres",
+      "weight": "",
+      "about": "➤ MARBLE PATTEN MAKE UP BRUSHES - 10PCS brushes with marble pattern design, fashion and beautiful in these years, smooth touch ➤ PREMIUM SYNTHETIC BRUSH - Your brush makeup is made of high quality synthetic hair,soft and dense fiber bristle, more suitable for people allergic to animal hair ➤ DURABLE - These brush set with permium plastic marble hand and aluminum alloy tube, that is very firm, long time for use ➤ESSENTIAL MAKEUP SET - This 10pcs(5 big and 5 small) set including foundation powder blending eyeshadow blush brushes, fit your daily makeup needs ➤ TRAVEL MAKEUP BAG - Your purchase with a mareble brush bag, easy to take and store brushes. The brushes sizes are about 12.7-15.2cm",
+      "owner": 11,
+      "stripe_id": "price_1N1SoAJkvqlqJ3ZhVFIm6dGc",
+      "categories": [
+        2
+      ]
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 14,
+    "fields": {
+      "description": "Matte Lipstick Set 3 Colors Lip Stick with Sliver Chain Bag Package Velvet Lip stick Gift Box Set Waterproof Non-Stick Cup Long Lasting Retractable Red Lipstick Set 3.5gx3 Pcs",
+      "price": "7.99",
+      "images": "https://res.cloudinary.com/dsrdfnxit/image/upload/v1681737261/bargain-api/nbvfgmgcaydszb3xhc2j.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1681737262/bargain-api/ygzkucbez6m8iisvzwon.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1681737263/bargain-api/ljnnni8lgcyvfoqrpcmr.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1681737264/bargain-api/lvt05mqqzkloa4ffh019.jpg",
+      "created_at": "2023-04-17T13:15:44.001Z",
+      "dimensions": "",
+      "weight": "0.12 Ounces",
+      "about": "MATTE LIPSTICKS: . This velvet matte lipstick set combines unrivalled formula with superior comfort, the light texture and natural color form a matte effect that can contour and accentuate your lip shape. MOST POPULAR COLORS: Through rigorous market research, We have carefully combined 3 pcs of the most popular lipstick colors and packaged them into a cosmetic gift. Our lipstick set is enough to meet the daily needs of girls. NON-STICK CUP & LONG LASTING: Non-stick cup and non-faded lipsticks set with supremely comfortable matte formula and high-intensity pigment can goes on in one swipe. Thanks to the no transfer formula, our lipstick set is long lasting, non-stick and waterproof that could last the whole day when completely drying. GIFT PACKAGE: Our velvet matte lipstick set comes with a gorgeous chain bag, which is exquisite and easy to carry. it’s suitable to be bought as personal use or as a birthday gift to friends or your mom, wife, girl friends,or as present gift on Thanksgiving day, Christmas,Halloween and other festivals(3pcs matte lip stick packaged in a sliver chain bag). NO MORE WORRIES: We care about our customers and customer satisfaction is our biggest goal. Feel free to contact us if you have any question about the lipstick.",
+      "owner": 9,
+      "stripe_id": "price_1N1SpJJkvqlqJ3Zh7svMIy2O",
+      "categories": [
+        2
+      ]
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 16,
+    "fields": {
+      "description": "Amazon Basics Cylinder Bagless Vacuum Cleaner / with HEPA filter for Hardfloor, Carpet & Car, Compact & Lightweight, 700W, 1.5L, Black",
+      "price": "51.49",
+      "images": "https://res.cloudinary.com/dsrdfnxit/image/upload/v1681750747/bargain-api/btxe9cp4suw6dswmnkh4.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1681750747/bargain-api/dkwmcyakfq4nkrhy6pgm.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1681750748/bargain-api/kizq00j7xpqz774kkpd1.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1681750749/bargain-api/cw3pdbwb3tjscecpffns.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1681750750/bargain-api/kx36puo3czrtboho4pd9.jpg",
+      "created_at": "2023-04-17T16:59:27.161Z",
+      "dimensions": "",
+      "weight": "",
+      "about": "700 Watt: Light (9.9lbs), bagless cyclonic vacuum cleaner with triple action nozzle & slide knob to regulatie suction Hygienic: With anti-allergen HEPA 12 filter, to remove odours & capture 99.5 percent of dust, dirt, pollen & allergens Quiet & Efficient: Exceptionally quiet bagless cylinder hoover (78 decibels). With 'A' energy rating & washable filters Convenient: With easy-to-empty dust cup (1.5L / 50.7oz capacity), smooth-rolling wheels & 1.5m (4.9ft) adjustable hose For Home & Office Use: Ideal to vacuum rugs, carpets, hard floors, upholstery, car interior. Picks up animal fur & hair Versatile: Includes upholstery nozzle, dusting & parquet brush, crevice tool & accessory holder. With 5m (16.4 ft) cord",
+      "owner": 1,
+      "stripe_id": "price_1N1Sq8JkvqlqJ3Zhp2vIBStG",
+      "categories": [
+        12
+      ]
+    }
   }
-},
-{
-  "model": "products.product",
-  "pk": 13,
-  "fields": {
-    "description": "Makeup Brushes, START MAKERS 10Pcs Marble Makeup Brush Set Foundation Powder Blush Blending Eyeshadow Brushes Sets",
-    "price": "6.49",
-    "images": "https://res.cloudinary.com/dsrdfnxit/image/upload/v1681736984/bargain-api/woje500fysb51ta1yqvs.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1681736985/bargain-api/unqybnnbdkmkvfb5mlkk.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1681736986/bargain-api/v5b5ipta1osoxszjx8ey.webp https://res.cloudinary.com/dsrdfnxit/image/upload/v1681736987/bargain-api/crm7ozfey8zhawo5xwt2.webp https://res.cloudinary.com/dsrdfnxit/image/upload/v1681736987/bargain-api/tirnzjynub6ltjca8faj.webp",
-    "created_at": "2023-04-17T13:09:54.198Z",
-    "dimensions": "20 x 10 x 2 centimetres",
-    "weight": "",
-    "about": "➤ MARBLE PATTEN MAKE UP BRUSHES - 10PCS brushes with marble pattern design, fashion and beautiful in these years, smooth touch ➤ PREMIUM SYNTHETIC BRUSH - Your brush makeup is made of high quality synthetic hair,soft and dense fiber bristle, more suitable for people allergic to animal hair ➤ DURABLE - These brush set with permium plastic marble hand and aluminum alloy tube, that is very firm, long time for use ➤ESSENTIAL MAKEUP SET - This 10pcs(5 big and 5 small) set including foundation powder blending eyeshadow blush brushes, fit your daily makeup needs ➤ TRAVEL MAKEUP BAG - Your purchase with a mareble brush bag, easy to take and store brushes. The brushes sizes are about 12.7-15.2cm",
-    "owner": 11,
-    "categories": [
-      2
-    ]
-  }
-},
-{
-  "model": "products.product",
-  "pk": 14,
-  "fields": {
-    "description": "Matte Lipstick Set 3 Colors Lip Stick with Sliver Chain Bag Package Velvet Lip stick Gift Box Set Waterproof Non-Stick Cup Long Lasting Retractable Red Lipstick Set 3.5gx3 Pcs",
-    "price": "7.99",
-    "images": "https://res.cloudinary.com/dsrdfnxit/image/upload/v1681737261/bargain-api/nbvfgmgcaydszb3xhc2j.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1681737262/bargain-api/ygzkucbez6m8iisvzwon.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1681737263/bargain-api/ljnnni8lgcyvfoqrpcmr.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1681737264/bargain-api/lvt05mqqzkloa4ffh019.jpg",
-    "created_at": "2023-04-17T13:15:44.001Z",
-    "dimensions": "",
-    "weight": "0.12 Ounces",
-    "about": "MATTE LIPSTICKS: . This velvet matte lipstick set combines unrivalled formula with superior comfort, the light texture and natural color form a matte effect that can contour and accentuate your lip shape. MOST POPULAR COLORS: Through rigorous market research, We have carefully combined 3 pcs of the most popular lipstick colors and packaged them into a cosmetic gift. Our lipstick set is enough to meet the daily needs of girls. NON-STICK CUP & LONG LASTING: Non-stick cup and non-faded lipsticks set with supremely comfortable matte formula and high-intensity pigment can goes on in one swipe. Thanks to the no transfer formula, our lipstick set is long lasting, non-stick and waterproof that could last the whole day when completely drying. GIFT PACKAGE: Our velvet matte lipstick set comes with a gorgeous chain bag, which is exquisite and easy to carry. it’s suitable to be bought as personal use or as a birthday gift to friends or your mom, wife, girl friends,or as present gift on Thanksgiving day, Christmas,Halloween and other festivals(3pcs matte lip stick packaged in a sliver chain bag). NO MORE WORRIES: We care about our customers and customer satisfaction is our biggest goal. Feel free to contact us if you have any question about the lipstick.",
-    "owner": 9,
-    "categories": [
-      2
-    ]
-  }
-},
-{
-  "model": "products.product",
-  "pk": 16,
-  "fields": {
-    "description": "Amazon Basics Cylinder Bagless Vacuum Cleaner / with HEPA filter for Hardfloor, Carpet & Car, Compact & Lightweight, 700W, 1.5L, Black",
-    "price": "51.49",
-    "images": "https://res.cloudinary.com/dsrdfnxit/image/upload/v1681750747/bargain-api/btxe9cp4suw6dswmnkh4.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1681750747/bargain-api/dkwmcyakfq4nkrhy6pgm.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1681750748/bargain-api/kizq00j7xpqz774kkpd1.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1681750749/bargain-api/cw3pdbwb3tjscecpffns.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1681750750/bargain-api/kx36puo3czrtboho4pd9.jpg",
-    "created_at": "2023-04-17T16:59:27.161Z",
-    "dimensions": "",
-    "weight": "",
-    "about": "700 Watt: Light (9.9lbs), bagless cyclonic vacuum cleaner with triple action nozzle & slide knob to regulatie suction Hygienic: With anti-allergen HEPA 12 filter, to remove odours & capture 99.5 percent of dust, dirt, pollen & allergens Quiet & Efficient: Exceptionally quiet bagless cylinder hoover (78 decibels). With 'A' energy rating & washable filters Convenient: With easy-to-empty dust cup (1.5L / 50.7oz capacity), smooth-rolling wheels & 1.5m (4.9ft) adjustable hose For Home & Office Use: Ideal to vacuum rugs, carpets, hard floors, upholstery, car interior. Picks up animal fur & hair Versatile: Includes upholstery nozzle, dusting & parquet brush, crevice tool & accessory holder. With 5m (16.4 ft) cord",
-    "owner": 1,
-    "categories": [
-      12
-    ]
-  }
-}
 ]

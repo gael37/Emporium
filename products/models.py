@@ -20,6 +20,7 @@ class Product(models.Model):
         related_name='products',
         on_delete=models.CASCADE
     )
+    stripe_id = models.CharField(max_length=300, default=None, blank=True, null=True)
     categories = models.ManyToManyField(
         'categories.Category',
         related_name="products"

@@ -1,0 +1,24 @@
+{
+  "name": "emporiumapp",
+  "version": "1.0.0",
+  "description": "The 12th and final week of General Assembly’s Software Engineering Immersive bootcamp was about creating a full stack application, individually, using React.js for the front end, Django for the back-end and a PostgreSQL database. My application, called The Bargain Corner, is a Gumtree-like ad hosting platform with an authentication system and CRUD functionalities, where customers can post and browse ads and also message each other.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gael37/empolis.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gael37/empolis/issues"
+  },
+  "homepage": "https://github.com/gael37/empolis#readme",
+  "dependencies": {
+    "stripe": "^12.2.0"
+  }
+}

@@ -11,10 +11,11 @@ import { isAuthenticated } from '../../helpers/auth'
 import { getPayload } from '../../helpers/auth'
 import { calcDistance } from '../../helpers/functions'
 
-const Home = ({ selected, typed, userData, setUserData, basketCounter, setBasketCounter }) => {
+const Home = ({ selected, typed, basketCounter, setBasketCounter }) => {
 
   const [products, setProducts] = useState([])
   const [filteredProducts, setFilteredProducts] = useState([])
+  const [userData, setUserData] = useState(null)
   const [errors, setErrors] = useState(false)
   const [selectedProducts, setSelectedProducts] = useState([])
   const [typedProducts, setTypedProducts] = useState([])
@@ -325,6 +326,7 @@ const Home = ({ selected, typed, userData, setUserData, basketCounter, setBasket
         console.log(err)
       }
     }
+    setProductJustLiked(productJustLiked ? false : true)
   }
 
   useEffect(() => {
@@ -333,43 +335,62 @@ const Home = ({ selected, typed, userData, setUserData, basketCounter, setBasket
   }, [basketData])
 
   return (
-    <main className="profile-page-wrapper">
-      <p>{basketCounter}</p>
+    <main className="home-page-wrapper">
       {filteredProducts && filteredProducts.length > 0 &&
-        <div className='profile-row'>
+        <div className='product-row'>
           {filteredProducts.map(product => {
             return (
-              <div key={product.id} className='profile-card'>
-
-
-
+              <div key={product.id} className='product-card'>
                 <div className="buffer">
                   <Link className='bootstrap-link' to={`/products/${product.id}`}>
-
-                    <div className="profile-card-image" style={{ backgroundImage: `url(${product.images.split(' ')[0]})` }}></div>
+                    <div className="buffer-image">
+                      <div className="product-card-image" style={{ backgroundImage: `url(${product.images.split(' ')[0]})` }}></div>
+                    </div>
+                    <div className="buffer-description">
+                      <h2 className='product-card-description'>{product.description}</h2>
+                    </div>
+                    <div className="buffer-reviews">
+                      <h2>
+                        {
+                          Math.floor(product.comments.length && product.comments.reduce((acc, obj) => {
+                            return acc + parseInt(obj.rating)
+                          }, 0
+                          ) / userData.comments.length) === 1 &&
+                          `⭐️☆☆☆☆ (${product.comments.length})`
+                        }
+                        {
+                          Math.floor(product.comments.length && product.comments.reduce((acc, obj) => {
+                            return acc + parseInt(obj.rating)
+                          }, 0
+                          ) / userData.comments.length) === 2 &&
+                          `⭐️⭐️☆☆☆ (${product.comments.length})`
+                        }
+                        {
+                          Math.floor(product.comments.length && product.comments.reduce((acc, obj) => {
+                            return acc + parseInt(obj.rating)
+                          }, 0
+                          ) / userData.comments.length) === 3 &&
+                          `⭐️⭐️⭐️☆☆ (${product.comments.length})`
+                        }
+                        {
+                          Math.floor(product.comments.length && product.comments.reduce((acc, obj) => {
+                            return acc + parseInt(obj.rating)
+                          }, 0
+                          ) / userData.comments.length) === 4 &&
+                          `⭐️⭐️⭐️⭐️☆ (${product.comments.length})`
+                        }
+                        {
+                          Math.floor(product.comments.length && product.comments.reduce((acc, obj) => {
+                            return acc + parseInt(obj.rating)
+                          }, 0
+                          ) / userData.comments.length) === 5 &&
+                          `⭐️⭐️⭐️⭐️⭐️ (${product.comments.length})`
+                        }
+                      </h2>
+                    </div>
                   </Link>
-
-
-                  {/* {(product.image.split(' ')).map((image, index) => {
-                      return (
-                        <div key={index} className="profile-card-image" style={{ backgroundImage: `url(${image})` }}></div>
-                      )
-                    })
-                    } */}
-                  {/* <p className='profile-card-title'>{product.name}</p> */}
-                  <p className='profile-card-description'>{product.description}</p>
-                  <p className='profile-card-date'>Posted by <span>{product.owner.username}</span> on {product.created_at.toString().split('T').slice(0, 1).join()}</p>
-                  {isAuthenticated() ?
-                    <>
-                      {/* <p className='profile-card-distance2'>{(Math.abs(calcDistance(userCoord.userLatitude, userCoord.userLongitude, product.latitude, product.longitude))).toFixed(1)} miles | {product.district}</p> */}
-
-                    </>
-                    :
-                    <>
-                    </>
-                  }
-                  <p className='profile-card-price'>£{product.price}</p>
-
+                  <h3 className='product-card-price'>£{product.price}</h3>
+                  <h5 className='product-card-date'>Posted by <span>{product.owner.username}</span> on {product.created_at.toString().split('T').slice(0, 1).join()}</h5>
                   {product.wished.some((wish) => {
                     return wish.wish_owner.id === currentUserId
                   }) ?
@@ -381,24 +402,24 @@ const Home = ({ selected, typed, userData, setUserData, basketCounter, setBasket
                     return basket.basket_owner.id === currentUserId
                   }) ?
                     <div>
-                      <button className='like-button' onClick={() => handleBasketRemove(product)}>-</button>
-                      <button className='like-button' onClick={() => handleBasketAdd(product)}>+</button>
+                      <button className='add-remove-button' onClick={() => handleBasketRemove(product)}>-</button>
+                      <button className='add-remove-button' onClick={() => handleBasketAdd(product)}>+</button>
                       {product.added_to_basket.some((basket) => {
                         return basket.basket_owner.id === currentUserId
                       }) ?
-                        <p>{product.added_to_basket[
+                        <h6>{product.added_to_basket[
                           product.added_to_basket.findIndex((basket) => {
                             return basket.basket_owner.id === currentUserId
                           })
-                        ].count}</p>
+                        ].count}</h6>
                         :
-                        <p>0</p>
+                        <h6>0</h6>
                       }
-                      <button className='like-button' onClick={() => removeAll(product)}>Remove from basket</button>
+                      <button className='remove-basket-button' onClick={() => removeAll(product)}>Remove from basket</button>
                     </div>
                     :
                     <div>
-                      <button className='like-button' onClick={() => handleBasketAdd(product)}>Add to basket</button>
+                      <button className='add-basket-button' onClick={() => handleBasketAdd(product)}>Add to basket</button>
                     </div>
                   }
 

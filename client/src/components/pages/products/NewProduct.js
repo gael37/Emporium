@@ -8,13 +8,16 @@ import Container from 'react-bootstrap/esm/Container'
 import Row from 'react-bootstrap/esm/Row'
 import Select from 'react-select'
 import { options } from '../../../helpers/constants'
-// s
+
+import gif from '../../../assets/gifs/loading4.gif'
+
 const NewProduct = () => {
 
   // ! State
 
   const [errors, setErrors] = useState(null)
   const [selectedImages, setSelectedImages] = useState([])
+  const [loading, setLoading] = useState(false)
 
   const [formFields, setFormFields] = useState({
     description: '',
@@ -24,6 +27,7 @@ const NewProduct = () => {
     weight: '',
     about: '',
     price: '',
+    stripe_id: '',
   })
 
   const navigate = useNavigate()
@@ -130,7 +134,10 @@ const NewProduct = () => {
 
   const [files, setFiles] = useState([])
 
-  const onDrop = useCallback(files => setFiles(files), [setFiles])
+  const onDrop = useCallback((files) => {
+    setLoading(true)
+    setFiles(files)
+  }, [setFiles])
 
   const { getRootProps, getInputProps, acceptedFiles, isDragActive } = useDropzone({ onDrop })
 
@@ -152,6 +159,12 @@ const NewProduct = () => {
     }
     getFiles()
   }, [files])
+
+  useEffect(() => {
+    if (selectedImages.length > 0) {
+      setLoading(false)
+    }
+  }, [selectedImages])
 
   return (
     <main className="form-page">
@@ -212,6 +225,16 @@ const NewProduct = () => {
                 placeholder="Price"
                 required
               />
+              {/* Stripe id */}
+              <label htmlFor="name">Stripe</label>
+              <input
+                className='form-input'
+                type="text"
+                name="stripe_id"
+                onChange={handleChange}
+                value={formFields.stripe_id}
+                placeholder="Stripe_id"
+              />
               {/* Categories */}
               <div className='post-cat'>
                 <p>Categorize your ad:</p>
@@ -220,10 +243,10 @@ const NewProduct = () => {
               {errors && errors.description && <small className='text-danger'>{errors.description}</small>}
               {/* Images */}
               <label>Upload up to 10 images for your ad:</label>
-              <section>
+              <section className='section-upload'>
                 <div {...getRootProps({ className: 'dropzone' })}>
                   <input className="blog-form-input" {...getInputProps()} />
-                  <div className="blog-form-input">
+                  <div className="dropzone-flex">
                     {isDragActive ?
                       <p className="dropzone-content">
                         Release to drop the files here</p>
@@ -243,11 +266,11 @@ const NewProduct = () => {
                       </span>
                     </p>
                   ) : (
-                    <p>Image{selectedImages.length === 1 ? '' : 's'} uploaded! ✅</p>
+                    <p>Image{selectedImages.length === 1 ? '' : 's'} succesfully uploaded! ✅</p>
                   ))}
 
                 <div className="images">
-                  {selectedImages &&
+                  {selectedImages.length > 0 &&
                     selectedImages.map((image, index) => {
                       return (
                         <div key={image} className="image">
@@ -259,6 +282,12 @@ const NewProduct = () => {
                         </div>
                       )
                     })}
+                  {loading &&
+                    <div className='flex-loading'>
+                      <img className='loading-gif' src={gif} alt='loading'></img>
+                      <p>Uploading images, please wait...</p>
+                    </div>
+                  }
                 </div>
               </section>
               {/* Generic Message Error */}
