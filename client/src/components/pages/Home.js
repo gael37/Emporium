@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import { getToken } from '../../helpers/auth'
 import Container from 'react-bootstrap/Container'
@@ -10,6 +11,15 @@ import { isAuthenticated } from '../../helpers/auth'
 
 import { getPayload } from '../../helpers/auth'
 import { calcDistance } from '../../helpers/functions'
+
+import emptyHeart from '../../assets/images/empty-heart.png'
+import heart from '../../assets/images/heart.png'
+import oneStar from '../../assets/images/one-star.png'
+import twoStars from '../../assets/images/two-stars.png'
+import threeStars from '../../assets/images/three-stars.png'
+import fourStars from '../../assets/images/four-stars.png'
+import fiveStars from '../../assets/images/five-stars.png'
+import validate from '../../assets/images/validate.png'
 
 const Home = ({ selected, typed, basketCounter, setBasketCounter }) => {
 
@@ -27,6 +37,8 @@ const Home = ({ selected, typed, basketCounter, setBasketCounter }) => {
 
   let wishPK = ''
   // let basketPK = ''
+
+  const navigate = useNavigate()
 
   // get user id
   getToken()
@@ -334,6 +346,9 @@ const Home = ({ selected, typed, basketCounter, setBasketCounter }) => {
     console.log('basket data :', basketData)
   }, [basketData])
 
+  const goToBasket = () => {
+    navigate('/basket')
+  }
   return (
     <main className="home-page-wrapper">
       {filteredProducts && filteredProducts.length > 0 &&
@@ -343,86 +358,122 @@ const Home = ({ selected, typed, basketCounter, setBasketCounter }) => {
               <div key={product.id} className='product-card'>
                 <div className="buffer">
                   <Link className='bootstrap-link' to={`/products/${product.id}`}>
-                    <div className="buffer-image">
-                      <div className="product-card-image" style={{ backgroundImage: `url(${product.images.split(' ')[0]})` }}></div>
+                    <div className="card-link">
+                      <div className="buffer-image">
+                        <div className="product-card-image" style={{ backgroundImage: `url(${product.images.split(' ')[0]})` }}></div>
+                      </div>
                     </div>
+                  </Link>
+                  <div className="flex-price-like">
+                    <h3 className='product-card-price'>£{product.price}</h3>
+                    {product.wished.some((wish) => {
+                      return wish.wish_owner.id === currentUserId
+                    }) ?
+                      <button className='like-button like-button-bigger' onClick={() => handleDelete(product)}><img src={heart} alt='like'></img></button>
+                      :
+                      <button className='like-button' onClick={() => handleHeartClick(product)}><img src={emptyHeart} alt='like'></img></button>
+                    }
+                  </div>
+                  <Link className='bootstrap-link' to={`/products/${product.id}`}>
                     <div className="buffer-description">
                       <h2 className='product-card-description'>{product.description}</h2>
                     </div>
-                    <div className="buffer-reviews">
-                      <h2>
-                        {
-                          Math.floor(product.comments.length && product.comments.reduce((acc, obj) => {
-                            return acc + parseInt(obj.rating)
-                          }, 0
-                          ) / userData.comments.length) === 1 &&
-                          `⭐️☆☆☆☆ (${product.comments.length})`
-                        }
-                        {
-                          Math.floor(product.comments.length && product.comments.reduce((acc, obj) => {
-                            return acc + parseInt(obj.rating)
-                          }, 0
-                          ) / userData.comments.length) === 2 &&
-                          `⭐️⭐️☆☆☆ (${product.comments.length})`
-                        }
-                        {
-                          Math.floor(product.comments.length && product.comments.reduce((acc, obj) => {
-                            return acc + parseInt(obj.rating)
-                          }, 0
-                          ) / userData.comments.length) === 3 &&
-                          `⭐️⭐️⭐️☆☆ (${product.comments.length})`
-                        }
-                        {
-                          Math.floor(product.comments.length && product.comments.reduce((acc, obj) => {
-                            return acc + parseInt(obj.rating)
-                          }, 0
-                          ) / userData.comments.length) === 4 &&
-                          `⭐️⭐️⭐️⭐️☆ (${product.comments.length})`
-                        }
-                        {
-                          Math.floor(product.comments.length && product.comments.reduce((acc, obj) => {
-                            return acc + parseInt(obj.rating)
-                          }, 0
-                          ) / userData.comments.length) === 5 &&
-                          `⭐️⭐️⭐️⭐️⭐️ (${product.comments.length})`
-                        }
-                      </h2>
-                    </div>
                   </Link>
-                  <h3 className='product-card-price'>£{product.price}</h3>
-                  <h5 className='product-card-date'>Posted by <span>{product.owner.username}</span> on {product.created_at.toString().split('T').slice(0, 1).join()}</h5>
-                  {product.wished.some((wish) => {
-                    return wish.wish_owner.id === currentUserId
-                  }) ?
-                    <button className='like-button' onClick={() => handleDelete(product)}>❤️</button>
-                    :
-                    <button className='like-button' onClick={() => handleHeartClick(product)}>♡</button>
-                  }
+                  <div className="buffer-reviews">
+                    <h2>
+                      {product.comments.length > 0 ?
+                        Math.floor(product.comments.reduce((acc, obj) => {
+                          return acc + parseInt(obj.rating)
+                        }, 0) / product.comments.length) === 1 &&
+                        <div className="flex-reviews add-padding">
+                          <img src={oneStar}></img>
+                          <p>{product.comments.length}</p>
+                        </div>
+                        :
+                        <div className='buffer-reviews'></div>
+                      }
+
+
+                      {product.comments.length > 0 ?
+                        Math.floor(product.comments.reduce((acc, obj) => {
+                          return acc + parseInt(obj.rating)
+                        }, 0
+                        ) / product.comments.length) === 2 &&
+                        <div className="flex-reviews add-padding">
+                          <img src={twoStars}></img>
+                          <p>{product.comments.length}</p>
+                        </div>
+                        : <div className='buffer-reviews'><></></div>
+                      }
+
+                      {product.comments.length > 0 ?
+                        Math.floor(product.comments.reduce((acc, obj) => {
+                          return acc + parseInt(obj.rating)
+                        }, 0
+                        ) / product.comments.length) === 3 &&
+                        <div className="flex-reviews add-padding">
+                          <img src={threeStars}></img>
+                          <p>{product.comments.length}</p>
+                        </div>
+                        : <div className='buffer-reviews'></div>
+                      }
+
+                      {product.comments.length > 0 ?
+                        Math.floor(product.comments.reduce((acc, obj) => {
+                          return acc + parseInt(obj.rating)
+                        }, 0
+                        ) / product.comments.length) === 4 &&
+                        <div className="flex-reviews">
+                          <img src={fourStars}></img>
+                          <p>{product.comments.length}</p>
+                        </div>
+                        : <div className='buffer-reviews'></div>
+                      }
+
+                      {product.comments.length > 0 ?
+                        Math.floor(product.comments.reduce((acc, obj) => {
+                          return acc + parseInt(obj.rating)
+                        }, 0
+                        ) / product.comments.length) === 5 &&
+                        <div className="flex-reviews add-padding">
+                          <img src={fiveStars}></img>
+                          <p>{product.comments.length}</p>
+                        </div>
+                        :
+                        <div className='buffer-reviews'></div>
+                      }
+                    </h2>
+                  </div>
                   {product.added_to_basket.some((basket) => {
                     return basket.basket_owner.id === currentUserId
                   }) ?
-                    <div>
-                      <button className='add-remove-button' onClick={() => handleBasketRemove(product)}>-</button>
-                      <button className='add-remove-button' onClick={() => handleBasketAdd(product)}>+</button>
-                      {product.added_to_basket.some((basket) => {
-                        return basket.basket_owner.id === currentUserId
-                      }) ?
-                        <h6>{product.added_to_basket[
-                          product.added_to_basket.findIndex((basket) => {
-                            return basket.basket_owner.id === currentUserId
-                          })
-                        ].count}</h6>
-                        :
-                        <h6>0</h6>
-                      }
-                      <button className='remove-basket-button' onClick={() => removeAll(product)}>Remove from basket</button>
-                    </div>
-                    :
-                    <div>
-                      <button className='add-basket-button' onClick={() => handleBasketAdd(product)}>Add to basket</button>
-                    </div>
-                  }
+                    <>
+                      <div className="flex-in-basket">
+                        <div className="flex-validate">
+                          <p><span>In basket</span></p>
+                          <img src={validate} alt='in basket'></img>
+                        </div>
 
+                        <div className='flex-add-remove-basket'>
+                          <button className='add-remove-button button-padding' onClick={() => handleBasketRemove(product)}>-</button>
+                          <p>{product.added_to_basket[
+                            product.added_to_basket.findIndex((basket) => {
+                              return basket.basket_owner.id === currentUserId
+                            })
+                          ].count}</p>
+                          <button className='add-remove-button' onClick={() => handleBasketAdd(product)}>+</button>
+                        </div>
+                      </div>
+                      <button className='add-basket-button' onClick={() => removeAll(product)}>Remove from basket</button>
+                    </>
+                    :
+                    <>
+                      <div className='flex-in-basket'>
+                      </div>
+                      <button className='add-basket-button' onClick={() => handleBasketAdd(product)}>Add to basket</button>
+                    </>
+                  }
+                  <button className='add-basket-button' onClick={() => goToBasket()}>Go to basket</button>
                 </div>
               </div>
             )
