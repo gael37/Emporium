@@ -23,6 +23,8 @@ import Success from './pages/Success'
 import Orders from './components/pages/profile/Orders'
 import Review from './components/pages/profile/Review'
 import NotFound from './components/pages/NotFound'
+import AccountDetails from './components/pages/profile/AccountDetails'
+import ItemsOnSale from './components/pages/profile/ItemsOnSale'
 
 
 
@@ -41,6 +43,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Home selected={selected} typed={typed} setBasketCounter={setBasketCounter} />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/account-details" element={<AccountDetails />} />
+        <Route path="/on-sale" element={<ItemsOnSale />} />
         <Route path="/basket" element={<Basket setBasketCounter={setBasketCounter} />} />
         <Route path="/orders" element={<Orders />} />
         <Route path="/edit-profile/:userId" element={<EditProfile />} />

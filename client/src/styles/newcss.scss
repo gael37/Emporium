@@ -112,7 +112,10 @@ h1 {
   color: black;
 
   p {
-    margin: 0;
+    // // margin: 0;
+    // translate: 5px;
+    // padding-bottom: 5px;
+    // font-size: 2em;
   }
 
   &:hover {
@@ -124,7 +127,15 @@ h1 {
   }
 }
 
-.add-basket-button {
+.button-minus {
+  translate: 0 -2px;
+}
+
+.button-plus {
+  translate: 0 -1px;
+}
+
+.yellow-button {
   border: none;
   background-color: $yellow;
   border-radius: 15px;
@@ -137,6 +148,26 @@ h1 {
 
   &:hover {
     background-color: darken($yellow, 5%);
+  }
+
+  &:active {
+    transform: scale(0.9);
+  }
+}
+
+.red-button {
+  border: none;
+  background-color: rgb(246, 106, 106);
+  border-radius: 15px;
+  width: 100%;
+  color: black;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+
+  &:hover {
+    background-color: darken(red, 5%);
   }
 
   &:active {
@@ -547,6 +578,76 @@ h1 {
 //   }
 // }
 
+
+//       ---------------------------------------ACCOUNT PAGE----------------------------------------
+
+.profile-page-wrapper {
+  h1 {
+    margin: 50px;
+  }
+
+}
+
+.flex-profile-page {
+  margin: 0 auto;
+  width: 90vw;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 50px;
+  margin: 50px;
+
+  .red-button {
+    width: 280px;
+  }
+}
+
+.profile-pic {
+  width: 200px;
+  border-radius: 5px;
+  border: 3px solid $senary;
+}
+
+.flex-pic-account-details {
+  width: 280px;
+}
+
+.profile-link-flex {
+  width: 100%;
+
+  .yellow-button {
+    width: 280px;
+  }
+}
+
+.account-section {
+  width: 350px;
+  height: 130px;
+  border-radius: 10px;
+  border: 1px solid grey;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  gap: 20px;
+
+  h2 {
+    font-size: 26px;
+  }
+
+  img {
+    width: 70px;
+    height: 70px
+  }
+
+  &:hover {
+    background-color: rgb(232, 228, 228);
+    cursor: pointer;
+  }
+}
+
+.account-section-text {
+  text-align: left;
+}
 
 //       ---------------------------------------BASKET PAGE----------------------------------------
 

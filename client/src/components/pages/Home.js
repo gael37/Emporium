@@ -455,13 +455,13 @@ const Home = ({ selected, typed, basketCounter, setBasketCounter }) => {
                         </div>
 
                         <div className='flex-add-remove-basket'>
-                          <button className='add-remove-button button-padding' onClick={() => handleBasketRemove(product)}>-</button>
+                          <button className='add-remove-button' onClick={() => handleBasketRemove(product)}><p className='button-minus'>-</p></button>
                           <p>{product.added_to_basket[
                             product.added_to_basket.findIndex((basket) => {
                               return basket.basket_owner.id === currentUserId
                             })
                           ].count}</p>
-                          <button className='add-remove-button' onClick={() => handleBasketAdd(product)}>+</button>
+                          <button className='add-remove-button' onClick={() => handleBasketAdd(product)}><p className='button-plus'>+</p></button>
                         </div>
                       </div>
                       <button className='add-basket-button' onClick={() => removeAll(product)}>Remove from basket</button>
@@ -470,10 +470,10 @@ const Home = ({ selected, typed, basketCounter, setBasketCounter }) => {
                     <>
                       <div className='flex-in-basket'>
                       </div>
-                      <button className='add-basket-button' onClick={() => handleBasketAdd(product)}>Add to basket</button>
+                      <button className='yellow-button' onClick={() => handleBasketAdd(product)}>Add to basket</button>
                     </>
                   }
-                  <button className='add-basket-button' onClick={() => goToBasket()}>Go to basket</button>
+                  <button className='yellow-button' onClick={() => goToBasket()}>Go to basket</button>
                 </div>
               </div>
             )
