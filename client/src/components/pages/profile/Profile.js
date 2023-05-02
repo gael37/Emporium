@@ -125,21 +125,24 @@ const Profile = () => {
 
   return (
     <main className="profile-page-wrapper">
-      <h1>Your account</h1>
       <div className="flex-profile-page">
         {profileData ?
           <>
-            <Link className='bootstrap-link' to='/account-details'>
-              <section className="account-section">
-                <img src={details}></img>
-                <div className="flex-account-section">
-                  <div className="account-section-text">
-                    <h2>Your account details</h2>
-                    <p>View and edit your details</p>
+            <div className='h1-ancestor'>
+              <h1 className='h1-relative'>Your account</h1>
+              <Link className='bootstrap-link' to='/account-details'>
+                <section className="account-section">
+                  <img src={details}></img>
+                  <div className="flex-account-section">
+                    <div className="account-section-text">
+                      <h2>Your account details</h2>
+                      <p>View and edit your details</p>
+                    </div>
                   </div>
-                </div>
-              </section>
-            </Link>
+                </section>
+              </Link>
+            </div>
+
 
             <Link className='bootstrap-link' to='/basket'>
               <section className="account-section">
