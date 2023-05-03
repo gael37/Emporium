@@ -21,7 +21,7 @@ import fourStars from '../../assets/images/four-stars.png'
 import fiveStars from '../../assets/images/five-stars.png'
 import validate from '../../assets/images/validate.png'
 
-const Home = ({ selected, typed, basketCounter, setBasketCounter }) => {
+const Home = ({ selected, typed, setSelected, setTyped, basketCounter, setBasketCounter, setUsername }) => {
 
   const [products, setProducts] = useState([])
   const [filteredProducts, setFilteredProducts] = useState([])
@@ -73,6 +73,7 @@ const Home = ({ selected, typed, basketCounter, setBasketCounter }) => {
       console.log('basket counter, ', counter)
       setBasketCounter(counter)
       setUserData(data)
+      setUsername(data.username)
     } catch (err) {
       console.log(err)
       setErrors(true)
@@ -109,6 +110,8 @@ const Home = ({ selected, typed, basketCounter, setBasketCounter }) => {
 
   // On page load, get user data and all the products
   useEffect(() => {
+    setSelected('All')
+    setTyped('')
     getProducts()
     getUserData()
     getWishes()
@@ -359,9 +362,9 @@ const Home = ({ selected, typed, basketCounter, setBasketCounter }) => {
                 <div className="buffer">
                   <Link className='bootstrap-link' to={`/products/${product.id}`}>
                     <div className="card-link">
-                      <div className="buffer-image">
-                        <div className="product-card-image" style={{ backgroundImage: `url(${product.images.split(' ')[0]})` }}></div>
-                      </div>
+
+                      <div className="product-card-image" style={{ backgroundImage: `url(${product.images.split(' ')[0]})` }}></div>
+
                     </div>
                   </Link>
                   <div className="flex-price-like">
@@ -464,7 +467,7 @@ const Home = ({ selected, typed, basketCounter, setBasketCounter }) => {
                           <button className='add-remove-button' onClick={() => handleBasketAdd(product)}><p className='button-plus'>+</p></button>
                         </div>
                       </div>
-                      <button className='add-basket-button' onClick={() => removeAll(product)}>Remove from basket</button>
+                      <button className='yellow-button' onClick={() => removeAll(product)}>Remove from basket</button>
                     </>
                     :
                     <>

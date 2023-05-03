@@ -13,7 +13,7 @@ import axios from 'axios'
 import { isAuthenticated, handleLogout, getToken, getPayload } from '../../helpers/auth'
 
 
-function Nav2({ selected, typed, setSelected, setTyped, basketCounter }) {
+function Nav2({ selected, typed, setSelected, setTyped, basketCounter, username }) {
 
   const [selectSize, setSelectSize] = useState('small')
   const [errors, setErrors] = useState(false)
@@ -75,7 +75,7 @@ function Nav2({ selected, typed, setSelected, setTyped, basketCounter }) {
             {/* <Link className='nav-link' to='/trends' id='trend'>Trends</ Link> */}
             {isAuthenticated() &&
               <Nav className='nav-items-container' id='dropdown-left'>
-                <NavDropdown className='nav-link basic-nav-dropdown' title={userData ? `Hello, ${userData.username}` : 'Hello!'} id="dropdown-left">
+                <NavDropdown className='nav-link basic-nav-dropdown' title={userData ? `Hello, ${username}` : 'Hello!'} id="dropdown-left">
                   <>
                     <NavDropdown.Item as={Link} to='/' >Home</NavDropdown.Item>
                     <NavDropdown.Item as={Link} to='/profile' >Account</NavDropdown.Item>
@@ -119,7 +119,7 @@ function Nav2({ selected, typed, setSelected, setTyped, basketCounter }) {
             </div>
             {isAuthenticated() &&
               <Nav className='nav-items-container'>
-                <NavDropdown className='basic-nav-dropdown' title={userData ? `Hello, ${userData.username}` : 'Hello!'} id="dropdown-right">
+                <NavDropdown className='basic-nav-dropdown' title={userData ? `Hello, ${username}` : 'Hello!'} id="dropdown-right">
 
                   <>
                     <NavDropdown.Item as={Link} to='/' >Home</NavDropdown.Item>
@@ -181,7 +181,7 @@ function Nav2({ selected, typed, setSelected, setTyped, basketCounter }) {
 
             {isAuthenticated() &&
               <Nav className='nav-items-container' id='dropdown-left'>
-                <NavDropdown className='nav-link basic-nav-dropdown' title={userData ? `Hello, ${userData.username}` : 'Hello!'} id="dropdown-left">
+                <NavDropdown className='nav-link basic-nav-dropdown' title={userData ? `Hello, ${username}` : 'Hello!'} id="dropdown-left">
                   <>
                     <NavDropdown.Item as={Link} to='/' >Home</NavDropdown.Item>
                     <NavDropdown.Item as={Link} to='/profile' >Account</NavDropdown.Item>
@@ -225,7 +225,7 @@ function Nav2({ selected, typed, setSelected, setTyped, basketCounter }) {
 
             {isAuthenticated() &&
               <Nav className='nav-items-container'>
-                <NavDropdown className='nav-link basic-nav-dropdown' title={userData ? `Hello, ${userData.username}` : 'Hello!'} id="dropdown-right">
+                <NavDropdown className='nav-link basic-nav-dropdown' title={userData ? `Hello, ${username}` : 'Hello!'} id="dropdown-right">
                   <>
                     <NavDropdown.Item as={Link} to='/' >Home</NavDropdown.Item>
                     <NavDropdown.Item as={Link} to='/profile' >Account</NavDropdown.Item>

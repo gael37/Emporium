@@ -5,6 +5,15 @@ import { isOwner, getToken } from '../../../helpers/auth'
 import { isAuthenticated } from '../../../helpers/auth'
 import { getPayload } from '../../../helpers/auth'
 
+import emptyHeart from '../../../assets/images/empty-heart.png'
+import heart from '../../../assets/images/heart.png'
+import oneStar from '../../../assets/images/one-star.png'
+import twoStars from '../../../assets/images/two-stars.png'
+import threeStars from '../../../assets/images/three-stars.png'
+import fourStars from '../../../assets/images/four-stars.png'
+import fiveStars from '../../../assets/images/five-stars.png'
+import validate from '../../../assets/images/validate.png'
+
 // Bootstrap Components
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
@@ -434,109 +443,176 @@ const SingleProduct = ({ basketCounter, setBasketCounter }) => {
     console.log('product on page render', product)
   }, [product])
 
+  const goToBasket = () => {
+    navigate('/basket')
+  }
+
   return (
     <main className='single-page'>
-      <Container className='mt-4'>
-        <Row>
-          {product ?
-            <>
-              <div className="single-buffer">
-                <>
-                  {bigImage ?
-                    <div className="profile-card-image top-image" style={{ backgroundImage: `url(${bigImage})` }}></div>
-                    :
-                    <div className="profile-card-image top-image" style={{ backgroundImage: `url(${product.images.split(' ')[0]})` }}></div>
+      {product ?
+        <>
+          <section className='single-images'>
+            {bigImage ?
+              <div className="profile-card-image top-image" style={{ backgroundImage: `url(${bigImage})` }}></div>
+              :
+              <div className="profile-card-image top-image" style={{ backgroundImage: `url(${product.images.split(' ')[0]})` }}></div>
 
-                  }
-                  <div className='bottom-images-flex'>
-                    <>
-                      {(product.images.split(' ')).map((image, index) => {
-                        return (
-                          <div key={index} name={image} onMouseEnter={getBigger} onMouseLeave={getSmaller} onClick={() => swapImage(image)} className="profile-card-image bottom-images" style={{ backgroundImage: `url(${image})` }}></div>
-                        )
-                      })
-                      }
-                    </>
-                  </div>
-                </>
+            }
+            <div className='bottom-images-flex'>
 
-                <div className='single-div-description'>
-
-                  <p className='single-card-description-full'>{product.description}</p>
-
-                  {(product.dimensions) &&
-                    <p className='single-card-description-full'><strong>•Dimensions:</strong> {product.dimensions}</p>
-                  }
-                  {(product.weight) &&
-                    <p className='single-card-description-full'><strong>•Weight:</strong> {product.weight}</p>
-                  }
-                  {(product.about) &&
-                    <p className='single-card-description-full'><strong>•About:</strong> {product.about}</p>
-                  }
-                  {(product.brand) &&
-                    <p className='single-card-description-full'><strong>•Brand:</strong> {product.brand}</p>
-                  }
-
-                  {postedAd() ?
-                    <>
-                      <p className='single-card-price'>£{product.price}</p>
-                      <p className='single-card-date'>Posted by <span>me!</span> on <span>{product.created_at.toString().split('T').slice(0, 1).join()}</span></p>
-
-
-                    </>
-                    :
-
-                    <>
-                      <p className='single-card-price'>£{product.price}</p>
-                      <p className='single-card-date'>Posted by <span>{product.owner.username}</span> on <span>{product.created_at.toString().split('T').slice(0, 1).join()}</span></p>
-
-
-
-                    </>
-                  }
-                  {product &&
-                    <p>Categories: {product.categories[0].name}</p>
-                  }
-                </div>
-              </div>
-              <div>
-                {product.wished.some((wish) => {
-                  return wish.wish_owner.id === currentUserId
-                }) ?
-                  <button className='like-button' onClick={() => handleHeartDelete()}>❤️</button>
-                  :
-                  <button className='like-button' onClick={() => handleHeartClick()}>♡</button>
-                }
-              </div>
-
-              {product.added_to_basket.some((basket) => {
-                return basket.basket_owner.id === currentUserId
-              }) ?
-                <div>
-                  <button className='like-button' onClick={() => handleBasketRemove()}>-</button>
-                  <button className='like-button' onClick={() => handleBasketAdd()}>+</button>
-                  <p>{product.added_to_basket[
-                    product.added_to_basket.findIndex((basket) => {
-                      return basket.basket_owner.id === currentUserId
-                    })
-                  ].count}</p>
-
-
-                  <button className='like-button' onClick={() => removeAll()}>Remove from basket</button>
-                </div>
-                :
-                <div>
-                  <button className='like-button' onClick={() => handleBasketAdd()}>Add to basket</button>
-                </div>
+              {(product.images.split(' ')).map((image, index) => {
+                return (
+                  <div key={index} name={image} onMouseEnter={getBigger} onMouseLeave={getSmaller} onClick={() => swapImage(image)} className="profile-card-image bottom-images" style={{ backgroundImage: `url(${image})` }}></div>
+                )
+              })
               }
 
+            </div>
+          </section>
+          <section className='single-description'>
+            <div className='single-div-description'>
 
-            </>
-            :
-            errors ? <h2>Something went wrong! Please try again later!</h2> : <h2>Loading</h2>
-          }
-        </Row>
-      </Container>
+              <p className='single-card-description-full'>{product.description}</p>
+              <div className='flex-single-reviews'>
+                <div className="buffer-reviews">
+                  <h2>
+                    {product.comments.length > 0 ?
+                      Math.floor(product.comments.reduce((acc, obj) => {
+                        return acc + parseInt(obj.rating)
+                      }, 0) / product.comments.length) === 1 &&
+                      <div className="flex-reviews add-padding">
+                        <img src={oneStar}></img>
+                        <p>{product.comments.length}</p>
+                      </div>
+                      :
+                      <div className='buffer-reviews'></div>
+                    }
+
+
+                    {product.comments.length > 0 ?
+                      Math.floor(product.comments.reduce((acc, obj) => {
+                        return acc + parseInt(obj.rating)
+                      }, 0
+                      ) / product.comments.length) === 2 &&
+                      <div className="flex-reviews add-padding">
+                        <img src={twoStars}></img>
+                        <p>{product.comments.length}</p>
+                      </div>
+                      : <div className='buffer-reviews'><></></div>
+                    }
+
+                    {product.comments.length > 0 ?
+                      Math.floor(product.comments.reduce((acc, obj) => {
+                        return acc + parseInt(obj.rating)
+                      }, 0
+                      ) / product.comments.length) === 3 &&
+                      <div className="flex-reviews add-padding">
+                        <img src={threeStars}></img>
+                        <p>{product.comments.length}</p>
+                      </div>
+                      : <div className='buffer-reviews'></div>
+                    }
+
+                    {product.comments.length > 0 ?
+                      Math.floor(product.comments.reduce((acc, obj) => {
+                        return acc + parseInt(obj.rating)
+                      }, 0
+                      ) / product.comments.length) === 4 &&
+                      <div className="flex-reviews">
+                        <img src={fourStars}></img>
+                        <p>{product.comments.length}</p>
+                      </div>
+                      : <div className='buffer-reviews'></div>
+                    }
+
+                    {product.comments.length > 0 ?
+                      Math.floor(product.comments.reduce((acc, obj) => {
+                        return acc + parseInt(obj.rating)
+                      }, 0
+                      ) / product.comments.length) === 5 &&
+                      <div className="flex-reviews add-padding">
+                        <img src={fiveStars}></img>
+                        <p>{product.comments.length}</p>
+                      </div>
+                      :
+                      <div className='buffer-reviews'></div>
+                    }
+                  </h2>
+                </div>
+                <div className='single-like'>
+                  {product.wished.some((wish) => {
+                    return wish.wish_owner.id === currentUserId
+                  }) ?
+                    <button className='like-button single-like-button' onClick={() => handleHeartDelete()}>❤️</button>
+                    :
+                    <button className='like-button single-like-button' onClick={() => handleHeartClick()}>♡</button>
+                  }
+                </div>
+              </div>
+              <p className='single-card-price'>£{product.price}</p>
+              {(product.about) &&
+                <>
+                  <p className='single-card-about'><strong>About this item</strong></p>
+                  {product.about.split('- ').slice(1).map((paragraph, index) => {
+                    return (
+                      <p className='single-card-about' key={index}>• {paragraph}.</p>
+                    )
+                  })}
+                </>
+              }
+              {(product.dimensions) &&
+                <p className='single-card-info'><span>Dimensions</span> {product.dimensions}</p>
+              }
+              {(product.weight) &&
+                <p className='single-card-info'><span>Weight</span> {product.weight}</p>
+              }
+              {postedAd() ?
+                <p className='single-card-info'><span>Seller</span> me!</p>
+                :
+                <p className='single-card-info'><span>Seller</span> {product.owner.username}</p>
+              }
+            </div>
+
+
+            {product.added_to_basket.some((basket) => {
+              return basket.basket_owner.id === currentUserId
+            }) ?
+              <>
+                <div className="flex-in-basket">
+                  <div className="flex-validate">
+                    <p><span>In basket</span></p>
+                    <img src={validate} alt='in basket'></img>
+                  </div>
+
+                  <div className='flex-add-remove-basket'>
+                    <button className='add-remove-button' onClick={() => handleBasketRemove(product)}><p className='button-minus'>-</p></button>
+                    <p>{product.added_to_basket[
+                      product.added_to_basket.findIndex((basket) => {
+                        return basket.basket_owner.id === currentUserId
+                      })
+                    ].count}</p>
+                    <button className='add-remove-button' onClick={() => handleBasketAdd(product)}><p className='button-plus'>+</p></button>
+                  </div>
+                </div>
+                <button className='yellow-button' onClick={() => removeAll(product)}>Remove from basket</button>
+              </>
+              :
+              <>
+                <div className='flex-in-basket'>
+                </div>
+                <button className='yellow-button' onClick={() => handleBasketAdd(product)}>Add to basket</button>
+              </>
+            }
+            <button className='yellow-button' onClick={() => goToBasket()}>Go to basket</button>
+          </section>
+
+
+
+
+        </>
+        :
+        errors ? <h2>Something went wrong! Please try again later!</h2> : <h2>Loading</h2>
+      }
 
     </main >
   )

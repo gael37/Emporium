@@ -35,13 +35,14 @@ function App() {
   const [typed, setTyped] = useState('')
   // const [userData, setUserData] = useState(null)
   const [basketCounter, setBasketCounter] = useState(0)
+  const [username, setUsername] = useState('')
 
 
   return (
     <BrowserRouter>
-      <Nav2 selected={selected} typed={typed} setSelected={setSelected} setTyped={setTyped} basketCounter={basketCounter} />
+      <Nav2 selected={selected} typed={typed} setSelected={setSelected} setTyped={setTyped} basketCounter={basketCounter} username={username} />
       <Routes>
-        <Route path="/" element={<Home selected={selected} typed={typed} setBasketCounter={setBasketCounter} />} />
+        <Route path="/" element={<Home selected={selected} typed={typed} setSelected={setSelected} setTyped={setTyped} setBasketCounter={setBasketCounter} setUsername={setUsername} />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/account-details" element={<AccountDetails />} />
         <Route path="/on-sale" element={<ItemsOnSale />} />

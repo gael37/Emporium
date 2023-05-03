@@ -36,7 +36,7 @@ h1 {
 }
 
 .card-link {
-  height: 270px;
+  height: 220px;
 }
 
 .buffer-reviews {
@@ -169,7 +169,7 @@ h1 {
   border: 1px solid $grey-border;
 
   &:hover {
-    background-color: darken($yellow, 5%);
+    background-color: darken(white, 5%);
   }
 
   &:active {
@@ -205,6 +205,10 @@ h1 {
   text-align: center;
   text-decoration: none;
   width: 100%;
+
+  &:hover {
+    color: black;
+  }
 }
 
 .button-fixed {
@@ -505,6 +509,88 @@ h1 {
 
 .add-padding {
   padding-top: 5px;
+}
+
+
+// ---------------------------------------PRODUCT SINGLE----------------------------------------
+
+.single-page {
+  width: 75%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 30px;
+  gap: 40px;
+}
+
+.top-image {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  // width: 600px;
+  // height: 600px;
+  width: 45vw;
+  height: 45vh;
+}
+
+.bottom-images {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 70px;
+  width: 70px;
+
+  &:hover {
+    border: 2px solid $tertiary;
+    border-radius: 5px;
+  }
+}
+
+.bottom-images-flex {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.single-card-description-full {
+  font-weight: bold;
+  font-size: 1.3em;
+}
+
+.buffer-reviews {
+  margin-bottom: 20px;
+}
+
+.flex-single-reviews {
+  display: flex;
+  justify-content: space-between;
+}
+
+// .single-like {
+//   height: 30px;
+// }
+
+.single-like-button {
+  font-size: 1.8em;
+}
+
+.single-card-price {
+  font-weight: bold;
+  font-size: 1.4em;
+}
+
+.single-card-info .single-card-about {
+  p {
+    font-size: 0.7em;
+  }
+}
+
+.single-card-info {
+  span {
+    font-size: 0.8em;
+    font-weight: bold;
+  }
 }
 
 // ---------------------------------------NEW PRODUCT----------------------------------------
@@ -928,6 +1014,7 @@ h1 {
 
   .flex-order-buttons-below {
     display: flex;
+    margin-bottom: 10px;
   }
 
   .order-description {
@@ -1028,7 +1115,7 @@ h1 {
   .flex-order-info {
     padding-left: 10px;
     gap: 9%;
-
+    height: 53px;
 
     p {
       font-size: 12px;
