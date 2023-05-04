@@ -215,6 +215,12 @@ h1 {
   width: 200px;
 }
 
+.button-submit-change-adress {
+  margin-top: 20px;
+  width: 50%;
+  margin-top: 20px;
+}
+
 // --------------------------------------------NAVIGATION BAR---------------------------------------------------
 #logo-right {
   display: none;
@@ -341,6 +347,18 @@ h1 {
     top: 7px;
     margin-left: -8px;
     font-size: 0.9em;
+  }
+}
+
+.button-adress {
+  color: #487dba;
+  border: none;
+  background-color: white;
+  font-size: 0.8em;
+  margin-bottom: 20px;
+
+  &:hover {
+    color: $orange;
   }
 }
 
@@ -515,7 +533,7 @@ h1 {
 // ---------------------------------------PRODUCT SINGLE----------------------------------------
 
 .single-page {
-  width: 75%;
+  width: 90vw;
   margin: 0 auto;
   display: flex;
   flex-direction: row;
@@ -523,34 +541,65 @@ h1 {
   align-items: flex-start;
   margin-top: 30px;
   gap: 40px;
+
+  .flex-in-basket {
+    margin-bottom: 10px;
+  }
+}
+
+.single-section-images {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 30vw;
+  margin: 0;
+}
+
+.bottom-images-flex {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .top-image {
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
-  // width: 600px;
-  // height: 600px;
-  width: 45vw;
-  height: 45vh;
+  width: 25vw;
+  height: 50vh;
+  margin-bottom: 20px;
+  overflow: hidden;
+
+  // &:hover {
+  //   transform: scale(1.5);
+  // }
 }
 
 .bottom-images {
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
-  height: 70px;
-  width: 70px;
+  height: 50px;
+  width: 50px;
+  margin: 10px;
+  border: 1px solid $grey-border;
+  border-radius: 5px;
 
   &:hover {
-    border: 2px solid $tertiary;
+    border: 3px solid rgb(130, 207, 233);
     border-radius: 5px;
+    cursor: pointer;
   }
 }
 
 .bottom-images-flex {
   display: flex;
   flex-wrap: wrap;
+}
+
+.single-description {
+  width: 45vw;
+  margin: 0;
 }
 
 .single-card-description-full {
@@ -590,6 +639,52 @@ h1 {
   span {
     font-size: 0.8em;
     font-weight: bold;
+  }
+}
+
+.single-section-basket {
+  width: 20vw;
+  border: 1px solid $grey-border;
+  border-radius: 5px;
+  padding: 20px;
+}
+
+.single-like {
+  span {
+    font-size: 14px;
+    // font-weight: bold;
+  }
+
+  .like-button {
+    width: 35px;
+    height: 35px;
+
+    img {
+      width: 35px;
+      height: 35px;
+      transform: translate(0, -7px);
+    }
+  }
+}
+
+.saved {
+  color: $green;
+}
+
+.flex-single-price-like {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 15px;
+
+  p {
+    margin: 0;
+  }
+}
+
+.single-deliver {
+  p {
+    margin-bottom: 0;
   }
 }
 

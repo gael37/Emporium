@@ -53,7 +53,7 @@ function App() {
         <Route path="/orders" element={<Orders />} />
         <Route path="/wish-list" element={<WishList setBasketCounter={setBasketCounter} />} />
         <Route path="/products/new" element={<NewProduct />} />
-        <Route path="/products/:productId" element={<SingleProduct />} />
+        <Route path="/products/:productId" element={<SingleProduct setBasketCounter={setBasketCounter} />} />
         <Route path="/reviews/:productId" element={<Review />} />
         <Route path="/edit-product/:productId" element={<EditProduct />} />
         <Route path="/delete-product" element={<DeleteProduct />} />

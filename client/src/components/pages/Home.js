@@ -25,7 +25,7 @@ const Home = ({ selected, typed, setSelected, setTyped, basketCounter, setBasket
 
   const [products, setProducts] = useState([])
   const [filteredProducts, setFilteredProducts] = useState([])
-  const [userData, setUserData] = useState(null)
+  // const [userData, setUserData] = useState(null)
   const [errors, setErrors] = useState(false)
   const [selectedProducts, setSelectedProducts] = useState([])
   const [typedProducts, setTypedProducts] = useState([])
@@ -33,6 +33,8 @@ const Home = ({ selected, typed, setSelected, setTyped, basketCounter, setBasket
   const [wishesData, setWishesData] = useState([])
   const [basketData, setBasketData] = useState([])
   const [productJustLiked, setProductJustLiked] = useState(false)
+  const [userData, setUserData] = useState(null)
+
   // const [addedToBasket, setAddedToBasket] = useState(false)
 
   let wishPK = ''

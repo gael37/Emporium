@@ -6,6 +6,8 @@ import { getToken, getPayload, isAuthenticated } from '../../../helpers/auth'
 import Container from 'react-bootstrap/Container'
 import { Modal } from 'react-bootstrap'
 
+import validate from '../../../assets/images/validate.png'
+
 const Basket = ({ setBasketCounter }) => {
 
   const [errors, setErrors] = useState(false)
@@ -288,7 +290,7 @@ const Basket = ({ setBasketCounter }) => {
                 <h6>{userData.username}</h6>
                 <h6>{postcodeData.result.postcode}</h6>
                 <h6>{postcodeData.result.admin_district}, {postcodeData.result.country}</h6>
-                <button onClick={handleShow}>Change delivery adress</button>
+                <button className='button-adress' onClick={handleShow}>Change delivery adress</button>
                 <Modal show={show} onHide={handleClose}>
                   <Modal.Header closeButton>
                     <Modal.Title>Delivery adress</Modal.Title>
@@ -305,8 +307,12 @@ const Basket = ({ setBasketCounter }) => {
                     />
                     {postcodeEntered ?
                       <>
-                        <p>Postcode valid! ✅</p>
-                        <button onClick={onSubmit}>Submit</button>
+                        <div className="flex-validate">
+                          <p><span>Postcode valid!</span></p>
+                          <img src={validate} alt='valid' />
+                        </div>
+
+                        <button className='yellow-button button-submit-change-adress' onClick={onSubmit}>Submit</button>
                       </>
                       :
                       <>

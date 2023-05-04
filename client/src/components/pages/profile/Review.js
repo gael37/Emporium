@@ -6,8 +6,9 @@ import { Link, useRouteLoaderData } from 'react-router-dom'
 import { getToken, getPayload, isAuthenticated } from '../../../helpers/auth'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/esm/Row'
+import { useDropzone } from 'react-dropzone'
 
-const Review = () => {
+const Review = ({ userData }) => {
 
   const [product, setProduct] = useState(null)
   const [errors, setErrors] = useState(false)
@@ -15,6 +16,10 @@ const Review = () => {
   const [textField, setTextField] = useState('')
   const [stars, setStars] = useState(0)
   const [submitted, setSubmitted] = useState(false)
+
+  useEffect(() => {
+    console.log('user data', userData)
+  }, [])
 
   const { productId } = useParams()
   const navigate = useNavigate()
