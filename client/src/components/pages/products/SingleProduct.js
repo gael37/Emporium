@@ -23,7 +23,7 @@ import Col from 'react-bootstrap/Col'
 
 import { calcDistance } from '../../../helpers/functions'
 
-const SingleProduct = ({ setBasketCounter }) => {
+const SingleProduct = ({ setBasketCounter, postcode, setPostcode }) => {
 
   // ! State
   const [product, setProduct] = useState(null)
@@ -37,7 +37,6 @@ const SingleProduct = ({ setBasketCounter }) => {
   const [currentTown, setCurrentTown] = useState('')
 
   const [postcodeEntered, setPostcodeEntered] = useState('')
-  const [deliveryAdress, setDeliveryAdress] = useState('')
   const [postcodeData, setPostcodeData] = useState('')
   const [postcodeError, setPostcodeError] = useState('')
 
@@ -69,15 +68,16 @@ const SingleProduct = ({ setBasketCounter }) => {
       console.log('basket counter, ', counter)
       setBasketCounter(counter)
       setUserData(data)
+      if (postcode === '') {
+        setPostcode(data.postcode)
+      }
     } catch (err) {
       console.log(err)
       setErrors(true)
     }
   }
 
-  useEffect(() => {
-    console.log('user data', userData)
-  }, [productId])
+
 
   let wishPK = ''
 
@@ -188,20 +188,17 @@ const SingleProduct = ({ setBasketCounter }) => {
   //   getWishes()
   // }, [product])
 
-  useEffect(() => {
-    const getCoordinates = async () => {
-      try {
-        const { data } = await axios.get(`https://api.postcodes.io/postcodes/${userData.postcode}/`)
-        console.log('postcode result', data)
-        setCurrentPostcode(data.result.postcode)
-        setCurrentTown(data.result.admin_district)
-      } catch (err) {
-        console.log(err)
-        setErrors(true)
-      }
+  const getPostcodeData = async () => {
+    try {
+      const { data } = await axios.get(`https://api.postcodes.io/postcodes/${postcode}/`)
+      console.log('postcode datra', data)
+      setPostcodeData(data)
+    } catch (err) {
+      console.log(err)
+      setPostcodeError(err)
     }
-    getCoordinates()
-  }, [userData])
+  }
+
 
 
   // useEffect(() => {
@@ -220,11 +217,6 @@ const SingleProduct = ({ setBasketCounter }) => {
 
 
   // -----------------------------------WISHES-------------------------------------
-
-
-
-
-
 
 
   const handleHeartClick = async () => {
@@ -443,13 +435,9 @@ const SingleProduct = ({ setBasketCounter }) => {
     getUserData()
   }, [productId])
 
-  // useEffect(() => {
-  //   console.log('basket counter :', basketCounter)
-  // }, [basketCounter])
-
-  // useEffect(() => {
-  //   console.log('user data :', userData)
-  // }, [userData])
+  useEffect(() => {
+    getPostcodeData()
+  }, [userData])
 
   useEffect(() => {
     console.log('product on page render', product)
@@ -464,24 +452,24 @@ const SingleProduct = ({ setBasketCounter }) => {
 
   const handleClose = () => {
     setShow(false)
-    setDeliveryAdress(postcodeData.result.postcode)
+    // setPostcode(postcodeData.result.postcode)
   }
 
   const handleShow = async () => {
     setShow(true)
-    try {
-      const { data } = await axios.get(`https://api.postcodes.io/postcodes/${deliveryAdress}/`)
-      setPostcodeEntered(data)
-    } catch (err) {
-      console.log(err)
-      setPostcodeError(err)
-      setPostcodeEntered(null)
-    }
+    // try {
+    //   const { data } = await axios.get(`https://api.postcodes.io/postcodes/${postcode}/`)
+    //   setPostcodeEntered(data)
+    // } catch (err) {
+    //   console.log(err)
+    //   setPostcodeError(err)
+    //   setPostcodeEntered(null)
+    // }
   }
 
   const handleChange = async (e) => {
-    setDeliveryAdress(e.target.value)
     if (errors) setErrors('')
+    setPostcode(e.target.value)
     try {
       const { data } = await axios.get(`https://api.postcodes.io/postcodes/${e.target.value}/`)
       setPostcodeEntered(data)
@@ -494,9 +482,10 @@ const SingleProduct = ({ setBasketCounter }) => {
 
   const onSubmit = async (e) => {
     setShow(false)
+    setPostcode(e.target.value)
     e.preventDefault()
     try {
-      const { data } = await axios.get(`https://api.postcodes.io/postcodes/${deliveryAdress}/`)
+      const { data } = await axios.get(`https://api.postcodes.io/postcodes/${e.target.value}/`)
       console.log('postcode datra', data)
       setPostcodeData(data)
     } catch (err) {
@@ -643,36 +632,51 @@ const SingleProduct = ({ setBasketCounter }) => {
             </div>
 
             <div className="single-deliver">
-              {userData &&
-                <p>Deliver to {userData.username}, {currentTown} <br></br>{currentPostcode}</p>
+              {userData && postcodeData && postcode &&
+                <p>Deliver to {userData.username}, {postcodeData.result.postcode} <br></br>{postcodeData.result.admin_district}, {postcodeData.result.country}</p>
               }
             </div>
             <button className='button-adress' onClick={handleShow}>Change delivery adress</button>
-            <Modal show={show} onHide={handleClose}>
+            <Modal className='basket-modal' show={show} onHide={handleClose}>
               <Modal.Header closeButton>
-                <Modal.Title>Delivery adress</Modal.Title>
+                <Modal.Title>Change your delivery adress </Modal.Title>
               </Modal.Header>
               <Modal.Body>
-                <label htmlFor="name">Enter your delivery adress:</label>
-                <input
-                  type="text"
-                  name="adress"
-                  onChange={handleChange}
-                  value={deliveryAdress}
-                  placeholder="Enter a valid postcode here"
-                  required
-                />
-                {postcodeEntered ?
-                  <>
-                    <p>Postcode valid! ✅</p>
-                    <button onClick={onSubmit}>Submit</button>
-                  </>
-                  :
-                  <>
-                    <p>BAD POSTCODE! 🙊</p>
-                    <button onClick={handleClose}>Cancel</button>
-                  </>
-                }
+                <div className="flex-modal-all">
+                  <label htmlFor="name">Enter a UK postcode</label>
+                  <div className='flex-modal-input-submit'>
+                    <input
+                      type="text"
+                      name="adress"
+                      onChange={handleChange}
+                      value={postcode}
+                      placeholder="Enter a valid postcode here"
+                      required
+                    />
+                    {postcodeEntered ?
+                      <button className='yellow-button button-submit-change-adress' onClick={onSubmit}>Submit</button>
+                      :
+                      <button className='regular-button button-submit-change-adress greyed-button' onClick={onSubmit}>Submit</button>
+                    }
+                  </div>
+                  {postcodeEntered ?
+                    <>
+                      <div className="flex-validate">
+                        <p className='modal-p-validate'><span>Postcode valid!</span></p>
+                        <img src={validate} alt='valid' />
+                      </div>
+                      {/* <button className='yellow-button button-submit-change-adress' onClick={onSubmit}>Submit</button> */}
+                    </>
+                    :
+                    <>
+                      <div className="flex-validate">
+                        <p className='modal-p-invalidate'>Invalid postcode</p>
+                        {/* <img src={validate} alt='valid' /> */}
+                      </div>
+                    </>
+                  }
+                  <button onClick={handleClose} className='regular-button'>Cancel</button>
+                </div>
               </Modal.Body>
             </Modal>
 

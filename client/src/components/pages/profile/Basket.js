@@ -8,32 +8,29 @@ import { Modal } from 'react-bootstrap'
 
 import validate from '../../../assets/images/validate.png'
 
-const Basket = ({ setBasketCounter }) => {
+const Basket = ({ setBasketCounter, postcode, setPostcode }) => {
+
+  // ! State
 
   const [errors, setErrors] = useState(false)
   const [userData, setUserData] = useState(null)
   const [productJustLiked, setProductJustLiked] = useState(false)
-
-  const [deliveryAdress, setDeliveryAdress] = useState('')
   const [postcodeData, setPostcodeData] = useState('')
   const [postcodeError, setPostcodeError] = useState('')
   const [postcodeEntered, setPostcodeEntered] = useState('')
-
-
   const [show, setShow] = useState(false)
 
-  // const [counter, setCounter] = useState(0)
+  // ! Variables
+  const currentUserId = getPayload().sub
 
-  getToken()
-  const currentUserPayload = getPayload()
-  const currentUserId = currentUserPayload.sub
-  console.log('user id', currentUserId)
   const navigate = useNavigate()
 
+  // ------GET USER DATA FROM DATABASE ------
 
   const getUserData = async () => {
+    console.log('user id', currentUserId)
     try {
-      const { data } = await axios.get(`api/auth/${currentUserId}/`, {
+      const { data } = await axios.get(`/api/auth/${currentUserId}/`, {
         headers: {
           Authorization: `Bearer ${getToken()}`,
         },
@@ -45,43 +42,36 @@ const Basket = ({ setBasketCounter }) => {
       console.log('user data, ', data)
       console.log('basket counter, ', counter)
       setBasketCounter(counter)
-      setDeliveryAdress(data.postcode)
-      setUserData(data)
+      if (postcode === '') {
+        setPostcode(data.postcode)
+      }
     } catch (err) {
       console.log(err)
       setErrors(true)
     }
   }
 
+  // ------GET POSTCODE DATA FROM PUBLIC API ------
 
-  useEffect(() => {
-    const getPostcodeData = async () => {
-      try {
-        const { data } = await axios.get(`https://api.postcodes.io/postcodes/${userData.postcode}/`)
-        console.log('postcode datra', data)
-        setPostcodeData(data)
-      } catch (err) {
-        console.log(err)
-        setPostcodeError(err)
-      }
+  const getPostcodeData = async () => {
+    console.log('postcode updated :', postcode)
+    try {
+      const { data } = await axios.get(`https://api.postcodes.io/postcodes/${postcode}/`)
+      console.log('postcode datra', data)
+      setPostcodeData(data)
+    } catch (err) {
+      console.log(err)
+      setPostcodeError(err)
     }
-    getPostcodeData()
-  }, [userData])
-
-  useEffect(() => {
-    getUserData()
-  }, [])
+  }
 
 
-  // ------ADD AND REMOVE------
+  // ------ADD AND REMOVE FROM BASKET ------
 
   const handleBasketAdd = async (basket) => {
 
     const currentCount = basket.count
     const basketPK = basket.id
-    console.log('basketPK :', basketPK)
-    console.log('current count :', currentCount)
-
     try {
       const newCount = parseInt(currentCount) + 1
       const { data } = await axios.put(`/api/basket/${basketPK}/`, { count: newCount, basket_owner: currentUserId, product_added_to_basket: basket.product_added_to_basket.id }, {
@@ -89,8 +79,6 @@ const Basket = ({ setBasketCounter }) => {
           Authorization: `Bearer ${getToken()}`,
         },
       })
-      // setCounter(newCount)
-      console.log('RESPONSE FROM BASKET PUT ', data)
     } catch (err) {
       console.log(err)
     }
@@ -100,9 +88,6 @@ const Basket = ({ setBasketCounter }) => {
   const handleBasketRemove = async (basket) => {
     const currentCount = basket.count
     const basketPK = basket.id
-    console.log('basketPK :', basketPK)
-    console.log('current count :', currentCount)
-
     if (currentCount !== '0') {
       try {
         const newCount = parseInt(currentCount) - 1
@@ -111,8 +96,6 @@ const Basket = ({ setBasketCounter }) => {
             Authorization: `Bearer ${getToken()}`,
           },
         })
-        // setCounter(newCount)
-        console.log('RESPONSE FROM BASKET PUT ', data)
       } catch (err) {
         console.log(err)
       }
@@ -128,8 +111,6 @@ const Basket = ({ setBasketCounter }) => {
           Authorization: `Bearer ${getToken()}`,
         },
       })
-      // setCounter(newCount)
-      console.log('RESPONSE FROM PRODUCT DELETE ', data)
     } catch (err) {
       console.log(err)
     }
@@ -140,15 +121,12 @@ const Basket = ({ setBasketCounter }) => {
 
     for (let i = 0; i < userData.basket.length; i++) {
       if (userData.basket[i].basket_owner.id === currentUserId) {
-        console.log('basket pk :', userData.basket[i].id)
         try {
           const { data } = await axios.delete(`/api/basket/${userData.basket[i].id}/`, {
             headers: {
               Authorization: `Bearer ${getToken()}`,
             },
           })
-          // setCounter(newCount)
-          console.log('RESPONSE FROM ALL BASKET DELETE ', data)
         } catch (err) {
           console.log(err)
         }
@@ -166,8 +144,6 @@ const Basket = ({ setBasketCounter }) => {
             Authorization: `Bearer ${getToken()}`,
           },
         })
-        // setCounter(newCount)
-        console.log('RESPONSE FROM ALL BASKET DELETE ', data)
       } catch (err) {
         console.log(err)
       }
@@ -175,15 +151,12 @@ const Basket = ({ setBasketCounter }) => {
 
     for (let i = 0; i < userData.basket.length; i++) {
       if (userData.basket[i].basket_owner.id === currentUserId) {
-        console.log('basket pk :', userData.basket[i].id)
         try {
           const { data } = await axios.delete(`/api/basket/${userData.basket[i].id}/`, {
             headers: {
               Authorization: `Bearer ${getToken()}`,
             },
           })
-          // setCounter(newCount)
-          console.log('RESPONSE FROM ALL BASKET DELETE ', data)
         } catch (err) {
           console.log(err)
         }
@@ -193,24 +166,19 @@ const Basket = ({ setBasketCounter }) => {
     setProductJustLiked(productJustLiked ? false : true)
   }
 
-
-  useEffect(() => {
-    console.log('product just liked :', productJustLiked)
-    getUserData()
-  }, [productJustLiked])
-
-
   // --------------------------Change delivery adress-----------------------------
+
+
 
   const handleClose = () => {
     setShow(false)
-    setDeliveryAdress(postcodeData.result.postcode)
+    // setPostcode(postcodeData.result.postcode)
   }
 
   const handleShow = async () => {
     setShow(true)
     try {
-      const { data } = await axios.get(`https://api.postcodes.io/postcodes/${deliveryAdress}/`)
+      const { data } = await axios.get(`https://api.postcodes.io/postcodes/${postcode}/`)
       setPostcodeEntered(data)
     } catch (err) {
       console.log(err)
@@ -220,8 +188,8 @@ const Basket = ({ setBasketCounter }) => {
   }
 
   const handleChange = async (e) => {
-    setDeliveryAdress(e.target.value)
     if (errors) setErrors('')
+    setPostcode(e.target.value)
     try {
       const { data } = await axios.get(`https://api.postcodes.io/postcodes/${e.target.value}/`)
       setPostcodeEntered(data)
@@ -236,14 +204,38 @@ const Basket = ({ setBasketCounter }) => {
     setShow(false)
     e.preventDefault()
     try {
-      const { data } = await axios.get(`https://api.postcodes.io/postcodes/${deliveryAdress}/`)
+      const { data } = await axios.get(`https://api.postcodes.io/postcodes/${postcodeEntered}/`)
       console.log('postcode datra', data)
       setPostcodeData(data)
+      setPostcode(postcodeEntered)
     } catch (err) {
       console.log(err)
       setPostcodeError(err)
     }
   }
+
+
+
+  // ! Effects
+
+
+  useEffect(() => {
+    console.log('product just liked :', productJustLiked)
+    getUserData()
+  }, [productJustLiked])
+
+  useEffect(() => {
+    getPostcodeData()
+  }, [postcode])
+
+  useEffect(() => {
+    getUserData()
+  }, [])
+
+
+  // ! JSX
+
+
   return (
 
     <main className="profile-page-wrapper">
@@ -284,42 +276,53 @@ const Basket = ({ setBasketCounter }) => {
                 )).toFixed(2)
               }
             </h2>
-            {postcodeData &&
+            {userData && postcodeData &&
               <>
                 <h6>Delivery adress:</h6>
                 <h6>{userData.username}</h6>
                 <h6>{postcodeData.result.postcode}</h6>
                 <h6>{postcodeData.result.admin_district}, {postcodeData.result.country}</h6>
                 <button className='button-adress' onClick={handleShow}>Change delivery adress</button>
-                <Modal show={show} onHide={handleClose}>
+                <Modal className='basket-modal' show={show} onHide={handleClose}>
                   <Modal.Header closeButton>
-                    <Modal.Title>Delivery adress</Modal.Title>
+                    <Modal.Title>Change your delivery adress </Modal.Title>
                   </Modal.Header>
                   <Modal.Body>
-                    <label htmlFor="name">Enter your delivery adress:</label>
-                    <input
-                      type="text"
-                      name="adress"
-                      onChange={handleChange}
-                      value={deliveryAdress}
-                      placeholder="Enter a valid postcode here"
-                      required
-                    />
-                    {postcodeEntered ?
-                      <>
-                        <div className="flex-validate">
-                          <p><span>Postcode valid!</span></p>
-                          <img src={validate} alt='valid' />
-                        </div>
-
-                        <button className='yellow-button button-submit-change-adress' onClick={onSubmit}>Submit</button>
-                      </>
-                      :
-                      <>
-                        <p>BAD POSTCODE! 🙊</p>
-                        <button onClick={handleClose}>Cancel</button>
-                      </>
-                    }
+                    <div className="flex-modal-all">
+                      <label htmlFor="name">Enter a UK postcode</label>
+                      <div className='flex-modal-input-submit'>
+                        <input
+                          type="text"
+                          name="adress"
+                          onChange={handleChange}
+                          value={postcode}
+                          placeholder="Enter a valid postcode here"
+                          required
+                        />
+                        {postcodeEntered ?
+                          <button className='yellow-button button-submit-change-adress' onClick={onSubmit}>Submit</button>
+                          :
+                          <button className='regular-button button-submit-change-adress greyed-button' onClick={onSubmit}>Submit</button>
+                        }
+                      </div>
+                      {postcodeEntered ?
+                        <>
+                          <div className="flex-validate">
+                            <p className='modal-p-validate'><span>Postcode valid!</span></p>
+                            <img src={validate} alt='valid' />
+                          </div>
+                          {/* <button className='yellow-button button-submit-change-adress' onClick={onSubmit}>Submit</button> */}
+                        </>
+                        :
+                        <>
+                          <div className="flex-validate">
+                            <p className='modal-p-invalidate'>Invalid postcode</p>
+                            {/* <img src={validate} alt='valid' /> */}
+                          </div>
+                        </>
+                      }
+                      <button onClick={handleClose} className='regular-button'>Cancel</button>
+                    </div>
                   </Modal.Body>
                 </Modal>
               </>

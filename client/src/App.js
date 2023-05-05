@@ -36,6 +36,8 @@ function App() {
   // const [userData, setUserData] = useState(null)
   const [basketCounter, setBasketCounter] = useState(0)
   const [username, setUsername] = useState('')
+  const [postcode, setPostcode] = useState('')
+
 
 
   return (
@@ -46,14 +48,14 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/account-details" element={<AccountDetails />} />
         <Route path="/on-sale" element={<ItemsOnSale />} />
-        <Route path="/basket" element={<Basket setBasketCounter={setBasketCounter} />} />
+        <Route path="/basket" element={<Basket setBasketCounter={setBasketCounter} postcode={postcode} setPostcode={setPostcode} />} />
         <Route path="/orders" element={<Orders />} />
         <Route path="/edit-profile/:userId" element={<EditProfile />} />
         <Route path="/delete-account" element={<DeleteProfile />} />
         <Route path="/orders" element={<Orders />} />
         <Route path="/wish-list" element={<WishList setBasketCounter={setBasketCounter} />} />
         <Route path="/products/new" element={<NewProduct />} />
-        <Route path="/products/:productId" element={<SingleProduct setBasketCounter={setBasketCounter} />} />
+        <Route path="/products/:productId" element={<SingleProduct setBasketCounter={setBasketCounter} postcode={postcode} setPostcode={setPostcode} />} />
         <Route path="/reviews/:productId" element={<Review />} />
         <Route path="/edit-product/:productId" element={<EditProduct />} />
         <Route path="/delete-product" element={<DeleteProduct />} />
