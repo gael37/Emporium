@@ -81,7 +81,8 @@ function Nav2({ selected, typed, setSelected, setTyped, basketCounter, username 
                     <NavDropdown.Item as={Link} to='/profile' >Account</NavDropdown.Item>
                     <NavDropdown.Item as={Link} to='/orders' >Orders</NavDropdown.Item>
                     <NavDropdown.Item as={Link} to='/wish-list' >Saved For Later</NavDropdown.Item>
-                    <NavDropdown.Item as={Link} to='/products/new' >Sell</NavDropdown.Item>
+                    <NavDropdown.Item as={Link} to='/products/new' >Sell new item</NavDropdown.Item>
+                    <NavDropdown.Item as={Link} to='/on-sale' >My on-sale items</NavDropdown.Item>
                     <NavDropdown.Divider />
                     <NavDropdown.Item onClick={() => handleLogout(navigate)} >Sign Out</NavDropdown.Item>
                   </>
@@ -126,7 +127,9 @@ function Nav2({ selected, typed, setSelected, setTyped, basketCounter, username 
                     <NavDropdown.Item as={Link} to='/profile' >Account</NavDropdown.Item>
                     <NavDropdown.Item as={Link} to='/orders' >Orders</NavDropdown.Item>
                     <NavDropdown.Item as={Link} to='/wish-list' >Saved For Later</NavDropdown.Item>
-                    <NavDropdown.Item as={Link} to='/products/new' >Sell</NavDropdown.Item>
+                    <NavDropdown.Item as={Link} to='/products/new' >Sell new item</NavDropdown.Item>
+                    <NavDropdown.Item as={Link} to='/on-sale' >My on-sale items</NavDropdown.Item>
+
                     <NavDropdown.Divider />
                     <NavDropdown.Item onClick={() => handleLogout(navigate)} >Sign Out</NavDropdown.Item>
                   </>
@@ -187,7 +190,9 @@ function Nav2({ selected, typed, setSelected, setTyped, basketCounter, username 
                     <NavDropdown.Item as={Link} to='/profile' >Account</NavDropdown.Item>
                     <NavDropdown.Item as={Link} to='/orders' >Orders</NavDropdown.Item>
                     <NavDropdown.Item as={Link} to='/wish-list' >Saved For Later</NavDropdown.Item>
-                    <NavDropdown.Item as={Link} to='/products/new' >Sell</NavDropdown.Item>
+                    <NavDropdown.Item as={Link} to='/products/new' >Sell new item</NavDropdown.Item>
+                    <NavDropdown.Item as={Link} to='/on-sale' >My on-sale items</NavDropdown.Item>
+
                     <NavDropdown.Divider />
                     <NavDropdown.Item onClick={() => handleLogout(navigate)} >Sign Out</NavDropdown.Item>
                   </>
@@ -231,7 +236,9 @@ function Nav2({ selected, typed, setSelected, setTyped, basketCounter, username 
                     <NavDropdown.Item as={Link} to='/profile' >Account</NavDropdown.Item>
                     <NavDropdown.Item as={Link} to='/orders' >Orders</NavDropdown.Item>
                     <NavDropdown.Item as={Link} to='/wish-list' >Saved For Later</NavDropdown.Item>
-                    <NavDropdown.Item as={Link} to='/products/new' >Sell</NavDropdown.Item>
+                    <NavDropdown.Item as={Link} to='/products/new' >Sell new item</NavDropdown.Item>
+                    <NavDropdown.Item as={Link} to='/on-sale' >My on-sale items</NavDropdown.Item>
+
                     <NavDropdown.Divider />
                     <NavDropdown.Item onClick={() => handleLogout(navigate)} >Sign Out</NavDropdown.Item>
                   </>

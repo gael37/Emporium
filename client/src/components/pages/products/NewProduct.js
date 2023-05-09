@@ -10,6 +10,7 @@ import Select from 'react-select'
 import { options } from '../../../helpers/constants'
 
 import gif from '../../../assets/gifs/loading4.gif'
+import dropImage from '../../../assets/images/drop.png'
 
 const NewProduct = () => {
 
@@ -168,65 +169,75 @@ const NewProduct = () => {
 
   return (
     <main className="form-page">
-      <Container className='mt-4'>
-        <Row>
-          <div className='div-form col-10 offset-1 col-md-6 offset-md-3 col-lg-4 offset-lg-4'>
-            <form className='form-perso' onSubmit={handleSubmit}>
-              <h1>New product</h1>
+      <h1>Please fill this product form</h1>
+      <form className='form-perso' onSubmit={handleSubmit}>
+        <div className="flex-form-product-sections">
+          <div className='half-page'>
+            <section className='form-section'>
+
               {/* Description */}
-              <label htmlFor="name">Description<span>*</span></label>
-              <input
-                className='form-input'
-                type="text"
-                name="description"
-                onChange={handleChange}
-                value={formFields.description}
-                placeholder="Description"
-                required
-              />
-              {/* Dimensions */}
-              <label htmlFor="name">Dimensions</label>
-              <input
-                className='form-input'
-                type="text"
-                name="dimensions"
-                onChange={handleChange}
-                value={formFields.dimensions}
-                placeholder="Dimensions"
-              />
-              {/* Weight */}
-              <label htmlFor="name">Weight</label>
-              <input
-                className='form-input'
-                type="text"
-                name="weight"
-                onChange={handleChange}
-                value={formFields.weight}
-                placeholder="Weight"
-              />
-              {/* About */}
-              <label htmlFor="name">About</label>
-              <input
-                className='form-input'
-                type="text"
-                name="about"
-                onChange={handleChange}
-                value={formFields.about}
-                placeholder="About"
-              />
+              <div>
+                <label htmlFor="name">Title/Description<span>*</span></label>
+                <input
+                  className='form-input description-input'
+                  type="text"
+                  name="description"
+                  onChange={handleChange}
+                  value={formFields.description}
+                  // placeholder="Description"
+                  required
+                />
+              </div>
+
+
               {/* Price */}
-              <label htmlFor="name">Price<span>*</span></label>
-              <input
-                className='form-input'
-                type="text"
-                name="price"
-                onChange={handleChange}
-                value={formFields.price}
-                placeholder="Price"
-                required
-              />
+              <div>
+                <label htmlFor="name">Price<span>*</span></label>
+                <input
+                  className='form-input'
+                  type="text"
+                  name="price"
+                  onChange={handleChange}
+                  value={formFields.price}
+                  // placeholder="Price"
+                  required
+                />
+              </div>
+              <label htmlFor="name">Category (at least one)<span>*</span></label>
+              <Select name="category" className='select-input' options={options} isClearable={true} isMulti onChange={selectCategory} />
+
+              {/* Dimensions */}
+              <div>
+                <label htmlFor="name">Dimensions</label>
+                <input
+                  className='form-input'
+                  type="text"
+                  name="dimensions"
+                  onChange={handleChange}
+                  value={formFields.dimensions}
+                // placeholder="Dimensions"
+                />
+              </div>
+
+              {/* Weight */}
+              <div>
+                <label htmlFor="name">Weight</label>
+                <input
+                  className='form-input'
+                  type="text"
+                  name="weight"
+                  onChange={handleChange}
+                  value={formFields.weight}
+                // placeholder="Weight"
+                />
+              </div>
+
+
+
+
+
               {/* Stripe id */}
-              <label htmlFor="name">Stripe</label>
+              {/* <label htmlFor="name">Stripe</label>
               <input
                 className='form-input'
                 type="text"
@@ -234,16 +245,38 @@ const NewProduct = () => {
                 onChange={handleChange}
                 value={formFields.stripe_id}
                 placeholder="Stripe_id"
-              />
+              /> */}
               {/* Categories */}
-              <div className='post-cat'>
+            </section>
+          </div>
+
+          <div className='half-page'>
+            <section className='form-section'>
+              {/* About */}
+
+              <div>
+                <label htmlFor="name">Additional information (start each paragraph with &quot;- &quot;)</label>
+                <input
+                  className='form-input form-input-about'
+                  type="text"
+                  name="about"
+                  onChange={handleChange}
+                  value={formFields.about}
+                // placeholder="Start each paragraph with '- ' for an optimal display"
+                />
+              </div>
+            </section>
+          </div>
+          <div className='half-page'>
+            <section className='form-section-start'>
+              {/* <div className='post-cat'>
                 <p>Categorize your ad:</p>
                 <Select className='select-input' options={options} isClearable={true} isMulti onChange={selectCategory} />
-              </div>
+              </div> */}
               {errors && errors.description && <small className='text-danger'>{errors.description}</small>}
               {/* Images */}
-              <label>Upload up to 10 images for your ad:</label>
-              <section className='section-upload'>
+              <p>Upload an image of your product<span>*</span> (up to 10)</p>
+              <div className='section-upload'>
                 <div {...getRootProps({ className: 'dropzone' })}>
                   <input className="blog-form-input" {...getInputProps()} />
                   <div className="dropzone-flex">
@@ -251,59 +284,114 @@ const NewProduct = () => {
                       <p className="dropzone-content">
                         Release to drop the files here</p>
                       :
-                      <p className="dropzone-content">
-                        Drag and drop your images here, or click this box
-                      </p>
+                      <div className="dropzone-content">
+                        <p>Drag and drop your images here<br></br>or click this box</p>
+                        <img src={dropImage}></img>
+                      </div>
                     }
                   </div>
                 </div>
-                {selectedImages.length > 0 &&
-                  (selectedImages.length > 10 ? (
-                    <p className="error">
-                      You can&apos;t upload more than 10 images! <br />
-                      <span>
-                        please delete <b> {selectedImages.length - 10} </b> of them{' '}
-                      </span>
-                    </p>
-                  ) : (
-                    <p>Image{selectedImages.length === 1 ? '' : 's'} succesfully uploaded! ✅</p>
-                  ))}
-
-                <div className="images">
-                  {selectedImages.length > 0 &&
-                    selectedImages.map((image, index) => {
-                      return (
-                        <div key={image} className="image">
-                          <img src={image} height="50" width="50" alt="upload" />
-                          <button onClick={() => deleteHandler(image)}>
-                            delete image
-                          </button>
-                          <p>{index + 1}</p>
-                        </div>
-                      )
-                    })}
-                  {loading &&
-                    <div className='flex-loading'>
-                      <img className='loading-gif' src={gif} alt='loading'></img>
-                      <p>Uploading images, please wait...</p>
-                    </div>
-                  }
+              </div>
+              {loading &&
+                <div className='flex-loading'>
+                  <img className='loading-gif' src={gif} alt='loading'></img>
+                  <p>Uploading images, please wait...</p>
                 </div>
-              </section>
-              {/* Generic Message Error */}
-              {errors && errors.message && <small className='text-danger'>{errors.message}</small>}
-              {/* Submit */}
-              {selectedImages.length > 0 &&
-                (selectedImages.length > 10 ? (
-                  <p className="error" >Post my ad</p>
-                ) : (
-                  <button className='btn-form' >Post my adv</button>
-                ))}
-            </form>
+              }
+              {selectedImages.length > 0 ?
+                <div className='images-uploaded'>
+                  {/* <p>Images uploaded</p> */}
+                  {selectedImages.length > 0 &&
+                    (selectedImages.length > 10 ? (
+                      <p className="error">
+                        You can&apos;t upload more than 10 images! <br />
+                        <span>
+                          Please delete <b> {selectedImages.length - 10} </b> of them{' '}
+                        </span>
+                      </p>
+                    ) : (
+                      <p className='success-upload'>Image{selectedImages.length === 1 ? '' : 's'} succesfully uploaded! ✅</p>
+                    ))}
+
+                  <div className="images">
+                    {selectedImages.length > 0 &&
+                      selectedImages.map((image, index) => {
+                        return (
+                          <div key={image} className="image">
+                            <div className="flex-delete-image">
+                              <div className="flex-number-image">
+                                <p>{index + 1}</p>
+                                <img src={image} height="50" width="50" alt="upload" />
+                              </div>
+                              <button className='button-adress' onClick={() => deleteHandler(image)}>
+                                delete
+                              </button>
+                            </div>
+
+
+                          </div>
+                        )
+                      })}
+
+                  </div>
+                </div>
+                :
+                <div className='no-images-uploaded'>
+                  <p>No images yet...</p>
+                </div>
+              }
+
+
+            </section>
+
+
+
+
           </div>
-        </Row>
-      </Container>
-    </main>
+        </div>
+
+        {/* Generic Message Error */}
+        {errors && errors.message && <small className='text-danger'>{errors.message}</small>}
+        {/* Submit */}
+        {/* {selectedImages.length > 0 &&
+          (selectedImages.length > 10 ? (
+            <div className='flex-cannot-submit'>
+              <p className="error" >Looks like you have uploaded too many images!</p>
+              <button className='greyed-button lower-button' >Sell my product now</button>
+            </div>
+          ) : (
+            <button className='yellow-button lower-button' >Sell my product now</button>
+          ))} */}
+        {selectedImages.length > 0 && selectedImages.length > 10 &&
+
+          <div className='flex-cannot-submit'>
+            <button className='no-button lower-button' >Sell my product now</button>
+            <p className="error" >You have uploaded too many images!</p>
+          </div>
+
+        }
+        {selectedImages.length < 1 &&
+
+          <div className='flex-cannot-submit'>
+            <button className='no-button lower-button' >Sell my product now</button>
+            <p className="error" >Upload at least one image</p>
+          </div>
+
+        }
+        {selectedImages.length > 0 && selectedImages.length < 11 &&
+
+          <button className='yellow-button lower-button' >Sell my product now</button>
+
+
+        }
+
+
+
+
+        {/* <button className='yellow-button lower-button' >Sell my product now</button> */}
+      </form>
+
+    </main >
   )
 
 }

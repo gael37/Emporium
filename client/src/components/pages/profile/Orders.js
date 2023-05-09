@@ -7,7 +7,8 @@ import { Modal } from 'react-bootstrap'
 
 import validate from '../../../assets/images/validate.png'
 
-
+import fullStar from '../../../assets/images/full-star.png'
+import emptyStar from '../../../assets/images/empty-star.png'
 
 
 function Orders() {
@@ -52,6 +53,12 @@ function Orders() {
 
   const handleClose = () => {
     setShow(false)
+    setFormFields({
+      reviewText: '',
+      stars: '',
+    })
+    setStars(0)
+    setSubmitted(false)
     // setPostcode(postcodeData.result.postcode)
   }
 
@@ -183,7 +190,7 @@ function Orders() {
                     <button className='yellow-button' onClick={() => handleShow(order)}>Write a product review</ button>
                     <Modal className='basket-modal' show={show} onHide={handleClose}>
                       <Modal.Header closeButton>
-                        <Modal.Title>Create review</Modal.Title>
+                        <Modal.Title className='modal-title'><strong>Create review</strong></Modal.Title>
                       </Modal.Header>
                       <Modal.Body>
                         <div className="flex-modal-all-review">
@@ -195,110 +202,121 @@ function Orders() {
                             </div>
                           </div>
 
-                          <h5>Overall rating</h5>
-                          {submitted ?
-                            <div className="flex-submitted">
-                              <p>✅ Submitted</p>
-                              <button onClick={clear} className='button-adress'>Clear</button>
-                            </div>
-                            :
-                            <></>
-                          }
+                          <h5><strong>Overall rating</strong></h5>
 
-                          {
-                            stars === 0 ?
-                              <div className="flex-stars stars0">
-                                <button onClick={giveOneStar}>☆</button>
-                                <button onClick={giveTwoStars}>☆</button>
-                                <button onClick={giveThreeStars}>☆</button>
-                                <button onClick={giveFourStars}>☆</button>
-                                <button onClick={giveFiveStars}>☆</button>
+                          <div className='rating-div'>
+                            {
+                              stars === 0 ?
+                                <div className="flex-stars stars0">
+                                  <button onClick={giveOneStar}><img src={emptyStar} alt='empty star'></img></button>
+                                  <button onClick={giveTwoStars}><img src={emptyStar} alt='empty star'></img></button>
+                                  <button onClick={giveThreeStars}><img src={emptyStar} alt='empty star'></img></button>
+                                  <button onClick={giveFourStars}><img src={emptyStar} alt='empty star'></img></button>
+                                  <button onClick={giveFiveStars}><img src={emptyStar} alt='empty star'></img></button>
+                                </div>
+
+                                :
+                                <></>
+                            }
+                            {
+                              stars === 1 ?
+                                <div className="flex-stars stars1">
+                                  <button onClick={giveOneStar}><img src={fullStar} alt='full star'></img></button>
+                                  <button onClick={giveTwoStars}><img src={emptyStar} alt='empty star'></img></button>
+                                  <button onClick={giveThreeStars}><img src={emptyStar} alt='empty star'></img></button>
+                                  <button onClick={giveFourStars}><img src={emptyStar} alt='empty star'></img></button>
+                                  <button onClick={giveFiveStars}><img src={emptyStar} alt='empty star'></img></button>
+                                </div>
+                                :
+                                <></>
+                            }
+                            {stars === 2 ?
+                              <div className="flex-stars stars2">
+                                <button onClick={giveOneStar}><img src={fullStar} alt='full star'></img></button>
+                                <button onClick={giveTwoStars}><img src={fullStar} alt='full star'></img></button>
+                                <button onClick={giveThreeStars}><img src={emptyStar} alt='empty star'></img></button>
+                                <button onClick={giveFourStars}><img src={emptyStar} alt='empty star'></img></button>
+                                <button onClick={giveFiveStars}><img src={emptyStar} alt='empty star'></img></button>
                               </div>
                               :
                               <></>
-                          }
-                          {
-                            stars === 1 ?
-                              <div className="flex-stars stars1">
-                                <button onClick={giveOneStar}>⭐️</button>
-                                <button onClick={giveTwoStars}>☆</button>
-                                <button onClick={giveThreeStars}>☆</button>
-                                <button onClick={giveFourStars}>☆</button>
-                                <button onClick={giveFiveStars}>☆</button>
+                            }
+                            {stars === 3 ?
+                              <div className="flex-stars stars3">
+                                <button onClick={giveOneStar}><img src={fullStar} alt='full star'></img></button>
+                                <button onClick={giveTwoStars}><img src={fullStar} alt='full star'></img></button>
+                                <button onClick={giveThreeStars}><img src={fullStar} alt='full star'></img></button>
+                                <button onClick={giveFourStars}><img src={emptyStar} alt='empty star'></img></button>
+                                <button onClick={giveFiveStars}><img src={emptyStar} alt='empty star'></img></button>
                               </div>
                               :
                               <></>
-                          }
-                          {stars === 2 ?
-                            <div className="flex-stars stars2">
-                              <button onClick={giveOneStar}>⭐️</button>
-                              <button onClick={giveTwoStars}>⭐️</button>
-                              <button onClick={giveThreeStars}>☆</button>
-                              <button onClick={giveFourStars}>☆</button>
-                              <button onClick={giveFiveStars}>☆</button>
-                            </div>
-                            :
-                            <></>
-                          }
-                          {stars === 3 ?
-                            <div className="flex-stars stars3">
-                              <button onClick={giveOneStar}>⭐️</button>
-                              <button onClick={giveTwoStars}>⭐️</button>
-                              <button onClick={giveThreeStars}>⭐️</button>
-                              <button onClick={giveFourStars}>☆</button>
-                              <button onClick={giveFiveStars}>☆</button>
-                            </div>
-                            :
-                            <></>
-                          }
-                          {stars === 4 ?
-                            <div className="flex-stars stars4">
-                              <button onClick={giveOneStar}>⭐️</button>
-                              <button onClick={giveTwoStars}>⭐️</button>
-                              <button onClick={giveThreeStars}>⭐️</button>
-                              <button onClick={giveFourStars}>⭐️</button>
-                              <button onClick={giveFiveStars}>☆</button>
-                            </div>
-                            :
-                            <></>
-                          }
-                          {stars === 5 ?
-                            <div className="flex-stars stars5">
-                              <button onClick={giveOneStar}>⭐️</button>
-                              <button onClick={giveTwoStars}>⭐️</button>
-                              <button onClick={giveThreeStars}>⭐️</button>
-                              <button onClick={giveFourStars}>⭐️</button>
-                              <button onClick={giveFiveStars}>⭐️</button>
-                            </div>
-                            :
-                            <></>
-                          }
-                          <h5>Add a written review</h5>
+                            }
+                            {stars === 4 ?
+                              <div className="flex-stars stars4">
+                                <button onClick={giveOneStar}><img src={fullStar} alt='full star'></img></button>
+                                <button onClick={giveTwoStars}><img src={fullStar} alt='full star'></img></button>
+                                <button onClick={giveThreeStars}><img src={fullStar} alt='full star'></img></button>
+                                <button onClick={giveFourStars}><img src={fullStar} alt='full star'></img></button>
+                                <button onClick={giveFiveStars}><img src={emptyStar} alt='empty star'></img></button>
+                              </div>
+                              :
+                              <></>
+                            }
+                            {stars === 5 ?
+                              <div className="flex-stars stars5">
+                                <button onClick={giveOneStar}><img src={fullStar} alt='full star'></img></button>
+                                <button onClick={giveTwoStars}><img src={fullStar} alt='full star'></img></button>
+                                <button onClick={giveThreeStars}><img src={fullStar} alt='full star'></img></button>
+                                <button onClick={giveFourStars}><img src={fullStar} alt='full star'></img></button>
+                                <button onClick={giveFiveStars}><img src={fullStar} alt='full star'></img></button>
+                              </div>
+                              :
+                              <></>
+                            }
+                            {!submitted &&
+                              <h6>Please add a rating</h6>
+                            }
+                            {submitted ?
+                              <div className="flex-submitted">
+                                <div className='flex-submitted-img'>
+                                  <img src={validate} alt='success'></img>
+                                  <p>Submitted</p>
+                                </div>
+                                <button onClick={clear} className='button-adress'>Clear</button>
+                              </div>
+                              :
+                              <></>
+                            }
+                          </div>
 
-                          <input
+                          <h5><strong>Add a written review</strong></h5>
+
+                          <textarea
+                            rows="7"
+                            cols="50"
                             type="text"
                             name="reviewText"
                             onChange={handleChange}
                             value={formFields.reviewText}
-                            placeholder="What did you like or dislike? What did you use the product for?"
+                            // placeholder="What did you like or dislike? What did you use the product for?"
                             required
                           />
-                          {formFields.reviewText && !submitted &&
-                            <>
-                              <button className='regular-button button-submit-change-adress greyed-button button-fixed' onClick={onSubmit}>Submit</button>
-                              <p>Please add a rating</p>
-                            </>
+                          {!formFields.reviewText &&
+                            <h6>Please add a written review</h6>
                           }
-                          {submitted && !formFields.reviewText &&
-                            <>
-                              <button className='regular-button button-submit-change-adress greyed-button button-fixed' onClick={onSubmit}>Submit</button>
-                              <p>Please add a written review</p>
-                            </>
-                          }
-                          {submitted && formFields.reviewText &&
-                            <button className='yellow-button button-fixed' onClick={() => onSubmit(order)}>Submit</button>
-                          }
-                          <button onClick={handleClose} className='regular-button button-fixed'>Cancel</button>
+                          <div className="flex-submit-cancel">
+                            <button onClick={handleClose} className='regular-button button-fixed'>Cancel</button>
+                            {formFields.reviewText && !submitted &&
+                              <button className='regular-button greyed-button button-fixed' onClick={onSubmit}>Submit</button>
+                            }
+                            {submitted && !formFields.reviewText &&
+                              <button className='regular-button greyed-button button-fixed' onClick={onSubmit}>Submit</button>
+                            }
+                            {submitted && formFields.reviewText &&
+                              <button className='yellow-button button-fixed' onClick={() => onSubmit(order)}>Submit</button>
+                            }
+                          </div>
                         </div>
                       </Modal.Body>
                     </Modal>

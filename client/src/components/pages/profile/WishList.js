@@ -3,7 +3,9 @@ import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { getToken, getPayload, isAuthenticated } from '../../../helpers/auth'
 import Container from 'react-bootstrap/Container'
+import { useNavigate } from 'react-router-dom'
 
+import validate from '../../../assets/images/validate.png'
 
 
 function Wishlist({ basketCounter, setBasketCounter }) {
@@ -18,6 +20,7 @@ function Wishlist({ basketCounter, setBasketCounter }) {
   const currentUserId = currentUserPayload.sub
   console.log('user id', currentUserId)
 
+  const navigate = useNavigate()
   const getUserData = async () => {
     try {
       const { data } = await axios.get(`api/auth/${currentUserId}/`, {
@@ -213,53 +216,77 @@ function Wishlist({ basketCounter, setBasketCounter }) {
     setProductJustLiked(productJustLiked ? false : true)
   }
 
-
+  const handleShopping = () => {
+    navigate('/')
+  }
 
 
   return (
-    <main className="profile-page-wrapper">
+    <main className="basket-main">
+      {userData && userData.wishes.length > 0 ?
+        <>
+          <div className="flex-delete-basket">
+            <h1>Saved for later</h1>
+            <button className='button-adress' onClick={() => removeAllWishlist()}>Delete list</button>
+          </div>
 
-      <h1>Saved for later</h1>
-      <button className='delete-button' onClick={() => removeAllWishlist()}>Delete wishlist</button>
-      <div className='basket-elements'>
-        {userData ?
-          userData.wishes.length > 0 &&
-          userData.wishes.sort((b, a) => a.id - b.id).map((wish) => {
-            return (
-              <div key={wish.id} className='profile-card wish-card'>
-                <div className="buffer">
+
+          <section className="basket-section">
+            {userData.wishes.sort((b, a) => a.id - b.id).map((wish) => {
+              return (
+                <div key={wish.id} className='basket-card'>
+
                   <Link className='bootstrap-link'>
-                    <div className="profile-card-image" style={{ backgroundImage: `url(${wish.product_wished.images.split(' ')[0]})` }}></div>
+                    <div className="product-card-image basket-card-image" style={{ backgroundImage: `url(${wish.product_wished.images.split(' ')[0]})` }}></div>
                   </Link>
-                  <p className='profile-card-description'>{wish.product_wished.description}</p>
-                  <p className='profile-card-price'>£ {wish.product_wished.price}</p>
-                  {userData.basket.some((basket) => {
-                    return basket.product_added_to_basket.id === wish.product_wished.id
-                  }) ?
-                    <div>
-                      <button className='like-button' onClick={() => handleBasketRemove(wish)}>-</button>
-                      <button className='like-button' onClick={() => handleBasketAdd(wish)}>+</button>
-                      <p>{userData.basket[userData.basket.findIndex((basket) => {
-                        return basket.product_added_to_basket.id === wish.product_wished.id
-                      })].count}</p>
+                  <div>
+                    <p className='basket-card-description'>{wish.product_wished.description}</p>
+                    <p className='profile-card-price'>£ {wish.product_wished.price}</p>
+                    {userData.basket.some((basket) => {
+                      return basket.product_added_to_basket.id === wish.product_wished.id
+                    }) ?
+                      <>
+                        <div className="flex-in-basket">
+                          <div className="flex-validate">
+                            <p><span>In basket</span></p>
+                            <img src={validate} alt='in basket'></img>
+                          </div>
+                          <div className='flex-add-remove-basket'>
+                            <button className='add-remove-button' onClick={() => handleBasketRemove(wish)}>-</button>
+                            <p>{userData.basket[userData.basket.findIndex((basket) => {
+                              return basket.product_added_to_basket.id === wish.product_wished.id
+                            })].count}</p>
+                            <button className='add-remove-button' onClick={() => handleBasketAdd(wish)}>+</button>
+                          </div>
+
+                        </div>
+                        <div className="flex-wishlist-remove">
+                          <button className='button-adress' onClick={() => removeAll(wish)}>Remove from basket</button>
+                          <button className='button-adress' onClick={() => removeItem(wish)}>Remove from wishlist</button>
+                        </div>
 
 
-                      <button className='like-button' onClick={() => removeAll(wish)}>Remove from basket</button>
-                    </div>
-                    :
-                    <div>
-                      <button className='like-button' onClick={() => handleBasketAdd(wish)}>Add to basket</button>
-                    </div>
-                  }
-                  <button onClick={() => removeItem(wish)}>Remove from list</button>
+                      </>
+                      :
+                      <div className="flex-wishlist-remove">
+                        <button className='yellow-button small-button' onClick={() => handleBasketAdd(wish)}>Add to basket</button>
+                        <button className='button-adress' onClick={() => removeItem(wish)}>Remove from wishlist</button>
+                      </div>
+                    }
+                  </div>
+
+
                 </div>
-              </div>
-            )
-          })
-          :
-          <h2>Loading...</h2>
-        }
-      </div>
+              )
+            })}
+          </section>
+        </>
+        :
+        <div className='basket-empty'>
+          <h2>Your wishlist is empty</h2>
+          <p><button className='button-adress' onClick={handleShopping}>Continue shopping</button></p>
+        </div>
+      }
     </main>
   )
 

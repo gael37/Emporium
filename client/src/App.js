@@ -48,7 +48,7 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/account-details" element={<AccountDetails />} />
         <Route path="/on-sale" element={<ItemsOnSale />} />
-        <Route path="/basket" element={<Basket setBasketCounter={setBasketCounter} postcode={postcode} setPostcode={setPostcode} />} />
+        <Route path="/basket" element={<Basket basketCounter={basketCounter} setBasketCounter={setBasketCounter} postcode={postcode} setPostcode={setPostcode} />} />
         <Route path="/orders" element={<Orders />} />
         <Route path="/edit-profile/:userId" element={<EditProfile />} />
         <Route path="/delete-account" element={<DeleteProfile />} />

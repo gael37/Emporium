@@ -8,7 +8,7 @@ import { Modal } from 'react-bootstrap'
 
 import validate from '../../../assets/images/validate.png'
 
-const Basket = ({ setBasketCounter, postcode, setPostcode }) => {
+const Basket = ({ basketCounter, setBasketCounter, postcode, setPostcode }) => {
 
   // ! State
 
@@ -19,6 +19,7 @@ const Basket = ({ setBasketCounter, postcode, setPostcode }) => {
   const [postcodeError, setPostcodeError] = useState('')
   const [postcodeEntered, setPostcodeEntered] = useState('')
   const [show, setShow] = useState(false)
+
 
   // ! Variables
   const currentUserId = getPayload().sub
@@ -172,7 +173,7 @@ const Basket = ({ setBasketCounter, postcode, setPostcode }) => {
 
   const handleClose = () => {
     setShow(false)
-    // setPostcode(postcodeData.result.postcode)
+    setPostcode(postcodeData.result.postcode)
   }
 
   const handleShow = async () => {
@@ -232,125 +233,204 @@ const Basket = ({ setBasketCounter, postcode, setPostcode }) => {
     getUserData()
   }, [])
 
+  const handleSelect = async (e, basket) => {
 
+    const currentCount = basket.count
+    const basketPK = basket.id
+    try {
+      const newCount = e.target.value
+      const { data } = await axios.put(`/api/basket/${basketPK}/`, { count: newCount, basket_owner: currentUserId, product_added_to_basket: basket.product_added_to_basket.id }, {
+        headers: {
+          Authorization: `Bearer ${getToken()}`,
+        },
+      })
+    } catch (err) {
+      console.log(err)
+    }
+    setProductJustLiked(productJustLiked ? false : true)
+  }
+
+  const handleSaved = () => {
+    navigate('/wish-list')
+  }
+
+  const handleShopping = () => {
+    navigate('/')
+  }
   // ! JSX
 
 
   return (
 
-    <main className="profile-page-wrapper">
-      <>
-        <h1>Shopping basket</h1>
-        <button className='delete-button' onClick={() => removeAllBasket()}>Delete basket</button>
-        <div className='flex-basket'>
-          <div className='basket-elements'>
-            {userData && userData.basket.length > 0 &&
-              userData.basket.sort((a, b) => a.id - b.id).map((basket) => {
-                return (
-                  <div key={basket.id} className='product-card basket-card'>
-                    <div className="buffer">
-                      <Link className='bootstrap-link'>
-                        <div className="product-card-image" style={{ backgroundImage: `url(${basket.product_added_to_basket.images.split(' ')[0]})` }}></div>
-                      </Link>
-                      <p className='product-card-description'>{basket.product_added_to_basket.description}</p>
-                      <p className='product-card-price'>£ {basket.product_added_to_basket.price}</p>
-                      <div className="flex-count">
-                        <button className='like-button' onClick={() => handleBasketRemove(basket)}>-</button>
-                        <p className='product-card-price'>{basket.count}</p>
-                        <button className='like-button' onClick={() => handleBasketAdd(basket)}>+</button>
-                      </div>
-                      <p className='product-card-price'>Sub-total: £ {(basket.product_added_to_basket.price * basket.count).toFixed(2)}</p>
-                      <button className='delete-button' onClick={() => removeProductFromBasket(basket)}>Remove</button>
-                    </div>
-                  </div>
-                )
-              })
-            }</div>
-          <div className='basket-checkout'>
-            <h2>TOTAL</h2>
-            <h2>
-              TOTAL: £ {userData && userData.basket.length > 0 &&
-                (userData.basket.reduce((acc, obj) => {
-                  return acc + parseInt(obj.count) * parseFloat(obj.product_added_to_basket.price)
-                }, 0
-                )).toFixed(2)
-              }
-            </h2>
-            {userData && postcodeData &&
-              <>
-                <h6>Delivery adress:</h6>
-                <h6>{userData.username}</h6>
-                <h6>{postcodeData.result.postcode}</h6>
-                <h6>{postcodeData.result.admin_district}, {postcodeData.result.country}</h6>
-                <button className='button-adress' onClick={handleShow}>Change delivery adress</button>
-                <Modal className='basket-modal' show={show} onHide={handleClose}>
-                  <Modal.Header closeButton>
-                    <Modal.Title>Change your delivery adress </Modal.Title>
-                  </Modal.Header>
-                  <Modal.Body>
-                    <div className="flex-modal-all">
-                      <label htmlFor="name">Enter a UK postcode</label>
-                      <div className='flex-modal-input-submit'>
-                        <input
-                          type="text"
-                          name="adress"
-                          onChange={handleChange}
-                          value={postcode}
-                          placeholder="Enter a valid postcode here"
-                          required
-                        />
-                        {postcodeEntered ?
-                          <button className='yellow-button button-submit-change-adress' onClick={onSubmit}>Submit</button>
-                          :
-                          <button className='regular-button button-submit-change-adress greyed-button' onClick={onSubmit}>Submit</button>
-                        }
-                      </div>
-                      {postcodeEntered ?
-                        <>
-                          <div className="flex-validate">
-                            <p className='modal-p-validate'><span>Postcode valid!</span></p>
-                            <img src={validate} alt='valid' />
-                          </div>
-                          {/* <button className='yellow-button button-submit-change-adress' onClick={onSubmit}>Submit</button> */}
-                        </>
-                        :
-                        <>
-                          <div className="flex-validate">
-                            <p className='modal-p-invalidate'>Invalid postcode</p>
-                            {/* <img src={validate} alt='valid' /> */}
-                          </div>
-                        </>
-                      }
-                      <button onClick={handleClose} className='regular-button'>Cancel</button>
-                    </div>
-                  </Modal.Body>
-                </Modal>
-              </>
-            }
-            {/* <button onClick={checkout}>Proceed to checkout</button> */}
+    <main className='basket-main'>
+      {userData && userData.basket.length > 0 ?
+        <>
+          <div className="flex-delete-basket">
+            <h1>Shopping basket</h1>
+            <button className='button-adress' onClick={() => removeAllBasket()}>Delete basket</button>
           </div>
-        </div>
+          <div className='flex-basket-page'>
+
+            <section className="basket-section">
+              {userData && userData.basket.length > 0 &&
+                userData.basket.sort((a, b) => a.id - b.id).map((basket) => {
+                  return (
+                    <div key={basket.id} className='basket-card'>
+
+                      <Link className='bootstrap-link'>
+                        <div className="product-card-image basket-card-image" style={{ backgroundImage: `url(${basket.product_added_to_basket.images.split(' ')[0]})` }}></div>
+                      </Link>
+                      <div>
+                        <p className='basket-card-description'>{basket.product_added_to_basket.description}</p>
+                        <p className='product-card-price'>£ {basket.product_added_to_basket.price}</p>
+                        <div className="flex-in-basket">
+                          <div className="flex-add-remove-basket">
+                            <select onChange={(e) => handleSelect(e, basket)} name="filter-style" className="select-nav select-small" value={basket.count}>
+                              <option value="0">0</option>
+                              <option value="1">1</option>
+                              <option value="2">2</option>
+                              <option value="3">3</option>
+                              <option value="4">4</option>
+                              <option value="5">5</option>
+                              <option value="6">6</option>
+                              <option value="7">7</option>
+                              <option value="8">8</option>
+                              <option value="9">9</option>
+                              <option value="10">10</option>
+                            </select>
+                          </div>
+                        </div>
+                        <button className='button-adress' onClick={() => removeProductFromBasket(basket)}>Remove from basket</button>
+                        <p className='basket-card-price'>Sub-total: £ {(basket.product_added_to_basket.price * basket.count).toFixed(2)}</p>
+                      </div>
 
 
+                    </div>
+                  )
+                })
+              }
+            </section>
 
-      </>
-      <form className='flex-form-checkout' action='api/stripe/create-checkout-session' method='POST'>
-        {userData && userData.basket.length > 0 &&
-          <>
-            {userData.basket.map((basket, index) => {
-              return (
-                <div key={basket.id}>
-                  <div>
-                    <label className='not-visible' htmlFor="name">{`item${index}`}</label>
-                    <input className='not-visible' type="text" name={basket.product_added_to_basket.stripe_id} value={basket.count} />
+            <section className='single-section-basket basket-checkout-section'>
+              {userData &&
+                <>
+                  <h2>Order summary</h2>
+
+                  <div className="flex-order-subtotal-basket-column">
+                    <div className="flex-order-subtotal-basket">
+                      <h4>Subtotal</h4>
+                      <h4>${(userData.basket.reduce((acc, obj) => {
+                        return acc + parseInt(obj.count) * parseFloat(obj.product_added_to_basket.price)
+                      }, 0
+                      )).toFixed(2)}</h4>
+                    </div>
+
+                    <div className="items-postage">
+                      <p>{basketCounter} items: <span>£{userData && userData.basket.length > 0 &&
+                        (userData.basket.reduce((acc, obj) => {
+                          return acc + parseInt(obj.count) * parseFloat(obj.product_added_to_basket.price)
+                        }, 0
+                        )).toFixed(2)
+                      }</span></p>
+                      <p>Postage & packing: £4.99</p>
+                    </div>
                   </div>
+                  <div className="flex-order-total-basket">
+                    <h4>Order Total</h4>
+                    <h4>${((userData.basket.reduce((acc, obj) => {
+                      return acc + parseInt(obj.count) * parseFloat(obj.product_added_to_basket.price)
+                    }, 0
+                    )) + 4.99).toFixed(2)}</h4>
+                  </div>
+                </>
+
+              }
+
+
+
+              <div className="single-deliver">
+                <h4>Delivery adress</h4>
+                <div className="single-deliver flex-deliver-basket">
+                  {userData && postcodeData && postcode &&
+                    <p>{userData.username}<br></br> {postcodeData.result.postcode} <br></br>{postcodeData.result.admin_district}, {postcodeData.result.country}</p>
+                  }
+                  <button className='button-adress' onClick={handleShow}>Change delivery adress</button>
                 </div>
-              )
-            })}
-            <button type='submit'>Proceed to checkout</button>
-          </>
-        }
-      </form>
+              </div>
+
+
+              <Modal className='basket-modal' show={show} onHide={handleClose}>
+                <Modal.Header closeButton>
+                  <Modal.Title>Change your delivery adress </Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                  <div className="flex-modal-all">
+                    <label htmlFor="name">Enter a UK postcode</label>
+                    <div className='flex-modal-input-submit'>
+                      <input
+                        type="text"
+                        name="adress"
+                        onChange={handleChange}
+                        value={postcode}
+                        placeholder="Enter a valid postcode here"
+                        required
+                      />
+                      {postcodeEntered ?
+                        <button className='yellow-button button-submit-change-adress' onClick={onSubmit}>Submit</button>
+                        :
+                        <button className='regular-button button-submit-change-adress greyed-button'>Submit</button>
+                      }
+                    </div>
+                    {postcodeEntered ?
+                      <>
+                        <div className="flex-validate">
+                          <p className='modal-p-validate'><span>Valid postcode</span></p>
+                          <img src={validate} alt='valid' />
+                        </div>
+                        {/* <button className='yellow-button button-submit-change-adress' onClick={onSubmit}>Submit</button> */}
+                      </>
+                      :
+                      <>
+                        <div className="flex-validate">
+                          <p className='modal-p-invalidate'>Invalid postcode</p>
+                          {/* <img src={validate} alt='valid' /> */}
+                        </div>
+                      </>
+                    }
+                    <button onClick={handleClose} className='regular-button'>Cancel</button>
+                  </div>
+                </Modal.Body>
+              </Modal>
+
+              <form className='flex-form-checkout' action='api/stripe/create-checkout-session' method='POST'>
+                {userData && userData.basket.length > 0 &&
+                  <>
+                    {userData.basket.map((basket, index) => {
+                      return (
+                        <div key={basket.id}>
+                          <div>
+                            <label className='not-visible' htmlFor="name">{`item${index}`}</label>
+                            <input className='not-visible' type="text" name={basket.product_added_to_basket.stripe_id} value={basket.count} />
+                          </div>
+                        </div>
+                      )
+                    })}
+                    <button type='submit' className='yellow-button big-button'>Proceed to checkout</button>
+                  </>
+                }
+              </form>
+
+            </section>
+
+          </div>
+        </>
+        :
+        <div className='basket-empty'>
+          <h2>Your emporium cart is empty.</h2>
+          <p>Check your <button className='button-adress' onClick={handleSaved}>saved for later</button> items or <button className='button-adress' onClick={handleShopping}>continue shopping</button>.</p>
+        </div>
+      }
+
     </main >
   )
 

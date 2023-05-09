@@ -403,7 +403,6 @@ const SingleProduct = ({ setBasketCounter, postcode, setPostcode }) => {
       }
     }
     setProductJustLiked(productJustLiked ? false : true)
-
   }
 
   useEffect(() => {
@@ -444,6 +443,10 @@ const SingleProduct = ({ setBasketCounter, postcode, setPostcode }) => {
     getUserData()
   }, [product])
 
+  useEffect(() => {
+    getPostcodeData()
+  }, [postcode])
+
   const goToBasket = () => {
     navigate('/basket')
   }
@@ -452,19 +455,19 @@ const SingleProduct = ({ setBasketCounter, postcode, setPostcode }) => {
 
   const handleClose = () => {
     setShow(false)
-    // setPostcode(postcodeData.result.postcode)
+    setPostcode(postcodeData.result.postcode)
   }
 
   const handleShow = async () => {
     setShow(true)
-    // try {
-    //   const { data } = await axios.get(`https://api.postcodes.io/postcodes/${postcode}/`)
-    //   setPostcodeEntered(data)
-    // } catch (err) {
-    //   console.log(err)
-    //   setPostcodeError(err)
-    //   setPostcodeEntered(null)
-    // }
+    try {
+      const { data } = await axios.get(`https://api.postcodes.io/postcodes/${postcode}/`)
+      setPostcodeEntered(data)
+    } catch (err) {
+      console.log(err)
+      setPostcodeError(err)
+      setPostcodeEntered(null)
+    }
   }
 
   const handleChange = async (e) => {
@@ -482,12 +485,13 @@ const SingleProduct = ({ setBasketCounter, postcode, setPostcode }) => {
 
   const onSubmit = async (e) => {
     setShow(false)
-    setPostcode(e.target.value)
+    // setPostcode(e.target.value)
     e.preventDefault()
     try {
       const { data } = await axios.get(`https://api.postcodes.io/postcodes/${e.target.value}/`)
       console.log('postcode datra', data)
       setPostcodeData(data)
+      setPostcode(postcodeEntered)
     } catch (err) {
       console.log(err)
       setPostcodeError(err)
@@ -632,11 +636,14 @@ const SingleProduct = ({ setBasketCounter, postcode, setPostcode }) => {
             </div>
 
             <div className="single-deliver">
-              {userData && postcodeData && postcode &&
-                <p>Deliver to {userData.username}, {postcodeData.result.postcode} <br></br>{postcodeData.result.admin_district}, {postcodeData.result.country}</p>
-              }
+              <h6>Deliver to</h6>
+              <div className="single-deliver flex-deliver-basket">
+                {userData && postcodeData && postcode &&
+                  <p>{userData.username}<br></br> {postcodeData.result.postcode} <br></br>{postcodeData.result.admin_district}, {postcodeData.result.country}</p>
+                }
+                <button className='button-adress' onClick={handleShow}>Change delivery adress</button>
+              </div>
             </div>
-            <button className='button-adress' onClick={handleShow}>Change delivery adress</button>
             <Modal className='basket-modal' show={show} onHide={handleClose}>
               <Modal.Header closeButton>
                 <Modal.Title>Change your delivery adress </Modal.Title>
@@ -656,7 +663,7 @@ const SingleProduct = ({ setBasketCounter, postcode, setPostcode }) => {
                     {postcodeEntered ?
                       <button className='yellow-button button-submit-change-adress' onClick={onSubmit}>Submit</button>
                       :
-                      <button className='regular-button button-submit-change-adress greyed-button' onClick={onSubmit}>Submit</button>
+                      <button className='regular-button button-submit-change-adress greyed-button'>Submit</button>
                     }
                   </div>
                   {postcodeEntered ?
