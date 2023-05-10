@@ -4,7 +4,7 @@ import Navbar from 'react-bootstrap/Navbar'
 import NavDropdown from 'react-bootstrap/NavDropdown'
 import { Link, useNavigate } from 'react-router-dom'
 
-import brandLogo from '../../assets/images/logo5.png'
+import brandLogo from '../../assets/images/logo-figma3.png'
 import cartLogo from '../../assets/images/cart-logo.png'
 
 import { useState, useEffect, useCallback } from 'react'

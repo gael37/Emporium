@@ -120,7 +120,7 @@ function Orders() {
       {reviewSubmitted &&
         <div className="flex-validate">
           <img src={validate} alt='in basket'></img>
-          <p><span>Review submitted - Than you!</span></p>
+          <p><span>Review submitted - Thank you!</span></p>
         </div>
       }
       <h1>Your last orders</h1>

@@ -478,7 +478,11 @@ const Home = ({ selected, typed, setSelected, setTyped, basketCounter, setBasket
                       <button className='yellow-button' onClick={() => handleBasketAdd(product)}>Add to basket</button>
                     </>
                   }
-                  <button className='yellow-button' onClick={() => goToBasket()}>Go to basket</button>
+                  {product.added_to_basket.some((basket) => {
+                    return basket.basket_owner.id === currentUserId
+                  }) &&
+                    <button className='yellow-button' onClick={() => goToBasket()}>Go to basket</button>
+                  }
                 </div>
               </div>
             )

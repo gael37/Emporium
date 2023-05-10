@@ -4,6 +4,9 @@ import { useDropzone } from 'react-dropzone'
 import axios from 'axios'
 import { getToken, getPayload } from '../../../helpers/auth'
 
+import { Modal } from 'react-bootstrap'
+
+
 import Container from 'react-bootstrap/esm/Container'
 import Row from 'react-bootstrap/esm/Row'
 import Select from 'react-select'
@@ -11,6 +14,7 @@ import { options } from '../../../helpers/constants'
 
 import gif from '../../../assets/gifs/loading4.gif'
 import dropImage from '../../../assets/images/drop.png'
+import validate from '../../../assets/images/validate.png'
 
 const NewProduct = () => {
 
@@ -19,6 +23,8 @@ const NewProduct = () => {
   const [errors, setErrors] = useState(null)
   const [selectedImages, setSelectedImages] = useState([])
   const [loading, setLoading] = useState(false)
+  const [show, setShow] = useState(false)
+
 
   const [formFields, setFormFields] = useState({
     description: '',
@@ -99,11 +105,26 @@ const NewProduct = () => {
         },
       })
       console.log('Product posted ✅')
-      navigate('/')
+      setShow(true)
+      setFormFields({
+        description: '',
+        images: '',
+        brand: '',
+        dimensions: '',
+        weight: '',
+        about: '',
+        price: '',
+        stripe_id: '',
+      })
+      setSelectedImages([])
     } catch (err) {
       console.log(err.response.data)
       setErrors(err.response.data)
     }
+  }
+
+  const handleClose = () => {
+    setShow(false)
   }
 
   const handleChange = (e) => {
@@ -167,9 +188,18 @@ const NewProduct = () => {
     }
   }, [selectedImages])
 
+  const stay = () => {
+    navigate('/products/new')
+  }
+
+  const goHome = () => {
+    navigate('/')
+  }
+
+
   return (
     <main className="form-page">
-      <h1>Please fill this product form</h1>
+      <h1>Describe what you&apos;re selling</h1>
       <form className='form-perso' onSubmit={handleSubmit}>
         <div className="flex-form-product-sections">
           <div className='half-page'>
@@ -178,7 +208,7 @@ const NewProduct = () => {
               {/* Description */}
               <div>
                 <label htmlFor="name">Title/Description<span>*</span></label>
-                <input
+                <textarea
                   className='form-input description-input'
                   type="text"
                   name="description"
@@ -255,8 +285,9 @@ const NewProduct = () => {
               {/* About */}
 
               <div>
-                <label htmlFor="name">Additional information (start each paragraph with &quot;- &quot;)</label>
-                <input
+                <label htmlFor="name">Additional information</label>
+                <textarea
+                  // autoFocus
                   className='form-input form-input-about'
                   type="text"
                   name="about"
@@ -275,7 +306,7 @@ const NewProduct = () => {
               </div> */}
               {errors && errors.description && <small className='text-danger'>{errors.description}</small>}
               {/* Images */}
-              <p>Upload an image of your product<span>*</span> (up to 10)</p>
+              <p>Upload pictures of your product<span>*</span></p>
               <div className='section-upload'>
                 <div {...getRootProps({ className: 'dropzone' })}>
                   <input className="blog-form-input" {...getInputProps()} />
@@ -379,9 +410,9 @@ const NewProduct = () => {
 
         }
         {selectedImages.length > 0 && selectedImages.length < 11 &&
-
-          <button className='yellow-button lower-button' >Sell my product now</button>
-
+          <div className='flex-cannot-submit'>
+            <button className='yellow-button lower-button form-button-sell' >Sell my product now</button>
+          </div>
 
         }
 
@@ -390,7 +421,20 @@ const NewProduct = () => {
 
         {/* <button className='yellow-button lower-button' >Sell my product now</button> */}
       </form>
-
+      <Modal className='basket-modal' show={show} onHide={handleClose}>
+        <Modal.Body>
+          <div className="flex-modal-all">
+            <div className="flex-validate flex-validate-sell">
+              <img src={validate} alt='success'></img>
+              <p><span>Your product is now for sale on emporium!</span></p>
+            </div>
+            <div className="flex-buttons-row">
+              <button onClick={handleClose} className='yellow-button'>Sell a new item</button>
+              <button onClick={goHome} className='regular-button'>Home</button>
+            </div>
+          </div>
+        </Modal.Body>
+      </Modal>
     </main >
   )
 

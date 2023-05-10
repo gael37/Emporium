@@ -9,6 +9,7 @@ import { setToken } from '../../../helpers/auth'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 
+import logoSlogan from '../../../assets/images/logo-figma2.png'
 const Login = () => {
 
   const [passError, setPassError] = useState('')
@@ -43,46 +44,51 @@ const Login = () => {
     }
   }
 
+  const goRegister = () => {
+    navigate('/register')
+  }
 
   // ! JSX
   return (
-    <div className='login-page-wrapper'>
-      <main className="form-page login-form-page">
-        <Container className='login-form-container mt-1'>
-          <Row>
-            <div>
-              <form onSubmit={handleSubmit}>
-                <h1>Login</h1>
-                {/* Email */}
-                <label htmlFor="email">Email <span>*</span></label>
-                <input
-                  type="email"
-                  name="email"
-                  onChange={handleChange}
-                  value={formFields.email}
-                  placeholder="Email Address"
-                  required
-                />
-                {/* Password */}
-                <label htmlFor="password">Password <span>*</span></label>
-                <input
-                  type="password"
-                  name="password"
-                  onChange={handleChange}
-                  value={formFields.password}
-                  placeholder="Password"
-                  required
-                />
-                {/* Error Message */}
-                {error && <small className='text-danger'>{error}</small>}
-                {/* Submit */}
-                <button className='btn-form'>Login</button>
-              </form>
-            </div>
-          </Row>
-        </Container>
-      </main>
-    </div>
+
+    <main className="login-form-page">
+      <div className='login-form-page-image'>
+        <img src={logoSlogan} />
+      </div>
+      <form className="login-form" onSubmit={handleSubmit}>
+        <h1>Sign in</h1>
+        {/* Email */}
+        <label htmlFor="email">Email</label>
+        <input
+          type="email"
+          name="email"
+          // className='login-input'
+          onChange={handleChange}
+          value={formFields.email}
+          placeholder="Email Address"
+          required
+        />
+        {/* Password */}
+        <label htmlFor="password">Password</label>
+        <input
+          type="password"
+          name="password"
+          // className='login-input'
+
+          onChange={handleChange}
+          value={formFields.password}
+          placeholder="Password"
+          required
+        />
+        {/* Error Message */}
+        {error && <small className='text-danger'>{error}</small>}
+        {/* Submit */}
+        <button className='login-button'>Sign in</button>
+      </form>
+      <br />
+      <p>New to emporium?</p>
+      <button className='button-adress' onClick={goRegister}>Create your emporium account</button>
+    </main>
   )
 }
 
