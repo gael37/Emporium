@@ -24,6 +24,7 @@ const NewProduct = () => {
   const [selectedImages, setSelectedImages] = useState([])
   const [loading, setLoading] = useState(false)
   const [show, setShow] = useState(false)
+  const [selected, setSelected] = useState([])
 
 
   const [formFields, setFormFields] = useState({
@@ -117,6 +118,7 @@ const NewProduct = () => {
         stripe_id: '',
       })
       setSelectedImages([])
+      setCategoriesArray([])
     } catch (err) {
       console.log(err.response.data)
       setErrors(err.response.data)
@@ -141,6 +143,7 @@ const NewProduct = () => {
       array.push(e[i].value)
     }
     setCategoriesArray(array)
+    // setSelected(e.target.value)
   }
 
   function deleteHandler(image) {

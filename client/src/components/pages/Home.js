@@ -20,6 +20,7 @@ import threeStars from '../../assets/images/three-stars.png'
 import fourStars from '../../assets/images/four-stars.png'
 import fiveStars from '../../assets/images/five-stars.png'
 import validate from '../../assets/images/validate.png'
+import info from '../../assets/images/info-icon.png'
 
 const Home = ({ selected, typed, setSelected, setTyped, basketCounter, setBasketCounter, setUsername }) => {
 
@@ -354,6 +355,11 @@ const Home = ({ selected, typed, setSelected, setTyped, basketCounter, setBasket
   const goToBasket = () => {
     navigate('/basket')
   }
+
+  const goLogin = () => {
+    navigate('/login')
+  }
+
   return (
     <main className="home-page-wrapper">
       {filteredProducts && filteredProducts.length > 0 &&
@@ -379,7 +385,7 @@ const Home = ({ selected, typed, setSelected, setTyped, basketCounter, setBasket
                       <button className='like-button' onClick={() => handleHeartClick(product)}><img src={emptyHeart} alt='like'></img></button>
                     }
                   </div>
-                  <Link className='bootstrap-link' to={`/products/${product.id}`}>
+                  <Link className='bootstrap-link home-link' to={`/products/${product.id}`}>
                     <div className="buffer-description">
                       <h2 className='product-card-description'>{product.description}</h2>
                     </div>
@@ -449,6 +455,20 @@ const Home = ({ selected, typed, setSelected, setTyped, basketCounter, setBasket
                       }
                     </h2>
                   </div>
+
+
+                  {!userData &&
+                    <div className='no-user'>
+                      <p className='yellow-button p-button'>Add to basket</p>
+                      <div className="flex-validate flex-info-no-user">
+                        <img src={info} alt='in basket'></img>
+                        <h6>Please <button className='button-adress' onClick={goLogin}>sign in</button> to add to basket or to add to wishlist</h6>
+                      </div>
+                    </div>
+                  }
+
+
+
                   {product.added_to_basket.some((basket) => {
                     return basket.basket_owner.id === currentUserId
                   }) ?
@@ -475,9 +495,13 @@ const Home = ({ selected, typed, setSelected, setTyped, basketCounter, setBasket
                     <>
                       <div className='flex-in-basket'>
                       </div>
-                      <button className='yellow-button' onClick={() => handleBasketAdd(product)}>Add to basket</button>
+                      {userData &&
+                        <button className='yellow-button' onClick={() => handleBasketAdd(product)}>Add to basket</button>
+                      }
                     </>
                   }
+
+
                   {product.added_to_basket.some((basket) => {
                     return basket.basket_owner.id === currentUserId
                   }) &&

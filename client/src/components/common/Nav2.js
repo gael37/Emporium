@@ -5,7 +5,9 @@ import NavDropdown from 'react-bootstrap/NavDropdown'
 import { Link, useNavigate } from 'react-router-dom'
 
 import brandLogo from '../../assets/images/logo-figma3.png'
-import cartLogo from '../../assets/images/cart-logo.png'
+import logoOrOr from '../../assets/images/logo-or-or.png'
+import cartLogo from '../../assets/images/cart2.png'
+import arrow from '../../assets/images/arrow.png'
 
 import { useState, useEffect, useCallback } from 'react'
 import axios from 'axios'
@@ -18,12 +20,27 @@ function Nav2({ selected, typed, setSelected, setTyped, basketCounter, username 
   const [selectSize, setSelectSize] = useState('small')
   const [errors, setErrors] = useState(false)
   const [userData, setUserData] = useState(null)
+  const [showLeft, setShowLeft] = useState(false)
+  const [showRight, setShowRight] = useState(false)
   // const [basketCounter, setBasketCounter] = useState(0)
 
   getToken()
   const currentUserPayload = getPayload()
   const currentUserId = currentUserPayload.sub
   // console.log('user id', currentUserId)
+
+  const showDropdownRight = (e) => {
+    setShowRight(!showRight)
+  }
+  const hideDropdownRight = e => {
+    setShowRight(false)
+  }
+  const showDropdownLeft = (e) => {
+    setShowLeft(!showLeft)
+  }
+  const hideDropdownLeft = e => {
+    setShowLeft(false)
+  }
 
   const getUserData = async () => {
     try {
@@ -72,10 +89,11 @@ function Nav2({ selected, typed, setSelected, setTyped, basketCounter, username 
         <div className='flex-navs'>
           < Navbar className='navigation-flex'>
             <Navbar.Brand as={Link} to='/' className='nav-brand brand-logo' id='logo-left'><img src={brandLogo} /></Navbar.Brand>
+            <Navbar.Brand as={Link} to='/' className='nav-brand brand-logo' id='logo-left-or-or'><img src={logoOrOr} /></Navbar.Brand>
             {/* <Link className='nav-link' to='/trends' id='trend'>Trends</ Link> */}
             {isAuthenticated() &&
               <Nav className='nav-items-container' id='dropdown-left'>
-                <NavDropdown className='nav-link basic-nav-dropdown' title={userData ? `Hello, ${username}` : 'Hello!'} id="dropdown-left">
+                <NavDropdown show={showLeft} onMouseEnter={showDropdownLeft} onMouseLeave={hideDropdownLeft} className='basic-nav-dropdown' title={userData ? <div className='flex-nav-account'><p>Hello, {username}</p><h5>Account & Lists</h5></div> : <p>ho</p>} id="dropdown-left">
                   <>
                     <NavDropdown.Item as={Link} to='/' >Home</NavDropdown.Item>
                     <NavDropdown.Item as={Link} to='/profile' >Account</NavDropdown.Item>
@@ -120,7 +138,7 @@ function Nav2({ selected, typed, setSelected, setTyped, basketCounter, username 
             </div>
             {isAuthenticated() &&
               <Nav className='nav-items-container'>
-                <NavDropdown className='basic-nav-dropdown' title={userData ? `Hello, ${username}` : 'Hello!'} id="dropdown-right">
+                <NavDropdown show={showRight} onMouseEnter={showDropdownRight} onMouseLeave={hideDropdownRight} className='basic-nav-dropdown' title={userData ? <div className='flex-nav-account'><p>Hello, {username}</p><h5>Account & Lists</h5></div> : <p>ho</p>} id="dropdown-right">
 
                   <>
                     <NavDropdown.Item as={Link} to='/' >Home</NavDropdown.Item>
@@ -138,10 +156,11 @@ function Nav2({ selected, typed, setSelected, setTyped, basketCounter, username 
             }
             <Navbar.Brand as={Link} className='nav-brand brand-logo' id='logo-right' to='/'><img src={brandLogo} /></Navbar.Brand>
             {isAuthenticated() ?
-              <div className="nav-flex-p">
+              <Link className='nav-link nav-link-relative' to='/basket'>
+
+                <img src={cartLogo} />
                 <p>{basketCounter}</p>
-                <Link className='nav-link nav-link-relative' to='/basket'><img src={cartLogo} /></ Link>
-              </div>
+              </Link>
               :
               <Link className='nav-link' to='/login'>Sign In</ Link>
             }
@@ -182,9 +201,9 @@ function Nav2({ selected, typed, setSelected, setTyped, basketCounter, username 
             <Navbar.Brand as={Link} className='nav-brand brand-logo' id='logo-left' to='/'><img src={brandLogo} /></Navbar.Brand>
             {/* <Link className='nav-link' to='/trends' id='trend'>Trends</ Link> */}
 
-            {isAuthenticated() &&
+            {/* {isAuthenticated() &&
               <Nav className='nav-items-container' id='dropdown-left'>
-                <NavDropdown className='nav-link basic-nav-dropdown' title={userData ? `Hello, ${username}` : 'Hello!'} id="dropdown-left">
+                <NavDropdown show={show} onMouseEnter={showDropdown} onMouseLeave={hideDropdown} className='basic-nav-dropdown' title={userData ? <div className='flex-nav-account'><p>Hello, {username}</p><h5>Account & Lists</h5></div> : <p>ho</p>} id="dropdown-left">
                   <>
                     <NavDropdown.Item as={Link} to='/' >Home</NavDropdown.Item>
                     <NavDropdown.Item as={Link} to='/profile' >Account</NavDropdown.Item>
@@ -198,7 +217,7 @@ function Nav2({ selected, typed, setSelected, setTyped, basketCounter, username 
                   </>
                 </NavDropdown>
               </Nav>
-            }
+            } */}
 
             <div className='flex-search' id='top-search'>
               <select onChange={handleSelect} name="filter-style" className="select-nav select-big" value={selected}>
@@ -228,9 +247,9 @@ function Nav2({ selected, typed, setSelected, setTyped, basketCounter, username 
               <input className='input-nav' type="text" placeholder='search' value={typed} onChange={handleChange} />
             </div>
 
-            {isAuthenticated() &&
+            {/* {isAuthenticated() &&
               <Nav className='nav-items-container'>
-                <NavDropdown className='nav-link basic-nav-dropdown' title={userData ? `Hello, ${username}` : 'Hello!'} id="dropdown-right">
+                <NavDropdown show={show} onMouseEnter={showDropdown} onMouseLeave={hideDropdown} className='basic-nav-dropdown' title={userData ? <div className='flex-nav-account'><p>Hello, {username}</p><h5>Account & Lists</h5></div> : <p>ho</p>} id="dropdown-right">
                   <>
                     <NavDropdown.Item as={Link} to='/' >Home</NavDropdown.Item>
                     <NavDropdown.Item as={Link} to='/profile' >Account</NavDropdown.Item>
@@ -244,13 +263,17 @@ function Nav2({ selected, typed, setSelected, setTyped, basketCounter, username 
                   </>
                 </NavDropdown>
               </Nav>
-            }
+            } */}
 
             <Navbar.Brand as={Link} className='nav-brand brand-logo' id='logo-right' to='/'><img src={brandLogo} /></Navbar.Brand>
-            <div className="nav-flex-p">
+            <Link className='nav-link nav-link-relative' to='/basket'>
+              <img src={cartLogo} />
+              <p>{basketCounter}</p>
+            </Link>
+            {/* <div className="nav-flex-p">
               <p>{basketCounter}</p>
               <Link className='nav-link nav-link-relative' to='/basket'><img src={cartLogo} /></ Link>
-            </div>
+            </div> */}
           </Navbar >
           <div id='nav-bottom'>
             <div className='flex-search'>

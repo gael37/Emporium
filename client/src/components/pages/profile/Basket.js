@@ -384,15 +384,15 @@ const Basket = ({ basketCounter, setBasketCounter, postcode, setPostcode }) => {
                     {postcodeEntered ?
                       <>
                         <div className="flex-validate">
-                          <p className='modal-p-validate'><span>Valid postcode</span></p>
+                          <p className='modal-p-validate'>Valid postcode</p>
                           <img src={validate} alt='valid' />
                         </div>
                         {/* <button className='yellow-button button-submit-change-adress' onClick={onSubmit}>Submit</button> */}
                       </>
                       :
                       <>
-                        <div className="flex-validate">
-                          <p className='modal-p-invalidate'>Invalid postcode</p>
+                        <div className="flex-invalidate">
+                          <p>Invalid postcode</p>
                           {/* <img src={validate} alt='valid' /> */}
                         </div>
                       </>

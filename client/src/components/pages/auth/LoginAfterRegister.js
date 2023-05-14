@@ -5,6 +5,9 @@ import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { setToken } from '../../../helpers/auth'
 
+import validate from '../../../assets/images/validate.png'
+
+
 // Bootstrap Components
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
@@ -52,6 +55,10 @@ const Login = () => {
   return (
 
     <main className="login-form-page">
+      <div className="flex-validate flex-validate-login">
+        <img src={validate} alt='in basket'></img>
+        <p><span>Emporium account successfully created!</span></p>
+      </div>
       <div className='login-form-page-image'>
         <img src={logoSlogan} />
       </div>
@@ -83,7 +90,7 @@ const Login = () => {
         {/* Error Message */}
         {error && <small className='text-danger'>{error}</small>}
         {/* Submit */}
-        <button className='yellow-button login-button'>Sign in</button>
+        <button className='login-button'>Sign in</button>
       </form>
       <br />
       <p>New to emporium?</p>

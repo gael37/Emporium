@@ -15,6 +15,8 @@ import threeStars from '../../../assets/images/three-stars.png'
 import fourStars from '../../../assets/images/four-stars.png'
 import fiveStars from '../../../assets/images/five-stars.png'
 import validate from '../../../assets/images/validate.png'
+import info from '../../../assets/images/info-icon.png'
+
 
 // Bootstrap Components
 import Container from 'react-bootstrap/Container'
@@ -498,6 +500,11 @@ const SingleProduct = ({ setBasketCounter, postcode, setPostcode }) => {
     }
   }
 
+
+  const goLogin = () => {
+    navigate('/login')
+  }
+
   return (
     <>
 
@@ -603,7 +610,10 @@ const SingleProduct = ({ setBasketCounter, postcode, setPostcode }) => {
                   {(product.about) &&
                     <>
                       <p className='about-title'><strong>About this item</strong></p>
-                      <p className='single-card-about'><pre>{product.about}</pre></p>
+                      <div>
+                        <p className='single-card-about'><pre>{product.about}</pre></p>
+
+                      </div>
                       {/* {product.about.split('- ').slice(1).map((paragraph, index) => {
                     return (
                       <p className='single-card-about' key={index}>• {paragraph}.</p>
@@ -625,7 +635,9 @@ const SingleProduct = ({ setBasketCounter, postcode, setPostcode }) => {
                 </div>
               </section>
 
-              <section className='single-section-basket'>
+
+
+              <section className='single-section-basket visibility1'>
                 <div className="flex-single-price-like">
                   <p className='single-card-price'>£{product.price}</p>
                   <div className='single-like'>
@@ -638,7 +650,6 @@ const SingleProduct = ({ setBasketCounter, postcode, setPostcode }) => {
                     }
                   </div>
                 </div>
-
                 <div className="single-deliver">
                   <h6>Deliver to</h6>
                   <div className="single-deliver flex-deliver-basket">
@@ -690,7 +701,15 @@ const SingleProduct = ({ setBasketCounter, postcode, setPostcode }) => {
                     </div>
                   </Modal.Body>
                 </Modal>
-
+                {!userData &&
+                  <div className='no-user'>
+                    <p className='yellow-button p-button'>Add to basket</p>
+                    <div className="flex-validate flex-info-no-user single-info-no-user">
+                      <img src={info} alt='in basket'></img>
+                      <h6>Please <button className='button-adress' onClick={goLogin}>sign in</button> to add to basket or to add to wishlist</h6>
+                    </div>
+                  </div>
+                }
                 {product.added_to_basket.some((basket) => {
                   return basket.basket_owner.id === currentUserId
                 }) ?
@@ -713,11 +732,20 @@ const SingleProduct = ({ setBasketCounter, postcode, setPostcode }) => {
                     <button className='yellow-button' onClick={() => removeAll(product)}>Remove from basket</button>
                   </>
                   :
-                  <button className='yellow-button' onClick={() => handleBasketAdd(product)}>Add to basket</button>
+                  <>
+                    {/* <div className='flex-in-basket'>
+                    </div> */}
+                    {userData &&
+                      <button className='yellow-button' onClick={() => handleBasketAdd(product)}>Add to basket</button>
+                    }
+                  </>
                 }
-                <button className='yellow-button' onClick={() => goToBasket()}>Go to basket</button>
-
+                {userData &&
+                  <button className='yellow-button' onClick={() => goToBasket()}>Go to basket</button>
+                }
               </section>
+
+
             </>
             :
             errors ? <h2>Something went wrong! Please try again later!</h2> : <h2>Loading</h2>
@@ -815,6 +843,8 @@ const SingleProduct = ({ setBasketCounter, postcode, setPostcode }) => {
                 </div>
               )
             })}
+          {product && product.comments.length === 0 &&
+            <p>This item has not been reviewed yet.</p>}
         </section>
 
       </main >

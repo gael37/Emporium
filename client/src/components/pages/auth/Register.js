@@ -12,6 +12,14 @@ import Row from 'react-bootstrap/Row'
 
 import { getToken, getPayload } from '../../../helpers/auth'
 
+import dropImage from '../../../assets/images/drop.png'
+import validate from '../../../assets/images/validate.png'
+import gif from '../../../assets/gifs/loading4.gif'
+import logoSlogan from '../../../assets/images/logo-figma2.png'
+
+
+
+
 
 const Register = () => {
 
@@ -20,6 +28,8 @@ const Register = () => {
   const navigate = useNavigate()
 
   // ! State
+  const [loading, setLoading] = useState(false)
+
   const [formFields, setFormFields] = useState({
     username: '',
     email: '',
@@ -57,7 +67,7 @@ const Register = () => {
       await axios.post('/api/auth/register/', { ...formFields, image: imagesString })
       console.log('Register successful')
       // We can then use that function, passing in the path we want to follow, and it will redirect us
-      navigate('/login')
+      navigate('/login-after-register')
     } catch (err) {
       if (formFields.password !== formFields.password_confirmation) {
         setErrors({
@@ -141,6 +151,7 @@ const Register = () => {
     try {
       const { data } = await axios.get(`https://api.postcodes.io/postcodes/${e.target.value}/`)
       setPostcodeData(data)
+      setPostcodeError(null)
     } catch (err) {
       console.log(err)
       setPostcodeError(err)
@@ -148,142 +159,181 @@ const Register = () => {
     }
   }
 
-  return (
-    <div className='register-page-wrapper'>
-      <main className="form-page">
-        <Container className='mt-4'>
-          <Row>
-            <div className='col-10 offset-1 col-md-6 offset-md-3 col-lg-4 offset-lg-4'>
-              <form onSubmit={handleSubmit}>
-                <h1>Register</h1>
-                {/* Username */}
-                <label htmlFor="username">Username <span>*</span></label>
-                <input
-                  type="text"
-                  name="username"
-                  onChange={handleChange}
-                  value={formFields.username}
-                  placeholder="Username"
-                  required
-                />
-                {/* Email */}
-                <label htmlFor="email">Email <span>*</span></label>
-                <input
-                  type="email"
-                  name="email"
-                  onChange={handleChange}
-                  value={formFields.email}
-                  placeholder="Email Address"
-                  required
-                />
-                {/* Postcode */}
-                <label htmlFor="email">Postcode <span>*</span></label>
-                <input
-                  type="text"
-                  name="postcode"
-                  onChange={handleChangePostcode}
-                  value={formFields.postcode}
-                  placeholder="Postcode"
-                  required
-                />
-                {postcodeData ?
-                  <p>POSTCODE VALID! ✅</p>
-                  :
-                  <p>Oops! That does not appear to be a valid postcode 🙊</p>}
-                {/* Image */}
-                <label>Upload a profile image:</label>
-                <section>
-                  <div {...getRootProps({ className: 'dropzone' })}>
-                    <input className="blog-form-input" {...getInputProps()} />
-                    <div className="blog-form-input">
-                      {isDragActive ?
-                        <p className="dropzone-content">
-                          Release to drop the file here</p>
-                        :
-                        <p className="dropzone-content">
-                          Drag and drop your image here, or click this box
-                        </p>
-                      }
-                    </div>
-                  </div>
-                  {selectedImages.length > 0 &&
-                    (selectedImages.length > 1 ? (
-                      <p className="error">
-                        You can&apos;t upload more than one image! <br />
-                        <span>
-                          please delete <b> {selectedImages.length - 1} </b> of them{' '}
-                        </span>
-                      </p>
-                    ) : (
-                      <p>Image uploaded! ✅</p>
-                    ))}
+  const goLogin = () => {
+    navigate('/login')
+  }
 
-                  <div className="images">
-                    {selectedImages &&
-                      selectedImages.map((image, index) => {
-                        return (
-                          <div key={image} className="image">
-                            <img src={image} height="50" width="50" alt="upload" />
-                            <button onClick={() => deleteHandler(image)}>
-                              delete image
-                            </button>
+  return (
+    <main className="login-form-page">
+      <div className='login-form-page-image'>
+        <img src={logoSlogan} />
+      </div>
+      <form className="login-form" onSubmit={handleSubmit}>
+        <h1>Register</h1>
+        {/* Username */}
+        <label htmlFor="username">Username <span>*</span></label>
+        < input
+          type="text"
+          name="username"
+          onChange={handleChange}
+          value={formFields.username}
+          placeholder="Username"
+          required
+        />
+        {/* Email */}
+        < label htmlFor="email" > Email < span >*</span ></label >
+        <input
+          type="email"
+          name="email"
+          onChange={handleChange}
+          value={formFields.email}
+          placeholder="Email Address"
+          required
+        />
+        {/* Postcode */}
+        <label htmlFor="email">Postcode <span>*</span></label>
+        <input
+          type="text"
+          name="postcode"
+          onChange={handleChangePostcode}
+          value={formFields.postcode}
+          placeholder="Postcode"
+          required
+        />
+        {
+          postcodeData ?
+            <div className="flex-validate">
+              <p className='modal-p-validate'><span>Valid postcode</span></p>
+              <img src={validate} alt='valid' />
+            </div>
+            :
+
+            <div className="flex-invalidate">
+              {formFields.postcode.length > 4 &&
+                <p className='modal-p-invalidate'>Invalid postcode</p>
+              }
+              {/* <img src={validate} alt='valid' /> */}
+            </div>
+        }
+        {/* Image */}
+        <label>Upload a profile image:</label>
+        <div className='section-upload'>
+          <div {...getRootProps({ className: 'dropzone' })}>
+            <input className="blog-form-input" {...getInputProps()} />
+            <div className="dropzone-flex">
+              {isDragActive ?
+                <p className="dropzone-content">
+                  Release to drop the file here</p>
+                :
+                <div className="dropzone-content">
+                  <p>Drag and drop your image here<br></br>or click this box</p>
+                  <img src={dropImage}></img>
+                </div>
+              }
+            </div>
+          </div>
+        </div>
+        {
+          loading &&
+          <div className='flex-loading'>
+            <img className='loading-gif' src={gif} alt='loading'></img>
+            <p>Uploading images, please wait...</p>
+          </div>
+        }
+        {
+          selectedImages.length > 0 ?
+            <div className='images-uploaded'>
+
+              {selectedImages.length > 0 &&
+                (selectedImages.length > 1 ? (
+                  <p className="error">
+                    You can&apos;t upload more than one image! <br />
+                    <span>
+                      Please delete <b> {selectedImages.length - 1} </b> of them{' '}
+                    </span>
+                  </p>
+                ) : (
+                  <p>Image uploaded! ✅</p>
+                ))}
+
+              <div className="images">
+                {selectedImages &&
+                  selectedImages.map((image, index) => {
+                    return (
+                      <div key={image} className="image">
+                        <div className="flex-delete-image">
+                          <div className="flex-number-image">
                             <p>{index + 1}</p>
                           </div>
-                        )
-                      })}
-                  </div>
-                </section>
-                {/* Generic Message Error */}
-                {errors && errors.message && <small className='text-danger'>{errors.message}</small>}
-                {/* Upload status */}
-                {selectedImages.length > 0 &&
-                  (selectedImages.length > 1 ? (
-                    <p className="error" >Oops! Looks like you have selected too many images!</p>
-                  ) : (
-                    <p className="error" >Image succesfully uploaded! ✅</p>
-                  ))}
+                          <img src={image} height="50" width="50" alt="upload" />
+                          <button className='button-adress' onClick={() => deleteHandler(image)}>
+                            delete
+                          </button>
+                        </div>
+                      </div>
 
-                {/* Password */}
-                <label htmlFor="password">Password <span>*</span></label>
-                <input
-                  type="password"
-                  name="password"
-                  onChange={handleChange}
-                  value={formFields.password}
-                  placeholder="Password"
-                  required
-                />
-                {/* PasswordConfirmation */}
-                <label htmlFor="passwordConfirmation">Confirm Password <span>*</span></label>
-                <input
-                  type="password"
-                  name="password_confirmation"
-                  onChange={handleChange}
-                  value={formFields.password_confirmation}
-                  placeholder="Confirm Password"
-                  required
-                />
-                {/* Error Message */}
-                {errors && <small className='text-danger'>{errors}</small>
-                }
-                {passError && <small className='text-danger'>{passError}</small>
-                }
-                {/* Submit */}
-                {selectedImages.length > 0 &&
-                  (selectedImages.length > 1 ? (
-                    <>
-                      <p className="error" >Keep only one image if you wan&apos;t to create an account!</p>
-                      <button className='btn-form' >Register greyed out</button>
-                    </>
-                  ) : (
-                    <button className='btn-form' >Register</button>
-                  ))}
-              </form>
+                    )
+                  })}
+              </div>
             </div>
-          </Row>
-        </Container>
-      </main>
-    </div >
+            :
+            <div className='no-images-uploaded'>
+              <p>No image yet...</p>
+            </div>
+        }
+        {/* Generic Message Error */}
+        {errors && errors.message && <small className='text-danger'>{errors.message}</small>}
+
+
+        {/* Password */}
+        <label htmlFor="password">Password <span>*</span></label>
+        <input
+          type="password"
+          name="password"
+          onChange={handleChange}
+          value={formFields.password}
+          placeholder="Password"
+          required
+        />
+        {/* PasswordConfirmation */}
+        <label htmlFor="passwordConfirmation">Confirm Password <span>*</span></label>
+        <input
+          type="password"
+          name="password_confirmation"
+          className='pass-input'
+          onChange={handleChange}
+          value={formFields.password_confirmation}
+          placeholder="Confirm Password"
+          required
+        />
+        {/* Error Message */}
+        {
+          errors && <small className='text-danger'>{errors}</small>
+        }
+        {
+          passError && <small className='text-danger'>{passError}</small>
+        }
+        {/* Submit */}
+        {postcodeError &&
+          <div className='too-many-images'>
+            <p className="error" ><span>Please enter a valid postcode</span></p>
+            <p className='regular-button greyed-button' >Register</p>
+          </div>
+        }
+        {postcodeData && selectedImages.length < 2 &&
+          <button className='yellow-button'>Register</button>
+        }
+        {postcodeData && (selectedImages.length > 1) &&
+          <div className='too-many-images'>
+            <p className="error" ><span>Please keep only one image</span></p>
+            <p className='regular-button greyed-button' >Register</p>
+          </div>
+        }
+      </form >
+      <br></br>
+      <p>Already have an emporium account?</p>
+      <button className='button-adress' onClick={goLogin}>Sign in</button>
+    </main >
   )
 }
 

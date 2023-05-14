@@ -2,15 +2,15 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { useState } from 'react'
 import Container from 'react-bootstrap/Container'
 
-import Nav2 from './components/common/Nav2'
+import NavigationBar from './components/common/NavigationBar'
 
 import Home from './components/pages/Home'
 import WishList from './components/pages/profile/WishList'
-
 import SingleProduct from './components/pages/products/SingleProduct'
 import EditProduct from './components/pages/products/EditProduct'
 import DeleteProduct from './components/pages/products/DeleteProduct'
 import Login from './components/pages/auth/Login'
+import LoginAfterRegister from './components/pages/auth/LoginAfterRegister'
 import Register from './components/pages/auth/Register'
 import Profile from './components/pages/profile/Profile'
 import EditProfile from './components/pages/profile/EditProfile'
@@ -42,7 +42,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Nav2 selected={selected} typed={typed} setSelected={setSelected} setTyped={setTyped} basketCounter={basketCounter} username={username} />
+      <NavigationBar selected={selected} typed={typed} setSelected={setSelected} setTyped={setTyped} basketCounter={basketCounter} username={username} />
       <Routes>
         <Route path="/" element={<Home selected={selected} typed={typed} setSelected={setSelected} setTyped={setTyped} setBasketCounter={setBasketCounter} setUsername={setUsername} />} />
         <Route path="/profile" element={<Profile />} />
@@ -62,6 +62,7 @@ function App() {
         <Route path="/delete-account" element={<DeleteProfile />} />
         <Route path="/are-you-sure" element={<AreYouSure />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/login-after-register" element={<LoginAfterRegister />} />
         <Route path="/register" element={<Register />} />
         <Route path="/success" element={<Success />} />
         <Route path="/cancel" element={<Cancel setBasketCounter={setBasketCounter} />} />
