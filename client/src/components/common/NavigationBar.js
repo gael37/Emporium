@@ -9,6 +9,13 @@ import cartLogo from '../../assets/images/cart2.png'
 import cart from '../../assets/images/cart.png'
 import arrow from '../../assets/images/arrow.png'
 import bars from '../../assets/images/3bars.png'
+import sell from '../../assets/images/sell.png'
+import account from '../../assets/images/details.png'
+import home from '../../assets/images/home.png'
+import orders from '../../assets/images/orders.png'
+import wishlist from '../../assets/images/wishlist.png'
+import onSale from '../../assets/images/on-sale.png'
+import logout from '../../assets/images/logout.png'
 
 
 import { useState, useEffect, useCallback } from 'react'
@@ -89,26 +96,26 @@ function NavigationBar({ selected, typed, setSelected, setTyped, basketCounter, 
       <div className='flex-navs'>
         < Navbar className='navigation-flex'>
           <Nav className='nav-items-container' id='drop-mobile'>
-            <NavDropdown className='basic-nav-dropdown hover-underline-animation2' title={<img src={bars}></img>} id="dropdown-right">
+            <NavDropdown className='basic-nav-dropdown hover-underline-animation2' title={<img className='img-nav-bars' src={bars}></img>} id="dropdown-small">
 
               <>
-                <NavDropdown.Item as={Link} to='/' >Home</NavDropdown.Item>
-                <NavDropdown.Item as={Link} to='/profile' >Account</NavDropdown.Item>
-                <NavDropdown.Item as={Link} to='/orders' >Orders</NavDropdown.Item>
-                <NavDropdown.Item as={Link} to='/wish-list' >Saved For Later</NavDropdown.Item>
-                <NavDropdown.Item as={Link} to='/products/new' >Sell new item</NavDropdown.Item>
-                <NavDropdown.Item as={Link} to='/on-sale' >My on-sale items</NavDropdown.Item>
+                <NavDropdown.Item as={Link} to='/' ><div className='flex-nav-item'><img src={home} className='img-nav padding-bottom-xs' />Home</div></NavDropdown.Item>
+                <NavDropdown.Item as={Link} to='/profile' ><div className='flex-nav-item'><img src={account} className='img-nav' />Account</div></NavDropdown.Item>
+                <NavDropdown.Item as={Link} to='/orders' ><div className='flex-nav-item'><img src={orders} className='img-nav' />Orders</div></NavDropdown.Item>
+                <NavDropdown.Item as={Link} to='/wish-list' ><div className='flex-nav-item'><img src={wishlist} className='img-nav' />Saved For Later</div></NavDropdown.Item>
+                <NavDropdown.Item as={Link} to='/products/new' ><div className='flex-nav-item'><img src={sell} className='img-nav' />Sell new item</div></NavDropdown.Item>
+                <NavDropdown.Item as={Link} to='/on-sale' ><div className='flex-nav-item'><img src={onSale} className='img-nav' />On-sale items</div></NavDropdown.Item>
 
                 <NavDropdown.Divider />
-                <NavDropdown.Item onClick={() => handleLogout(navigate)} >Sign Out</NavDropdown.Item>
+                <NavDropdown.Item onClick={() => handleLogout(navigate)} ><div className='flex-nav-item'><img src={logout} />Sign Out</div></NavDropdown.Item>
               </>
             </NavDropdown>
           </Nav>
           <Navbar.Brand as={Link} className='nav-brand brand-logo hover-underline-animation1' to='/' id='logo-big-screen'><img src={brandLogo} /></Navbar.Brand>
 
-          {!isAuthenticated() &&
+          {/* {!isAuthenticated() &&
             <Link className='nav-link' to='/login' >Sign in</ Link>
-          }
+          } */}
           <div className='flex-search' id='top-search'>
             {selectSize === 'small' &&
               <select onChange={handleSelect} name="filter-style" className="select-nav select-small" value={selected}>
@@ -193,18 +200,18 @@ function NavigationBar({ selected, typed, setSelected, setTyped, basketCounter, 
           {isAuthenticated() &&
             <>
               <Nav className='nav-items-container' id='drop-desktop'>
-                <NavDropdown className='basic-nav-dropdown hover-underline-animation2' title={userData ? <div className='flex-nav-account'><p>Hello, {username}</p><h5>Account & Lists</h5></div> : <p>ho</p>} id="dropdown-right">
+                <NavDropdown id='dropdown-right' className='basic-nav-dropdown hover-underline-animation2' title={userData ? <div className='flex-nav-account'><p>Hello, {username}</p><h5>Account & Lists</h5></div> : <p>ho</p>}>
 
                   <>
-                    <NavDropdown.Item as={Link} to='/' >Home</NavDropdown.Item>
-                    <NavDropdown.Item as={Link} to='/profile' >Account</NavDropdown.Item>
-                    <NavDropdown.Item as={Link} to='/orders' >Orders</NavDropdown.Item>
-                    <NavDropdown.Item as={Link} to='/wish-list' >Saved For Later</NavDropdown.Item>
-                    <NavDropdown.Item as={Link} to='/products/new' >Sell new item</NavDropdown.Item>
-                    <NavDropdown.Item as={Link} to='/on-sale' >My on-sale items</NavDropdown.Item>
+                    <NavDropdown.Item as={Link} to='/' ><div className='flex-nav-item'><img src={home} />Home</div></NavDropdown.Item>
+                    <NavDropdown.Item as={Link} to='/profile' ><div className='flex-nav-item'><img src={account} />Account</div></NavDropdown.Item>
+                    <NavDropdown.Item as={Link} to='/orders' ><div className='flex-nav-item'><img src={orders} />Orders</div></NavDropdown.Item>
+                    <NavDropdown.Item as={Link} to='/wish-list' ><div className='flex-nav-item'><img src={wishlist} />Saved For Later</div></NavDropdown.Item>
+                    <NavDropdown.Item as={Link} to='/products/new' ><div className='flex-nav-item'><img src={sell} />Sell new item</div></NavDropdown.Item>
+                    <NavDropdown.Item as={Link} to='/on-sale' ><div className='flex-nav-item'><img src={onSale} />On-sale items</div></NavDropdown.Item>
 
                     <NavDropdown.Divider />
-                    <NavDropdown.Item onClick={() => handleLogout(navigate)} >Sign Out</NavDropdown.Item>
+                    <NavDropdown.Item onClick={() => handleLogout(navigate)} ><div className='flex-nav-item'><img src={logout} />Sign Out</div></NavDropdown.Item>
                   </>
                 </NavDropdown>
               </Nav>
@@ -224,7 +231,7 @@ function NavigationBar({ selected, typed, setSelected, setTyped, basketCounter, 
             </Link>
           }
           {!isAuthenticated() &&
-            <Link className='nav-link hover-underline-animation1' to='/login' id='login-desktop'>Sign in</ Link>
+            <Link className='nav-link hover-underline-animation2' to='/login' id='login-link'>Sign in</ Link>
           }
         </Navbar >
         <div id='nav-bottom'>

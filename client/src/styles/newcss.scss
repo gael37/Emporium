@@ -31,8 +31,9 @@ h1 {
 
 .bootstrap-link {
   &:hover {
-    color: white;
+    color: black;
   }
+
 }
 
 .card-link {
@@ -281,6 +282,18 @@ h1 {
   display: none;
 }
 
+#login-link {
+  margin-right: 25px;
+}
+
+#dropdown-right {
+  img {
+    margin: 0;
+    padding: 0;
+  }
+
+}
+
 .dropdown-menu {
   transform: translate(-5px, 6px);
   // border: 2px solid $tertiary-darker;
@@ -300,8 +313,8 @@ h1 {
   display: none;
 
   img {
-    height: 40px;
-    padding-top: 3px;
+    // height: 40px;
+    // padding-top: 3px;
   }
 
   ::after {
@@ -550,6 +563,33 @@ h1 {
     outline: none;
   }
 }
+
+
+
+
+.flex-nav-item {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  img {
+    height: 30px;
+    // margin-right: 10px;
+    margin-right: 10px;
+    // padding-left: 0;
+    padding: 0;
+  }
+}
+
+// .dropdown-item {
+//   img {
+//     height: 30px;
+//     // margin-right: 10px;
+//     margin: 0;
+//     // padding-left: 0;
+//     padding: 0;
+//   }
+// }
 
 .input-nav {
   border-left: none;
@@ -953,7 +993,7 @@ h1 {
 
 .bootstrap-link {
   text-decoration: none;
-  color: white;
+  color: black;
 }
 
 .flex-price-like {
@@ -2300,6 +2340,10 @@ h1 {
     margin: 0;
   }
 
+  #login-link {
+    margin-right: 0px;
+  }
+
   #nav-bottom {
     display: contents;
   }
@@ -2459,7 +2503,7 @@ h1 {
   }
 
   .navigation-flex {
-    height: 50px;
+    height: 70px;
   }
 
   .nav-brand {
@@ -2531,15 +2575,30 @@ h1 {
 
 }
 
+
+
 #drop-mobile {
+  .img-nav-bars {
+    height: 40px;
+  }
 
   // display: none;
+  transform: translateY(5px);
 
-  img {
-    height: 35px;
-    padding-top: 6px;
-    padding-left: 10px;
+  // img {
+  //   height: 35px;
+  //   padding-top: 6px;
+  //   padding-left: 10px;
+  // }
+
+  .flex-nav-item {
+    img {
+      height: 25px;
+      // padding-top: 6px;
+      // padding-left: 10px;
+    }
   }
+
 }
 
 
