@@ -1,0 +1,446 @@
+[
+  {
+    "model": "products.product",
+    "pk": 1,
+    "fields": {
+      "description": "Bosch Cordless Lawnmower CityMower 18V-32 (18 Volt, 1x Battery 2.5 Ah, Brushless Motor, Cutting Width: 32 cm, Lawns up to 300 m², in Carton Packaging)",
+      "price": "249.00",
+      "images": "https://res.cloudinary.com/dsrdfnxit/image/upload/v1683799006/bargain-api/tbc2rgqxupcfb3e87zr7.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683799006/bargain-api/w0oumfblfyiimzzq9h1w.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683799007/bargain-api/ixopg4w3shytntalyppi.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683799008/bargain-api/qxpids752uem3pktwbhj.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683799009/bargain-api/djtv7gdbscff68fjy2kc.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683799010/bargain-api/qsehn4rpb9rrnw6xp2wk.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683799011/bargain-api/fo0yhnbhwzytef2hvf2s.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683799012/bargain-api/n5whk6t8twptq0aqmp4w.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683799013/bargain-api/iia9m2fxxclbkjjxbtqh.jpg",
+      "created_at": "2023-05-11T09:57:00.536Z",
+      "dimensions": "‎32 x 30 x 81.28 cm",
+      "weight": "11.24 Kilograms",
+      "about": "Cordless freedom: thanks to the powerful Bosch 18V battery\nComfortable mowing with maximum control: adjustable Ergoflex handles ensure a healthy working posture while reducing strain on the arms and back\nMowing up to the edge: cut closer to edges, walls and fences thanks to the grass combs\nEasily adjusted cutting height: lever for selection of grass length between 30–60 mm\nScope of supply: CityMower 18V-32, 1 battery pack PBA 18V 4.0 Ah W-C, charger AL 1830 CV, carton packaging",
+      "owner": 1,
+      "stripe_id": "",
+      "categories": [
+        10,
+        14
+      ]
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 2,
+    "fields": {
+      "description": "Bosch Home and Garden Battery Pack PBA 18V (battery 2.5 Ah W-B, 18 Volt System, in carton packaging) Black",
+      "price": "34.95",
+      "images": "https://res.cloudinary.com/dsrdfnxit/image/upload/v1683799229/bargain-api/j8e3v8xl0pkoamhzirg8.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683799230/bargain-api/ymgxcvxs48qporrvrakn.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683799231/bargain-api/xfhqikt39ddsfsqslolh.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683799232/bargain-api/fzp2lcq9ctc6f2wqszo6.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683799233/bargain-api/tt482deph4xbw9i114hg.jpg",
+      "created_at": "2023-05-11T10:00:42.183Z",
+      "dimensions": "8.1 x 4.5 x 11.4 cm",
+      "weight": "410 Grams",
+      "about": "Powerful Lithium battery- usable on all tools of the 18 V Lithium-Ion “Power4All” system of Bosch . Type: PBA\nLithium-Ion battery: no memory effect and self-discharge, permanent availability\nLonger life thanks to electronic protection of the elements (ECP)\nWeight: 330 g",
+      "owner": 1,
+      "stripe_id": "",
+      "categories": [
+        9,
+        14
+      ]
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 3,
+    "fields": {
+      "description": "Samsung 43 Inch AU9010 Crystal UHD 4K HDR Smart TV (2021) - Dynamic Crystal Colour Image, Crystal 4K Processor, Alexa Built-In, Motion Xcelerator Gaming Software, Airslim Design With Voice Command [Energy Class G]",
+      "price": "349",
+      "images": "https://res.cloudinary.com/dsrdfnxit/image/upload/v1683799417/bargain-api/kth9utuics0tnih0yhze.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683799418/bargain-api/owvk0c7yleawvc0g5juy.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683799419/bargain-api/n38gaasqv01mignb2rwu.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683799419/bargain-api/nzz5gabmk5dchmyrjmho.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683799420/bargain-api/yqas0qt6ttfojxqnkkjs.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683799421/bargain-api/p9mru3nlfwdppkdmeszm.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683799422/bargain-api/whdxk8tqsrngmkmmgcnh.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683799423/bargain-api/ljncrkvgmgqxkq72pdxd.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683799424/bargain-api/sneflaivpr2la8bkheho.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683799425/bargain-api/d8badbxbdzp9mky3xeek.jpg",
+      "created_at": "2023-05-11T10:03:51.497Z",
+      "dimensions": "2.6D x 96.3W x 56.2H centimetres",
+      "weight": "",
+      "about": "Crystal 4K Ultra HD Processor With Dynamic Crystal Colour - Experience a stunning 4K picture that bursts out of the screen with Dynamic Crystal Colour technology that offers 64 times more shades than other UHD Smart TVs.\nLevel Up Your Gaming With Motion Xcelerator - Give your gaming a boost with Samsung’s unique dynamic refresh technology. Play on the big screen with a TV that can double the refresh speed and deliver VRR and 120Hz gaming-monitor performance.\nVirtual 3D Surround Sound - Object Tracking Sound LITE uses AI and your TV's bottom speakers to simulate overhead sounds. The result? Cinematic, 3D audio that follows the action all without the need for extra speakers.\nSmart TV Streaming & Built-In Voice Assistants Hub - Access all your favourite streaming apps at the touch of a button but also use voice command! Our Samsung UHD TV has a built in Alexa, Google and Bixby for control without the need for scrolling.\nStart Experiencing Samsung TVs - We believe a TV is more than something you watch. It should inspire, amaze, envelop and immerse you. From quality picture, to elegant design, our TVs push the boundaries of what is possible and what a TV can be.",
+      "owner": 1,
+      "stripe_id": "",
+      "categories": [
+        9,
+        14
+      ]
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 4,
+    "fields": {
+      "description": "Johann Sebastian Bach - 10 CDs - Symphonies, Piano Sonatas, Piano Concertos",
+      "price": "33.99",
+      "images": "https://res.cloudinary.com/dsrdfnxit/image/upload/v1683799686/bargain-api/cgb3dtnlq9uwrbfrr7gp.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683799687/bargain-api/ublrqwrslw6qpnur84pa.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683799703/bargain-api/vcg9suqox6mrxxyzxswz.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683799704/bargain-api/v7s6ff7ys4xqyqikb7lo.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683799705/bargain-api/u6iwjgprtrfbho5ojtko.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683799706/bargain-api/sarcktyqzlzku2ches1k.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683799706/bargain-api/x8frogy9wl5ckpi5c2we.jpg",
+      "created_at": "2023-05-11T10:08:34.920Z",
+      "dimensions": "",
+      "weight": "",
+      "about": "",
+      "owner": 1,
+      "stripe_id": "",
+      "categories": [
+        6
+      ]
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 5,
+    "fields": {
+      "description": "Sea Sounds CD - Relaxing Natural Sounds Of The Ocean Waves - For Relaxation, Sleep, Stress and Anxiety Relief, Meditation and Tinnitus",
+      "price": "8.97",
+      "images": "https://res.cloudinary.com/dsrdfnxit/image/upload/v1683802371/bargain-api/xjseoahv82vlhk9xqcf0.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683802372/bargain-api/uv45ms8nwbsklcyeuvbd.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683802372/bargain-api/bgh1til38zoqafwyokwo.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683802374/bargain-api/ebgqimf19lroam75ansq.jpg",
+      "created_at": "2023-05-11T10:53:00.700Z",
+      "dimensions": "",
+      "weight": "",
+      "about": "",
+      "owner": 1,
+      "stripe_id": "",
+      "categories": [
+        6
+      ]
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 6,
+    "fields": {
+      "description": "The Beatles: Get Back",
+      "price": "27.25",
+      "images": "https://res.cloudinary.com/dsrdfnxit/image/upload/v1683802795/bargain-api/nytgf9ztbehjxdtr8aga.jpg",
+      "created_at": "2023-05-11T11:00:18.826Z",
+      "dimensions": "",
+      "weight": "",
+      "about": "",
+      "owner": 1,
+      "stripe_id": "",
+      "categories": [
+        6
+      ]
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 7,
+    "fields": {
+      "description": "The Essential Alan Jackson",
+      "price": "10.80",
+      "images": "https://res.cloudinary.com/dsrdfnxit/image/upload/v1683830176/bargain-api/vscr9obkndac9fcs6fks.jpg",
+      "created_at": "2023-05-11T18:36:31.222Z",
+      "dimensions": "",
+      "weight": "",
+      "about": "Audio CD",
+      "owner": 1,
+      "stripe_id": "",
+      "categories": [
+        6
+      ]
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 9,
+    "fields": {
+      "description": "100 Songs Relax - Instrumental Relaxing Music, Nature Sounds, Lounge, Chillout, Spa and Meditation Music [4CDs]",
+      "price": "16.99",
+      "images": "https://res.cloudinary.com/dsrdfnxit/image/upload/v1683830370/bargain-api/xt84waawtbqtdsgpr2hp.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683830372/bargain-api/drdkk3mdhkne0bv2lg4u.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683830373/bargain-api/u40etphssi6ovx9prij0.jpg",
+      "created_at": "2023-05-11T18:39:41.706Z",
+      "dimensions": "",
+      "weight": "",
+      "about": "",
+      "owner": 1,
+      "stripe_id": "",
+      "categories": [
+        6
+      ]
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 10,
+    "fields": {
+      "description": "Elon Musk: How the Billionaire CEO of SpaceX and Tesla is Shaping our Future Hardcover – 21 May 2015",
+      "price": "9.09",
+      "images": "https://res.cloudinary.com/dsrdfnxit/image/upload/v1683830589/bargain-api/qh9pmkgcbw9kbmkvaaz0.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683830685/bargain-api/s4dweirkfw7scvlfbx9q.jpg",
+      "created_at": "2023-05-11T18:44:57.215Z",
+      "dimensions": "",
+      "weight": "",
+      "about": "South African born Elon Musk is the renowned entrepreneur and innovator behind PayPal, SpaceX, Tesla, and SolarCity. Musk wants to save our planet; he wants to send citizens into space, to form a colony on Mars; he wants to make money while doing these things; and he wants us all to know about it. He is the real-life inspiration for the Iron Man series of films starring Robert Downey Junior.\n\nThe personal tale of Musk’s life comes with all the trappings one associates with a great, drama-filled story. He was a freakishly bright kid who was bullied brutally at school, and abused by his father. In the midst of these rough conditions, and the violence of apartheid South Africa, Musk still thrived academically and attended the University of Pennsylvania, where he paid his own way through school by turning his house into a club and throwing massive parties.\n\nHe started a pair of huge dot-com successes, including PayPal, which eBay acquired for $1.5 billion in 2002. Musk was forced out as CEO and so began his lost years in which he decided to go it alone and baffled friends by investing his fortune in rockets and electric cars. Meanwhile Musk’s marriage disintegrated as his technological obsessions took over his life ...\n\nElon Musk is the Steve Jobs of the present and the future, and for the past twelve months, he has been shadowed by tech reporter, Ashlee Vance. Elon Musk: How the Billionaire CEO of Spacex and Tesla is Shaping our Future is an important, exciting and intelligent account of the real-life Iron Man.",
+      "owner": 2,
+      "stripe_id": "",
+      "categories": [
+        3
+      ]
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 11,
+    "fields": {
+      "description": "How to Lead for Daring New Leaders: The No-Nonsense Guide to Develop Basic Leadership Skills. Discover Your Power to Be In Charge Paperback – 7 Dec. 2022",
+      "price": "12.99",
+      "images": "https://res.cloudinary.com/dsrdfnxit/image/upload/v1683831001/bargain-api/f5ag4zxobjtonu1chpbk.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683831008/bargain-api/ninay0ofc5qg2jtby0mh.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683831010/bargain-api/vxykksgv4geuvspkjskv.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683831015/bargain-api/qovczurp25q7xg8mry6u.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683831018/bargain-api/ci451kx0nuvkccaaymqz.jpg",
+      "created_at": "2023-05-11T18:50:32.078Z",
+      "dimensions": "",
+      "weight": "",
+      "about": "If you're looking for the quickest way to reach your goals, achieve your dreams, and build a robust character - this book is FOR YOU!\n\nDo you want to learn how to lead, but don't know where to start?\n\nDo you want to become a leader?\n\nDo you want to feel confident when leading others?\n\nIf you answered \"yes\" to any of those questions, this book is for you!\n\nYou know that being a leader is important for your career, business, or even personal life - but it's also very challenging. It takes courage to step up and lead others because it means taking responsibility for the success or failure of your team and yours.\n\nBeing willing to fail in such a way is what makes most people \"followers\". Because of that, the world is in desperate need of people LIKE YOU - to lead them.\n\nLeadership is not an innate quality that some people are born with - it can be learned by anyone. And like anything else, the more you practice, the better you'll become.\n\nHowever, it's not easy to become a leader. It takes courage to overcome self-doubt and self-limiting beliefs. It takes discipline to hold yourself accountable for your dreams, desires, and goals.\n\nBut as you'll soon find out - no one was born a leader - they are all self-made.\n\nIn this book, you're going to learn the basics of how to lead effectively. You'll discover cover topics such as setting goals, building a team, receiving feedback, and more.\n\nBy the end of it, you'll know what it takes to be an effective leader and how to start putting those skills into practice.\n\nHere's what you can find inside:\n\nDiscover the techniques that top leaders use to be successful\nGain insight into how best practices can be applied to your leadership style\nLearn invaluable lessons from highly respected, successful leaders\nStop feeling unconfident when leading other people\nGet the tools you need to become an effective leader\nDiscover how to receive feedback for improvement.\nDiscover how to master leadership in 36 hours or less\nEasy to follow steps to develop leadership habits\nAnd much, much more!\n\nNo matter if you're a manager, a business owner, the entire company's founder, or if you're just looking to improve your leadership skills - in \"How to Lead for Beginners\", you will get all of the juicy tips and insider insights that you need to succeed!\n\nSo what are you waiting for?\n\nScroll up, click on \"Buy Now with 1-Click\", and Get Your Copy NOW!",
+      "owner": 2,
+      "stripe_id": "",
+      "categories": [
+        3
+      ]
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 12,
+    "fields": {
+      "description": "Lessons in Chemistry: The No. 1 Sunday Times bestseller and BBC Between the Covers Book Club pick Paperback – 2 Mar. 2023",
+      "price": "5.00",
+      "images": "https://res.cloudinary.com/dsrdfnxit/image/upload/v1683831108/bargain-api/ngfzd8mxyetd7irqg6dq.jpg",
+      "created_at": "2023-05-11T18:51:51.042Z",
+      "dimensions": "",
+      "weight": "",
+      "about": "THE #1 SUNDAY TIMES and #1 NEW YORK TIMES BESTSELLER\n\nThe multi-million copy bestseller\nAs read on BBC Radio 4 Book at Bedtime\nWinner of the Goodreads Choice Best Debut Novel Award",
+      "owner": 2,
+      "stripe_id": "",
+      "categories": [
+        3
+      ]
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 13,
+    "fields": {
+      "description": "Jovikids Baby Car Seat 360 Swivel Isofix I-Size 40-150cm Group 0+1/2/3 (Dark Grey)",
+      "price": "199.95",
+      "images": "https://res.cloudinary.com/dsrdfnxit/image/upload/v1683831389/bargain-api/vjnrlue9kfprr9pbdsho.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683831397/bargain-api/ihkwpkceivh3c22a4ziv.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683831398/bargain-api/v2jz1yoakljgq51ql6yj.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683831400/bargain-api/nbvcj69u0vqnzcakhwu7.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683831402/bargain-api/nqm4d8r6iehwsbkvrils.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683831404/bargain-api/ak08swte7pn82hsjs8ec.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683831406/bargain-api/hbuaqzdqbivzpyc6ryl6.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683831408/bargain-api/mgx8nn9jozjylbxdefv0.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683831412/bargain-api/iumr9wkapozd3uxxm2zs.jpg",
+      "created_at": "2023-05-11T18:57:11.056Z",
+      "dimensions": "53D x 46W x 63H centimetres",
+      "weight": "‎15 kg",
+      "about": "WD034 Certification: ECE/R129（I-SIZE）Group 0123 Height: 40-150cm. Age / Weight approx: 0-12 years. 0-36 kg.\n360° Swivel Child Car Seat: Allows your baby to easily put in and take out the seat. Seat orientation adjustable degree and fixed.（front and rear install）\nExclusive Patent Protection: Jovikids all-in-one ranger car seat, wrapped with EPS shock-absorbing material through a steel structure, three-layer headrest, removable inner cushion\nIsofix & Support Legs: Two types of fixation provide double security. Hidden/Length adjustable support legs fit for all models cars.\nFive-Point Harness: Protects your baby's head, arms and legs. Hide it at the bottom when not in use.",
+      "owner": 2,
+      "stripe_id": "",
+      "categories": [
+        1,
+        5,
+        15
+      ]
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 14,
+    "fields": {
+      "description": "Bridgestone TURANZA T005 - 255/60 R17 106V - B/A/72 - Summer tyres (Car & SUV) [Energy Class B]",
+      "price": "130.59",
+      "images": "https://res.cloudinary.com/dsrdfnxit/image/upload/v1683831529/bargain-api/ztsfireibttsiudy2l4g.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683831538/bargain-api/gtnixymxgcopqkznjmuz.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683831539/bargain-api/ynbrwjyot6bi9mab57qe.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683831542/bargain-api/ozezltt9xjmhrt3a6prs.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683831544/bargain-api/nefwmxoz0h9ofswqvn5s.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683831546/bargain-api/ancynipjjhcgrcehdfgx.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683831548/bargain-api/mar5utankjrpabuawral.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683831549/bargain-api/mqinx6zztnphas65j8wv.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683831550/bargain-api/wc9q9crr3jyw8qggeuzc.jpg",
+      "created_at": "2023-05-11T18:59:25.335Z",
+      "dimensions": "17 Inches",
+      "weight": "",
+      "about": "Fuel efficiency: B\nWet grip: A\nNoise levels: 72 db",
+      "owner": 2,
+      "stripe_id": "",
+      "categories": [
+        5
+      ]
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 15,
+    "fields": {
+      "description": "BIG RED T46002A Torin Steel Jack Stands: Double Locking, 6 Ton (12,000 lb) Capacity, Red, 1 Pair",
+      "price": "137.05",
+      "images": "https://res.cloudinary.com/dsrdfnxit/image/upload/v1683831672/bargain-api/jgpco9xkrjazrjwporxa.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683831682/bargain-api/dvenaw9rc5ktl2fdllmx.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683831687/bargain-api/bhaqeikrhlwlycjozf48.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683831690/bargain-api/iitlxzqdkgfz01oxjm5f.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683831695/bargain-api/qdglkxritpu7bhyxj6wz.jpg",
+      "created_at": "2023-05-11T19:01:43.377Z",
+      "dimensions": "",
+      "weight": "",
+      "about": "Double locking jack stands help support vehicles after lifting with a jack; Handles a wide range of vehicles including small cars, ATV's, UTV's, and more\nFeatures a lifting range of 15-3/8\" to 23-13/16\" with a 6 ton (12,000 lb) load capacity; Saddle has a large surface area that provides better contact with the load being supported\nConstructed with heavy-duty steel and is industrial welded for quality and long term durability; Removable locking support pin provides added security that increases safety by 200%\nWide pyramid style foot base provides added strength; Large foot base delivers additional stability and measures 10.6\" x 9.3\"\nMulti-position forged iron ratchet bar has a sawtooth design, allowing for quick height adjustments that lock into place; Includes a limited 1-year manufacturer warranty",
+      "owner": 2,
+      "stripe_id": "",
+      "categories": [
+        5
+      ]
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 16,
+    "fields": {
+      "description": "SEGA Mega Drive Mini 2 [Amazon Exclusive]",
+      "price": "149.99",
+      "images": "https://res.cloudinary.com/dsrdfnxit/image/upload/v1683831967/bargain-api/w959gucgvoemxhdj38ph.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683831975/bargain-api/rmsbntdrkia2jxlkgsch.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683831976/bargain-api/xs9nrznqokjkczfyfhin.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683831984/bargain-api/e1btfxz30epclodecocu.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683831985/bargain-api/pn1s0vtmmtuu7pttbxky.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683831986/bargain-api/pffykpi2zoxtx19uxyj2.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683831988/bargain-api/rwnpxyoxffbzymldoqcn.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683831993/bargain-api/jwbwkmmgl5ivfh7bmbw2.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683831995/bargain-api/up4klpmbi2fmzrvwk7vi.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683831996/bargain-api/z1wqd92ggfbnslm8irs9.jpg",
+      "created_at": "2023-05-11T19:06:40.156Z",
+      "dimensions": "",
+      "weight": "",
+      "about": "More compact. More advanced. The SEGA Mega Drive Mini 2 is here.\nThe SEGA Mega Drive Mini is back and more powerful than ever!\nMega-CD titles available as well! 60 classic titles!\nNOTE- It takes about 10 seconds from turning on the power until the game selection screen appears.\nThis Package includes: ・SEGA Mega Drive Mini 2 Console・1 Wired Control Pad・Power Cable ・HDMI Cable\nConsole size : width 120.8mm×height 32.3mm× length116.5mm\nController size: width 140mm×height 70mm× length 29mmController Cable:length 2m\nInput Jacks: HDMI Jack, USB Jack (USB Micro-B)Video output: 720p, 480pAudio output: Linear PCM output from HDMI",
+      "owner": 2,
+      "stripe_id": "",
+      "categories": [
+        17
+      ]
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 17,
+    "fields": {
+      "description": "More compact. More advanced. The SEGA Mega Drive Mini 2 is here.\nThe SEGA Mega Drive Mini is back and more powerful than ever!\nMega-CD titles available as well! 60 classic titles!\nNOTE- It takes about 10 seconds from turning on the power until the game selection screen appears.\nThis Package includes: ・SEGA Mega Drive Mini 2 Console・1 Wired Control Pad・Power Cable ・HDMI Cable\nConsole size : width 120.8mm×height 32.3mm× length116.5mm\nController size: width 140mm×height 70mm× length 29mmController Cable:length 2m\nInput Jacks: HDMI Jack, USB Jack (USB Micro-B)Video output: 720p, 480pAudio output: Linear PCM output from HDMI",
+      "price": "29.99",
+      "images": "https://res.cloudinary.com/dsrdfnxit/image/upload/v1683832154/bargain-api/tbdmg093ytagf8ei78nd.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683832161/bargain-api/zrdf0zzepvmdkpju7auc.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683832162/bargain-api/m9pu6lq8vkc0qpagtpqn.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683832164/bargain-api/rjgwf4cizlgcsqzlmfew.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683832165/bargain-api/xwn5rnwm2z6p2eq5wapo.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683832177/bargain-api/tzvnrgidcxdrln2mtql4.jpg",
+      "created_at": "2023-05-11T19:09:40.877Z",
+      "dimensions": "7.09 x 5.91 x 3.94 cm",
+      "weight": "200 Grams",
+      "about": "BEST-SELLING UK BABY SLEEP AID: With over 1 million ewans sold globally, ewan is working hard to monitor and help babies and toddlers sleep peacefully – which of course means Mum and Dad get a great night's sleep too!\nREAL WOMB AND HEARTBEAT SOUNDS: Super cute and cuddly ewan the dream sheep replicates the comfort of the womb with a selection of soothing sounds, including actual recordings of Mum's womb and heartbeat, to help lull your newborn or toddler into a peaceful slumber.\nWHITE & PINK NOISE SOUND MACHINE: ewan also has a choice of 3 further mesmerizing sounds including Rainfall, Harp Melody Music and Vacuum Cleaner, all combined with Mum's resting heartbeat, to provide an effective shushing toy for settling restless babies and infants. What’s more, these sounds have also been proven to help ease COLIC induced pain – see, we told you Ewan really does have magical soothing powers!\nCOMFORTING NIGHT LIGHT: Unlike intrusive projector toys, ewan's soft pink night light glow mimics the womb environment to help comfort and soothe your little one, whilst his magical sounds and plush nightlight feature a 20-minute timer with automatic shut off – saving you the inconvenience of having to get out of bed to switch ewan off!\nSOOTHE ON-THE-GO: You'll find ewan loves to travel and is excellent at soothing on-the-go, attaching easily to cot or crib bars, your buggy, or car seats, making him the perfect mobile companion for overnight stays and family vacations, when your little one needs to see a comforting familiar and friendly face!",
+      "owner": 3,
+      "stripe_id": "",
+      "categories": [
+        1,
+        21
+      ]
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 18,
+    "fields": {
+      "description": "Color Noise Sound Machines with 10 Colors Night Light 25 Soothing Sounds and Sleep White Noise Machine 32 Volume Levels 5 Timers Adjustable Brightness Memory Function for Adults Kids Baby (Black)",
+      "price": "26.99",
+      "images": "https://res.cloudinary.com/dsrdfnxit/image/upload/v1683832280/bargain-api/vrkjkfrxvyvtzzgjdq61.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683832288/bargain-api/bawdpechees1zbyf1nym.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683832289/bargain-api/hsnvsmjnbmydqwzyokzg.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683832291/bargain-api/kxca824j7va5xhtpdkxn.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683832292/bargain-api/j4dwihd0uuhvk3ztgeqb.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683832293/bargain-api/yryypfgjnm5etxxvfjnh.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683832294/bargain-api/xmawfm8jepnudkqxtmhy.jpg",
+      "created_at": "2023-05-11T19:11:47.504Z",
+      "dimensions": "10.8 x 10.8 x 5.6 centimetres",
+      "weight": "",
+      "about": "♪【25 High-fidelity and Soothing Sounds】 There are 4 types of white noise, 4 fan sounds, 3 sea wave sounds, 3rain sounds , train, star dust, meditation, and relaxing natural sounds and so on. The sound rhythm helps you fall asleep, and the white noise machine can effectively cover up destructive or startling sounds to protect your sleep quality.\n♪【10 Night Lights and Adjustable Brightness 】 The white noise machine has a unique 10-color night lights and adjustable brightness. It can be used for office lighting, milk powder changing, diaper feeding, parent-child interaction, or bedside sleep. You can use these 10 ambient lights to decorate your environment.\n♪【5 Timer-Setting and Memory Function】 There are a total of 5 timer options, continuously play, 1 hour, 2 hours, 3 hours and 4 hours, you can set it according to your needs.When the automatic shut-off comes close, the sound will gradually fade out and then turn off. And the machine can also remember the settings of volume, brightness, track and timer, so you don't have to press buttons all the time!\n♪【Lightweight, Portable and Easy to use】 The design of the device is simple and intuitive, light and easy to carry, and the design of large enough buttons allows you to easily change the track, turn on/off the night light, change the color of the ambient light, and even set the timer setting within a few seconds.\n♪【Safety Assurance & Included】 The white noise machine has passed FCC, CE and RoHS certification, so there is no need to worry about any accidents about the product; there is a 12-month warranty since the purchase, adapter and USB are included. If you have any questions, please feel free to contact us.",
+      "owner": 3,
+      "stripe_id": "",
+      "categories": [
+        1,
+        9,
+        12
+      ]
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 19,
+    "fields": {
+      "description": "The Book of Eve: A beguiling historical feminist tale – inspired by the undeciphered Voynich manuscript Hardcover – 2 Mar. 2023",
+      "price": "13.20",
+      "images": "https://res.cloudinary.com/dsrdfnxit/image/upload/v1683832421/bargain-api/idlmfvbrrbpo5lycdlcr.webp",
+      "created_at": "2023-05-11T19:13:46.104Z",
+      "dimensions": "",
+      "weight": "",
+      "about": "The Binding meets The Handmaid's Tale - Discovering a book of dark and ancient power, a convent librarian must defend it with her life. Perfect for fans of dark academia and historical feminist fiction.\n\n'A wonderfully rich and absorbing tale' Observer\n'Expertly crafted and beautifully told' Jennifer Saint\n'All so good. I read it in two days flat, and wish I had spaced it out more' ⭐ ⭐ ⭐ ⭐ ⭐ READER REVIEW\n\n\nBeatrice is the convent's librarian. For years, she has shunned the company of her sisters, finding solace only with her manuscripts.\n\nThen, one carnival night, two women, bleeding and stricken, are abandoned outside the convent's walls. Moments from death, one of them presses something into Beatrice's hands: a bewitching book whose pages have a dangerous life of their own.\n\nBut men of the faith want the book destroyed, and a zealous preacher has tracked it to her door. Her sisters' lives - or her obsession. Beatrice must decide.\n\nThe book's voice is growing stronger.\n\nAn ancient power uncoils.\n\nWill she dare to listen?",
+      "owner": 3,
+      "stripe_id": "",
+      "categories": [
+        3
+      ]
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 20,
+    "fields": {
+      "description": "IceKing RL340SE Tall Freestanding 340 Litre Silver Larder Fridge [Energy Class E]",
+      "price": "368.00",
+      "images": "https://res.cloudinary.com/dsrdfnxit/image/upload/v1683832579/bargain-api/zmlwixzqsvyjdvjc5aph.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683832590/bargain-api/pyqzmm6kyfbsojlrty8j.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683832591/bargain-api/uda3zqwxrf4asacupiil.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683832592/bargain-api/dma4hyqtr0hnpgc1zoww.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683832594/bargain-api/r9zbvqbta12c9nrlatww.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683832595/bargain-api/hhfl04hevaelvu2mdhqt.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683832596/bargain-api/ykmtasdhahmazjuwtjqv.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683832598/bargain-api/xefjfiy9zhiynqlrgc9b.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683832599/bargain-api/q1ywzvnem2osv7yub0nt.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683832608/bargain-api/c6vb5pgygrh8rilapjha.jpg",
+      "created_at": "2023-05-11T19:17:06.760Z",
+      "dimensions": "60D x 60W x 170H centimetres",
+      "weight": "",
+      "about": "A+ Energy Rating: A+ energy rating saving you energy, money and helping reduce your carbon footprint.\nLarge Capacity: Large 340 Litre fridge capacity ideal for larger families\nFreestanding installation, Silver Finish and 6 interior shelves",
+      "owner": 3,
+      "stripe_id": "",
+      "categories": [
+        12,
+        14
+      ]
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 21,
+    "fields": {
+      "description": "Anastasia Beverly Hills - Eyeshadow Palette - Riviera Palette",
+      "price": "43.99",
+      "images": "https://res.cloudinary.com/dsrdfnxit/image/upload/v1683832723/bargain-api/whhyfcg97xrv8fioufka.webp https://res.cloudinary.com/dsrdfnxit/image/upload/v1683832730/bargain-api/oleh52uktlkrogenrqpi.webp https://res.cloudinary.com/dsrdfnxit/image/upload/v1683832731/bargain-api/huw0cbrcfupmuehllkb9.webp https://res.cloudinary.com/dsrdfnxit/image/upload/v1683832733/bargain-api/symaj176fdscdjezitax.webp",
+      "created_at": "2023-05-11T19:18:57.154Z",
+      "dimensions": "",
+      "weight": "0.44 Pounds",
+      "about": "An essential bright makeup palette that includes 14 all-new matte and metallic shades for eyes and face.\nThe full-pigment powder formula delivers high color payoff and intensity\nContains 14 all-new shadows and pressed pigments, with 8 ultra-mattes, 4 metallics and 2 duo chromes\nWide shade range allows you to create everything from cool- and warm-toned neutral looks to daring bright eye looks, shimmering glam looks and bold smoky eyes\nIncludes a dual-ended brush and a large mirror housed inside travel-friendly packaging",
+      "owner": 3,
+      "stripe_id": "",
+      "categories": [
+        2
+      ]
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 22,
+    "fields": {
+      "description": "Jessup Makeup Brush Set 10pcs Black Make up Brushes Set Professional with Natural Synthetic Hair for Foundation Blending Blush Concealer Eyeshadow Eyebrow Eyeliner, T323",
+      "price": "17.68",
+      "images": "https://res.cloudinary.com/dsrdfnxit/image/upload/v1683832847/bargain-api/llxsi1bdefshko97cuja.webp https://res.cloudinary.com/dsrdfnxit/image/upload/v1683832856/bargain-api/ptinx2uvnsom22mx2qgd.webp https://res.cloudinary.com/dsrdfnxit/image/upload/v1683832857/bargain-api/o3p4z74vxqhynkc35jdo.webp https://res.cloudinary.com/dsrdfnxit/image/upload/v1683832859/bargain-api/btjxbdymzzt20xzzflfz.jpg",
+      "created_at": "2023-05-11T19:26:40.454Z",
+      "dimensions": "",
+      "weight": "",
+      "about": "[Practical Makeup Brushes Set]: 10pcs wood makeup brushes in 1 set, including 4 large face brushes for foundation, powder, blush, and contour; 6pcs eye makeup brushes for eyeshadow blending, concealer, and eyeliner. Capable of covering most of the general daily makeup needs.\n[Natural-synthetic Hair]: Soft and silky to the touch, the high-density hairs don't shed. Perfect for smooth, controlled and streak-free application of powder, cream, liquid cosmetics. The hair of each makeup brush has undergone rigorous testing and inspection, please use it with confidence.\n[High Standard Craft]: The size of the handle is extremely easy to hold and apply, and the super-durable aluminium ferrule makes it difficult to fall off and definitely can be used for a long time. Each handle uses SEVEN layers of classical black spray paint, not only will not fade but also offer you a very unique and high-end feeling.\n[Guarantee Premium Quality]: 100% handcrafted, our professionals have loads of years of experience in making as well as assembling various makeup brushes; besides, we have our own advanced manufacturing factory, so we are perfectly confident in offering you the premium made quality makeup brushes.\n[Decent Beauty Gift]: You can’t imagine how much this makeup brushes set is popular by women. Whether it is given to yourself or as a surprising gift to your mother, grandmother, girlfriend, wife or any other female friends in any memorable occasions such as Birthday, Valentine’s day, Anniversaries, Mother’s day, Christmas, New year, Thanksgiving, etc.",
+      "owner": 3,
+      "stripe_id": "",
+      "categories": [
+        2
+      ]
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 23,
+    "fields": {
+      "description": "Personalised Embroidered Baby Bath Robe Dressing Gown Soft Gift Pink/Blue/White Teddy Ears Boy Girl Present 0-24 Months",
+      "price": "13.99",
+      "images": "https://res.cloudinary.com/dsrdfnxit/image/upload/v1683833932/bargain-api/vjm9g8m8qpip5kwcw2ws.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683833938/bargain-api/wrz7eanlzkymkabfdcjg.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683833939/bargain-api/y3kdbqtornatjihzjvul.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683833939/bargain-api/kahve23o4dovphk1pxnf.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683833940/bargain-api/gzzch17j1ais0o4o5a1z.jpg",
+      "created_at": "2023-05-11T19:39:12.440Z",
+      "dimensions": "",
+      "weight": "",
+      "about": "♥️ PERSONALSED BABY ROBE - Gorgeous embroidered with the name of your choice together with a little elephant on right hand chest\n♥️ PERSONALISED BABY GIFTS - These baby robes are lovely personalised baby gift which will be treasured. Suitable from birth.\n100% Polyester\nMachine Wash\nFastening: Tie\nCollar Style: hooded collar\n♥️ NEWBORN BABY GIFTS - These Robes is made from premium soft fabric to ensure it is as gentle against babies' skin as can be. Suitable from birth\n♥️ PERSONALISED BABY BOY/ GIRL GIFTS - These are suitable for any gender, even if the baby is not yet born or the gender not yet revealed it can be personalised with the last name and presented at a baby shower.\n♥️ PERSONALISED BABY GIFT SET - These Baby fleece robes come in 4 beautiful, colors you can choose from pink, blue, White or Grey",
+      "owner": 3,
+      "stripe_id": "",
+      "categories": [
+        1,
+        4
+      ]
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 24,
+    "fields": {
+      "description": "OWill Manicure Set, 18pcs Nail Clippers Pedicure Kit Nail Care Kit Manicure Professional Tools Gift For Men Women Friends and Parents (Black & Red)",
+      "price": "8.10",
+      "images": "https://res.cloudinary.com/dsrdfnxit/image/upload/v1683834204/bargain-api/uhvuypmmerc5flm7j2cc.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683834208/bargain-api/djocbtuzu2etnpdeidg8.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683834209/bargain-api/z9shhului4ou8limcl3e.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683834210/bargain-api/udkwk9rvnjc8v6jobdiw.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683834212/bargain-api/r2byg0mcgbnzkaffxmal.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683834213/bargain-api/e3ajhjtb83emxtscl1v6.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683834214/bargain-api/chxcv0bxetbi08snhid0.jpg",
+      "created_at": "2023-05-11T19:43:42.192Z",
+      "dimensions": "15 x 10 x 5 centimetres",
+      "weight": "280 Grams",
+      "about": "Manicure Care Set - The nail clipper kit contains 18 pieces of nail and toenail tools to meet meet what you need,include hand care,facial care,foot care.\nStainless Steel - Our Stainless steel nail tools are made of high quality steel, which is strong and durable, and it will not fade.A new generation of black polishing anti-skid technology.\nPortable Lightweight - Manicure set comes with a portable synthetic leather case that is easily opened with a push of a button, You can put the nail art accessories sets tools into your fashion bags, lightweight and Handy when you go traveling.\nBest Personal Care Gift - It is an amazing personal care gift for your relatives, friends, parents, husband and wife. The case is made of high quality fabric and PU leather, stylish and elegant,a perfect gift.\nCustomer Service-If you have any questions, please contact us.",
+      "owner": 4,
+      "stripe_id": "",
+      "categories": [
+        2,
+        11
+      ]
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 25,
+    "fields": {
+      "description": "Beard Grooming Kit for Men, 10 in 1 Beard Trimming Gift Set with Beard Shampoo, Beard Conditioner, Beard Oil, Balm, Beard Comb,Brush, Scissors, Beard Shaper and Storage Bag -Mens Beard Growth Care Set",
+      "price": "19.99",
+      "images": "https://res.cloudinary.com/dsrdfnxit/image/upload/v1683834681/bargain-api/v3ezpyy5jlq6dfiav777.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683834685/bargain-api/jebcldkyeygzncrnske3.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683834687/bargain-api/ajr2uog963pncts0h4so.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683834689/bargain-api/nbx4vcnm0jndzkonhruq.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683834692/bargain-api/sjjl715yeopm38yvinky.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683834694/bargain-api/x4yjgbyz5o9ogwf1iwep.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683834696/bargain-api/zvycrqqwh9maxjhgmrur.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1683834866/bargain-api/qytqzdl1nozpv7m9kv8m.jpg",
+      "created_at": "2023-05-11T19:54:48.232Z",
+      "dimensions": "",
+      "weight": "",
+      "about": "【MENS BEARD CARE SET】: Oukzon 10 in 1 beard grooming kit with gift package contains newly beard conditioner(60ml), beard wash shampoo(60ml), beard oil, beard balm, wooden comb, beard scissors, beard bristle brush, styling shaper, storage bag, Manual. The complete beard care set is for all types of beards or moustaches.\n【BEARD SHAMPOO & CONDITIONER】: Contains natural essential oils, the upgraded Beard Conditioner(60ml) will reduce roughness and abrasion, treat split ends to smooth and moisturize beard. The beard shampoo(60ml) softly cleans your beard and face without stripping skin. No itch or irritation, leave your moustache shinier with a healthy sheen.\n【BEARD OIL & BEARD BALM】: With 100% natural ingredients like aloe oil, grape seed oil, jojoba oil, and tea tree oil to add more nutrients for Beard Care, no additives or irritating chemicals. The beard oil and balm prompt beard growth, control dandruff and split ends, leaves beard or moustache of your men tidy and in good appearance.\n【BEARD TRIMMING KIT】: The mens beard care gift set also contains grooming SHAPER, refined wooden COMB with 2 different side width, stainless steel beard SCISSORS and 100% bristle BRUSH, which satisfies all your daily sharping and care needs for all kinds of long, short, thick and thin moustache or beards. Shaping your beard will be easier than ever.\n【SURPRISE THE MAN】: Premium packaging makes it a best gift for him, beards men like your Dad / father, boyfriend / husband, grandfather, son or friends on Birthday, Valentine's Day, Father's Day, Christmas Day, Anniversary or more special occasion. 90 DAYS for full refund, gentleman's beard care choice.",
+      "owner": 4,
+      "stripe_id": "",
+      "categories": [
+        2,
+        11
+      ]
+    }
+  }
+]

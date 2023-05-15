@@ -223,13 +223,15 @@ function Wishlist({ basketCounter, setBasketCounter }) {
 
   return (
     <main className="basket-main">
+
+      <div className="flex-delete-basket">
+        <h1>Your wishlist</h1>
+        {userData && userData.wishes.length > 0 &&
+          <button className='button-adress' onClick={() => removeAllWishlist()}>Delete list</button>
+        }
+      </div>
       {userData && userData.wishes.length > 0 ?
         <>
-          <div className="flex-delete-basket">
-            <h1>Saved for later</h1>
-            <button className='button-adress' onClick={() => removeAllWishlist()}>Delete list</button>
-          </div>
-
 
           <section className="basket-section">
             {userData.wishes.sort((b, a) => a.id - b.id).map((wish) => {
@@ -283,7 +285,7 @@ function Wishlist({ basketCounter, setBasketCounter }) {
         </>
         :
         <div className='basket-empty'>
-          <h2>Your wishlist is empty</h2>
+          <p>Your wishlist is empty.</p>
           <p><button className='button-adress' onClick={handleShopping}>Continue shopping</button></p>
         </div>
       }

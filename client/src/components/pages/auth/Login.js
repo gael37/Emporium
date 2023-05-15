@@ -87,7 +87,7 @@ const Login = () => {
       </form>
       <br />
       <p>New to emporium?</p>
-      <button className='button-adress' onClick={goRegister}>Create your emporium account</button>
+      <button className='button-adress big-button-adress' onClick={goRegister}>Create your emporium account</button>
     </main>
   )
 }

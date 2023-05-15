@@ -23,6 +23,7 @@ $grey-border: #D5D9D9;
 
 h1 {
   text-decoration: none;
+  // border-bottom: 1px solid gray;
 }
 
 
@@ -520,7 +521,7 @@ h1 {
   background: $tertiary-darker;
   height: 70px;
   padding: 0 30px;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   gap: 15px;
 
@@ -576,6 +577,20 @@ h1 {
     height: 30px;
     // margin-right: 10px;
     margin-right: 10px;
+    // padding-left: 0;
+    padding: 0;
+  }
+}
+
+.flex-nav-item-no-padding {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  img {
+    height: 30px;
+    // margin-right: 10px;
+    margin-right: 7px;
     // padding-left: 0;
     padding: 0;
   }
@@ -729,6 +744,30 @@ h1 {
 
 .button-adress {
   color: #487dba;
+  border: none;
+  background-color: white;
+  font-size: 0.8em;
+  margin-bottom: 20px;
+
+  &:hover {
+    color: $orange;
+  }
+}
+
+.big-button-adress {
+  color: #487dba;
+  border: none;
+  background-color: white;
+  font-size: 1em;
+  margin-bottom: 20px;
+
+  &:hover {
+    color: $orange;
+  }
+}
+
+.red-button-adress {
+  color: red;
   border: none;
   background-color: white;
   font-size: 0.8em;
@@ -1086,6 +1125,7 @@ h1 {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 1em;
   }
+
 }
 
 .single-page {
@@ -1351,7 +1391,8 @@ h1 {
 
 .loading-gif {
   // height: 30px;
-  width: 100px;
+  width: 53px;
+  height: 40px;
 }
 
 // ---------------------------------------FORM PAGE----------------------------------------
@@ -1923,7 +1964,7 @@ h1 {
 }
 
 .basket-empty {
-  margin: 50px;
+  margin: 5px;
 
   button {
     margin-top: 10px;
@@ -2209,6 +2250,54 @@ h1 {
   gap: 20px;
 }
 
+
+
+// -----------------------------------ACCOUNT PAGE------------------------------------------
+
+
+.account-page-wrapper {
+  h4 {
+    margin-top: 15px;
+  }
+
+  .single-deliver {
+    border: none;
+  }
+}
+
+.flex-delete {
+  .red-button-adress {
+    margin-right: 20px;
+  }
+
+  span {
+    font-size: 1.3em;
+  }
+
+}
+
+// .flex-account-img-details {
+//   display: flex;
+//   justify-content: space-around;
+//   // align-items: stretch;
+//   gap: 10px;
+//   border: 1px solid $grey-border;
+//   width: 500px;
+//   padding-right: 10px;
+// }
+
+// .account-details {
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: space-around;
+//   text-align: center;
+//   width: 300px;
+
+//   .yellow-button {
+//     margin-bottom: 0;
+//   }
+
+
 // -----------------------------------CHECKOUT PAGE------------------------------------------
 
 .flex-form-poage {
@@ -2275,10 +2364,10 @@ h1 {
   //   display: none;
   // }
 
-  .navigation-flex {
-    justify-content: space-around;
-    padding: 10px;
-  }
+  // .navigation-flex {
+  //   justify-content: space-around;
+  //   padding: 10px;
+  // }
 
   // .dropdown {
   //   margin-left: 30px;

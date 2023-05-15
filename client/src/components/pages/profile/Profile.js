@@ -11,7 +11,7 @@ import { useParams, useNavigate } from 'react-router-dom' // Importing useParams
 
 import details from '../../../assets/images/details.png'
 import basket from '../../../assets/images/basket.jpeg'
-import sell from '../../../assets/images/sell.png'
+import sell from '../../../assets/images/on-sale.png'
 import wishlist from '../../../assets/images/wishlist.png'
 import orders from '../../../assets/images/orders.png'
 const Profile = () => {
@@ -185,7 +185,7 @@ const Profile = () => {
                 <img src={sell}></img>
                 <div className="flex-account-section">
                   <div className="account-section-text">
-                    <h2>What you sell</h2>
+                    <h2>Your on-sale items</h2>
                     <p>View and manage items that you are currently selling</p>
                   </div>
                 </div>

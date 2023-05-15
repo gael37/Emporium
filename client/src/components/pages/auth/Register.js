@@ -14,7 +14,7 @@ import { getToken, getPayload } from '../../../helpers/auth'
 
 import dropImage from '../../../assets/images/drop.png'
 import validate from '../../../assets/images/validate.png'
-import gif from '../../../assets/gifs/loading4.gif'
+import gif from '../../../assets/gifs/photo-upload.gif'
 import logoSlogan from '../../../assets/images/logo-figma2.png'
 
 
@@ -120,7 +120,10 @@ const Register = () => {
 
   const [files, setFiles] = useState([])
 
-  const onDrop = useCallback(files => setFiles(files), [setFiles])
+  const onDrop = useCallback((files) => {
+    setLoading(true)
+    setFiles(files)
+  }, [setFiles])
 
   const { getRootProps, getInputProps, acceptedFiles, isDragActive } = useDropzone({ onDrop })
 
@@ -143,6 +146,11 @@ const Register = () => {
     getFiles()
   }, [files])
 
+  useEffect(() => {
+    if (selectedImages.length > 0) {
+      setLoading(false)
+    }
+  }, [selectedImages])
 
   const handleChangePostcode = async (e) => {
     console.log(`${e.target.name}: ${e.target.value}`)
@@ -332,7 +340,7 @@ const Register = () => {
       </form >
       <br></br>
       <p>Already have an emporium account?</p>
-      <button className='button-adress' onClick={goLogin}>Sign in</button>
+      <button className='button-adress big-button-adress' onClick={goLogin}>Sign in</button>
     </main >
   )
 }

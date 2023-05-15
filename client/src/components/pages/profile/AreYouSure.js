@@ -5,6 +5,9 @@ import { getToken } from '../../../helpers/auth'
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 
+import validate from '../../../assets/images/validate.png'
+
+
 const AreYouSure = () => {
 
   const payload = getPayload()
@@ -12,17 +15,19 @@ const AreYouSure = () => {
 
 
   const [errors, setErrors] = useState(null)
+  const [deleted, setDeleted] = useState(false)
 
   const navigate = useNavigate()
 
   const handleDelete = async (e) => {
+
     try {
       const { data } = await axios.delete(`/api/auth/${currentUserId}/`, {
         headers: {
           Authorization: `Bearer ${getToken()}`,
         },
       })
-      navigate('/delete-account')
+      setDeleted(true)
       console.log('delete SUCCESS ->', data)
     } catch (err) {
       console.log('review FAIL ->', err)
@@ -30,14 +35,37 @@ const AreYouSure = () => {
     }
   }
 
-
+  const goRegister = () => {
+    navigate('/register')
+  }
+  const goHome = () => {
+    navigate('/')
+  }
+  const goAccount = () => {
+    navigate('/account-details')
+  }
 
   return (
-    <div className="flex-delete">
-      <h1 className='delete-msg2'>Are you sure?</h1>
-      <button className="btn-post-delete3" onClick={handleDelete}>YES, PLEASE DELETE MY ACCOUNT</button>
-      <Link className="btn-delete" as={Link} to='/profile'>Back to my account</Link>
-    </div>
+    <main className="order-page-wrapper">
+
+
+      {!deleted &&
+        <div className="flex-delete">
+          <h1 className='delete-msg2'>Are you sure you want to delete your emporium account?</h1>
+          <button className="button-adress red-button-adress" onClick={handleDelete}><span>Yes, please delete my account</span></button>
+          <button className="button-adress" onClick={goAccount}><span>Do not delete my account</span></button>
+        </div>
+      }
+      {deleted &&
+        <>
+          <div className="flex-validate">
+            <img src={validate} alt='in basket'></img>
+            <p><span>Emporium account successfully deleted!<br>Hoping to seeing you back soon.</br></span></p>
+          </div>
+          <p><button className='button-adress' onClick={goRegister}>Create an emporium account</button> or <button className='button-adress' onClick={goHome}>browse website as a guest</button>.</p>
+        </>
+      }
+    </main>
   )
 }
 

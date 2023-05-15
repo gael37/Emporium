@@ -263,12 +263,15 @@ const Basket = ({ basketCounter, setBasketCounter, postcode, setPostcode }) => {
   return (
 
     <main className='basket-main'>
+
+      <div className="flex-delete-basket">
+        <h1>Shopping basket</h1>
+        {userData && userData.basket.length > 0 &&
+          <button className='button-adress' onClick={() => removeAllBasket()}>Delete basket</button>
+        }
+      </div>
       {userData && userData.basket.length > 0 ?
         <>
-          <div className="flex-delete-basket">
-            <h1>Shopping basket</h1>
-            <button className='button-adress' onClick={() => removeAllBasket()}>Delete basket</button>
-          </div>
           <div className='flex-basket-page'>
 
             <section className="basket-section">
@@ -427,7 +430,7 @@ const Basket = ({ basketCounter, setBasketCounter, postcode, setPostcode }) => {
         :
         <div className='basket-empty'>
           <h2>Your emporium cart is empty.</h2>
-          <p>Check your <button className='button-adress' onClick={handleSaved}>saved for later</button> items or <button className='button-adress' onClick={handleShopping}>continue shopping</button>.</p>
+          <p>Check your <button className='button-adress' onClick={handleSaved}>wishlist</button> items or <button className='button-adress' onClick={handleShopping}>continue shopping</button>.</p>
         </div>
       }
 

@@ -364,7 +364,7 @@ const Home = ({ selected, typed, setSelected, setTyped, basketCounter, setBasket
     <main className="home-page-wrapper">
       {filteredProducts && filteredProducts.length > 0 &&
         <div className='product-row'>
-          {filteredProducts.map(product => {
+          {filteredProducts.sort((a, b) => a.description - b.description).map(product => {
             return (
               <div key={product.id} className='product-card'>
                 <div className="buffer">

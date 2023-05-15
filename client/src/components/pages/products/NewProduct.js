@@ -12,7 +12,7 @@ import Row from 'react-bootstrap/esm/Row'
 import Select from 'react-select'
 import { options } from '../../../helpers/constants'
 
-import gif from '../../../assets/gifs/loading4.gif'
+import gif from '../../../assets/gifs/photo-upload.gif'
 import dropImage from '../../../assets/images/drop.png'
 import validate from '../../../assets/images/validate.png'
 
