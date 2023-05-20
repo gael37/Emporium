@@ -761,8 +761,8 @@ const SingleProduct = ({ setBasketCounter, postcode, setPostcode }) => {
                 <div key={comment.id} className='order-card-review'>
 
                   <div className='flex-horizontally-p'>
-                    <p><span>Reviewed by {comment.comment_owner.username} on</span></p>
-                    <div>
+                    <p><span>Reviewed by <strong>{comment.comment_owner.username}</strong> on</span></p>
+                    <div><strong>
                       {comment.created_at.toString().slice(5, 7) === '01' &&
                         <p className="order-card-date">{comment.created_at.toString().slice(8, 10)} January {comment.created_at.toString().slice(0, 4)}</p>
                       }
@@ -799,6 +799,7 @@ const SingleProduct = ({ setBasketCounter, postcode, setPostcode }) => {
                       {comment.created_at.toString().slice(5, 7) === '12' &&
                         <p className="order-card-date">{comment.created_at.toString().slice(8, 10)} December {comment.created_at.toString().slice(0, 4)}</p>
                       }
+                    </strong>
                     </div>
 
                   </div>

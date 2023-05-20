@@ -1,0 +1,101 @@
+[
+  {
+    "model": "comments.comment",
+    "pk": 1,
+    "fields": {
+      "rating": "4",
+      "text": "Amazing product!",
+      "created_at": "2023-05-16T22:31:28.436Z",
+      "comment_owner": 2,
+      "product_reviewed": 1
+    }
+  },
+  {
+    "model": "comments.comment",
+    "pk": 1,
+    "fields": {
+      "rating": "4",
+      "text": "Amazing product!",
+      "created_at": "2023-05-16T22:31:28.436Z",
+      "comment_owner": 2,
+      "product_reviewed": 2
+    }
+  },
+  {
+    "model": "comments.comment",
+    "pk": 1,
+    "fields": {
+      "rating": "4",
+      "text": "Amazing product!",
+      "created_at": "2023-05-16T22:31:28.436Z",
+      "comment_owner": 3,
+      "product_reviewed": 3
+    }
+  },
+  {
+    "model": "comments.comment",
+    "pk": 1,
+    "fields": {
+      "rating": "4",
+      "text": "Amazing product!",
+      "created_at": "2023-05-16T22:31:28.436Z",
+      "comment_owner": 4,
+      "product_reviewed": 4
+    }
+  },
+  {
+    "model": "comments.comment",
+    "pk": 1,
+    "fields": {
+      "rating": "4",
+      "text": "Amazing product!",
+      "created_at": "2023-05-16T22:31:28.436Z",
+      "comment_owner": 5,
+      "product_reviewed": 5
+    }
+  },
+  {
+    "model": "comments.comment",
+    "pk": 1,
+    "fields": {
+      "rating": "4",
+      "text": "Amazing product!",
+      "created_at": "2023-05-16T22:31:28.436Z",
+      "comment_owner": 6,
+      "product_reviewed": 6
+    }
+  },
+  {
+    "model": "comments.comment",
+    "pk": 1,
+    "fields": {
+      "rating": "4",
+      "text": "Amazing product!",
+      "created_at": "2023-05-16T22:31:28.436Z",
+      "comment_owner": 7,
+      "product_reviewed": 7
+    }
+  },
+  {
+    "model": "comments.comment",
+    "pk": 1,
+    "fields": {
+      "rating": "4",
+      "text": "Amazing product!",
+      "created_at": "2023-05-16T22:31:28.436Z",
+      "comment_owner": 8,
+      "product_reviewed": 9
+    }
+  },
+  {
+    "model": "comments.comment",
+    "pk": 1,
+    "fields": {
+      "rating": "4",
+      "text": "Amazing product!",
+      "created_at": "2023-05-16T22:31:28.436Z",
+      "comment_owner": 1,
+      "product_reviewed": 10
+    }
+  }
+]
