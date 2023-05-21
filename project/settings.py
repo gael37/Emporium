@@ -150,7 +150,7 @@ REST_FRAMEWORK = {
     ]
 }
 
-SITE_URL = 'http://localhost:3001'
+SITE_URL = 'http://localhost:8000'
 
 STRIPE_SECRET_KEY = 'sk_test_51N0UKTJkvqlqJ3Zhhr0tX4WjG2C8zJcQpTvZ5GS6hXEbk1JHAZO17ZuxC2ruXVASEcMC2VzdQKmHhlcts2cxmeiQ00dANxsk6U'
 
