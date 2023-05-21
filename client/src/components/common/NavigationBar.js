@@ -99,19 +99,25 @@ function NavigationBar({ selected, typed, setSelected, setTyped, basketCounter, 
             <NavDropdown className='basic-nav-dropdown hover-underline-animation2' title={<img className='img-nav-bars' src={bars}></img>} id="dropdown-small">
 
               <>
-                <NavDropdown.Item as={Link} to='/' ><div className='flex-nav-item'><img src={home} className='img-nav padding-bottom-xs' />Home</div></NavDropdown.Item>
+                {/* <NavDropdown.Item as={Link} to='/' ><div className='flex-nav-item'><img src={home} className='img-nav padding-bottom-xs' />Home</div></NavDropdown.Item>
                 <NavDropdown.Item as={Link} to='/profile' ><div className='flex-nav-item'><img src={account} className='img-nav' />Account</div></NavDropdown.Item>
                 <NavDropdown.Item as={Link} to='/orders' ><div className='flex-nav-item'><img src={orders} className='img-nav' />Orders</div></NavDropdown.Item>
                 <NavDropdown.Item as={Link} to='/wish-list' ><div className='flex-nav-item'><img src={wishlist} className='img-nav' />Wishlist</div></NavDropdown.Item>
                 <NavDropdown.Item as={Link} to='/products/new' ><div className='flex-nav-item'><img src={sell} className='img-nav' />Sell new item</div></NavDropdown.Item>
-                <NavDropdown.Item as={Link} to='/on-sale' ><div className='flex-nav-item flex-nav-item-no-padding'><img src={onSale} className='img-nav' />On-sale items</div></NavDropdown.Item>
+                <NavDropdown.Item as={Link} to='/on-sale' ><div className='flex-nav-item flex-nav-item-no-padding'><img src={onSale} className='img-nav' />On-sale items</div></NavDropdown.Item> */}
+                <NavDropdown.Item as={Link} to='/' ><div className='flex-nav-item'>Home</div></NavDropdown.Item>
+                <NavDropdown.Item as={Link} to='/profile' ><div className='flex-nav-item'>Account</div></NavDropdown.Item>
+                <NavDropdown.Item as={Link} to='/orders' ><div className='flex-nav-item'>Orders</div></NavDropdown.Item>
+                <NavDropdown.Item as={Link} to='/wish-list' ><div className='flex-nav-item'>Wishlist</div></NavDropdown.Item>
+                <NavDropdown.Item as={Link} to='/products/new' ><div className='flex-nav-item'>Sell new item</div></NavDropdown.Item>
+                <NavDropdown.Item as={Link} to='/on-sale' ><div className='flex-nav-item flex-nav-item-no-padding'>On-sale items</div></NavDropdown.Item>
 
                 <NavDropdown.Divider />
                 <NavDropdown.Item onClick={() => handleLogout(navigate)} ><div className='flex-nav-item'><img src={logout} />Sign Out</div></NavDropdown.Item>
               </>
             </NavDropdown>
           </Nav>
-          <Navbar.Brand as={Link} className='nav-brand brand-logo hover-underline-animation1' to='/' id='logo-big-screen'><img src={brandLogo} /></Navbar.Brand>
+          <Navbar.Brand as={Link} className='nav-brand brand-logo' to='/' id='logo-big-screen'><img src={brandLogo} /></Navbar.Brand>
 
           {/* {!isAuthenticated() &&
             <Link className='nav-link' to='/login' >Sign in</ Link>
@@ -132,7 +138,6 @@ function NavigationBar({ selected, typed, setSelected, setTyped, basketCounter, 
                 <option value="Garden & Outdoors">Garden & Outdoors</option>
                 <option value="Health & Personal care">Health & Personal care</option>
                 <option value="Home & Kitchen">Home & Kitchen</option>
-                <option value="Industrial & Scientific">Industrial & Scientific</option>
                 <option value="Large Appliances">Large Appliances</option>
                 <option value="Luggage & Travel Gear">Luggage & Travel Gear</option>
                 <option value="Musical Instruments">Musical Instruments</option>
@@ -141,6 +146,7 @@ function NavigationBar({ selected, typed, setSelected, setTyped, basketCounter, 
                 <option value="Sports & Outdoors">Sports & Outdoors</option>
                 <option value="Stationary & Office Supplies">Stationary & Office Supplies</option>
                 <option value="Toys & Games">Toys & Games</option>
+                <option value="Others">Others</option>
               </select>
             }
             {selectSize === 'medium' &&
@@ -158,7 +164,6 @@ function NavigationBar({ selected, typed, setSelected, setTyped, basketCounter, 
                 <option value="Garden & Outdoors">Garden & Outdoors</option>
                 <option value="Health & Personal care">Health & Personal care</option>
                 <option value="Home & Kitchen">Home & Kitchen</option>
-                <option value="Industrial & Scientific">Industrial & Scientific</option>
                 <option value="Large Appliances">Large Appliances</option>
                 <option value="Luggage & Travel Gear">Luggage & Travel Gear</option>
                 <option value="Musical Instruments">Musical Instruments</option>
@@ -167,6 +172,7 @@ function NavigationBar({ selected, typed, setSelected, setTyped, basketCounter, 
                 <option value="Sports & Outdoors">Sports & Outdoors</option>
                 <option value="Stationary & Office Supplies">Stationary & Office Supplies</option>
                 <option value="Toys & Games">Toys & Games</option>
+                <option value="Others">Others</option>
               </select>
             }
             {selectSize === 'big' &&
@@ -184,7 +190,6 @@ function NavigationBar({ selected, typed, setSelected, setTyped, basketCounter, 
                 <option value="Garden & Outdoors">Garden & Outdoors</option>
                 <option value="Health & Personal care">Health & Personal care</option>
                 <option value="Home & Kitchen">Home & Kitchen</option>
-                <option value="Industrial & Scientific">Industrial & Scientific</option>
                 <option value="Large Appliances">Large Appliances</option>
                 <option value="Luggage & Travel Gear">Luggage & Travel Gear</option>
                 <option value="Musical Instruments">Musical Instruments</option>
@@ -193,6 +198,7 @@ function NavigationBar({ selected, typed, setSelected, setTyped, basketCounter, 
                 <option value="Sports & Outdoors">Sports & Outdoors</option>
                 <option value="Stationary & Office Supplies">Stationary & Office Supplies</option>
                 <option value="Toys & Games">Toys & Games</option>
+                <option value="Others">Others</option>
               </select>
             }
             <input className='input-nav' type="text" placeholder='search' value={typed} onChange={handleChange} />
@@ -203,12 +209,18 @@ function NavigationBar({ selected, typed, setSelected, setTyped, basketCounter, 
                 <NavDropdown id='dropdown-right' className='basic-nav-dropdown hover-underline-animation2' title={userData ? <div className='flex-nav-account'><p>Hello, {username}</p><h5>Account & Lists</h5></div> : <p>ho</p>}>
 
                   <>
-                    <NavDropdown.Item as={Link} to='/' ><div className='flex-nav-item'><img src={home} />Home</div></NavDropdown.Item>
-                    <NavDropdown.Item as={Link} to='/profile' ><div className='flex-nav-item'><img src={account} />Account</div></NavDropdown.Item>
-                    <NavDropdown.Item as={Link} to='/orders' ><div className='flex-nav-item'><img src={orders} />Orders</div></NavDropdown.Item>
-                    <NavDropdown.Item as={Link} to='/wish-list' ><div className='flex-nav-item'><img src={wishlist} />Wishlist</div></NavDropdown.Item>
-                    <NavDropdown.Item as={Link} to='/products/new' ><div className='flex-nav-item'><img src={sell} />Sell new item</div></NavDropdown.Item>
-                    <NavDropdown.Item as={Link} to='/on-sale' ><div className='flex-nav-item flex-nav-item-no-padding'><img src={onSale} />On-sale items</div></NavDropdown.Item>
+                    {/* <NavDropdown.Item as={Link} to='/' ><div className='flex-nav-item'><img src={home} className='img-nav padding-bottom-xs' />Home</div></NavDropdown.Item>
+                <NavDropdown.Item as={Link} to='/profile' ><div className='flex-nav-item'><img src={account} className='img-nav' />Account</div></NavDropdown.Item>
+                <NavDropdown.Item as={Link} to='/orders' ><div className='flex-nav-item'><img src={orders} className='img-nav' />Orders</div></NavDropdown.Item>
+                <NavDropdown.Item as={Link} to='/wish-list' ><div className='flex-nav-item'><img src={wishlist} className='img-nav' />Wishlist</div></NavDropdown.Item>
+                <NavDropdown.Item as={Link} to='/products/new' ><div className='flex-nav-item'><img src={sell} className='img-nav' />Sell new item</div></NavDropdown.Item>
+                <NavDropdown.Item as={Link} to='/on-sale' ><div className='flex-nav-item flex-nav-item-no-padding'><img src={onSale} className='img-nav' />On-sale items</div></NavDropdown.Item> */}
+                    <NavDropdown.Item as={Link} to='/' ><div className='flex-nav-item'>Home</div></NavDropdown.Item>
+                    <NavDropdown.Item as={Link} to='/profile' ><div className='flex-nav-item'>Account</div></NavDropdown.Item>
+                    <NavDropdown.Item as={Link} to='/orders' ><div className='flex-nav-item'>Orders</div></NavDropdown.Item>
+                    <NavDropdown.Item as={Link} to='/wish-list' ><div className='flex-nav-item'>Wishlist</div></NavDropdown.Item>
+                    <NavDropdown.Item as={Link} to='/products/new' ><div className='flex-nav-item'>Sell new item</div></NavDropdown.Item>
+                    <NavDropdown.Item as={Link} to='/on-sale' ><div className='flex-nav-item flex-nav-item-no-padding'>On-sale items</div></NavDropdown.Item>
 
                     <NavDropdown.Divider />
                     <NavDropdown.Item onClick={() => handleLogout(navigate)} ><div className='flex-nav-item'><img src={logout} />Sign Out</div></NavDropdown.Item>
@@ -251,7 +263,6 @@ function NavigationBar({ selected, typed, setSelected, setTyped, basketCounter, 
                 <option value="Garden & Outdoors">Garden & Outdoors</option>
                 <option value="Health & Personal care">Health & Personal care</option>
                 <option value="Home & Kitchen">Home & Kitchen</option>
-                <option value="Industrial & Scientific">Industrial & Scientific</option>
                 <option value="Large Appliances">Large Appliances</option>
                 <option value="Luggage & Travel Gear">Luggage & Travel Gear</option>
                 <option value="Musical Instruments">Musical Instruments</option>
@@ -260,6 +271,7 @@ function NavigationBar({ selected, typed, setSelected, setTyped, basketCounter, 
                 <option value="Sports & Outdoors">Sports & Outdoors</option>
                 <option value="Stationary & Office Supplies">Stationary & Office Supplies</option>
                 <option value="Toys & Games">Toys & Games</option>
+                <option value="Others">Others</option>
               </select>
             }
             {selectSize === 'medium' &&
@@ -277,7 +289,6 @@ function NavigationBar({ selected, typed, setSelected, setTyped, basketCounter, 
                 <option value="Garden & Outdoors">Garden & Outdoors</option>
                 <option value="Health & Personal care">Health & Personal care</option>
                 <option value="Home & Kitchen">Home & Kitchen</option>
-                <option value="Industrial & Scientific">Industrial & Scientific</option>
                 <option value="Large Appliances">Large Appliances</option>
                 <option value="Luggage & Travel Gear">Luggage & Travel Gear</option>
                 <option value="Musical Instruments">Musical Instruments</option>
@@ -286,6 +297,7 @@ function NavigationBar({ selected, typed, setSelected, setTyped, basketCounter, 
                 <option value="Sports & Outdoors">Sports & Outdoors</option>
                 <option value="Stationary & Office Supplies">Stationary & Office Supplies</option>
                 <option value="Toys & Games">Toys & Games</option>
+                <option value="Others">Others</option>
               </select>
             }
             {selectSize === 'big' &&
@@ -303,7 +315,6 @@ function NavigationBar({ selected, typed, setSelected, setTyped, basketCounter, 
                 <option value="Garden & Outdoors">Garden & Outdoors</option>
                 <option value="Health & Personal care">Health & Personal care</option>
                 <option value="Home & Kitchen">Home & Kitchen</option>
-                <option value="Industrial & Scientific">Industrial & Scientific</option>
                 <option value="Large Appliances">Large Appliances</option>
                 <option value="Luggage & Travel Gear">Luggage & Travel Gear</option>
                 <option value="Musical Instruments">Musical Instruments</option>
@@ -312,6 +323,7 @@ function NavigationBar({ selected, typed, setSelected, setTyped, basketCounter, 
                 <option value="Sports & Outdoors">Sports & Outdoors</option>
                 <option value="Stationary & Office Supplies">Stationary & Office Supplies</option>
                 <option value="Toys & Games">Toys & Games</option>
+                <option value="Others">Others</option>
               </select>
             }
             <input className='input-nav' type="text" placeholder='search' value={typed} onChange={handleChange} />

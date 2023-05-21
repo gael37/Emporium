@@ -38,7 +38,7 @@
     "model": "categories.category",
     "pk": 6,
     "fields": {
-      "name": "CDs & Vimyl"
+      "name": "CDs & Vinyl"
     }
   },
   {
@@ -73,7 +73,7 @@
     "model": "categories.category",
     "pk": 11,
     "fields": {
-      "name": "Health & Personal Care"
+      "name": "Health & Personal care"
     }
   },
   {
@@ -87,63 +87,63 @@
     "model": "categories.category",
     "pk": 13,
     "fields": {
-      "name": "Industrial & Scientific"
+      "name": "Large Appliances"
     }
   },
   {
     "model": "categories.category",
     "pk": 14,
     "fields": {
-      "name": "Large Appliances"
+      "name": "Luggage & Travel Gear"
     }
   },
   {
     "model": "categories.category",
     "pk": 15,
     "fields": {
-      "name": "Luggage & Travel Gear"
+      "name": "Musical Instruments"
     }
   },
   {
     "model": "categories.category",
     "pk": 16,
     "fields": {
-      "name": "Musical Instruments"
+      "name": "Consoles & Video Games"
     }
   },
   {
     "model": "categories.category",
     "pk": 17,
     "fields": {
-      "name": "Video Games & Consoles"
+      "name": "Pet Supplies"
     }
   },
   {
     "model": "categories.category",
     "pk": 18,
     "fields": {
-      "name": "Pet Supplies"
+      "name": "Sports & Outdoors"
     }
   },
   {
     "model": "categories.category",
     "pk": 19,
     "fields": {
-      "name": "Sports & Outdoors"
+      "name": "Stationary & Office Supplies"
     }
   },
   {
     "model": "categories.category",
     "pk": 20,
     "fields": {
-      "name": "Stationary & Office Supplies"
+      "name": "Toys & Games"
     }
   },
   {
     "model": "categories.category",
     "pk": 21,
     "fields": {
-      "name": "Toys & Games"
+      "name": "Others"
     }
   }
 ]

@@ -43,6 +43,7 @@ const SingleProduct = ({ setBasketCounter, postcode, setPostcode }) => {
   const [postcodeError, setPostcodeError] = useState('')
 
   const [show, setShow] = useState(false)
+  const [classWishlistMessage, setClassWishlistMessage] = useState('wish-message-not-visible')
 
 
 
@@ -229,6 +230,7 @@ const SingleProduct = ({ setBasketCounter, postcode, setPostcode }) => {
           Authorization: `Bearer ${getToken()}`,
         },
       })
+      setClassWishlistMessage('wish-message-visible')
       // console.log('RESPONSE FROM WISH POST ', data)
       // console.log('after post wish :', wishesData)
     } catch (err) {
@@ -505,6 +507,14 @@ const SingleProduct = ({ setBasketCounter, postcode, setPostcode }) => {
     navigate('/login')
   }
 
+  useEffect(() => {
+    if (classWishlistMessage === 'wish-message-visible') {
+      setTimeout(() => {
+        setClassWishlistMessage('wish-message-not-visible')
+      }, 1000)
+    }
+  }, [classWishlistMessage])
+
   return (
     <>
 
@@ -640,11 +650,14 @@ const SingleProduct = ({ setBasketCounter, postcode, setPostcode }) => {
               <section className='single-section-basket visibility1'>
                 <div className="flex-single-price-like">
                   <p className='single-card-price'>£{product.price}</p>
+                  <h6 className={classWishlistMessage}>Added to wishlist!</h6>
                   <div className='single-like'>
                     {product.wished.some((wish) => {
                       return wish.wish_owner.id === currentUserId
                     }) ?
-                      <button className='like-button single-like-button' onClick={() => handleHeartDelete()}><img src={heart} alt='like'></img></button>
+                      <>
+                        <button className='like-button single-like-button' onClick={() => handleHeartDelete()}><img src={heart} alt='like'></img></button>
+                      </>
                       :
                       <button className='like-button single-like-button' onClick={() => handleHeartClick()}><img src={emptyHeart} alt='like'></img></button>
                     }
@@ -805,37 +818,62 @@ const SingleProduct = ({ setBasketCounter, postcode, setPostcode }) => {
                   </div>
 
 
-                  {Math.floor(product.comments.reduce((acc, obj) => {
+                  {/* {Math.floor(product.comments.reduce((acc, obj) => {
                     return acc + parseInt(obj.rating)
                   }, 0) / product.comments.length) === 1 &&
                     <h6 className="flex-reviews">
                       <img src={oneStar}></img>
                     </h6>
+                  } */}
+                  {comment.rating === '1' &&
+                    <h6 className="flex-reviews">
+                      <img src={oneStar}></img>
+                    </h6>
                   }
-                  {Math.floor(product.comments.reduce((acc, obj) => {
+                  {/* {Math.floor(product.comments.reduce((acc, obj) => {
                     return acc + parseInt(obj.rating)
                   }, 0) / product.comments.length) === 2 &&
                     <h6 className="flex-reviews">
                       <img src={twoStars}></img>
                     </h6>
+                  } */}
+                  {comment.rating === '2' &&
+                    <h6 className="flex-reviews">
+                      <img src={twoStars}></img>
+                    </h6>
                   }
-                  {Math.floor(product.comments.reduce((acc, obj) => {
+                  {/* {Math.floor(product.comments.reduce((acc, obj) => {
                     return acc + parseInt(obj.rating)
                   }, 0) / product.comments.length) === 3 &&
                     <h6 className="flex-reviews">
                       <img src={threeStars}></img>
                     </h6>
+                  } */}
+                  {comment.rating === '3' &&
+                    <h6 className="flex-reviews">
+                      <img src={threeStars}></img>
+                    </h6>
                   }
-                  {Math.floor(product.comments.reduce((acc, obj) => {
+                  {/* {Math.floor(product.comments.reduce((acc, obj) => {
                     return acc + parseInt(obj.rating)
                   }, 0) / product.comments.length) === 4 &&
                     <h6 className="flex-reviews">
                       <img src={fourStars}></img>
                     </h6>
+                  } */}
+                  {comment.rating === '4' &&
+                    <h6 className="flex-reviews">
+                      <img src={fourStars}></img>
+                    </h6>
                   }
-                  {Math.floor(product.comments.reduce((acc, obj) => {
+                  {/* {Math.floor(product.comments.reduce((acc, obj) => {
                     return acc + parseInt(obj.rating)
                   }, 0) / product.comments.length) === 5 &&
+                    <h6 className="flex-reviews">
+                      <img src={fiveStars}></img>
+                    </h6>
+                  } */}
+                  {comment.rating === '5' &&
                     <h6 className="flex-reviews">
                       <img src={fiveStars}></img>
                     </h6>

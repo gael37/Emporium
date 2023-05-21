@@ -12,7 +12,6 @@ export const options = [
   { value: 'Garden & Outdoors', label: 'Garden & Outdoors' },
   { value: 'Health & Personal care', label: 'Health & Personal care' },
   { value: 'Home & Kitchen', label: 'Home & Kitchen' },
-  { value: 'Industrial & Scientific', label: 'Industrial & Scientific' },
   { value: 'Large Appliances', label: 'Large Appliances' },
   { value: 'Luggage & Travel Gear', label: 'Luggage & Travel Gear' },
   { value: 'Musical Instruments', label: 'Musical Instruments' },
@@ -20,5 +19,6 @@ export const options = [
   { value: 'Pet Supplies', label: 'Pet Supplies' },
   { value: 'Sports & Outdoors', label: 'Sports & Outdoors' },
   { value: 'Stationary & Office Supplies', label: 'Stationary & Office Supplies' },
-  { value: 'Toys & Games', label: 'Toys & Games' }
+  { value: 'Toys & Games', label: 'Toys & Games' },
+  { value: 'Others', label: 'Others' }
 ]

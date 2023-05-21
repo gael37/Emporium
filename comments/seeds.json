@@ -4,7 +4,7 @@
     "pk": 1,
     "fields": {
       "rating": "4",
-      "text": "Amazing product!",
+      "text": "Amazing!",
       "created_at": "2023-05-16T22:31:28.436Z",
       "comment_owner": 2,
       "product_reviewed": 1
@@ -12,10 +12,10 @@
   },
   {
     "model": "comments.comment",
-    "pk": 1,
+    "pk": 2,
     "fields": {
       "rating": "4",
-      "text": "Amazing product!",
+      "text": "Amazing!",
       "created_at": "2023-05-16T22:31:28.436Z",
       "comment_owner": 2,
       "product_reviewed": 2
@@ -23,10 +23,10 @@
   },
   {
     "model": "comments.comment",
-    "pk": 1,
+    "pk": 3,
     "fields": {
       "rating": "4",
-      "text": "Amazing product!",
+      "text": "Amazing!",
       "created_at": "2023-05-16T22:31:28.436Z",
       "comment_owner": 3,
       "product_reviewed": 3
@@ -34,10 +34,10 @@
   },
   {
     "model": "comments.comment",
-    "pk": 1,
+    "pk": 4,
     "fields": {
       "rating": "4",
-      "text": "Amazing product!",
+      "text": "Amazing!",
       "created_at": "2023-05-16T22:31:28.436Z",
       "comment_owner": 4,
       "product_reviewed": 4
@@ -45,10 +45,10 @@
   },
   {
     "model": "comments.comment",
-    "pk": 1,
+    "pk": 5,
     "fields": {
       "rating": "4",
-      "text": "Amazing product!",
+      "text": "Amazing!",
       "created_at": "2023-05-16T22:31:28.436Z",
       "comment_owner": 5,
       "product_reviewed": 5
@@ -56,10 +56,10 @@
   },
   {
     "model": "comments.comment",
-    "pk": 1,
+    "pk": 6,
     "fields": {
       "rating": "4",
-      "text": "Amazing product!",
+      "text": "Amazing!",
       "created_at": "2023-05-16T22:31:28.436Z",
       "comment_owner": 6,
       "product_reviewed": 6
@@ -67,10 +67,10 @@
   },
   {
     "model": "comments.comment",
-    "pk": 1,
+    "pk": 7,
     "fields": {
       "rating": "4",
-      "text": "Amazing product!",
+      "text": "Amazing!",
       "created_at": "2023-05-16T22:31:28.436Z",
       "comment_owner": 7,
       "product_reviewed": 7
@@ -78,24 +78,871 @@
   },
   {
     "model": "comments.comment",
-    "pk": 1,
+    "pk": 8,
     "fields": {
       "rating": "4",
-      "text": "Amazing product!",
+      "text": "Amazing!",
       "created_at": "2023-05-16T22:31:28.436Z",
       "comment_owner": 8,
+      "product_reviewed": 8
+    }
+  },
+  {
+    "model": "comments.comment",
+    "pk": 9,
+    "fields": {
+      "rating": "4",
+      "text": "Amazing!",
+      "created_at": "2023-05-16T22:31:28.436Z",
+      "comment_owner": 10,
       "product_reviewed": 9
     }
   },
   {
     "model": "comments.comment",
-    "pk": 1,
+    "pk": 10,
     "fields": {
       "rating": "4",
-      "text": "Amazing product!",
+      "text": "Amazing!",
+      "created_at": "2023-05-16T22:31:28.436Z",
+      "comment_owner": 11,
+      "product_reviewed": 10
+    }
+  },
+  {
+    "model": "comments.comment",
+    "pk": 11,
+    "fields": {
+      "rating": "4",
+      "text": "Amazing!",
+      "created_at": "2023-05-16T22:31:28.436Z",
+      "comment_owner": 9,
+      "product_reviewed": 11
+    }
+  },
+  {
+    "model": "comments.comment",
+    "pk": 12,
+    "fields": {
+      "rating": "4",
+      "text": "Amazing!",
+      "created_at": "2023-05-16T22:31:28.436Z",
+      "comment_owner": 8,
+      "product_reviewed": 12
+    }
+  },
+  {
+    "model": "comments.comment",
+    "pk": 13,
+    "fields": {
+      "rating": "4",
+      "text": "Amazing!",
+      "created_at": "2023-05-16T22:31:28.436Z",
+      "comment_owner": 7,
+      "product_reviewed": 13
+    }
+  },
+  {
+    "model": "comments.comment",
+    "pk": 14,
+    "fields": {
+      "rating": "4",
+      "text": "Amazing!",
+      "created_at": "2023-05-16T22:31:28.436Z",
+      "comment_owner": 6,
+      "product_reviewed": 14
+    }
+  },
+  {
+    "model": "comments.comment",
+    "pk": 15,
+    "fields": {
+      "rating": "4",
+      "text": "Amazing!",
+      "created_at": "2023-05-16T22:31:28.436Z",
+      "comment_owner": 5,
+      "product_reviewed": 15
+    }
+  },
+  {
+    "model": "comments.comment",
+    "pk": 16,
+    "fields": {
+      "rating": "4",
+      "text": "Amazing!",
+      "created_at": "2023-05-16T22:31:28.436Z",
+      "comment_owner": 4,
+      "product_reviewed": 16
+    }
+  },
+  {
+    "model": "comments.comment",
+    "pk": 17,
+    "fields": {
+      "rating": "4",
+      "text": "Amazing!",
       "created_at": "2023-05-16T22:31:28.436Z",
       "comment_owner": 1,
+      "product_reviewed": 17
+    }
+  },
+  {
+    "model": "comments.comment",
+    "pk": 18,
+    "fields": {
+      "rating": "4",
+      "text": "Amazing!",
+      "created_at": "2023-05-16T22:31:28.436Z",
+      "comment_owner": 1,
+      "product_reviewed": 18
+    }
+  },
+  {
+    "model": "comments.comment",
+    "pk": 19,
+    "fields": {
+      "rating": "4",
+      "text": "Amazing!",
+      "created_at": "2023-05-16T22:31:28.436Z",
+      "comment_owner": 2,
+      "product_reviewed": 19
+    }
+  },
+  {
+    "model": "comments.comment",
+    "pk": 20,
+    "fields": {
+      "rating": "4",
+      "text": "Amazing!",
+      "created_at": "2023-05-16T22:31:28.436Z",
+      "comment_owner": 8,
+      "product_reviewed": 20
+    }
+  },
+  {
+    "model": "comments.comment",
+    "pk": 21,
+    "fields": {
+      "rating": "4",
+      "text": "Amazing!",
+      "created_at": "2023-05-16T22:31:28.436Z",
+      "comment_owner": 9,
+      "product_reviewed": 21
+    }
+  },
+  {
+    "model": "comments.comment",
+    "pk": 22,
+    "fields": {
+      "rating": "4",
+      "text": "Amazing!",
+      "created_at": "2023-05-16T22:31:28.436Z",
+      "comment_owner": 10,
+      "product_reviewed": 22
+    }
+  },
+  {
+    "model": "comments.comment",
+    "pk": 23,
+    "fields": {
+      "rating": "4",
+      "text": "Amazing!",
+      "created_at": "2023-05-16T22:31:28.436Z",
+      "comment_owner": 10,
+      "product_reviewed": 23
+    }
+  },
+  {
+    "model": "comments.comment",
+    "pk": 24,
+    "fields": {
+      "rating": "4",
+      "text": "Amazing!",
+      "created_at": "2023-05-16T22:31:28.436Z",
+      "comment_owner": 11,
+      "product_reviewed": 24
+    }
+  },
+  {
+    "model": "comments.comment",
+    "pk": 25,
+    "fields": {
+      "rating": "3",
+      "text": "Average teeshirts",
+      "created_at": "2023-05-16T22:31:28.436Z",
+      "comment_owner": 10,
+      "product_reviewed": 25
+    }
+  },
+  {
+    "model": "comments.comment",
+    "pk": 26,
+    "fields": {
+      "rating": "4",
+      "text": "Good for gym",
+      "created_at": "2023-05-16T22:31:28.436Z",
+      "comment_owner": 3,
+      "product_reviewed": 25
+    }
+  },
+  {
+    "model": "comments.comment",
+    "pk": 27,
+    "fields": {
+      "rating": "4",
+      "text": "Amazing!",
+      "created_at": "2023-05-16T22:31:28.436Z",
+      "comment_owner": 2,
+      "product_reviewed": 25
+    }
+  },
+  {
+    "model": "comments.comment",
+    "pk": 28,
+    "fields": {
+      "rating": "4",
+      "text": "Does the job",
+      "created_at": "2023-05-16T22:31:28.436Z",
+      "comment_owner": 9,
+      "product_reviewed": 25
+    }
+  },
+  {
+    "model": "comments.comment",
+    "pk": 29,
+    "fields": {
+      "rating": "5",
+      "text": "Excellent product, mows very well!",
+      "created_at": "2023-05-16T22:31:28.436Z",
+      "comment_owner": 4,
+      "product_reviewed": 1
+    }
+  },
+  {
+    "model": "comments.comment",
+    "pk": 30,
+    "fields": {
+      "rating": "2",
+      "text": "Broke down after second use",
+      "created_at": "2023-05-16T22:31:28.436Z",
+      "comment_owner": 5,
+      "product_reviewed": 1
+    }
+  },
+  {
+    "model": "comments.comment",
+    "pk": 31,
+    "fields": {
+      "rating": "4",
+      "text": "Does the job",
+      "created_at": "2023-05-16T22:31:28.436Z",
+      "comment_owner": 6,
+      "product_reviewed": 2
+    }
+  },
+  {
+    "model": "comments.comment",
+    "pk": 32,
+    "fields": {
+      "rating": "4",
+      "text": "Super long lasting",
+      "created_at": "2023-05-16T22:31:28.436Z",
+      "comment_owner": 7,
+      "product_reviewed": 2
+    }
+  },
+  {
+    "model": "comments.comment",
+    "pk": 33,
+    "fields": {
+      "rating": "2",
+      "text": "Colors a bit dull",
+      "created_at": "2023-05-16T22:31:28.436Z",
+      "comment_owner": 11,
+      "product_reviewed": 3
+    }
+  },
+  {
+    "model": "comments.comment",
+    "pk": 34,
+    "fields": {
+      "rating": "5",
+      "text": "A classic, all his hits are there",
+      "created_at": "2023-05-16T22:31:28.436Z",
+      "comment_owner": 10,
+      "product_reviewed": 4
+    }
+  },
+  {
+    "model": "comments.comment",
+    "pk": 35,
+    "fields": {
+      "rating": "3",
+      "text": "Literally sea sounds, got bored",
+      "created_at": "2023-05-16T22:31:28.436Z",
+      "comment_owner": 9,
+      "product_reviewed": 5
+    }
+  },
+  {
+    "model": "comments.comment",
+    "pk": 36,
+    "fields": {
+      "rating": "3",
+      "text": "A bit expensive for the content",
+      "created_at": "2023-05-16T22:31:28.436Z",
+      "comment_owner": 10,
+      "product_reviewed": 6
+    }
+  },
+  {
+    "model": "comments.comment",
+    "pk": 37,
+    "fields": {
+      "rating": "5",
+      "text": "Didn't know that artist before, very good",
+      "created_at": "2023-05-16T22:31:28.436Z",
+      "comment_owner": 8,
+      "product_reviewed": 7
+    }
+  },
+  {
+    "model": "comments.comment",
+    "pk": 38,
+    "fields": {
+      "rating": "4",
+      "text": "This guy rocks",
+      "created_at": "2023-05-16T22:31:28.436Z",
+      "comment_owner": 1,
+      "product_reviewed": 7
+    }
+  },
+  {
+    "model": "comments.comment",
+    "pk": 39,
+    "fields": {
+      "rating": "4",
+      "text": "Good stuff",
+      "created_at": "2023-05-16T22:31:28.436Z",
+      "comment_owner": 3,
+      "product_reviewed": 8
+    }
+  },
+  {
+    "model": "comments.comment",
+    "pk": 40,
+    "fields": {
+      "rating": "3",
+      "text": "Average book",
+      "created_at": "2023-05-16T22:31:28.436Z",
+      "comment_owner": 2,
+      "product_reviewed": 9
+    }
+  },
+  {
+    "model": "comments.comment",
+    "pk": 41,
+    "fields": {
+      "rating": "1",
+      "text": "If you want to lose 10 IQ points, read this",
+      "created_at": "2023-05-16T22:31:28.436Z",
+      "comment_owner": 4,
+      "product_reviewed": 9
+    }
+  },
+  {
+    "model": "comments.comment",
+    "pk": 42,
+    "fields": {
+      "rating": "5",
+      "text": "A recipe for success",
+      "created_at": "2023-05-16T22:31:28.436Z",
+      "comment_owner": 5,
       "product_reviewed": 10
+    }
+  },
+  {
+    "model": "comments.comment",
+    "pk": 43,
+    "fields": {
+      "rating": "5",
+      "text": "Super useful stuff",
+      "created_at": "2023-05-16T22:31:28.436Z",
+      "comment_owner": 6,
+      "product_reviewed": 10
+    }
+  },
+  {
+    "model": "comments.comment",
+    "pk": 44,
+    "fields": {
+      "rating": "5",
+      "text": "I bought my son this book and he had an A",
+      "created_at": "2023-05-16T22:31:28.436Z",
+      "comment_owner": 7,
+      "product_reviewed": 11
+    }
+  },
+  {
+    "model": "comments.comment",
+    "pk": 45,
+    "fields": {
+      "rating": "4",
+      "text": "I've learned a lot",
+      "created_at": "2023-05-16T22:31:28.436Z",
+      "comment_owner": 8,
+      "product_reviewed": 11
+    }
+  },
+  {
+    "model": "comments.comment",
+    "pk": 46,
+    "fields": {
+      "rating": "4",
+      "text": "Everyone should read this book once",
+      "created_at": "2023-05-16T22:31:28.436Z",
+      "comment_owner": 1,
+      "product_reviewed": 11
+    }
+  },
+  {
+    "model": "comments.comment",
+    "pk": 47,
+    "fields": {
+      "rating": "3",
+      "text": "Too complicated",
+      "created_at": "2023-05-16T22:31:28.436Z",
+      "comment_owner": 11,
+      "product_reviewed": 11
+    }
+  },
+  {
+    "model": "comments.comment",
+    "pk": 48,
+    "fields": {
+      "rating": "3",
+      "text": "A bit heavy, i had to ask my husband to fix it",
+      "created_at": "2023-05-16T22:31:28.436Z",
+      "comment_owner": 2,
+      "product_reviewed": 12
+    }
+  },
+  {
+    "model": "comments.comment",
+    "pk": 49,
+    "fields": {
+      "rating": "3",
+      "text": "Expensive and clunky",
+      "created_at": "2023-05-16T22:31:28.436Z",
+      "comment_owner": 3,
+      "product_reviewed": 12
+    }
+  },
+  {
+    "model": "comments.comment",
+    "pk": 50,
+    "fields": {
+      "rating": "4",
+      "text": "very long lasting, I recommend",
+      "created_at": "2023-05-16T22:31:28.436Z",
+      "comment_owner": 11,
+      "product_reviewed": 13
+    }
+  },
+  {
+    "model": "comments.comment",
+    "pk": 51,
+    "fields": {
+      "rating": "5",
+      "text": "Good sensations on the road",
+      "created_at": "2023-05-16T22:31:28.436Z",
+      "comment_owner": 10,
+      "product_reviewed": 13
+    }
+  },
+  {
+    "model": "comments.comment",
+    "pk": 52,
+    "fields": {
+      "rating": "4",
+      "text": "Sturdy stuff",
+      "created_at": "2023-05-16T22:31:28.436Z",
+      "comment_owner": 2,
+      "product_reviewed": 14
+    }
+  },
+  {
+    "model": "comments.comment",
+    "pk": 53,
+    "fields": {
+      "rating": "1",
+      "text": "Broke while changing my wheel",
+      "created_at": "2023-05-16T22:31:28.436Z",
+      "comment_owner": 4,
+      "product_reviewed": 14
+    }
+  },
+  {
+    "model": "comments.comment",
+    "pk": 54,
+    "fields": {
+      "rating": "5",
+      "text": "Comes with Sonic 2! Best day of my life",
+      "created_at": "2023-05-16T22:31:28.436Z",
+      "comment_owner": 7,
+      "product_reviewed": 15
+    }
+  },
+  {
+    "model": "comments.comment",
+    "pk": 55,
+    "fields": {
+      "rating": "1",
+      "text": "Didn't get to make it work",
+      "created_at": "2023-05-16T22:31:28.436Z",
+      "comment_owner": 3,
+      "product_reviewed": 16
+    }
+  },
+  {
+    "model": "comments.comment",
+    "pk": 56,
+    "fields": {
+      "rating": "5",
+      "text": "Mysterious book, loved it",
+      "created_at": "2023-05-16T22:31:28.436Z",
+      "comment_owner": 8,
+      "product_reviewed": 17
+    }
+  },
+  {
+    "model": "comments.comment",
+    "pk": 57,
+    "fields": {
+      "rating": "4",
+      "text": "Good but you have to change the filter often",
+      "created_at": "2023-05-16T22:31:28.436Z",
+      "comment_owner": 9,
+      "product_reviewed": 18
+    }
+  },
+  {
+    "model": "comments.comment",
+    "pk": 58,
+    "fields": {
+      "rating": "5",
+      "text": "Very good quality",
+      "created_at": "2023-05-16T22:31:28.436Z",
+      "comment_owner": 10,
+      "product_reviewed": 19
+    }
+  },
+  {
+    "model": "comments.comment",
+    "pk": 59,
+    "fields": {
+      "rating": "4",
+      "text": "Contains several shades",
+      "created_at": "2023-05-16T22:31:28.436Z",
+      "comment_owner": 9,
+      "product_reviewed": 19
+    }
+  },
+  {
+    "model": "comments.comment",
+    "pk": 60,
+    "fields": {
+      "rating": "3",
+      "text": "Had only 8 pieces",
+      "created_at": "2023-05-16T22:31:28.436Z",
+      "comment_owner": 2,
+      "product_reviewed": 20
+    }
+  },
+  {
+    "model": "comments.comment",
+    "pk": 61,
+    "fields": {
+      "rating": "4",
+      "text": "Good fabric",
+      "created_at": "2023-05-16T22:31:28.436Z",
+      "comment_owner": 5,
+      "product_reviewed": 21
+    }
+  },
+  {
+    "model": "comments.comment",
+    "pk": 62,
+    "fields": {
+      "rating": "3",
+      "text": "My wife didn't like the result",
+      "created_at": "2023-05-16T22:31:28.436Z",
+      "comment_owner": 1,
+      "product_reviewed": 23
+    }
+  },
+  {
+    "model": "comments.comment",
+    "pk": 63,
+    "fields": {
+      "rating": "4",
+      "text": "Very good",
+      "created_at": "2023-05-16T22:31:28.436Z",
+      "comment_owner": 6,
+      "product_reviewed": 24
+    }
+  },
+  {
+    "model": "comments.comment",
+    "pk": 64,
+    "fields": {
+      "rating": "4",
+      "text": "Good quality",
+      "created_at": "2023-05-16T22:31:28.436Z",
+      "comment_owner": 1,
+      "product_reviewed": 25
+    }
+  },
+  {
+    "model": "comments.comment",
+    "pk": 65,
+    "fields": {
+      "rating": "5",
+      "text": "Good gloves",
+      "created_at": "2023-05-16T22:31:28.436Z",
+      "comment_owner": 2,
+      "product_reviewed": 26
+    }
+  },
+  {
+    "model": "comments.comment",
+    "pk": 66,
+    "fields": {
+      "rating": "4",
+      "text": "Stylish",
+      "created_at": "2023-05-16T22:31:28.436Z",
+      "comment_owner": 3,
+      "product_reviewed": 27
+    }
+  },
+  {
+    "model": "comments.comment",
+    "pk": 67,
+    "fields": {
+      "rating": "1",
+      "text": "Broke apart easily",
+      "created_at": "2023-05-16T22:31:28.436Z",
+      "comment_owner": 4,
+      "product_reviewed": 28
+    }
+  },
+  {
+    "model": "comments.comment",
+    "pk": 68,
+    "fields": {
+      "rating": "2",
+      "text": "Practical but a bit cheap",
+      "created_at": "2023-05-16T22:31:28.436Z",
+      "comment_owner": 5,
+      "product_reviewed": 28
+    }
+  },
+  {
+    "model": "comments.comment",
+    "pk": 69,
+    "fields": {
+      "rating": "3",
+      "text": "Average TV",
+      "created_at": "2023-05-16T22:31:28.436Z",
+      "comment_owner": 6,
+      "product_reviewed": 29
+    }
+  },
+  {
+    "model": "comments.comment",
+    "pk": 70,
+    "fields": {
+      "rating": "3",
+      "text": "My dog didn't like it",
+      "created_at": "2023-05-16T22:31:28.436Z",
+      "comment_owner": 7,
+      "product_reviewed": 30
+    }
+  },
+  {
+    "model": "comments.comment",
+    "pk": 71,
+    "fields": {
+      "rating": "5",
+      "text": "I love this product",
+      "created_at": "2023-05-16T22:31:28.436Z",
+      "comment_owner": 8,
+      "product_reviewed": 31
+    }
+  },
+  {
+    "model": "comments.comment",
+    "pk": 72,
+    "fields": {
+      "rating": "5",
+      "text": "Perfect for coding",
+      "created_at": "2023-05-16T22:31:28.436Z",
+      "comment_owner": 6,
+      "product_reviewed": 32
+    }
+  },
+  {
+    "model": "comments.comment",
+    "pk": 73,
+    "fields": {
+      "rating": "4",
+      "text": "Good pencils",
+      "created_at": "2023-05-16T22:31:28.436Z",
+      "comment_owner": 11,
+      "product_reviewed": 33
+    }
+  },
+  {
+    "model": "comments.comment",
+    "pk": 74,
+    "fields": {
+      "rating": "2",
+      "text": "Missing a DVD",
+      "created_at": "2023-05-16T22:31:28.436Z",
+      "comment_owner": 10,
+      "product_reviewed": 34
+    }
+  },
+  {
+    "model": "comments.comment",
+    "pk": 75,
+    "fields": {
+      "rating": "5",
+      "text": "Stylish and protects very well from the sun",
+      "created_at": "2023-05-16T22:31:28.436Z",
+      "comment_owner": 9,
+      "product_reviewed": 35
+    }
+  },
+  {
+    "model": "comments.comment",
+    "pk": 76,
+    "fields": {
+      "rating": "4",
+      "text": "Very good",
+      "created_at": "2023-05-16T22:31:28.436Z",
+      "comment_owner": 8,
+      "product_reviewed": 35
+    }
+  },
+  {
+    "model": "comments.comment",
+    "pk": 77,
+    "fields": {
+      "rating": "4",
+      "text": "Very good",
+      "created_at": "2023-05-16T22:31:28.436Z",
+      "comment_owner": 6,
+      "product_reviewed": 36
+    }
+  },
+  {
+    "model": "comments.comment",
+    "pk": 78,
+    "fields": {
+      "rating": "4",
+      "text": "Very good",
+      "created_at": "2023-05-16T22:31:28.436Z",
+      "comment_owner": 5,
+      "product_reviewed": 37
+    }
+  },
+  {
+    "model": "comments.comment",
+    "pk": 79,
+    "fields": {
+      "rating": "4",
+      "text": "Very good",
+      "created_at": "2023-05-16T22:31:28.436Z",
+      "comment_owner": 2,
+      "product_reviewed": 38
+    }
+  },
+  {
+    "model": "comments.comment",
+    "pk": 80,
+    "fields": {
+      "rating": "4",
+      "text": "Very good",
+      "created_at": "2023-05-16T22:31:28.436Z",
+      "comment_owner": 4,
+      "product_reviewed": 39
+    }
+  },
+  {
+    "model": "comments.comment",
+    "pk": 81,
+    "fields": {
+      "rating": "4",
+      "text": "Very good",
+      "created_at": "2023-05-16T22:31:28.436Z",
+      "comment_owner": 1,
+      "product_reviewed": 40
+    }
+  },
+  {
+    "model": "comments.comment",
+    "pk": 82,
+    "fields": {
+      "rating": "4",
+      "text": "Very good",
+      "created_at": "2023-05-16T22:31:28.436Z",
+      "comment_owner": 3,
+      "product_reviewed": 41
+    }
+  },
+  {
+    "model": "comments.comment",
+    "pk": 83,
+    "fields": {
+      "rating": "2",
+      "text": "Sounds more like a trumpet",
+      "created_at": "2023-05-16T22:31:28.436Z",
+      "comment_owner": 2,
+      "product_reviewed": 42
+    }
+  },
+  {
+    "model": "comments.comment",
+    "pk": 84,
+    "fields": {
+      "rating": "5",
+      "text": "Perfect acoustic",
+      "created_at": "2023-05-16T22:31:28.436Z",
+      "comment_owner": 10,
+      "product_reviewed": 43
+    }
+  },
+  {
+    "model": "comments.comment",
+    "pk": 85,
+    "fields": {
+      "rating": "4",
+      "text": "Very good",
+      "created_at": "2023-05-16T22:31:28.436Z",
+      "comment_owner": 7,
+      "product_reviewed": 44
+    }
+  },
+  {
+    "model": "comments.comment",
+    "pk": 86,
+    "fields": {
+      "rating": "4",
+      "text": "Very good",
+      "created_at": "2023-05-16T22:31:28.436Z",
+      "comment_owner": 9,
+      "product_reviewed": 45
     }
   }
 ]

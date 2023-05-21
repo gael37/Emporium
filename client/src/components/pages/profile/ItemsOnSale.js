@@ -52,11 +52,11 @@ const ItemsOnSale = () => {
               <p className='profile-details'>You are not currently selling any items.</p>
             }
             {profileData.products.length < 1 &&
-              <button className="yellow-button" onClick={handlePostAd}>Start selling</button>
+              <button className="yellow-button button-300px" onClick={handlePostAd}>Start selling</button>
 
             }
             {profileData.products.length > 0 &&
-              <button className='yellow-button-small' onClick={navSell}>Sell a new item</button>
+              <button className='yellow-button-small button-300px' onClick={navSell}>Sell a new item</button>
             }
           </div>
 

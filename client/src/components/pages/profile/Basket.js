@@ -314,7 +314,7 @@ const Basket = ({ basketCounter, setBasketCounter, postcode, setPostcode }) => {
               }
             </section>
 
-            <section className='single-section-basket basket-checkout-section'>
+            <section className='basket-checkout-section'>
               {userData &&
                 <>
                   <h2>Order summary</h2>
@@ -429,7 +429,7 @@ const Basket = ({ basketCounter, setBasketCounter, postcode, setPostcode }) => {
         </>
         :
         <div className='basket-empty'>
-          <h2>Your emporium cart is empty.</h2>
+          <p>Your emporium cart is empty.</p>
           <p>Check your <button className='button-adress' onClick={handleSaved}>wishlist</button> items or <button className='button-adress' onClick={handleShopping}>continue shopping</button>.</p>
         </div>
       }

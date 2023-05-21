@@ -64,7 +64,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/login-after-register" element={<LoginAfterRegister />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/success" element={<Success />} />
+        <Route path="/success" element={<Success setBasketCounter={setBasketCounter} />} />
         <Route path="/cancel" element={<Cancel setBasketCounter={setBasketCounter} />} />
         <Route path="*" element={<NotFound />} />
       </Routes>

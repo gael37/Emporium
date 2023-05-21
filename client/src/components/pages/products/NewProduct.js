@@ -25,6 +25,7 @@ const NewProduct = () => {
   const [loading, setLoading] = useState(false)
   const [show, setShow] = useState(false)
   const [selected, setSelected] = useState([])
+  const [selectedDisplay, setSelectedDisplay] = useState(null)
 
 
   const [formFields, setFormFields] = useState({
@@ -77,23 +78,23 @@ const NewProduct = () => {
         return 11
       } else if (item === 'Home & Kitchen') {
         return 12
-      } else if (item === 'Industrial & Scientific') {
-        return 13
       } else if (item === 'Large Appliances') {
-        return 14
+        return 13
       } else if (item === 'Luggage & Travel Gear') {
-        return 15
+        return 14
       } else if (item === 'Musical Instruments') {
-        return 16
+        return 15
       } else if (item === 'Video Games & Consoles') {
-        return 17
+        return 16
       } else if (item === 'Pet Supplies') {
-        return 18
+        return 17
       } else if (item === 'Sports & Outdoors') {
-        return 19
+        return 18
       } else if (item === 'Stationary & Office Supplies') {
-        return 10
+        return 19
       } else if (item === 'Toys & Games') {
+        return 20
+      } else if (item === 'Others') {
         return 21
       }
     }
@@ -119,6 +120,7 @@ const NewProduct = () => {
       })
       setSelectedImages([])
       setCategoriesArray([])
+      setSelectedDisplay(null)
     } catch (err) {
       console.log(err.response.data)
       setErrors(err.response.data)
@@ -138,11 +140,12 @@ const NewProduct = () => {
 
   const selectCategory = (e) => {
     array = []
-    console.log('e', e)
+    console.log('category changed', e)
     for (let i = 0; i < e.length; i++) {
       array.push(e[i].value)
     }
     setCategoriesArray(array)
+    setSelectedDisplay(e)
     // setSelected(e.target.value)
   }
 
@@ -237,7 +240,7 @@ const NewProduct = () => {
                 />
               </div>
               <label htmlFor="name">Category (at least one)<span>*</span></label>
-              <Select name="category" className='select-input' options={options} isClearable={true} isMulti onChange={selectCategory} />
+              <Select value={selectedDisplay} name="category" className='select-input' options={options} isClearable={true} isMulti onChange={selectCategory} />
 
               {/* Dimensions */}
               <div>

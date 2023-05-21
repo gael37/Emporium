@@ -278,6 +278,10 @@ h1 {
   gap: 20px;
 }
 
+.button-300px {
+  width: 250px;
+}
+
 // --------------------------------------------NAVIGATION BAR---------------------------------------------------
 #login-mobile {
   display: none;
@@ -651,7 +655,7 @@ h1 {
   position: absolute;
   width: 100%;
   transform: scaleX(0);
-  height: 2px;
+  height: 0.5px;
   bottom: -6px;
   left: 0;
   background-color: white;
@@ -675,7 +679,7 @@ h1 {
   position: absolute;
   width: 100%;
   transform: scaleX(0);
-  height: 2px;
+  height: 0.5px;
   bottom: 0px;
   left: 0;
   background-color: white;
@@ -781,7 +785,7 @@ h1 {
 .login-button {
   box-sizing: content-box;
   font-size: 1em;
-  background-color: lighten(#efb740, 10%);
+  background-color: lighten(#efb740, 15%);
 
   margin-top: 20px;
   border-radius: 5px;
@@ -790,7 +794,11 @@ h1 {
   border: 1px solid $grey-border;
 
   &:hover {
-    background-color: darken(#efb740, 10%);
+    background-color: lighten(#efb740, 5%);
+  }
+
+  &:active {
+    transform: scale(0.95);
   }
 }
 
@@ -894,7 +902,7 @@ h1 {
   border-left: 10px solid $green;
 }
 
-// ----------------------------------------------PRODUCT CARD----------------------------------------------
+// ---------------------------------------------- HOME ----------------------------------------------
 
 
 .product-card {
@@ -1038,6 +1046,7 @@ h1 {
 .flex-price-like {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin-bottom: 10px;
 }
 
@@ -1104,6 +1113,18 @@ h1 {
     padding: 0;
     margin: 0;
   }
+}
+
+.wish-message-visible {
+  display: contents;
+  color: rgb(197, 59, 59);
+  font-weight: bold;
+  font-size: 0.7em;
+  margin-left: 20px;
+}
+
+.wish-message-not-visible {
+  display: none;
 }
 
 // ---------------------------------------PRODUCT SINGLE----------------------------------------
@@ -1771,6 +1792,15 @@ h1 {
   background-position: center;
 }
 
+.basket-card {
+  display: flex;
+
+
+  .yellow-button {
+    width: 200px;
+  }
+}
+
 .basket-checkout {
   display: flex;
   flex-direction: column;
@@ -1790,6 +1820,7 @@ h1 {
   width: 90%;
   display: flex;
   flex-direction: row;
+  // flex-direction: column;
   justify-content: flex-start;
   align-items: center;
   gap: 30px;
@@ -1872,7 +1903,10 @@ h1 {
   flex-direction: column;
   align-items: flex-start;
   gap: 10px;
-  width: 330px;
+  min-width: 330px;
+  border: 1px solid $grey-border;
+  border-radius: 5px;
+  padding: 20px;
 
   p {
     margin: 0px;
@@ -2346,6 +2380,22 @@ h1 {
   .single-section-images {
     min-width: 300px;
   }
+
+  .order-card-review {
+    width: 80%;
+  }
+
+  .reviews-section {
+    h2 {
+      text-align: center;
+    }
+  }
+
+  .order-card-review {
+    width: 80%;
+    margin: 0 auto;
+    margin-bottom: 20px;
+  }
 }
 
 
@@ -2396,6 +2446,23 @@ h1 {
 }
 
 @media only screen and (max-width: 950px) {
+
+  .flex-basket-page {
+    flex-wrap: wrap;
+  }
+
+  .basket-checkout-section {
+    margin: 20px auto;
+  }
+
+  .basket-main {
+    margin: 0 auto;
+  }
+
+  .basket-card {
+    width: 100%;
+  }
+
   .form-page {
     margin-bottom: 30px;
   }
@@ -2613,6 +2680,38 @@ h1 {
 
   //   }
 
+}
+
+
+@media only screen and (max-width: 550px) {
+
+  .basket-card {
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    margin: 0 auto;
+
+    .yellow-button {
+      margin: 0 auto;
+    }
+
+    .flex-in-basket {
+      margin: 10px auto;
+      justify-content: center;
+    }
+
+    .product-card-price {
+      text-align: center;
+    }
+
+    .button-adress {
+      margin: 0 auto;
+    }
+  }
+
+  // .flex-wishlist-remove {
+  //   justify-content: center;
+  // }
 }
 
 

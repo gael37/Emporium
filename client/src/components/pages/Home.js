@@ -35,6 +35,7 @@ const Home = ({ selected, typed, setSelected, setTyped, basketCounter, setBasket
   const [basketData, setBasketData] = useState([])
   const [productJustLiked, setProductJustLiked] = useState(false)
   const [userData, setUserData] = useState(null)
+  const [classWishlistMessage, setClassWishlistMessage] = useState('wish-message-not-visible')
 
   // const [addedToBasket, setAddedToBasket] = useState(false)
 
@@ -170,6 +171,7 @@ const Home = ({ selected, typed, setSelected, setTyped, basketCounter, setBasket
   }, [typed])
 
 
+
   // --------WISHES---------
 
 
@@ -182,6 +184,12 @@ const Home = ({ selected, typed, setSelected, setTyped, basketCounter, setBasket
           Authorization: `Bearer ${getToken()}`,
         },
       })
+      if (classWishlistMessage === 'wish-message-not-visible') {
+        setClassWishlistMessage('wish-message-visible')
+        setTimeout(() => {
+          setClassWishlistMessage('wish-message-not-visible')
+        }, 2000)
+      }
       console.log('RESPONSE FROM WISH POST ', data)
     } catch (err) {
       console.log(err)
@@ -352,6 +360,14 @@ const Home = ({ selected, typed, setSelected, setTyped, basketCounter, setBasket
     console.log('basket data :', basketData)
   }, [basketData])
 
+  // useEffect(() => {
+  //   if (classWishlistMessage === 'wish-message-visible') {
+  //     setTimeout(() => {
+  //       setClassWishlistMessage('wish-message-not-visible')
+  //     }, 2000)
+  //   }
+  // }, [classWishlistMessage])
+
   const goToBasket = () => {
     navigate('/basket')
   }
@@ -380,9 +396,13 @@ const Home = ({ selected, typed, setSelected, setTyped, basketCounter, setBasket
                     {product.wished.some((wish) => {
                       return wish.wish_owner.id === currentUserId
                     }) ?
-                      <button className='like-button like-button-bigger' onClick={() => handleDelete(product)}><img src={heart} alt='like'></img></button>
+                      <>
+                        <button className='like-button like-button-bigger' onClick={() => handleDelete(product)}><img src={heart} alt='like'></img></button>
+                      </>
                       :
-                      <button className='like-button' onClick={() => handleHeartClick(product)}><img src={emptyHeart} alt='like'></img></button>
+                      <>
+                        <button className='like-button' onClick={() => handleHeartClick(product)}><img src={emptyHeart} alt='like'></img></button>
+                      </>
                     }
                   </div>
                   <Link className='bootstrap-link home-link' to={`/products/${product.id}`}>
