@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom'
 import brandLogo from '../../assets/images/brand-logo.png'
 import cartLogo from '../../assets/images/cart-logo.png'
 import { useState } from 'react'
-
+import { useNavigate } from 'react-router-dom'
 function Navigation() {
 
   const [select, setSelect] = useState('small')
