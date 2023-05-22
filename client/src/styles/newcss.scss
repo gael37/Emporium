@@ -2777,6 +2777,9 @@ h1 {
 
 @media only screen and (max-width: 500px) {
 
+
+
+
   #logo-right {
     display: contents;
 
@@ -2786,7 +2789,38 @@ h1 {
     }
   }
 
+  .single-card-description-full {
+    margin: 0px auto;
+    width: 300px;
+    font-size: 0.9em;
+    text-align: center;
+  }
 
+  .flex-single-reviews {
+    justify-content: center;
+  }
+
+  .single-card-price {
+    text-align: center;
+  }
+
+  .about-title {
+    text-align: center;
+  }
+
+  .single-card-about {
+    margin: 0px auto;
+    width: 300px;
+    font-size: 0.8em;
+    text-align: center;
+  }
+
+  .single-card-info {
+    margin: 0px auto;
+    width: 300px;
+    font-size: 0.9em;
+    text-align: center;
+  }
 }
 
 
@@ -2813,6 +2847,9 @@ h1 {
     }
   }
 
+  // .product-card-price {
+  //   text-align: center;
+  // }
 }
 
 
