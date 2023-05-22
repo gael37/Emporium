@@ -26,6 +26,7 @@ function Orders() {
   const [stars, setStars] = useState(0)
   const [submitted, setSubmitted] = useState(false)
   const [reviewSubmitted, setReviewSubmitted] = useState(false)
+  const [orderToReview, setOrderToReview] = useState(null)
 
 
   getToken()
@@ -71,7 +72,8 @@ function Orders() {
 
   // ------------------------MODAL POST REVIEW-------------------------
 
-  const handleShow = async () => {
+  const handleShow = (order) => {
+    setOrderToReview(order)
     setShow(true)
   }
 
@@ -204,8 +206,9 @@ function Orders() {
                         <p>Quantity: {order.count}</p>
                       </div>
                       <div className="flex-order-buttons">
-                        <Link className='regular-button link-button button-fixed' to={`/products/${order.product_ordered.id}`}>View your item</ Link>
-                        <button className='yellow-button' onClick={() => handleShow(order)}>Write a product review</ button>
+                        <Link className='regular-button link-button button-fixed button-black' to={`/products/${order.product_ordered.id}`}>View your item</ Link>
+                        <Link className='yellow-button link-button button-fixed button-black' to={`/reviews/${order.product_ordered.id}`}>Write a product review</ Link>
+                        {/* <button className='yellow-button' onClick={() => handleShow(order)}>Write a product review</ button>
                         <Modal className='basket-modal' show={show} onHide={handleClose}>
                           <Modal.Header closeButton>
                             <Modal.Title className='modal-title'><strong>Create review</strong></Modal.Title>
@@ -337,7 +340,7 @@ function Orders() {
                               </div>
                             </div>
                           </Modal.Body>
-                        </Modal>
+                        </Modal> */}
                       </div>
                     </div>
                     <div className="flex-order-buttons-below">

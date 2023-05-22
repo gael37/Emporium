@@ -48,6 +48,23 @@ const Login = () => {
     navigate('/register')
   }
 
+  const loginAsGuest = async () => {
+    setFormFields({
+      email: 'gael@email.com',
+      password: 'chameau12',
+    })
+    try {
+      const { data } = await axios.post('/api/auth/login/', formFields)
+      console.log(data)
+      console.log(data.token)
+      setToken(data.token)
+      navigate('/')
+    } catch (err) {
+      console.log(err)
+      setError('')
+    }
+  }
+
   // ! JSX
   return (
 
@@ -84,6 +101,7 @@ const Login = () => {
         {error && <small className='text-danger'>{error}</small>}
         {/* Submit */}
         <button className='yellow-button login-button'>Sign in</button>
+        <button onClick={loginAsGuest} className='yellow-button login-button green-button'>Skip and sign in as a guest</button>
       </form>
       <br />
       <p>New to emporium?</p>

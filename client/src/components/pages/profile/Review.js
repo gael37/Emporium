@@ -8,6 +8,21 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/esm/Row'
 import { useDropzone } from 'react-dropzone'
 
+import pageLoadingGif from '../../../assets/gifs/page-loading-gif.gif'
+import oneStar from '../../../assets/images/one-star.png'
+import twoStars from '../../../assets/images/two-stars.png'
+import threeStars from '../../../assets/images/three-stars.png'
+import fourStars from '../../../assets/images/four-stars.png'
+import fiveStars from '../../../assets/images/five-stars.png'
+import emptyStar from '../../../assets/images/empty-star.png'
+import fullStar from '../../../assets/images/full-star.png'
+import validate from '../../../assets/images/validate.png'
+
+
+import { Modal } from 'react-bootstrap'
+
+
+
 const Review = ({ userData }) => {
 
   const [product, setProduct] = useState(null)
@@ -16,6 +31,17 @@ const Review = ({ userData }) => {
   const [textField, setTextField] = useState('')
   const [stars, setStars] = useState(0)
   const [submitted, setSubmitted] = useState(false)
+  const [show, setShow] = useState(false)
+
+
+  const handleClose = () => {
+    navigate('/orders')
+    setShow(false)
+  }
+
+  const handleShow = async () => {
+    setShow(true)
+  }
 
   useEffect(() => {
     console.log('user data', userData)
@@ -95,154 +121,260 @@ const Review = ({ userData }) => {
     } catch (err) {
       console.log(err)
     }
-    navigate('/orders')
+    setShow(true)
+  }
+
+  const postedAd = () => {
+    if (product.owner.id === currentUserId) {
+      return true
+    } else {
+      return false
+    }
   }
 
   return (
-    <main className='single-page'>
-      <Container className='mt-4'>
-        <Row>
-          {product ?
+    <main className='single-page-wrapper'>
+      {product ?
+        <>
+          <div className='single-page review-wrap'>
             <>
-              <div className="single-buffer">
-                <>
-                  {bigImage ?
-                    <div className="profile-card-image top-image review-big-image" style={{ backgroundImage: `url(${bigImage})` }}></div>
-                    :
-                    <div className="profile-card-image top-image review-big-image" style={{ backgroundImage: `url(${product.images.split(' ')[0]})` }}></div>
+              <section className='single-section-images'>
+                {bigImage ?
+                  <div className="profile-card-image top-image" style={{ backgroundImage: `url(${bigImage})` }}></div>
+                  // <img src={bigImage} className="profile-card-image top-image"></img>
 
+                  :
+                  <div className="profile-card-image top-image" style={{ backgroundImage: `url(${product.images.split(' ')[0]})` }}></div>
+                  // <img src={product.images.split(' ')[0]} className="profile-card-image top-image"></img>
+
+                }
+                <div className='bottom-images-flex'>
+
+                  {(product.images.split(' ')).map((image, index) => {
+                    return (
+                      <div key={index} name={image} onMouseEnter={getBigger} onMouseLeave={getSmaller} onClick={() => swapImage(image)} className="profile-card-image bottom-images" style={{ backgroundImage: `url(${image})` }}></div>
+                    )
+                  })
                   }
-                  <div className='bottom-images-flex'>
-                    <>
-                      {(product.images.split(' ')).map((image, index) => {
-                        return (
-                          <div key={index} name={image} onMouseEnter={getBigger} onMouseLeave={getSmaller} onClick={() => swapImage(image)} className="profile-card-image bottom-images" style={{ backgroundImage: `url(${image})` }}></div>
-                        )
-                      })
-                      }
-                    </>
-                  </div>
-                </>
 
+                </div>
+              </section>
+
+              <section className='single-description'>
                 <div className='single-div-description'>
 
                   <p className='single-card-description-full'>{product.description}</p>
+                  <div className='flex-single-reviews'>
+                    <div className="buffer-reviews">
+                      <a href='#reviews' className='a-link'>
+                        {product.comments.length > 0 ?
+                          Math.floor(product.comments.reduce((acc, obj) => {
+                            return acc + parseInt(obj.rating)
+                          }, 0) / product.comments.length) === 1 &&
+                          <div className="flex-reviews add-padding">
+                            <img src={oneStar}></img>
+                            <p>{product.comments.length} ratings</p>
+                          </div>
+                          :
+                          <div className='buffer-reviews'></div>
+                        }
 
+
+                        {product.comments.length > 0 ?
+                          Math.floor(product.comments.reduce((acc, obj) => {
+                            return acc + parseInt(obj.rating)
+                          }, 0
+                          ) / product.comments.length) === 2 &&
+                          <div className="flex-reviews add-padding">
+                            <img src={twoStars}></img>
+                            <p>{product.comments.length} ratings</p>
+                          </div>
+                          : <div className='buffer-reviews'><></></div>
+                        }
+
+                        {product.comments.length > 0 ?
+                          Math.floor(product.comments.reduce((acc, obj) => {
+                            return acc + parseInt(obj.rating)
+                          }, 0
+                          ) / product.comments.length) === 3 &&
+                          <div className="flex-reviews add-padding">
+                            <img src={threeStars}></img>
+                            <p>{product.comments.length} ratings</p>
+                          </div>
+                          : <div className='buffer-reviews'></div>
+                        }
+
+                        {product.comments.length > 0 ?
+                          Math.floor(product.comments.reduce((acc, obj) => {
+                            return acc + parseInt(obj.rating)
+                          }, 0
+                          ) / product.comments.length) === 4 &&
+                          <div className="flex-reviews">
+                            <img src={fourStars}></img>
+                            <p>{product.comments.length} ratings</p>
+                          </div>
+                          : <div className='buffer-reviews'></div>
+                        }
+
+                        {product.comments.length > 0 ?
+                          Math.floor(product.comments.reduce((acc, obj) => {
+                            return acc + parseInt(obj.rating)
+                          }, 0
+                          ) / product.comments.length) === 5 &&
+                          <div className="flex-reviews add-padding">
+                            <img src={fiveStars}></img>
+                            <p>{product.comments.length} ratings</p>
+                          </div>
+                          :
+                          <div className='buffer-reviews'></div>
+                        }
+                      </a>
+                    </div>
+                  </div>
+                  <p className='single-card-price'>£{product.price}</p>
+                  {(product.about) &&
+                    <>
+                      <p className='about-title'><strong>About this item</strong></p>
+                      <div>
+                        <p className='single-card-about'><pre>{product.about}</pre></p>
+
+                      </div>
+                      {/* {product.about.split('- ').slice(1).map((paragraph, index) => {
+                    return (
+                      <p className='single-card-about' key={index}>• {paragraph}.</p>
+                    )
+                  })} */}
+                    </>
+                  }
                   {(product.dimensions) &&
-                    <p className='single-card-description-full'><strong>•Dimensions:</strong> {product.dimensions}</p>
+                    <p className='single-card-info'><span>Dimensions</span> {product.dimensions}</p>
                   }
                   {(product.weight) &&
-                    <p className='single-card-description-full'><strong>•Weight:</strong> {product.weight}</p>
+                    <p className='single-card-info'><span>Weight</span> {product.weight}</p>
                   }
-                  {(product.about) &&
-                    <p className='single-card-description-full'><strong>•About:</strong> {product.about}</p>
-                  }
-                  {(product.brand) &&
-                    <p className='single-card-description-full'><strong>•Brand:</strong> {product.brand}</p>
-                  }
-                  <p className='single-card-price'>£{product.price}</p>
-                  <p className='single-card-date'>Posted by <span>{product.owner.username}</span> on <span>{product.created_at.toString().split('T').slice(0, 1).join()}</span></p>
-                  {product &&
-                    <p>Categories: {product.categories[0].name}</p>
+                  {postedAd() ?
+                    <p className='single-card-info'><span>Seller</span> me!</p>
+                    :
+                    <p className='single-card-info'><span>Seller</span> {product.owner.username}</p>
                   }
                 </div>
-              </div>
-              <div className="flex-rating">
+              </section>
+
+
+              <section className='reviews-section write-review-section'>
                 <h2>Overall rating</h2>
-                {submitted ?
-                  <div className="flex-submitted">
-                    <p>✅ Submitted</p>
-                    <button onClick={clear}>Clear</button>
+
+                {
+                  stars === 0 ?
+                    <div className="flex-stars stars0">
+                      <button onClick={giveOneStar}><img src={emptyStar} alt='empty star' ></img></button>
+                      <button onClick={giveTwoStars}><img src={emptyStar} alt='empty star' ></img></button>
+                      <button onClick={giveThreeStars}><img src={emptyStar} alt='empty star' ></img></button>
+                      <button onClick={giveFourStars}><img src={emptyStar} alt='empty star' ></img></button>
+                      <button onClick={giveFiveStars}><img src={emptyStar} alt='empty star' ></img></button>
+                    </div>
+                    :
+                    <></>
+                }
+                {
+                  stars === 1 ?
+                    <div className="flex-stars stars1">
+                      <button onClick={giveOneStar}><img src={fullStar} alt='full star' ></img></button>
+                      <button onClick={giveTwoStars}><img src={emptyStar} alt='empty star' ></img></button>
+                      <button onClick={giveThreeStars}><img src={emptyStar} alt='empty star' ></img></button>
+                      <button onClick={giveFourStars}><img src={emptyStar} alt='empty star' ></img></button>
+                      <button onClick={giveFiveStars}><img src={emptyStar} alt='empty star' ></img></button>
+                    </div>
+                    :
+                    <></>
+                }
+                {stars === 2 ?
+                  <div className="flex-stars stars2">
+                    <button onClick={giveOneStar}><img src={fullStar} alt='full star' ></img></button>
+                    <button onClick={giveTwoStars}><img src={fullStar} alt='full star' ></img></button>
+                    <button onClick={giveThreeStars}><img src={emptyStar} alt='empty star' ></img></button>
+                    <button onClick={giveFourStars}><img src={emptyStar} alt='empty star' ></img></button>
+                    <button onClick={giveFiveStars}><img src={emptyStar} alt='empty star' ></img></button>
                   </div>
                   :
                   <></>
                 }
-              </div>
-
-
-
-              {
-                stars === 0 ?
-                  <div className="flex-stars stars0">
-                    <button onClick={giveOneStar}>☆</button>
-                    <button onClick={giveTwoStars}>☆</button>
-                    <button onClick={giveThreeStars}>☆</button>
-                    <button onClick={giveFourStars}>☆</button>
-                    <button onClick={giveFiveStars}>☆</button>
+                {stars === 3 ?
+                  <div className="flex-stars stars3">
+                    <button onClick={giveOneStar}><img src={fullStar} alt='full star' ></img></button>
+                    <button onClick={giveTwoStars}><img src={fullStar} alt='full star' ></img></button>
+                    <button onClick={giveThreeStars}><img src={fullStar} alt='full star' ></img></button>
+                    <button onClick={giveFourStars}><img src={emptyStar} alt='empty star' ></img></button>
+                    <button onClick={giveFiveStars}><img src={emptyStar} alt='empty star' ></img></button>
                   </div>
                   :
                   <></>
-              }
-              {
-                stars === 1 ?
-                  <div className="flex-stars stars1">
-                    <button onClick={giveOneStar}>⭐️</button>
-                    <button onClick={giveTwoStars}>☆</button>
-                    <button onClick={giveThreeStars}>☆</button>
-                    <button onClick={giveFourStars}>☆</button>
-                    <button onClick={giveFiveStars}>☆</button>
+                }
+                {stars === 4 ?
+                  <div className="flex-stars stars4">
+                    <button onClick={giveOneStar}><img src={fullStar} alt='full star' ></img></button>
+                    <button onClick={giveTwoStars}><img src={fullStar} alt='full star' ></img></button>
+                    <button onClick={giveThreeStars}><img src={fullStar} alt='full star' ></img></button>
+                    <button onClick={giveFourStars}><img src={fullStar} alt='full star' ></img></button>
+                    <button onClick={giveFiveStars}><img src={emptyStar} alt='empty star' ></img></button>
                   </div>
                   :
                   <></>
-              }
-              {stars === 2 ?
-                <div className="flex-stars stars2">
-                  <button onClick={giveOneStar}>⭐️</button>
-                  <button onClick={giveTwoStars}>⭐️</button>
-                  <button onClick={giveThreeStars}>☆</button>
-                  <button onClick={giveFourStars}>☆</button>
-                  <button onClick={giveFiveStars}>☆</button>
-                </div>
-                :
-                <></>
-              }
-              {stars === 3 ?
-                <div className="flex-stars stars3">
-                  <button onClick={giveOneStar}>⭐️</button>
-                  <button onClick={giveTwoStars}>⭐️</button>
-                  <button onClick={giveThreeStars}>⭐️</button>
-                  <button onClick={giveFourStars}>☆</button>
-                  <button onClick={giveFiveStars}>☆</button>
-                </div>
-                :
-                <></>
-              }
-              {stars === 4 ?
-                <div className="flex-stars stars4">
-                  <button onClick={giveOneStar}>⭐️</button>
-                  <button onClick={giveTwoStars}>⭐️</button>
-                  <button onClick={giveThreeStars}>⭐️</button>
-                  <button onClick={giveFourStars}>⭐️</button>
-                  <button onClick={giveFiveStars}>☆</button>
-                </div>
-                :
-                <></>
-              }
-              {stars === 5 ?
-                <div className="flex-stars stars5">
-                  <button onClick={giveOneStar}>⭐️</button>
-                  <button onClick={giveTwoStars}>⭐️</button>
-                  <button onClick={giveThreeStars}>⭐️</button>
-                  <button onClick={giveFourStars}>⭐️</button>
-                  <button onClick={giveFiveStars}>⭐️</button>
-                </div>
-                :
-                <></>
+                }
+                {stars === 5 ?
+                  <div className="flex-stars stars5">
+                    <button onClick={giveOneStar}><img src={fullStar} alt='full star' ></img></button>
+                    <button onClick={giveTwoStars}><img src={fullStar} alt='full star' ></img></button>
+                    <button onClick={giveThreeStars}><img src={fullStar} alt='full star' ></img></button>
+                    <button onClick={giveFourStars}><img src={fullStar} alt='full star' ></img></button>
+                    <button onClick={giveFiveStars}><img src={fullStar} alt='full star' ></img></button>
+                  </div>
+                  :
+                  <></>
+                }
+                <div className="flex-rating">
 
-
-              }
-              <h2>Add a written review</h2>
-              <input name='text' type='text' placeholder='What did you like or dislike?' value={textField} onChange={changeInput}></input>
-              <button onClick={sendReview}>Submit</button>
-
-
+                  {submitted ?
+                    <div className="flex-submitted">
+                      <p>✅ Submitted</p>
+                      <button onClick={clear}>Clear</button>
+                    </div>
+                    :
+                    <></>
+                  }
+                </div>
+                <h2>Add a written review</h2>
+                <textarea name='text' type='text' value={textField} onChange={changeInput}></textarea>
+                <br></br>
+                <button className='yellow-button' onClick={sendReview}>Submit</button>
+              </section>
             </>
-            :
-            errors ? <h2>Something went wrong! Please try again later!</h2> : <h2>Loading</h2>
-          }
-        </Row>
-      </Container>
+          </div>
+          <Modal className='basket-modal' show={show} onHide={handleClose}>
+            <Modal.Header closeButton>
+              <Modal.Title>Review submitted</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <div className="flex-modal-all review-submitted-msg">
+                <div className="flex-validate flex-validate-login">
+                  <img src={validate} alt='in basket'></img>
+                  <p><span>Review submitted - Thank you!</span></p>
+                </div>
+                <div className='flex-buttons'>
+                  <Link className='button-adress link-button' to={'/orders'}>Back to your orders</ Link>
+                  <Link className='button-adress link-button' to={'/'}>Continue shopping</ Link>
+                </div>
 
+              </div>
+            </Modal.Body>
+          </Modal>
+        </>
+        :
+        <div className='loading-pages-gif'>
+          <img src={pageLoadingGif} alt='loading' />
+          <p>Loading</p>
+        </div>
+      }
     </main >
   )
 }
