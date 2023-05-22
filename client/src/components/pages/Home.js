@@ -515,7 +515,23 @@ const Home = ({ selected, typed, setSelected, setTyped, basketCounter, setBasket
                     <>
                       <div className='flex-in-basket'>
                       </div>
-                      {userData &&
+                      {userData && parseInt(product.created_at[6]) > 5 &&
+                        <>
+                          <div className="flex-validate flex-info-no-user">
+                            <img src={info} alt='in basket'></img>
+                            <h6>Product available soon</h6>
+                          </div>
+                        </>
+                      }
+                      {userData && parseInt(product.created_at[6]) === 5 && parseInt(product.created_at.slice(8, 10)) > 21 &&
+                        <>
+                          <div className="flex-validate flex-info-no-user no-avail-info">
+                            <img src={info} alt='in basket'></img>
+                            <h6>Product available soon</h6>
+                          </div>
+                        </>
+                      }
+                      {userData && parseInt(product.created_at[6]) < 6 && parseInt(product.created_at.slice(8, 10)) < 22 &&
                         <button className='yellow-button' onClick={() => handleBasketAdd(product)}>Add to basket</button>
                       }
                     </>
