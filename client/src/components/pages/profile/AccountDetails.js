@@ -5,6 +5,7 @@ import { getToken, getPayload } from '../../../helpers/auth'
 
 import { useParams, useNavigate } from 'react-router-dom' // Importing useParams, we have access to any placeholders in the url
 import validate from '../../../assets/images/validate.png'
+import info from '../../../assets/images/info-icon.png'
 import { Modal } from 'react-bootstrap'
 
 
@@ -208,7 +209,19 @@ const AccountDetails = ({ basketCounter, setBasketCounter, postcode, setPostcode
               </div>
             </Modal.Body>
           </Modal>
-          <button className="button-adress red-button-adress" onClick={handleClickDelete}>Delete my account</button>
+          {userData.username === 'guest' ?
+            <>
+              <button className="button-adress red-button-adress">Delete my account</button>
+              <div className='no-user'>
+                <div className="flex-validate flex-info-no-user">
+                  <img src={info} alt='info'></img>
+                  <h6>You cannot delete the guest account</h6>
+                </div>
+              </div>
+            </>
+            :
+            <button className="button-adress red-button-adress" onClick={handleClickDelete}>Delete my account</button>
+          }
 
         </div>
         :

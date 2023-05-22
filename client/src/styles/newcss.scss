@@ -1144,6 +1144,8 @@ h1 {
   }
 }
 
+
+
 .wish-message-visible {
   display: contents;
   color: rgb(197, 59, 59);
@@ -2434,7 +2436,24 @@ h1 {
 
 .green-button {
   margin-top: 10px;
-  background-color: rgba(108, 221, 27, 0.535)
+  background-color: rgba(108, 221, 27, 0.535);
+
+  &:hover {
+    background-color: rgba(97, 189, 31, 0.922);
+
+  }
+}
+
+.account-page-wrapper {
+  .flex-info-no-user {
+    width: 200px;
+    border: 2px solid $senary;
+    border-radius: 8px;
+    padding: 5px;
+    border-left: 10px solid $senary;
+    margin: 0;
+    height: 50px;
+  }
 }
 
 // .review-submitted-msg {
