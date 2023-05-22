@@ -97,24 +97,33 @@ function NavigationBar({ selected, typed, setSelected, setTyped, basketCounter, 
         < Navbar className='navigation-flex'>
           <Nav className='nav-items-container' id='drop-mobile'>
             <NavDropdown className='basic-nav-dropdown hover-underline-animation2' title={<img className='img-nav-bars' src={bars}></img>} id="dropdown-small">
+              {isAuthenticated() &&
 
-              <>
-                {/* <NavDropdown.Item as={Link} to='/' ><div className='flex-nav-item'><img src={home} className='img-nav padding-bottom-xs' />Home</div></NavDropdown.Item>
+                <>
+                  {/* <NavDropdown.Item as={Link} to='/' ><div className='flex-nav-item'><img src={home} className='img-nav padding-bottom-xs' />Home</div></NavDropdown.Item>
                 <NavDropdown.Item as={Link} to='/profile' ><div className='flex-nav-item'><img src={account} className='img-nav' />Account</div></NavDropdown.Item>
                 <NavDropdown.Item as={Link} to='/orders' ><div className='flex-nav-item'><img src={orders} className='img-nav' />Orders</div></NavDropdown.Item>
                 <NavDropdown.Item as={Link} to='/wish-list' ><div className='flex-nav-item'><img src={wishlist} className='img-nav' />Wishlist</div></NavDropdown.Item>
                 <NavDropdown.Item as={Link} to='/products/new' ><div className='flex-nav-item'><img src={sell} className='img-nav' />Sell new item</div></NavDropdown.Item>
                 <NavDropdown.Item as={Link} to='/on-sale' ><div className='flex-nav-item flex-nav-item-no-padding'><img src={onSale} className='img-nav' />On-sale items</div></NavDropdown.Item> */}
-                <NavDropdown.Item as={Link} to='/' ><div className='flex-nav-item'>Home</div></NavDropdown.Item>
-                <NavDropdown.Item as={Link} to='/profile' ><div className='flex-nav-item'>Account</div></NavDropdown.Item>
-                <NavDropdown.Item as={Link} to='/orders' ><div className='flex-nav-item'>Orders</div></NavDropdown.Item>
-                <NavDropdown.Item as={Link} to='/wish-list' ><div className='flex-nav-item'>Wishlist</div></NavDropdown.Item>
-                <NavDropdown.Item as={Link} to='/products/new' ><div className='flex-nav-item'>Sell new item</div></NavDropdown.Item>
-                <NavDropdown.Item as={Link} to='/on-sale' ><div className='flex-nav-item flex-nav-item-no-padding'>On-sale items</div></NavDropdown.Item>
+                  < NavDropdown.Item as={Link} to='/' ><div className='flex-nav-item'>Home</div></NavDropdown.Item>
+                  <NavDropdown.Item as={Link} to='/profile' ><div className='flex-nav-item'>Account</div></NavDropdown.Item>
+                  <NavDropdown.Item as={Link} to='/orders' ><div className='flex-nav-item'>Orders</div></NavDropdown.Item>
+                  <NavDropdown.Item as={Link} to='/wish-list' ><div className='flex-nav-item'>Wishlist</div></NavDropdown.Item>
+                  <NavDropdown.Item as={Link} to='/products/new' ><div className='flex-nav-item'>Sell new item</div></NavDropdown.Item>
+                  <NavDropdown.Item as={Link} to='/on-sale' ><div className='flex-nav-item flex-nav-item-no-padding'>On-sale items</div></NavDropdown.Item>
 
-                <NavDropdown.Divider />
-                <NavDropdown.Item onClick={() => handleLogout(navigate)} ><div className='flex-nav-item'><img src={logout} />Sign Out</div></NavDropdown.Item>
-              </>
+                  <NavDropdown.Divider />
+                  <NavDropdown.Item onClick={() => handleLogout(navigate)} ><div className='flex-nav-item'><img src={logout} />Sign Out</div></NavDropdown.Item>
+
+                </>
+              }
+              {!isAuthenticated() &&
+                <>
+                  <NavDropdown.Item as={Link} to='/' ><div className='flex-nav-item'>Home</div></NavDropdown.Item>
+                  <NavDropdown.Item as={Link} to='/login' ><div className='flex-nav-item'>Sign in</div></NavDropdown.Item>
+                </>
+              }
             </NavDropdown>
           </Nav>
           <Navbar.Brand as={Link} className='nav-brand brand-logo' to='/' id='logo-big-screen'><img src={brandLogo} /></Navbar.Brand>
@@ -207,24 +216,33 @@ function NavigationBar({ selected, typed, setSelected, setTyped, basketCounter, 
             <>
               <Nav className='nav-items-container' id='drop-desktop'>
                 <NavDropdown id='dropdown-right' className='basic-nav-dropdown hover-underline-animation2' title={userData ? <div className='flex-nav-account'><p>Hello, {username}</p><h5>Account & Lists</h5></div> : <p>ho</p>}>
+                  {isAuthenticated() &&
 
-                  <>
-                    {/* <NavDropdown.Item as={Link} to='/' ><div className='flex-nav-item'><img src={home} className='img-nav padding-bottom-xs' />Home</div></NavDropdown.Item>
+                    <>
+                      {/* <NavDropdown.Item as={Link} to='/' ><div className='flex-nav-item'><img src={home} className='img-nav padding-bottom-xs' />Home</div></NavDropdown.Item>
                 <NavDropdown.Item as={Link} to='/profile' ><div className='flex-nav-item'><img src={account} className='img-nav' />Account</div></NavDropdown.Item>
                 <NavDropdown.Item as={Link} to='/orders' ><div className='flex-nav-item'><img src={orders} className='img-nav' />Orders</div></NavDropdown.Item>
                 <NavDropdown.Item as={Link} to='/wish-list' ><div className='flex-nav-item'><img src={wishlist} className='img-nav' />Wishlist</div></NavDropdown.Item>
                 <NavDropdown.Item as={Link} to='/products/new' ><div className='flex-nav-item'><img src={sell} className='img-nav' />Sell new item</div></NavDropdown.Item>
                 <NavDropdown.Item as={Link} to='/on-sale' ><div className='flex-nav-item flex-nav-item-no-padding'><img src={onSale} className='img-nav' />On-sale items</div></NavDropdown.Item> */}
-                    <NavDropdown.Item as={Link} to='/' ><div className='flex-nav-item'>Home</div></NavDropdown.Item>
-                    <NavDropdown.Item as={Link} to='/profile' ><div className='flex-nav-item'>Account</div></NavDropdown.Item>
-                    <NavDropdown.Item as={Link} to='/orders' ><div className='flex-nav-item'>Orders</div></NavDropdown.Item>
-                    <NavDropdown.Item as={Link} to='/wish-list' ><div className='flex-nav-item'>Wishlist</div></NavDropdown.Item>
-                    <NavDropdown.Item as={Link} to='/products/new' ><div className='flex-nav-item'>Sell new item</div></NavDropdown.Item>
-                    <NavDropdown.Item as={Link} to='/on-sale' ><div className='flex-nav-item flex-nav-item-no-padding'>On-sale items</div></NavDropdown.Item>
+                      <NavDropdown.Item as={Link} to='/' ><div className='flex-nav-item'>Home</div></NavDropdown.Item>
+                      <NavDropdown.Item as={Link} to='/profile' ><div className='flex-nav-item'>Account</div></NavDropdown.Item>
+                      <NavDropdown.Item as={Link} to='/orders' ><div className='flex-nav-item'>Orders</div></NavDropdown.Item>
+                      <NavDropdown.Item as={Link} to='/wish-list' ><div className='flex-nav-item'>Wishlist</div></NavDropdown.Item>
+                      <NavDropdown.Item as={Link} to='/products/new' ><div className='flex-nav-item'>Sell new item</div></NavDropdown.Item>
+                      <NavDropdown.Item as={Link} to='/on-sale' ><div className='flex-nav-item flex-nav-item-no-padding'>On-sale items</div></NavDropdown.Item>
 
-                    <NavDropdown.Divider />
-                    <NavDropdown.Item onClick={() => handleLogout(navigate)} ><div className='flex-nav-item'><img src={logout} />Sign Out</div></NavDropdown.Item>
-                  </>
+                      <NavDropdown.Divider />
+                      <NavDropdown.Item onClick={() => handleLogout(navigate)} ><div className='flex-nav-item'><img src={logout} />Sign Out</div></NavDropdown.Item>
+                    </>
+                  }
+                  {!isAuthenticated() &&
+                    <>
+                      <NavDropdown.Item as={Link} to='/' ><div className='flex-nav-item'>Home</div></NavDropdown.Item>
+                      <NavDropdown.Item as={Link} to='/login' ><div className='flex-nav-item'>Sign in</div></NavDropdown.Item>
+                    </>
+                  }
+
                 </NavDropdown>
               </Nav>
 
@@ -329,7 +347,7 @@ function NavigationBar({ selected, typed, setSelected, setTyped, basketCounter, 
             <input className='input-nav' type="text" placeholder='search' value={typed} onChange={handleChange} />
           </div>
         </div>
-      </div>
+      </div >
     </>
   )
 
