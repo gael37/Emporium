@@ -2864,13 +2864,17 @@ h1 {
     }
   }
 
+  .nav-link {
+    width: 50px;
+  }
+
   .nav-brand {
     // display: contents;
-    transform: translateX(9px);
+    transform: translateX(25px);
 
     img {
       // margin-left: -90px;
-      width: 100px;
+      width: 130px;
     }
 
     // .navigation-flex {
