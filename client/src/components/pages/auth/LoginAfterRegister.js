@@ -8,10 +8,6 @@ import { setToken } from '../../../helpers/auth'
 import validate from '../../../assets/images/validate.png'
 
 
-// Bootstrap Components
-import Container from 'react-bootstrap/Container'
-import Row from 'react-bootstrap/Row'
-
 import logoSlogan from '../../../assets/images/logo-figma2.png'
 const Login = () => {
 
