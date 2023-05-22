@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-// Imports
 import axios from 'axios'
 import { setToken } from '../../../helpers/auth'
 
