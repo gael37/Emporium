@@ -904,6 +904,22 @@ h1 {
 
 // ---------------------------------------------- HOME ----------------------------------------------
 
+.loading-pages-gif {
+  margin: 0 auto;
+
+  // margin-right: 100px;
+  img {
+    transform: translate(-150px);
+  }
+
+  p {
+    transform: translateY(-50px);
+    text-align: center;
+    font-weight: bold;
+  }
+
+  width: 200px;
+}
 
 .product-card {
   display: flex;

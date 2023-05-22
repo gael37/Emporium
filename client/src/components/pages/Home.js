@@ -21,6 +21,7 @@ import fourStars from '../../assets/images/four-stars.png'
 import fiveStars from '../../assets/images/five-stars.png'
 import validate from '../../assets/images/validate.png'
 import info from '../../assets/images/info-icon.png'
+import pageLoadingGif from '../../assets/gifs/page-loading-gif.gif'
 
 const Home = ({ selected, typed, setSelected, setTyped, basketCounter, setBasketCounter, setUsername }) => {
 
@@ -378,180 +379,189 @@ const Home = ({ selected, typed, setSelected, setTyped, basketCounter, setBasket
 
   return (
     <main className="home-page-wrapper">
-      {filteredProducts && filteredProducts.length > 0 &&
-        <div className='product-row'>
-          {filteredProducts.sort((a, b) => b.id - a.id).map(product => {
-            return (
-              <div key={product.id} className='product-card'>
-                <div className="buffer">
-                  <Link className='bootstrap-link' to={`/products/${product.id}`}>
-                    <div className="card-link">
+      {filteredProducts.length > 0 ?
+        <>
+          {
+            filteredProducts && filteredProducts.length > 0 &&
+            <div className='product-row'>
+              {filteredProducts.sort((a, b) => b.id - a.id).map(product => {
+                return (
+                  <div key={product.id} className='product-card'>
+                    <div className="buffer">
+                      <Link className='bootstrap-link' to={`/products/${product.id}`}>
+                        <div className="card-link">
 
-                      <div className="product-card-image" style={{ backgroundImage: `url(${product.images.split(' ')[0]})` }}></div>
+                          <div className="product-card-image" style={{ backgroundImage: `url(${product.images.split(' ')[0]})` }}></div>
 
-                    </div>
-                  </Link>
-                  <div className="flex-price-like">
-                    <h3 className='product-card-price'>£{product.price}</h3>
-                    {product.wished.some((wish) => {
-                      return wish.wish_owner.id === currentUserId
-                    }) ?
-                      <>
-                        <button className='like-button like-button-bigger' onClick={() => handleDelete(product)}><img src={heart} alt='like'></img></button>
-                      </>
-                      :
-                      <>
-                        <button className='like-button' onClick={() => handleHeartClick(product)}><img src={emptyHeart} alt='like'></img></button>
-                      </>
-                    }
-                  </div>
-                  <Link className='bootstrap-link home-link' to={`/products/${product.id}`}>
-                    <div className="buffer-description">
-                      <h2 className='product-card-description'>{product.description}</h2>
-                    </div>
-                  </Link>
-                  <div className="buffer-reviews">
-                    <h2>
-                      {product.comments.length > 0 ?
-                        Math.floor(product.comments.reduce((acc, obj) => {
-                          return acc + parseInt(obj.rating)
-                        }, 0) / product.comments.length) === 1 &&
-                        <div className="flex-reviews add-padding">
-                          <img src={oneStar}></img>
-                          <p>{product.comments.length}</p>
                         </div>
-                        :
-                        <div className='buffer-reviews'></div>
-                      }
-
-
-                      {product.comments.length > 0 ?
-                        Math.floor(product.comments.reduce((acc, obj) => {
-                          return acc + parseInt(obj.rating)
-                        }, 0
-                        ) / product.comments.length) === 2 &&
-                        <div className="flex-reviews add-padding">
-                          <img src={twoStars}></img>
-                          <p>{product.comments.length}</p>
-                        </div>
-                        : <div className='buffer-reviews'><></></div>
-                      }
-
-                      {product.comments.length > 0 ?
-                        Math.floor(product.comments.reduce((acc, obj) => {
-                          return acc + parseInt(obj.rating)
-                        }, 0
-                        ) / product.comments.length) === 3 &&
-                        <div className="flex-reviews add-padding">
-                          <img src={threeStars}></img>
-                          <p>{product.comments.length}</p>
-                        </div>
-                        : <div className='buffer-reviews'></div>
-                      }
-
-                      {product.comments.length > 0 ?
-                        Math.floor(product.comments.reduce((acc, obj) => {
-                          return acc + parseInt(obj.rating)
-                        }, 0
-                        ) / product.comments.length) === 4 &&
-                        <div className="flex-reviews">
-                          <img src={fourStars}></img>
-                          <p>{product.comments.length}</p>
-                        </div>
-                        : <div className='buffer-reviews'></div>
-                      }
-
-                      {product.comments.length > 0 ?
-                        Math.floor(product.comments.reduce((acc, obj) => {
-                          return acc + parseInt(obj.rating)
-                        }, 0
-                        ) / product.comments.length) === 5 &&
-                        <div className="flex-reviews add-padding">
-                          <img src={fiveStars}></img>
-                          <p>{product.comments.length}</p>
-                        </div>
-                        :
-                        <div className='buffer-reviews'></div>
-                      }
-                    </h2>
-                  </div>
-
-
-                  {!userData &&
-                    <div className='no-user'>
-                      <p className='yellow-button p-button'>Add to basket</p>
-                      <div className="flex-validate flex-info-no-user">
-                        <img src={info} alt='in basket'></img>
-                        <h6>Please <button className='button-adress' onClick={goLogin}>sign in</button> to add to basket or to add to wishlist</h6>
+                      </Link>
+                      <div className="flex-price-like">
+                        <h3 className='product-card-price'>£{product.price}</h3>
+                        {product.wished.some((wish) => {
+                          return wish.wish_owner.id === currentUserId
+                        }) ?
+                          <>
+                            <button className='like-button like-button-bigger' onClick={() => handleDelete(product)}><img src={heart} alt='like'></img></button>
+                          </>
+                          :
+                          <>
+                            <button className='like-button' onClick={() => handleHeartClick(product)}><img src={emptyHeart} alt='like'></img></button>
+                          </>
+                        }
                       </div>
-                    </div>
-                  }
-
-
-
-                  {product.added_to_basket.some((basket) => {
-                    return basket.basket_owner.id === currentUserId
-                  }) ?
-                    <>
-                      <div className="flex-in-basket">
-                        <div className="flex-validate">
-                          <p><span>In basket</span></p>
-                          <img src={validate} alt='in basket'></img>
+                      <Link className='bootstrap-link home-link' to={`/products/${product.id}`}>
+                        <div className="buffer-description">
+                          <h2 className='product-card-description'>{product.description}</h2>
                         </div>
+                      </Link>
+                      <div className="buffer-reviews">
+                        <h2>
+                          {product.comments.length > 0 ?
+                            Math.floor(product.comments.reduce((acc, obj) => {
+                              return acc + parseInt(obj.rating)
+                            }, 0) / product.comments.length) === 1 &&
+                            <div className="flex-reviews add-padding">
+                              <img src={oneStar}></img>
+                              <p>{product.comments.length}</p>
+                            </div>
+                            :
+                            <div className='buffer-reviews'></div>
+                          }
 
-                        <div className='flex-add-remove-basket'>
-                          <button className='add-remove-button' onClick={() => handleBasketRemove(product)}><p className='button-minus'>-</p></button>
-                          <p>{product.added_to_basket[
-                            product.added_to_basket.findIndex((basket) => {
-                              return basket.basket_owner.id === currentUserId
-                            })
-                          ].count}</p>
-                          <button className='add-remove-button' onClick={() => handleBasketAdd(product)}><p className='button-plus'>+</p></button>
-                        </div>
+
+                          {product.comments.length > 0 ?
+                            Math.floor(product.comments.reduce((acc, obj) => {
+                              return acc + parseInt(obj.rating)
+                            }, 0
+                            ) / product.comments.length) === 2 &&
+                            <div className="flex-reviews add-padding">
+                              <img src={twoStars}></img>
+                              <p>{product.comments.length}</p>
+                            </div>
+                            : <div className='buffer-reviews'><></></div>
+                          }
+
+                          {product.comments.length > 0 ?
+                            Math.floor(product.comments.reduce((acc, obj) => {
+                              return acc + parseInt(obj.rating)
+                            }, 0
+                            ) / product.comments.length) === 3 &&
+                            <div className="flex-reviews add-padding">
+                              <img src={threeStars}></img>
+                              <p>{product.comments.length}</p>
+                            </div>
+                            : <div className='buffer-reviews'></div>
+                          }
+
+                          {product.comments.length > 0 ?
+                            Math.floor(product.comments.reduce((acc, obj) => {
+                              return acc + parseInt(obj.rating)
+                            }, 0
+                            ) / product.comments.length) === 4 &&
+                            <div className="flex-reviews">
+                              <img src={fourStars}></img>
+                              <p>{product.comments.length}</p>
+                            </div>
+                            : <div className='buffer-reviews'></div>
+                          }
+
+                          {product.comments.length > 0 ?
+                            Math.floor(product.comments.reduce((acc, obj) => {
+                              return acc + parseInt(obj.rating)
+                            }, 0
+                            ) / product.comments.length) === 5 &&
+                            <div className="flex-reviews add-padding">
+                              <img src={fiveStars}></img>
+                              <p>{product.comments.length}</p>
+                            </div>
+                            :
+                            <div className='buffer-reviews'></div>
+                          }
+                        </h2>
                       </div>
-                      <button className='yellow-button' onClick={() => removeAll(product)}>Remove from basket</button>
-                    </>
-                    :
-                    <>
-                      <div className='flex-in-basket'>
-                      </div>
-                      {userData && parseInt(product.created_at[6]) > 5 &&
-                        <>
+
+
+                      {!userData &&
+                        <div className='no-user'>
+                          <p className='yellow-button p-button'>Add to basket</p>
                           <div className="flex-validate flex-info-no-user">
                             <img src={info} alt='in basket'></img>
-                            <h6>Product available soon</h6>
+                            <h6>Please <button className='button-adress' onClick={goLogin}>sign in</button> to add to basket or to add to wishlist</h6>
                           </div>
-                        </>
+                        </div>
                       }
-                      {userData && parseInt(product.created_at[6]) === 5 && parseInt(product.created_at.slice(8, 10)) > 21 &&
+
+
+
+                      {product.added_to_basket.some((basket) => {
+                        return basket.basket_owner.id === currentUserId
+                      }) ?
                         <>
-                          <div className="flex-validate flex-info-no-user no-avail-info">
-                            <img src={info} alt='in basket'></img>
-                            <h6>Product available soon</h6>
+                          <div className="flex-in-basket">
+                            <div className="flex-validate">
+                              <p><span>In basket</span></p>
+                              <img src={validate} alt='in basket'></img>
+                            </div>
+
+                            <div className='flex-add-remove-basket'>
+                              <button className='add-remove-button' onClick={() => handleBasketRemove(product)}><p className='button-minus'>-</p></button>
+                              <p>{product.added_to_basket[
+                                product.added_to_basket.findIndex((basket) => {
+                                  return basket.basket_owner.id === currentUserId
+                                })
+                              ].count}</p>
+                              <button className='add-remove-button' onClick={() => handleBasketAdd(product)}><p className='button-plus'>+</p></button>
+                            </div>
                           </div>
+                          <button className='yellow-button' onClick={() => removeAll(product)}>Remove from basket</button>
+                        </>
+                        :
+                        <>
+                          <div className='flex-in-basket'>
+                          </div>
+                          {userData && parseInt(product.created_at[6]) > 5 &&
+                            <>
+                              <div className="flex-validate flex-info-no-user">
+                                <img src={info} alt='in basket'></img>
+                                <h6>Product available soon</h6>
+                              </div>
+                            </>
+                          }
+                          {userData && parseInt(product.created_at[6]) === 5 && parseInt(product.created_at.slice(8, 10)) > 21 &&
+                            <>
+                              <div className="flex-validate flex-info-no-user no-avail-info">
+                                <img src={info} alt='in basket'></img>
+                                <h6>Product available soon</h6>
+                              </div>
+                            </>
+                          }
+                          {userData && parseInt(product.created_at[6]) < 6 && parseInt(product.created_at.slice(8, 10)) < 22 &&
+                            <button className='yellow-button' onClick={() => handleBasketAdd(product)}>Add to basket</button>
+                          }
                         </>
                       }
-                      {userData && parseInt(product.created_at[6]) < 6 && parseInt(product.created_at.slice(8, 10)) < 22 &&
-                        <button className='yellow-button' onClick={() => handleBasketAdd(product)}>Add to basket</button>
+
+
+                      {product.added_to_basket.some((basket) => {
+                        return basket.basket_owner.id === currentUserId
+                      }) &&
+                        <button className='yellow-button' onClick={() => goToBasket()}>Go to basket</button>
                       }
-                    </>
-                  }
-
-
-                  {product.added_to_basket.some((basket) => {
-                    return basket.basket_owner.id === currentUserId
-                  }) &&
-                    <button className='yellow-button' onClick={() => goToBasket()}>Go to basket</button>
-                  }
-                </div>
-              </div>
-            )
-          })
+                    </div>
+                  </div>
+                )
+              })
+              }
+            </div>
           }
+        </>
+        :
+        <div className='loading-pages-gif'>
+          <img src={pageLoadingGif} alt='loading' />
+          <p>Loading</p>
         </div>
       }
     </main >
-
   )
 }
 
