@@ -1,0 +1,92 @@
+[
+  {
+    "model": "wishes.wish",
+    "pk": 20,
+    "fields": {
+      "created_at": "2023-05-20T22:36:49.461Z",
+      "wish_owner": 5,
+      "product_wished": 1
+    }
+  },
+  {
+    "model": "wishes.wish",
+    "pk": 39,
+    "fields": {
+      "created_at": "2023-05-21T11:13:23.535Z",
+      "wish_owner": 1,
+      "product_wished": 25
+    }
+  },
+  {
+    "model": "wishes.wish",
+    "pk": 46,
+    "fields": {
+      "created_at": "2023-05-21T17:37:07.033Z",
+      "wish_owner": 1,
+      "product_wished": 1
+    }
+  },
+  {
+    "model": "wishes.wish",
+    "pk": 50,
+    "fields": {
+      "created_at": "2023-05-21T17:42:27.593Z",
+      "wish_owner": 1,
+      "product_wished": 11
+    }
+  },
+  {
+    "model": "wishes.wish",
+    "pk": 51,
+    "fields": {
+      "created_at": "2023-05-21T17:42:31.330Z",
+      "wish_owner": 1,
+      "product_wished": 23
+    }
+  },
+  {
+    "model": "wishes.wish",
+    "pk": 54,
+    "fields": {
+      "created_at": "2023-05-21T17:51:07.119Z",
+      "wish_owner": 1,
+      "product_wished": 2
+    }
+  },
+  {
+    "model": "wishes.wish",
+    "pk": 56,
+    "fields": {
+      "created_at": "2023-05-21T17:52:01.572Z",
+      "wish_owner": 1,
+      "product_wished": 10
+    }
+  },
+  {
+    "model": "wishes.wish",
+    "pk": 57,
+    "fields": {
+      "created_at": "2023-05-22T22:57:57.565Z",
+      "wish_owner": 8,
+      "product_wished": 44
+    }
+  },
+  {
+    "model": "wishes.wish",
+    "pk": 58,
+    "fields": {
+      "created_at": "2023-05-22T22:57:57.565Z",
+      "wish_owner": 12,
+      "product_wished": 43
+    }
+  },
+  {
+    "model": "wishes.wish",
+    "pk": 59,
+    "fields": {
+      "created_at": "2023-05-22T22:57:57.565Z",
+      "wish_owner": 12,
+      "product_wished": 34
+    }
+  }
+]
