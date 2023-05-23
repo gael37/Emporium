@@ -39,6 +39,8 @@ function NavigationBar({ selected, typed, setSelected, setTyped, basketCounter, 
   const currentUserPayload = getPayload()
   const currentUserId = currentUserPayload.sub
 
+  const navigate = useNavigate()
+
   const showDropdownRight = (e) => {
     setShowRight(!showRight)
   }
@@ -83,13 +85,19 @@ function NavigationBar({ selected, typed, setSelected, setTyped, basketCounter, 
     setTyped(e.target.value)
   }
 
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
 
   // ! UseEffect
 
   useEffect(() => {
     getUserData()
   }, [])
+
+  useEffect(() => {
+    // navigate('/')
+  }, [selected])
+
+
 
   return (
     <>
