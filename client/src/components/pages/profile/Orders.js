@@ -344,9 +344,8 @@ function Orders() {
                       </div>
                     </div>
                     <div className="flex-order-buttons-below">
-                      <Link className='regular-button link-button button-fixed' to={`/products/${order.product_ordered.id}`}>View your item</ Link>
-                      <button className='yellow-button button-fixed' onClick={() => handleShow(order)}>Write a product review</ button>
-
+                      <Link className='regular-button link-button button-fixed button-black' to={`/products/${order.product_ordered.id}`}>View your item</ Link>
+                      <Link className='yellow-button link-button button-fixed button-black' to={`/reviews/${order.product_ordered.id}`}>Write a product review</ Link>
                     </div>
                   </section>
                 )
