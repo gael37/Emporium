@@ -70,23 +70,5 @@
       "wish_owner": 8,
       "product_wished": 44
     }
-  },
-  {
-    "model": "wishes.wish",
-    "pk": 58,
-    "fields": {
-      "created_at": "2023-05-22T22:57:57.565Z",
-      "wish_owner": 12,
-      "product_wished": 43
-    }
-  },
-  {
-    "model": "wishes.wish",
-    "pk": 59,
-    "fields": {
-      "created_at": "2023-05-22T22:57:57.565Z",
-      "wish_owner": 12,
-      "product_wished": 34
-    }
   }
 ]
