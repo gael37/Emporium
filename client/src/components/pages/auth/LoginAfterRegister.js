@@ -49,7 +49,7 @@ const Login = () => {
   const loginAsGuest = async () => {
     setFormFields({
       email: 'guest@email.com',
-      password: 'TestPass37',
+      password: 'TestPass37!',
     })
     try {
       const { data } = await axios.post('/api/auth/login/', formFields)
@@ -103,11 +103,11 @@ const Login = () => {
         {error && <small className='text-danger'>{error}</small>}
         {/* Submit */}
         <button className='login-button'>Sign in</button>
+        <button onClick={loginAsGuest} className='yellow-button login-button green-button'>Skip and sign in as a guest</button>
       </form>
       <br />
       <p>New to emporium?</p>
       <button className='button-adress' onClick={goRegister}>Create your emporium account</button>
-      <button onClick={loginAsGuest} className='yellow-button login-button green-button'>Skip and sign in as a guest</button>
     </main>
   )
 }
