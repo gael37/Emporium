@@ -334,6 +334,27 @@ const Home = ({ selected, typed, setSelected, setTyped, basketCounter, setBasket
     getProducts()
   }
 
+  const handleSelect = async (e, product) => {
+
+    let basketPK
+    for (let i = 0; i < product.added_to_basket.length; i++) {
+      if (product.added_to_basket[i].basket_owner.id === currentUserId) {
+        basketPK = product.added_to_basket[i].id
+      }
+      try {
+        const newCount = e.target.value
+        const { data } = await axios.put(`/api/basket/${basketPK}/`, { count: newCount, basket_owner: currentUserId, product_added_to_basket: product.id }, {
+          headers: {
+            Authorization: `Bearer ${getToken()}`,
+          },
+        })
+      } catch (err) {
+        console.log(err)
+      }
+      setProductJustLiked(productJustLiked ? false : true)
+    }
+  }
+
   const removeAll = async (product) => {
     let basketPK
     for (let i = 0; i < product.added_to_basket.length; i++) {
@@ -503,7 +524,7 @@ const Home = ({ selected, typed, setSelected, setTyped, basketCounter, setBasket
                               <img src={validate} alt='in basket'></img>
                             </div>
 
-                            <div className='flex-add-remove-basket'>
+                            {/* <div className='flex-add-remove-basket'>
                               <button className='add-remove-button' onClick={() => handleBasketRemove(product)}><p className='button-minus'>-</p></button>
                               <p>{product.added_to_basket[
                                 product.added_to_basket.findIndex((basket) => {
@@ -511,6 +532,26 @@ const Home = ({ selected, typed, setSelected, setTyped, basketCounter, setBasket
                                 })
                               ].count}</p>
                               <button className='add-remove-button' onClick={() => handleBasketAdd(product)}><p className='button-plus'>+</p></button>
+                            </div> */}
+
+                            <div className="flex-add-remove-basket">
+                              <select onChange={(e) => handleSelect(e, product)} name="filter-style" className="select-nav select-small" value={product.added_to_basket[
+                                product.added_to_basket.findIndex((basket) => {
+                                  return basket.basket_owner.id === currentUserId
+                                })
+                              ].count}>
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                              </select>
                             </div>
                           </div>
                           <button className='yellow-button' onClick={() => removeAll(product)}>Remove from basket</button>
