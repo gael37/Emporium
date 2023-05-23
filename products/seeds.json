@@ -794,24 +794,6 @@
     "model": "products.product",
     "pk": 43,
     "fields": {
-      "description": "Yamaha F310 – Full Size Steel String Acoustic Guitar – Traditional Western Body – Tobacco Brown Sunburst",
-      "price": "132",
-      "images": "https://res.cloudinary.com/dsrdfnxit/image/upload/v1684702359/bargain-api/usmw1wfg3kjozvy54jau.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1684702359/bargain-api/f6a6dwjjdt7wgext3gix.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1684702360/bargain-api/rfrxfqk5bnoqzmmdkmal.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1684702363/bargain-api/hje42m7vbmerldiqcswu.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1684702363/bargain-api/zo8ai8cruajypufpqk9b.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1684702364/bargain-api/si4gkpqubtjm3sngeq0e.jpg",
-      "created_at": "2023-05-21T20:52:46.164Z",
-      "dimensions": "",
-      "weight": "",
-      "about": "Presenting the multi-award winning Yamaha F310 - a full-size steel string guitar which draws on Yamaha's knowledge of professional instruments to provide novices their first playing experience\nYamaha's F Series are crafted from select tonewoods such as a spruce top and rosewood fingerboard, combined with a tough thin lacquer finish to give the guitar a warm responsive and refined sound\nDesigned to be kind to your fingertips - the F310's comfortable slim neck and slightly shorter scale length makes strings easier to play without compromising the sound of the instrument\nEven and accurate fret positioning and quality tuning gears - for playing along the full length of the neck / Suitable for players of all levels - a package comparable to guitars that cost a lot more\nItems delivered: 1x Yamaha F310 Full Size Steel String Acoustic Guitar in Tobacco Brown Sunburst / Guitar info literature / Allen key",
-      "owner": 7,
-      "stripe_id": "price_1NAK3BJkvqlqJ3ZhQWwcNHRV",
-      "categories": [
-        15
-      ]
-    }
-  },
-  {
-    "model": "products.product",
-    "pk": 44,
-    "fields": {
       "description": "Super Castlevania IV 4 SNES Replacement Universal Game Case Box + Cover Art Work Only",
       "price": "6.99",
       "images": "https://res.cloudinary.com/dsrdfnxit/image/upload/v1684702485/bargain-api/ytmybjnck9bk39hgaqde.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1684702486/bargain-api/ue5l0zpqltha7omsqgzo.jpg https://res.cloudinary.com/dsrdfnxit/image/upload/v1684702486/bargain-api/q3l5xcoj3yhv8e3myacb.jpg",
@@ -828,7 +810,7 @@
   },
   {
     "model": "products.product",
-    "pk": 45,
+    "pk": 44,
     "fields": {
       "description": "KOKODI Boys Toys Gifts for 3 4 5 6 7 Year Old, Dinosaur Toys for Boys, 8.5 inch Writing Tablet, Drawing Pad with Colorful Screen Educational Kids Toys Toddler Toys Gifts for Christmas Birthday",
       "price": "13.59",
