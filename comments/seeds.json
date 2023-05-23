@@ -933,16 +933,5 @@
       "comment_owner": 7,
       "product_reviewed": 44
     }
-  },
-  {
-    "model": "comments.comment",
-    "pk": 86,
-    "fields": {
-      "rating": "4",
-      "text": "Very good",
-      "created_at": "2023-05-16T22:31:28.436Z",
-      "comment_owner": 9,
-      "product_reviewed": 45
-    }
   }
 ]

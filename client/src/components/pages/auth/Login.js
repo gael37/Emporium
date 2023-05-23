@@ -51,7 +51,7 @@ const Login = () => {
   const loginAsGuest = async () => {
     setFormFields({
       email: 'guest@email.com',
-      password: 'guestpass',
+      password: 'TestPass37',
     })
     try {
       const { data } = await axios.post('/api/auth/login/', formFields)
