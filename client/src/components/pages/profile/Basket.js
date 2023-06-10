@@ -289,7 +289,7 @@ const Basket = ({ basketCounter, setBasketCounter, postcode, setPostcode }) => {
                         <div className="flex-in-basket">
                           <div className="flex-add-remove-basket">
                             <select onChange={(e) => handleSelect(e, basket)} name="filter-style" className="select-nav select-small" value={basket.count}>
-                              <option value="0">0</option>
+                              {/* <option value="0">0</option> */}
                               <option value="1">1</option>
                               <option value="2">2</option>
                               <option value="3">3</option>

@@ -21,7 +21,7 @@ import fourStars from '../../assets/images/four-stars.png'
 import fiveStars from '../../assets/images/five-stars.png'
 import validate from '../../assets/images/validate.png'
 import info from '../../assets/images/info-icon.png'
-import pageLoadingGif from '../../assets/gifs/page-loading-gif.gif'
+import pageLoadingGif from '../../assets/gifs/gif-loading-blue.gif'
 
 const Home = ({ selected, typed, setSelected, setTyped, basketCounter, setBasketCounter, setUsername }) => {
 
@@ -37,6 +37,7 @@ const Home = ({ selected, typed, setSelected, setTyped, basketCounter, setBasket
   const [productJustLiked, setProductJustLiked] = useState(false)
   const [userData, setUserData] = useState(null)
   const [classWishlistMessage, setClassWishlistMessage] = useState('wish-message-not-visible')
+  const [likeInProgress, setLikeInProgress] = useState(false)
 
   // const [addedToBasket, setAddedToBasket] = useState(false)
 
@@ -179,6 +180,7 @@ const Home = ({ selected, typed, setSelected, setTyped, basketCounter, setBasket
 
 
   const handleHeartClick = async (product) => {
+    setLikeInProgress(true)
     try {
       const { data } = await axios.post('/api/wishes/', { wish_owner: currentUserId, product_wished: product.id }, {
         headers: {
@@ -196,6 +198,7 @@ const Home = ({ selected, typed, setSelected, setTyped, basketCounter, setBasket
       console.log(err)
     }
     setProductJustLiked(productJustLiked ? false : true)
+    setLikeInProgress(false)
   }
 
 
@@ -418,17 +421,21 @@ const Home = ({ selected, typed, setSelected, setTyped, basketCounter, setBasket
                       </Link>
                       <div className="flex-price-like">
                         <h3 className='product-card-price'>£{product.price}</h3>
-                        {product.wished.some((wish) => {
+                        {/* {product.wished.some((wish) => {
                           return wish.wish_owner.id === currentUserId
                         }) ?
                           <>
+                            {likeInProgress &&
+                              <p>loading</p>}
                             <button className='like-button like-button-bigger' onClick={() => handleDelete(product)}><img src={heart} alt='like'></img></button>
                           </>
                           :
                           <>
+                            {likeInProgress &&
+                              <p>loading</p>}
                             <button className='like-button' onClick={() => handleHeartClick(product)}><img src={emptyHeart} alt='like'></img></button>
                           </>
-                        }
+                        } */}
                       </div>
                       <Link className='bootstrap-link home-link' to={`/products/${product.id}`}>
                         <div className="buffer-description">
@@ -540,7 +547,7 @@ const Home = ({ selected, typed, setSelected, setTyped, basketCounter, setBasket
                                   return basket.basket_owner.id === currentUserId
                                 })
                               ].count}>
-                                <option value="0">0</option>
+                                {/* <option value="0">0</option> */}
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
