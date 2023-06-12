@@ -72,7 +72,7 @@ const Login = () => {
       <div className='login-form-page-image'>
         <img src={logoSlogan} />
       </div>
-      <form className="login-form" onSubmit={handleSubmit}>
+      <form className="login-form" onSubmit={handleSubmit} id='login-form'>
         <h1>Sign in</h1>
         {/* Email */}
         <label htmlFor="email">Email</label>
