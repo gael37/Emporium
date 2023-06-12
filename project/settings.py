@@ -150,7 +150,7 @@ REST_FRAMEWORK = {
     ]
 }
 
-SITE_URL = 'https://emporium.herokuapp.com/'
+SITE_URL = 'https://emporium.herokuapp.com'
 
 STRIPE_SECRET_KEY = 'sk_test_51N0UKTJkvqlqJ3Zhhr0tX4WjG2C8zJcQpTvZ5GS6hXEbk1JHAZO17ZuxC2ruXVASEcMC2VzdQKmHhlcts2cxmeiQ00dANxsk6U'
 
