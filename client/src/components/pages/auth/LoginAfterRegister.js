@@ -35,7 +35,7 @@ const Login = () => {
       console.log(data)
       console.log(data.token)
       setToken(data.token)
-      navigate('/')
+      navigate('/home-user')
     } catch (err) {
       console.log(err)
       setError('Invalid credentials')
@@ -56,7 +56,7 @@ const Login = () => {
       console.log(data)
       console.log(data.token)
       setToken(data.token)
-      navigate('/')
+      navigate('/home-user')
     } catch (err) {
       console.log(err)
       setError('')

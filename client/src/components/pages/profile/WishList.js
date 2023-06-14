@@ -217,7 +217,7 @@ function Wishlist({ basketCounter, setBasketCounter }) {
   }
 
   const handleShopping = () => {
-    navigate('/')
+    navigate('/home-user')
   }
 
 

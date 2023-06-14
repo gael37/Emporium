@@ -23,7 +23,7 @@ import validate from '../../assets/images/validate.png'
 import info from '../../assets/images/info-icon.png'
 import pageLoadingGif from '../../assets/gifs/gif-loading-blue.gif'
 
-const Home = ({ selected, typed, setSelected, setTyped, basketCounter, setBasketCounter, setUsername }) => {
+const Home = ({ setBasketCounter, setUsername }) => {
 
   const [products, setProducts] = useState([])
   const [filteredProducts, setFilteredProducts] = useState([])
@@ -37,7 +37,11 @@ const Home = ({ selected, typed, setSelected, setTyped, basketCounter, setBasket
   const [productJustLiked, setProductJustLiked] = useState(false)
   const [userData, setUserData] = useState(null)
   const [classWishlistMessage, setClassWishlistMessage] = useState('wish-message-not-visible')
-  const [likeInProgress, setLikeInProgress] = useState(false)
+  const [selected, setSelected] = useState('')
+  const [typed, setTyped] = useState('')
+  const [noMatch, setNoMatch] = useState(false)
+  const [selectSize, setSelectSize] = useState('small')
+
 
   // const [addedToBasket, setAddedToBasket] = useState(false)
 
@@ -58,6 +62,8 @@ const Home = ({ selected, typed, setSelected, setTyped, basketCounter, setBasket
       const { data } = await axios.get('/api/products/')
       console.log('products at page render', data)
       setProducts(data)
+      setFilteredProducts(data)
+      setSelectedProducts(data)
     } catch (err) {
       console.log(err)
       setErrors(true)
@@ -115,62 +121,64 @@ const Home = ({ selected, typed, setSelected, setTyped, basketCounter, setBasket
   }
 
   // On page load, get user data and all the products
-  useEffect(() => {
-    setSelected('All')
-    setTyped('')
-    getProducts()
-    getUserData()
-    getWishes()
-  }, [])
 
+
+
+
+
+  const handleSelected = (e) => {
+    setSelected(e.target.value)
+    setTyped('')
+    if (e.target.value.length < 6) {
+      setSelectSize('small')
+    } else if (e.target.value.length < 12) {
+      setSelectSize('medium')
+    } else {
+      setSelectSize('big')
+    }
+    const selection = products.filter(product => {
+      for (let i = 0; i < product.categories.length; i++) {
+        if (product.categories[i].name === e.target.value) {
+          return product
+        } else if (e.target.value === 'All') {
+          return product
+        }
+      }
+    })
+    setFilteredProducts(selection)
+  }
+
+  const handleTyped = (e) => {
+    setSelected('All')
+    setSelectSize('small')
+
+    setTyped(e.target.value)
+    const regex = new RegExp(e.target.value, 'i')
+    console.log('regex value:', regex)
+    const filteredArray = products.filter(product => {
+      return regex.test(product.description)
+    })
+    console.log('regex filtered array:', filteredArray)
+
+    if (filteredArray.length === 0) {
+      setNoMatch(true)
+      setFilteredProducts(products)
+    } else {
+      setNoMatch(false)
+      setFilteredProducts(products.filter(product => {
+        return regex.test(product.description)
+      }))
+    }
+  }
 
   // SELECTED
 
-  useEffect(() => {
-    const selection = products.filter(product => {
-      if (product.categories.includes(selected)) {
-        return product
-      } else if (selected === 'All') {
-        return product
-      }
-    })
-    setSelectedProducts(selection)
-  }, [products])
+
 
 
   // SEARCHED
 
-  useEffect(() => {
-    const regex = new RegExp(typed, 'i')
-    setTypedAndSelectedProducts(selectedProducts.filter(product => {
-      return regex.test(product.description)
-    }))
-  }, [selectedProducts])
 
-  useEffect(() => {
-    setFilteredProducts(typedAndSelectedProducts)
-  }, [typedAndSelectedProducts])
-
-  useEffect(() => {
-    const selection = products.filter(product => {
-      for (let i = 0; i < product.categories.length; i++) {
-        if (product.categories[i].name === selected) {
-          return product
-        } else if (selected === 'All') {
-          return product
-        }
-      }
-
-    })
-    setSelectedProducts(selection)
-  }, [selected])
-
-  useEffect(() => {
-    const regex = new RegExp(typed, 'i')
-    setTypedAndSelectedProducts(selectedProducts.filter(product => {
-      return regex.test(product.description)
-    }))
-  }, [typed])
 
 
 
@@ -180,7 +188,7 @@ const Home = ({ selected, typed, setSelected, setTyped, basketCounter, setBasket
 
 
   const handleHeartClick = async (product) => {
-    setLikeInProgress(true)
+
     try {
       const { data } = await axios.post('/api/wishes/', { wish_owner: currentUserId, product_wished: product.id }, {
         headers: {
@@ -198,7 +206,7 @@ const Home = ({ selected, typed, setSelected, setTyped, basketCounter, setBasket
       console.log(err)
     }
     setProductJustLiked(productJustLiked ? false : true)
-    setLikeInProgress(false)
+
   }
 
 
@@ -225,17 +233,7 @@ const Home = ({ selected, typed, setSelected, setTyped, basketCounter, setBasket
     getProducts()
   }
 
-  useEffect(() => {
-    console.log('product just liked :', productJustLiked)
-    getWishes()
-    getBasket()
-    getUserData()
-  }, [productJustLiked])
 
-  useEffect(() => {
-    getProducts()
-    console.log('wishes data :', wishesData)
-  }, [wishesData])
 
 
   // -------BASKET--------        
@@ -380,10 +378,7 @@ const Home = ({ selected, typed, setSelected, setTyped, basketCounter, setBasket
     setProductJustLiked(productJustLiked ? false : true)
   }
 
-  useEffect(() => {
-    getProducts()
-    console.log('basket data :', basketData)
-  }, [basketData])
+
 
   // useEffect(() => {
   //   if (classWishlistMessage === 'wish-message-visible') {
@@ -400,6 +395,85 @@ const Home = ({ selected, typed, setSelected, setTyped, basketCounter, setBasket
   const goLogin = () => {
     navigate('/login')
   }
+  const handleClear = () => {
+    // setSelectSize('small')
+    setSelected('All')
+    setTyped('')
+    setNoMatch(false)
+    setFilteredProducts(products)
+  }
+
+
+
+
+  useEffect(() => {
+    getProducts()
+    getUserData()
+  }, [])
+
+  useEffect(() => {
+    getProducts()
+    console.log('basket data :', basketData)
+  }, [basketData])
+
+  useEffect(() => {
+    // console.log('product just liked :', productJustLiked)
+    // getWishes()
+    getBasket()
+    getUserData()
+  }, [productJustLiked])
+
+  // useEffect(() => {
+  //   getProducts()
+  //   console.log('wishes data :', wishesData)
+  // }, [wishesData])
+
+  // useEffect(() => {
+  //   const regex = new RegExp(typed, 'i')
+  //   setTypedAndSelectedProducts(selectedProducts.filter(product => {
+  //     return regex.test(product.description)
+  //   }))
+  // }, [selectedProducts])
+
+  // useEffect(() => {
+  //   setFilteredProducts(typedAndSelectedProducts)
+  // }, [typedAndSelectedProducts])
+
+  // useEffect(() => {
+  //   const selection = products.filter(product => {
+  //     for (let i = 0; i < product.categories.length; i++) {
+  //       if (product.categories[i].name === selected) {
+  //         return product
+  //       } else if (selected === 'All') {
+  //         return product
+  //       }
+  //     }
+
+  //   })
+  //   setSelectedProducts(selection)
+  // }, [selected])
+
+  // useEffect(() => {
+  //   const regex = new RegExp(typed, 'i')
+  //   setTypedAndSelectedProducts(selectedProducts.filter(product => {
+  //     return regex.test(product.description)
+  //   }))
+  // }, [typed])
+
+  // useEffect(() => {
+  //   const selection = products.filter(product => {
+  //     if (product.categories.includes(selected)) {
+  //       return product
+  //     } else if (selected === 'All') {
+  //       return product
+  //     }
+  //   })
+  //   setSelectedProducts(selection)
+  // }, [products])
+
+  useEffect(() => {
+    getUserData()
+  }, [products])
 
   return (
     <main className="home-page-wrapper">
@@ -407,206 +481,287 @@ const Home = ({ selected, typed, setSelected, setTyped, basketCounter, setBasket
         <>
           {
             filteredProducts && filteredProducts.length > 0 &&
-            <div className='product-row'>
-              {filteredProducts.sort((a, b) => b.id - a.id).map(product => {
-                return (
-                  <div key={product.id} className='product-card'>
-                    <div className="buffer">
-                      <Link className='bootstrap-link' to={`/products/${product.id}`}>
-                        <div className="card-link">
+            <div className='home-page-flex'>
+              <div className='flex-search' id='top-search'>
+                {selectSize === 'small' &&
+                  <select onChange={handleSelected} name="filter-style" className="select-nav select-small" value={selected}>
+                    <option value="All">All</option>
+                    <option value="Baby">Baby</option>
+                    <option value="Beauty">Beauty</option>
+                    <option value="Books">Books</option>
+                    <option value="Fashion">Fashion</option>
+                    <option value="Car & Motorbike">Car & Motorbike</option>
+                    <option value="CDs & Vinyl">CDs & Vinyl</option>
+                    <option value="Computers & Accessories">Computers & Accessories</option>
+                    <option value="DVD & Blu-ray">DVD & Blu-ray</option>
+                    <option value="Electronics & Photo">Electronics & Photo</option>
+                    <option value="Garden & Outdoors">Garden & Outdoors</option>
+                    <option value="Health & Personal care">Health & Personal care</option>
+                    <option value="Home & Kitchen">Home & Kitchen</option>
+                    <option value="Large Appliances">Large Appliances</option>
+                    <option value="Luggage & Travel Gear">Luggage & Travel Gear</option>
+                    <option value="Musical Instruments">Musical Instruments</option>
+                    <option value="Consoles & Video Games">Consoles & Video Games</option>
+                    <option value="Pet Supplies">Pet Supplies</option>
+                    <option value="Sports & Outdoors">Sports & Outdoors</option>
+                    <option value="Stationary & Office Supplies">Stationary & Office Supplies</option>
+                    <option value="Toys & Games">Toys & Games</option>
+                    <option value="Others">Others</option>
+                  </select>
+                }
+                {selectSize === 'medium' &&
+                  <select onChange={handleSelected} name="filter-style" className="select-nav select-medium" value={selected}>
+                    <option value="All">All</option>
+                    <option value="Baby">Baby</option>
+                    <option value="Beauty">Beauty</option>
+                    <option value="Books">Books</option>
+                    <option value="Fashion">Fashion</option>
+                    <option value="Car & Motorbike">Car & Motorbike</option>
+                    <option value="CDs & Vinyl">CDs & Vinyl</option>
+                    <option value="Computers & Accessories">Computers & Accessories</option>
+                    <option value="DVD & Blu-ray">DVD & Blu-ray</option>
+                    <option value="Electronics & Photo">Electronics & Photo</option>
+                    <option value="Garden & Outdoors">Garden & Outdoors</option>
+                    <option value="Health & Personal care">Health & Personal care</option>
+                    <option value="Home & Kitchen">Home & Kitchen</option>
+                    <option value="Large Appliances">Large Appliances</option>
+                    <option value="Luggage & Travel Gear">Luggage & Travel Gear</option>
+                    <option value="Musical Instruments">Musical Instruments</option>
+                    <option value="Consoles & Video Games">Consoles & Video Games</option>
+                    <option value="Pet Supplies">Pet Supplies</option>
+                    <option value="Sports & Outdoors">Sports & Outdoors</option>
+                    <option value="Stationary & Office Supplies">Stationary & Office Supplies</option>
+                    <option value="Toys & Games">Toys & Games</option>
+                    <option value="Others">Others</option>
+                  </select>
+                }
+                {selectSize === 'big' &&
+                  <select onChange={handleSelected} name="filter-style" className="select-nav select-big" value={selected}>
+                    <option value="All">All</option>
+                    <option value="Baby">Baby</option>
+                    <option value="Beauty">Beauty</option>
+                    <option value="Books">Books</option>
+                    <option value="Fashion">Fashion</option>
+                    <option value="Car & Motorbike">Car & Motorbike</option>
+                    <option value="CDs & Vinyl">CDs & Vinyl</option>
+                    <option value="Computers & Accessories">Computers & Accessories</option>
+                    <option value="DVD & Blu-ray">DVD & Blu-ray</option>
+                    <option value="Electronics & Photo">Electronics & Photo</option>
+                    <option value="Garden & Outdoors">Garden & Outdoors</option>
+                    <option value="Health & Personal care">Health & Personal care</option>
+                    <option value="Home & Kitchen">Home & Kitchen</option>
+                    <option value="Large Appliances">Large Appliances</option>
+                    <option value="Luggage & Travel Gear">Luggage & Travel Gear</option>
+                    <option value="Musical Instruments">Musical Instruments</option>
+                    <option value="Consoles & Video Games">Consoles & Video Games</option>
+                    <option value="Pet Supplies">Pet Supplies</option>
+                    <option value="Sports & Outdoors">Sports & Outdoors</option>
+                    <option value="Stationary & Office Supplies">Stationary & Office Supplies</option>
+                    <option value="Toys & Games">Toys & Games</option>
+                    <option value="Others">Others</option>
+                  </select>
+                }
+                <input className='input-nav' type="text" placeholder='search' value={typed} onChange={handleTyped} />
+              </div>
+              <button className='button-adress home-button' onClick={handleClear}>Clear search</button>
+              {noMatch &&
+                <p className='p-centered'>No product match your criteria!</p>
+              }
+              <div className='product-row'>
+                {filteredProducts.sort((a, b) => b.id - a.id).map(product => {
+                  return (
+                    <div key={product.id} className='product-card'>
+                      <div className="buffer">
+                        <Link className='bootstrap-link' to={`/products/${product.id}`}>
+                          <div className="card-link">
 
-                          <div className="product-card-image" style={{ backgroundImage: `url(${product.images.split(' ')[0]})` }}></div>
+                            <div className="product-card-image" style={{ backgroundImage: `url(${product.images.split(' ')[0]})` }}></div>
 
+                          </div>
+                        </Link>
+                        <div className="flex-price-like">
+                          <h3 className='product-card-price'>£{product.price}</h3>
+                          {/* {product.wished.some((wish) => {
+                return wish.wish_owner.id === currentUserId
+              }) ?
+                <>
+                  {likeInProgress &&
+                    <p>loading</p>}
+                  <button className='like-button like-button-bigger' onClick={() => handleDelete(product)}><img src={heart} alt='like'></img></button>
+                </>
+                :
+                <>
+                  {likeInProgress &&
+                    <p>loading</p>}
+                  <button className='like-button' onClick={() => handleHeartClick(product)}><img src={emptyHeart} alt='like'></img></button>
+                </>
+              } */}
                         </div>
-                      </Link>
-                      <div className="flex-price-like">
-                        <h3 className='product-card-price'>£{product.price}</h3>
-                        {/* {product.wished.some((wish) => {
-                          return wish.wish_owner.id === currentUserId
+                        <Link className='bootstrap-link home-link' to={`/products/${product.id}`}>
+                          <div className="buffer-description">
+                            <h2 className='product-card-description'>{product.description}</h2>
+                          </div>
+                        </Link>
+                        <div className="buffer-reviews">
+                          <h2>
+                            {product.comments.length > 0 ?
+                              Math.floor(product.comments.reduce((acc, obj) => {
+                                return acc + parseInt(obj.rating)
+                              }, 0) / product.comments.length) === 1 &&
+                              <div className="flex-reviews add-padding">
+                                <img src={oneStar}></img>
+                                <p>{product.comments.length}</p>
+                              </div>
+                              :
+                              <div className='buffer-reviews'></div>
+                            }
+
+
+                            {product.comments.length > 0 ?
+                              Math.floor(product.comments.reduce((acc, obj) => {
+                                return acc + parseInt(obj.rating)
+                              }, 0
+                              ) / product.comments.length) === 2 &&
+                              <div className="flex-reviews add-padding">
+                                <img src={twoStars}></img>
+                                <p>{product.comments.length}</p>
+                              </div>
+                              : <div className='buffer-reviews'><></></div>
+                            }
+
+                            {product.comments.length > 0 ?
+                              Math.floor(product.comments.reduce((acc, obj) => {
+                                return acc + parseInt(obj.rating)
+                              }, 0
+                              ) / product.comments.length) === 3 &&
+                              <div className="flex-reviews add-padding">
+                                <img src={threeStars}></img>
+                                <p>{product.comments.length}</p>
+                              </div>
+                              : <div className='buffer-reviews'></div>
+                            }
+
+                            {product.comments.length > 0 ?
+                              Math.floor(product.comments.reduce((acc, obj) => {
+                                return acc + parseInt(obj.rating)
+                              }, 0
+                              ) / product.comments.length) === 4 &&
+                              <div className="flex-reviews">
+                                <img src={fourStars}></img>
+                                <p>{product.comments.length}</p>
+                              </div>
+                              : <div className='buffer-reviews'></div>
+                            }
+
+                            {product.comments.length > 0 ?
+                              Math.floor(product.comments.reduce((acc, obj) => {
+                                return acc + parseInt(obj.rating)
+                              }, 0
+                              ) / product.comments.length) === 5 &&
+                              <div className="flex-reviews add-padding">
+                                <img src={fiveStars}></img>
+                                <p>{product.comments.length}</p>
+                              </div>
+                              :
+                              <div className='buffer-reviews'></div>
+                            }
+                          </h2>
+                        </div>
+
+
+
+
+
+
+                        {product.added_to_basket.some((basket) => {
+                          return basket.basket_owner.id === currentUserId
                         }) ?
                           <>
-                            {likeInProgress &&
-                              <p>loading</p>}
-                            <button className='like-button like-button-bigger' onClick={() => handleDelete(product)}><img src={heart} alt='like'></img></button>
+                            <div className="flex-in-basket">
+                              <div className="flex-validate">
+                                <p><span>In basket</span></p>
+                                <img src={validate} alt='in basket'></img>
+                              </div>
+
+                              {/* <div className='flex-add-remove-basket'>
+                    <button className='add-remove-button' onClick={() => handleBasketRemove(product)}><p className='button-minus'>-</p></button>
+                    <p>{product.added_to_basket[
+                      product.added_to_basket.findIndex((basket) => {
+                        return basket.basket_owner.id === currentUserId
+                      })
+                    ].count}</p>
+                    <button className='add-remove-button' onClick={() => handleBasketAdd(product)}><p className='button-plus'>+</p></button>
+                  </div> */}
+
+                              <div className="flex-add-remove-basket">
+                                <select onChange={(e) => handleSelect(e, product)} name="filter-style" className="select-nav select-small" value={product.added_to_basket[
+                                  product.added_to_basket.findIndex((basket) => {
+                                    return basket.basket_owner.id === currentUserId
+                                  })
+                                ].count}>
+                                  {/* <option value="0">0</option> */}
+                                  <option value="1">1</option>
+                                  <option value="2">2</option>
+                                  <option value="3">3</option>
+                                  <option value="4">4</option>
+                                  <option value="5">5</option>
+                                  <option value="6">6</option>
+                                  <option value="7">7</option>
+                                  <option value="8">8</option>
+                                  <option value="9">9</option>
+                                  <option value="10">10</option>
+                                </select>
+                              </div>
+                            </div>
+                            <button className='yellow-button' onClick={() => removeAll(product)}>Remove from basket</button>
                           </>
                           :
                           <>
-                            {likeInProgress &&
-                              <p>loading</p>}
-                            <button className='like-button' onClick={() => handleHeartClick(product)}><img src={emptyHeart} alt='like'></img></button>
+                            <div className='flex-in-basket'>
+                            </div>
+                            {userData && parseInt(product.created_at[6]) > 5 &&
+                              <>
+                                <div className="flex-validate flex-info-no-user">
+                                  <img src={info} alt='in basket'></img>
+                                  <h6>Product available soon</h6>
+                                </div>
+                              </>
+                            }
+                            {userData && parseInt(product.created_at[6]) === 5 && parseInt(product.created_at.slice(8, 10)) > 21 &&
+                              <>
+                                <div className="flex-validate flex-info-no-user no-avail-info">
+                                  <img src={info} alt='in basket'></img>
+                                  <h6>Product available soon</h6>
+                                </div>
+                              </>
+                            }
+                            {userData && parseInt(product.created_at[6]) < 6 && parseInt(product.created_at.slice(8, 10)) < 22 &&
+                              <button className='yellow-button' onClick={() => handleBasketAdd(product)}>Add to basket</button>
+                            }
                           </>
-                        } */}
+                        }
+
+
+                        {product.added_to_basket.some((basket) => {
+                          return basket.basket_owner.id === currentUserId
+                        }) &&
+                          <button className='yellow-button' onClick={() => goToBasket()}>Go to basket</button>
+                        }
                       </div>
-                      <Link className='bootstrap-link home-link' to={`/products/${product.id}`}>
-                        <div className="buffer-description">
-                          <h2 className='product-card-description'>{product.description}</h2>
-                        </div>
-                      </Link>
-                      <div className="buffer-reviews">
-                        <h2>
-                          {product.comments.length > 0 ?
-                            Math.floor(product.comments.reduce((acc, obj) => {
-                              return acc + parseInt(obj.rating)
-                            }, 0) / product.comments.length) === 1 &&
-                            <div className="flex-reviews add-padding">
-                              <img src={oneStar}></img>
-                              <p>{product.comments.length}</p>
-                            </div>
-                            :
-                            <div className='buffer-reviews'></div>
-                          }
-
-
-                          {product.comments.length > 0 ?
-                            Math.floor(product.comments.reduce((acc, obj) => {
-                              return acc + parseInt(obj.rating)
-                            }, 0
-                            ) / product.comments.length) === 2 &&
-                            <div className="flex-reviews add-padding">
-                              <img src={twoStars}></img>
-                              <p>{product.comments.length}</p>
-                            </div>
-                            : <div className='buffer-reviews'><></></div>
-                          }
-
-                          {product.comments.length > 0 ?
-                            Math.floor(product.comments.reduce((acc, obj) => {
-                              return acc + parseInt(obj.rating)
-                            }, 0
-                            ) / product.comments.length) === 3 &&
-                            <div className="flex-reviews add-padding">
-                              <img src={threeStars}></img>
-                              <p>{product.comments.length}</p>
-                            </div>
-                            : <div className='buffer-reviews'></div>
-                          }
-
-                          {product.comments.length > 0 ?
-                            Math.floor(product.comments.reduce((acc, obj) => {
-                              return acc + parseInt(obj.rating)
-                            }, 0
-                            ) / product.comments.length) === 4 &&
-                            <div className="flex-reviews">
-                              <img src={fourStars}></img>
-                              <p>{product.comments.length}</p>
-                            </div>
-                            : <div className='buffer-reviews'></div>
-                          }
-
-                          {product.comments.length > 0 ?
-                            Math.floor(product.comments.reduce((acc, obj) => {
-                              return acc + parseInt(obj.rating)
-                            }, 0
-                            ) / product.comments.length) === 5 &&
-                            <div className="flex-reviews add-padding">
-                              <img src={fiveStars}></img>
-                              <p>{product.comments.length}</p>
-                            </div>
-                            :
-                            <div className='buffer-reviews'></div>
-                          }
-                        </h2>
-                      </div>
-
-
-                      {!userData &&
-                        <div className='no-user'>
-                          <p className='yellow-button p-button'>Add to basket</p>
-                          <div className="flex-validate flex-info-no-user">
-                            <img src={info} alt='in basket'></img>
-                            <h6>Please <button className='button-adress' onClick={goLogin}>sign in</button> to add to basket or to add to wishlist</h6>
-                          </div>
-                        </div>
-                      }
-
-
-
-                      {product.added_to_basket.some((basket) => {
-                        return basket.basket_owner.id === currentUserId
-                      }) ?
-                        <>
-                          <div className="flex-in-basket">
-                            <div className="flex-validate">
-                              <p><span>In basket</span></p>
-                              <img src={validate} alt='in basket'></img>
-                            </div>
-
-                            {/* <div className='flex-add-remove-basket'>
-                              <button className='add-remove-button' onClick={() => handleBasketRemove(product)}><p className='button-minus'>-</p></button>
-                              <p>{product.added_to_basket[
-                                product.added_to_basket.findIndex((basket) => {
-                                  return basket.basket_owner.id === currentUserId
-                                })
-                              ].count}</p>
-                              <button className='add-remove-button' onClick={() => handleBasketAdd(product)}><p className='button-plus'>+</p></button>
-                            </div> */}
-
-                            <div className="flex-add-remove-basket">
-                              <select onChange={(e) => handleSelect(e, product)} name="filter-style" className="select-nav select-small" value={product.added_to_basket[
-                                product.added_to_basket.findIndex((basket) => {
-                                  return basket.basket_owner.id === currentUserId
-                                })
-                              ].count}>
-                                {/* <option value="0">0</option> */}
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                                <option value="8">8</option>
-                                <option value="9">9</option>
-                                <option value="10">10</option>
-                              </select>
-                            </div>
-                          </div>
-                          <button className='yellow-button' onClick={() => removeAll(product)}>Remove from basket</button>
-                        </>
-                        :
-                        <>
-                          <div className='flex-in-basket'>
-                          </div>
-                          {userData && parseInt(product.created_at[6]) > 5 &&
-                            <>
-                              <div className="flex-validate flex-info-no-user">
-                                <img src={info} alt='in basket'></img>
-                                <h6>Product available soon</h6>
-                              </div>
-                            </>
-                          }
-                          {userData && parseInt(product.created_at[6]) === 5 && parseInt(product.created_at.slice(8, 10)) > 21 &&
-                            <>
-                              <div className="flex-validate flex-info-no-user no-avail-info">
-                                <img src={info} alt='in basket'></img>
-                                <h6>Product available soon</h6>
-                              </div>
-                            </>
-                          }
-                          {userData && parseInt(product.created_at[6]) < 6 && parseInt(product.created_at.slice(8, 10)) < 22 &&
-                            <button className='yellow-button' onClick={() => handleBasketAdd(product)}>Add to basket</button>
-                          }
-                        </>
-                      }
-
-
-                      {product.added_to_basket.some((basket) => {
-                        return basket.basket_owner.id === currentUserId
-                      }) &&
-                        <button className='yellow-button' onClick={() => goToBasket()}>Go to basket</button>
-                      }
                     </div>
-                  </div>
-                )
-              })
-              }
+                  )
+                })
+                }
+              </div>
             </div>
           }
         </>
         :
         <div className='loading-pages-gif'>
-          <img src={pageLoadingGif} alt='loading' />
-          <p>Loading</p>
+          <>
+            <img src={pageLoadingGif} alt='loading' />
+            <p>Loading</p>
+          </>
         </div>
       }
     </main >
@@ -614,3 +769,5 @@ const Home = ({ selected, typed, setSelected, setTyped, basketCounter, setBasket
 }
 
 export default Home
+
+

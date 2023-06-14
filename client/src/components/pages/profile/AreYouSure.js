@@ -39,7 +39,7 @@ const AreYouSure = () => {
     navigate('/register')
   }
   const goHome = () => {
-    navigate('/')
+    navigate('/home-user')
   }
   const goAccount = () => {
     navigate('/account-details')

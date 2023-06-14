@@ -255,7 +255,7 @@ const Basket = ({ basketCounter, setBasketCounter, postcode, setPostcode }) => {
   }
 
   const handleShopping = () => {
-    navigate('/')
+    navigate('/home-user')
   }
   // ! JSX
 

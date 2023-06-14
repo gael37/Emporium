@@ -124,7 +124,7 @@ function Orders() {
   }
 
   const handleShopping = () => {
-    navigate('/')
+    navigate('/home-user')
   }
 
   const handleSaved = () => {

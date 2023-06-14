@@ -362,7 +362,7 @@ const Review = ({ userData }) => {
                 </div>
                 <div className='flex-buttons'>
                   <Link className='button-adress link-button' to={'/orders'}>Back to your orders</ Link>
-                  <Link className='button-adress link-button' to={'/'}>Continue shopping</ Link>
+                  <Link className='button-adress link-button' to={'/home-user'}>Continue shopping</ Link>
                 </div>
 
               </div>

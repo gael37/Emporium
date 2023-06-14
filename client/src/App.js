@@ -25,14 +25,14 @@ import Review from './components/pages/profile/Review'
 import NotFound from './components/pages/NotFound'
 import AccountDetails from './components/pages/profile/AccountDetails'
 import ItemsOnSale from './components/pages/profile/ItemsOnSale'
+import HomeGuest from './components/pages/HomeGuest'
 
 
 
 function App() {
 
   // state of the selected and the searched (used in the NavigationBar and the Home components)
-  const [selected, setSelected] = useState('All')
-  const [typed, setTyped] = useState('')
+
   // const [userData, setUserData] = useState(null)
   const [basketCounter, setBasketCounter] = useState(0)
   const [username, setUsername] = useState('')
@@ -42,9 +42,10 @@ function App() {
 
   return (
     <BrowserRouter>
-      <NavigationBar selected={selected} typed={typed} setSelected={setSelected} setTyped={setTyped} basketCounter={basketCounter} username={username} />
+      <NavigationBar basketCounter={basketCounter} username={username} />
       <Routes>
-        <Route path="/" element={<Home selected={selected} typed={typed} setSelected={setSelected} setTyped={setTyped} setBasketCounter={setBasketCounter} setUsername={setUsername} />} />
+        <Route path="/" element={<HomeGuest />} />
+        <Route path="/home-user" element={<Home setBasketCounter={setBasketCounter} setUsername={setUsername} />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/account-details" element={<AccountDetails basketCounter={basketCounter} setBasketCounter={setBasketCounter} postcode={postcode} setPostcode={setPostcode} />} />
         <Route path="/on-sale" element={<ItemsOnSale />} />

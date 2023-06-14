@@ -199,7 +199,7 @@ const NewProduct = () => {
   }
 
   const goHome = () => {
-    navigate('/')
+    navigate('/home-user')
   }
 
 
