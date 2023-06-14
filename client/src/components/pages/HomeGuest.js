@@ -386,7 +386,7 @@ const HomeGuest = () => {
         <div className='loading-pages-gif'>
           <>
             <img src={pageLoadingGif} alt='loading' />
-            <p>Loading</p>
+
           </>
         </div>
       }

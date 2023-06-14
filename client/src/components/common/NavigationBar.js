@@ -111,7 +111,7 @@ function NavigationBar({ selected, typed, setSelected, setTyped, basketCounter, 
             }
             {!isAuthenticated() &&
               <>
-                <NavDropdown.Item as={Link} to='/' ><div className='flex-nav-item'>Home</div></NavDropdown.Item>
+                <NavDropdown.Item as={Link} to='/' ><div className='flex-nav-item'>Browse</div></NavDropdown.Item>
                 <NavDropdown.Item as={Link} to='/login' ><div className='flex-nav-item'>Sign in</div></NavDropdown.Item>
               </>
             }
@@ -122,7 +122,9 @@ function NavigationBar({ selected, typed, setSelected, setTyped, basketCounter, 
       <div className='flex-cart-links'>
         <div className='navigation-items'>
           <Link className='nav-link nav-link-relative hover-underline-animation1' to='/home-user' id='big-cart'>Browse</Link>
-          <Link className='nav-link nav-link-relative hover-underline-animation1' to='/products/new' id='big-cart'>Sell</Link>
+          {isAuthenticated() &&
+            <Link className='nav-link nav-link-relative hover-underline-animation1' to='/products/new' id='big-cart'>Sell</Link>
+          }
           {isAuthenticated() &&
             <Nav className='nav-items-container' id='drop-desktop'>
               <NavDropdown className='basic-nav-dropdown hover-underline-animation2' title='Account' id="dropdown-small">
@@ -168,6 +170,9 @@ function NavigationBar({ selected, typed, setSelected, setTyped, basketCounter, 
             }
           </Link>
         }
+        {!isAuthenticated() &&
+          <Link className='nav-link hover-underline-animation2' to='/login' id='login-link'>Sign in</ Link>
+        }
       </div>
 
 
@@ -177,9 +182,7 @@ function NavigationBar({ selected, typed, setSelected, setTyped, basketCounter, 
 
 
 
-      {!isAuthenticated() &&
-        <Link className='nav-link hover-underline-animation2' to='/login' id='login-link'>Sign in</ Link>
-      }
+
     </Navbar >
   )
 
