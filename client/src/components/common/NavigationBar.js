@@ -117,7 +117,11 @@ function NavigationBar({ selected, typed, setSelected, setTyped, basketCounter, 
             }
           </NavDropdown>
         </Nav>
-        <Navbar.Brand as={Link} className='nav-brand brand-logo' to='/home-user' id='logo-big-screen'><img src={brandLogo} /></Navbar.Brand>
+        {isAuthenticated() ?
+          <Navbar.Brand as={Link} className='nav-brand brand-logo' to='/home-user' id='logo-big-screen'><img src={brandLogo} /></Navbar.Brand>
+          :
+          <Navbar.Brand as={Link} className='nav-brand brand-logo' to='/' id='logo-big-screen'><img src={brandLogo} /></Navbar.Brand>
+        }
       </div>
       <div className='flex-cart-links'>
         <div className='navigation-items'>

@@ -666,15 +666,20 @@ const SingleProduct = ({ setBasketCounter, postcode, setPostcode }) => {
                       }
                     </div>
                   </div>
-                  <div className="single-deliver">
-                    <h6>Deliver to</h6>
-                    <div className="single-deliver flex-deliver-basket">
-                      {userData && postcodeData && postcode &&
-                        <p>{userData.username}<br></br> {postcodeData.result.postcode} <br></br>{postcodeData.result.admin_district}, {postcodeData.result.country}</p>
-                      }
-                      <button className='button-adress' onClick={handleShow}>Change delivery adress</button>
+                  {userData ?
+                    <div className="single-deliver">
+                      <h6>Deliver to</h6>
+                      <div className="single-deliver flex-deliver-basket">
+                        {userData && postcodeData && postcode &&
+                          <p>{userData.username}<br></br> {postcodeData.result.postcode} <br></br>{postcodeData.result.admin_district}, {postcodeData.result.country}</p>
+                        }
+                        <button className='button-adress' onClick={handleShow}>Change delivery adress</button>
+                      </div>
                     </div>
-                  </div>
+                    :
+                    <></>
+                  }
+
                   <Modal className='basket-modal' show={show} onHide={handleClose}>
                     <Modal.Header closeButton>
                       <Modal.Title>Change your delivery adress </Modal.Title>
@@ -719,7 +724,7 @@ const SingleProduct = ({ setBasketCounter, postcode, setPostcode }) => {
                   </Modal>
                   {!userData &&
                     <div className='no-user'>
-                      <p className='yellow-button p-button'>Add to basket</p>
+                      <p className='yellow-button p-button greyed-button'>Add to basket</p>
                       <div className="flex-validate flex-info-no-user single-info-no-user">
                         <img src={info} alt='in basket'></img>
                         <h6>Please <button className='button-adress' onClick={goLogin}>sign in</button> to add to basket or to add to wishlist</h6>
