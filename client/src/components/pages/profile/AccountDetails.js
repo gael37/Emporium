@@ -68,7 +68,8 @@ const AccountDetails = ({ basketCounter, setBasketCounter, postcode, setPostcode
 
   const handleClose = () => {
     setShow(false)
-    setPostcode(postcodeData.result.postcode)
+    setPostcode(userData.postcode)
+    // setPostcode(postcodeData.result.postcode)
   }
 
   const handleShow = async () => {

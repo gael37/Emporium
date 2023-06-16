@@ -50,7 +50,7 @@ const Login = () => {
 
   const loginAsGuest = async () => {
     setFormFields({
-      email: 'guest@email.com',
+      email: 'test-user@email.com',
       password: 'TestPass37!',
     })
     try {
@@ -101,7 +101,7 @@ const Login = () => {
         {error && <small className='text-danger'>{error}</small>}
         {/* Submit */}
         <button className='yellow-button login-button'>Sign in</button>
-        <button onClick={loginAsGuest} className='yellow-button login-button green-button'>Skip and sign in as a guest</button>
+        <button onClick={loginAsGuest} className='yellow-button login-button green-button'>Skip and sign in as a test user</button>
       </form>
       <br />
       <p>New to emporium?</p>

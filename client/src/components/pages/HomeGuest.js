@@ -367,7 +367,7 @@ const HomeGuest = () => {
                           </h2>
                         </div>
                         <div className='no-user'>
-                          <p className='yellow-button p-button'>Add to basket</p>
+                          <p className='yellow-button p-button greyed-button'>Add to basket</p>
                           <div className="flex-validate flex-info-no-user">
                             <img src={info} alt='in basket'></img>
                             <h6>Please <button className='button-adress' onClick={goLogin}>sign in</button> to add to basket or to add to wishlist</h6>

@@ -103,7 +103,7 @@ function Success({ setBasketCounter }) {
   }, [userData])
 
   const goHome = () => {
-    navigate('/')
+    navigate('/home-user')
   }
 
   const goOrders = () => {
