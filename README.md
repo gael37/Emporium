@@ -11,12 +11,15 @@ The users of this website can:
 - Manage their whishlist.
 
 Mobile view of the sign-in page:
+
 ![image](https://github.com/gael37/Emporium/assets/113553373/5b49ecca-bab0-4a63-a6c6-e2a54db2e8bc)
 
 Desktop view of the landing page (list of all the products and product filters):
+
 ![image](https://github.com/gael37/Emporium/assets/113553373/091c1c46-b8ab-44eb-8595-d21a2ea69067)
 
 Tablet view of the basket page:
+
 ![image](https://github.com/gael37/Emporium/assets/113553373/f927954d-fa5a-4fa1-befc-9367f31b0888)
 
 
