@@ -106,17 +106,16 @@ Piece of this component, containing the state value 'selectedImages' and some co
 
 <img width="824" alt="image" src="https://github.com/gael37/Emporium/assets/113553373/864bed5b-1167-41f7-8a45-7cda355dd37f">
 
-Loading informative message:
+You can see below a 'loading in progress' informative message:
 
 ![image](https://github.com/gael37/Emporium/assets/113553373/6d6d80e8-0074-4363-9f8c-81d564e28e97)
 
-Images uploaded management buttons:
+You can see below the numbered images with a 'delete' button:
 
 ![image](https://github.com/gael37/Emporium/assets/113553373/df148d3c-96bb-456d-af99-3fa7ca59dc90)
 
-
  
-One of the challenges was to integrate the Stripe payment system to my website. I needed to do some research to figure out how to use the Stripe API in test mode, and make sure I send the correct pieces of information regarding the products that are in the users' basket.
+Another challenge was to integrate the Stripe payment system to my website. I needed to do some research to figure out how to use the Stripe API in test mode, and make sure I send the correct pieces of information regarding the products that are in the users' basket.
 Below you can see the main piece of the views.py in my 'payments' django app:
 
 <img width="779" alt="image" src="https://github.com/gael37/Emporium/assets/113553373/39362723-2b19-439f-b799-e0338e5d17d1">
@@ -124,12 +123,20 @@ Below you can see the main piece of the views.py in my 'payments' django app:
 
 # Wins
 
+This project was another practice with working on full-stack applications , I was able to practice the design in a concrete way, inspiring myself from an industry efficient pre-existing one, which was really useful for me to help me learn how to design my website in a user-friendly/industry approved  way.
+Using the Stripe payment test mode on my project is a big win for me, because now I feel more confortable on working with tools that are new to me, so it helps me feeling more confident about implementing new functionalities in my future projects. It also forced me to search for documentation online, which is a good skill to have to be able to  to sort yourself out and become a better developer in general.
 
+By practicing useState and useEffect a lot, I'm getting used to the React way of thinking.
 
 # Key Learnings/Takeaways
 
-
+I got tangled up a few times with bits of my own code once more, especially with the state management and using the useEffect hook a bit too loosely, which led to bugs that took me while to sort out. This makes me realize the importance of writting clean code and not to repeat myself.
 
 # Future Improvements
 
+I loved working on this personal project and I have to force myself moving on learning new things and practicing other technologies, although I would love continuing to improve it.
+I think my filter selector in the middle of the screen looks a bit clucnky. I would like to change it, and implement numerous filters on the left-side of the screen instead. Filters like ‘by city’, ‘by price with a cursor’, by ‘ratings’ etc.
+I could also seed the database with more products.
+I could also make sure to decrease the main page loading time, by not displaying all the database products at once (10 by 10 for example, with a button to display more).
+The loading time for adding/removing product from the basket is a bit long as well. I could re-write my code so that it makes the API call only when the user leaves the page, instead of each time he clicks on 'add product to basket' for example.
 
