@@ -85,14 +85,29 @@ Then, I wrote the relationship diagram of my SQL database.
 
 # Build/Code Process
 
-I started by building my Django back-end, containg the seven apps that I used in my diagram.
+I started by building my Django back-end, containg the eight apps that I used in my diagram:
+- basket
+- categories
+- comments
+- jwt_auth
+- orders
+- payments
+- products
+- wishes
+
 Then, I connected my React front-end to my back-end, and started writing my components.
-I started with the navigation bar, then the home page (list of all the products and filers), then detailed product page, etc.
+I started with the navigation bar, then the home page (list of all the products), then detailed product page, etc.
 
 # Challenges
 
+One of the challenges was managing the product images, allowing the users to add and delete them during the upload phase in a smooth way. To do so, I used the dropzone library, and I wrote some conditional code in my 'newProduct' component to make sure there is a loading information visible for the users as well as a way for them to manage the uploaded images:
+![image](https://github.com/gael37/Emporium/assets/113553373/6d6d80e8-0074-4363-9f8c-81d564e28e97)
+ to let the user know if the upload (which could take a few seconds)
+ is actually going throught:
+
+ 
 One of the challenges was to integrate the Stripe payment system to my website. I needed to do some research to figure out how to use the Stripe API in test mode, and make sure I send the correct pieces of information regarding the products that are in the users' basket.
-Below you can see the main piece of the views.py in my 'payment' django app:
+Below you can see the main piece of the views.py in my 'payments' django app:
 
 <img width="779" alt="image" src="https://github.com/gael37/Emporium/assets/113553373/39362723-2b19-439f-b799-e0338e5d17d1">
 
