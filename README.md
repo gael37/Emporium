@@ -10,6 +10,8 @@ The users of this website can:
 - Add and remove products to their basket and proceed to a Stripe payment.
 - Manage their whishlist.
 
+Below you can see screenshots of the website on different devices:
+
 Mobile view of the sign-in page:
 
 ![image](https://github.com/gael37/Emporium/assets/113553373/5b49ecca-bab0-4a63-a6c6-e2a54db2e8bc)
