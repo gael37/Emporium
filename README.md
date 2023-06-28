@@ -101,9 +101,19 @@ I started with the navigation bar, then the home page (list of all the products)
 # Challenges
 
 One of the challenges was managing the product images, allowing the users to add and delete them during the upload phase in a smooth way. To do so, I used the dropzone library, and I wrote some conditional code in my 'newProduct' component to make sure there is a loading information visible for the users as well as a way for them to manage the uploaded images:
+
+Piece of this component, containing the state value 'selectedImages' and some conditional logic:
+
+<img width="824" alt="image" src="https://github.com/gael37/Emporium/assets/113553373/864bed5b-1167-41f7-8a45-7cda355dd37f">
+
+Loading informative message:
+
 ![image](https://github.com/gael37/Emporium/assets/113553373/6d6d80e8-0074-4363-9f8c-81d564e28e97)
- to let the user know if the upload (which could take a few seconds)
- is actually going throught:
+
+Images uploaded management buttons:
+
+![image](https://github.com/gael37/Emporium/assets/113553373/df148d3c-96bb-456d-af99-3fa7ca59dc90)
+
 
  
 One of the challenges was to integrate the Stripe payment system to my website. I needed to do some research to figure out how to use the Stripe API in test mode, and make sure I send the correct pieces of information regarding the products that are in the users' basket.
