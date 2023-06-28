@@ -34,19 +34,22 @@ https://emporium.herokuapp.com/
 
 To run the app locally, download the zip file and open it with your code editor, then split the terminal and run these commands:
 
-- on the project root: 
-pipenv install django
-python manage.py runserver
+On the first terminal window:
+- cd in the project root
+- pip install pipenv
+- pipenv install django
+- python manage.py runserver
 
+In another terminal window:
 - cd in the client folder:
-npm i
-npm run start
+- npm i
+- npm run start
 
 The application should open in your browser.
 
 # Timeframe & Working Team
 
-This project was fully created individually, between March and June 2023
+This project was created individually, between March and May 2023.
 
 Technologies Used
 
@@ -61,34 +64,37 @@ Front-end:
 - React.js
 
 Back-end:
-
-- Django
+- Django (with Python)
 
 Database:
 - PostgreSQL
 
 Others:
 - Quick Database Diagrams
-- Excalidraw
-- Insomnia
+- Figma
 - TablePlus
 - Cloudinary
 - -bcrypt
 - Stripe
 
-# Brief
-
-
 
 # Planning
 
+I started by drawing a wireframe of my website, using Figma.
+Then, I wrote the relationship diagram of my SQL database.
 
 # Build/Code Process
 
-
+I started by building my Django back-end, containg the seven apps that I used in my diagram.
+Then, I connected my React front-end to my back-end, and started writing my components.
+I started with the navigation bar, then the home page (list of all the products and filers), then detailed product page, etc.
 
 # Challenges
 
+One of the challenges was to integrate the Stripe payment system to my website. I needed to do some research to figure out how to use the Stripe API in test mode, and make sure I send the correct pieces of information regarding the products that are in the users' basket.
+Below you can see the main piece of the views.py in my 'payment' django app:
+
+<img width="779" alt="image" src="https://github.com/gael37/Emporium/assets/113553373/39362723-2b19-439f-b799-e0338e5d17d1">
 
 
 # Wins
