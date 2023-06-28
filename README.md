@@ -1,6 +1,16 @@
 # Description
 
-![image](https://github.com/gael37/Emporium/assets/113553373/6becc62a-0d28-466a-8f21-fc80a840fd95)
+This is my first full-stack personal project that follows the completion of my software engineering bootcamp with General Assembly.
+I built an e-commerce website whose design is inspired by Amazon.
+The users of this website can:
+- Sign in/sign up using an authentication system and have access to gated functionalities.
+- View products including descriptions, images, customer reviews.
+- Sell products, using a drag and drop feature for uploading images.
+- See and manage their orders, post product reviews.
+- Add and remove products to their basket and proceed to a Stripe payment.
+- Manage their whishlist.
+![image](https://github.com/gael37/Emporium/assets/113553373/091c1c46-b8ab-44eb-8595-d21a2ea69067)
+
 
 
 # Deployment link:
