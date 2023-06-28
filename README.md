@@ -1,5 +1,6 @@
 # Description
 
+![image](https://github.com/gael37/Emporium/assets/113553373/6becc62a-0d28-466a-8f21-fc80a840fd95)
 
 
 # Deployment link:
