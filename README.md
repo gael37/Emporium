@@ -10,7 +10,7 @@ The users of this website can:
 - Add and remove products to their basket and proceed to a Stripe payment.
 - Manage their whishlist.
 
-Below you can see screenshots of the website on different devices:
+Below you can see a few screenshots of the website on different devices, for an overview of the general design:
 
 Mobile view of the sign-in page:
 
@@ -25,10 +25,10 @@ Tablet view of the basket page:
 ![image](https://github.com/gael37/Emporium/assets/113553373/f927954d-fa5a-4fa1-befc-9367f31b0888)
 
 
-
-
 # Deployment link:
 
+I have deployed my application on Heroku, it might take a few seconds to load:
+https://emporium.herokuapp.com/
 
 # Getting Started/Code Installation
 
