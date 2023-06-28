@@ -9,6 +9,7 @@ The users of this website can:
 - See and manage their orders, post product reviews.
 - Add and remove products to their basket and proceed to a Stripe payment.
 - Manage their whishlist.
+- 
 ![image](https://github.com/gael37/Emporium/assets/113553373/091c1c46-b8ab-44eb-8595-d21a2ea69067)
 
 
